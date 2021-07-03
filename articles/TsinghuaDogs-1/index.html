@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Tsinghua Dogs v1 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="CV," />
+  
+
+  <meta name="description" content="Tsinghua Dogs数据集的结构赛题地址:https:&#x2F;&#x2F;www.educoder.net&#x2F;competitions&#x2F;index&#x2F;Jittor-2 来源：Tsinghua Dogs数据集官网  low-resolution：130类狗狗的图片集合 low-annotations：130类狗狗的标注结果，其中包括头部、整个身体的包围框 TrainAndValList：训练验证集切分  每一类被">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tsinghua Dogs v1">
+<meta property="og:url" content="https://hahally.github.io/articles/TsinghuaDogs-1/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="Tsinghua Dogs数据集的结构赛题地址:https:&#x2F;&#x2F;www.educoder.net&#x2F;competitions&#x2F;index&#x2F;Jittor-2 来源：Tsinghua Dogs数据集官网  low-resolution：130类狗狗的图片集合 low-annotations：130类狗狗的标注结果，其中包括头部、整个身体的包围框 TrainAndValList：训练验证集切分  每一类被">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/TsinghuaDogs-1/output_8_0.png">
+<meta property="og:image" content="https://hahally.github.io/articles/TsinghuaDogs-1/output_35_0.png">
+<meta property="og:image" content="https://hahally.github.io/articles/TsinghuaDogs-1/output_35_1.png">
+<meta property="og:image" content="https://hahally.github.io/articles/TsinghuaDogs-1/output_35_2.png">
+<meta property="article:published_time" content="2021-01-30T03:00:58.000Z">
+<meta property="article:modified_time" content="2021-02-06T08:30:45.830Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="CV">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/TsinghuaDogs-1/output_8_0.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tsinghua-Dogs数据集的结构"><span class="toc-text">Tsinghua Dogs数据集的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看文件目录结构"><span class="toc-text">查看文件目录结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#可视化Tsinghua-Dogs"><span class="toc-text">可视化Tsinghua Dogs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml2csv"><span class="toc-text">xml2csv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据划分"><span class="toc-text">数据划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据分布"><span class="toc-text">数据分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#check-data"><span class="toc-text">check data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图像增强"><span class="toc-text">图像增强</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据加载"><span class="toc-text">数据加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-Model"><span class="toc-text">Build Model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSD-Jittor"><span class="toc-text">SSD-Jittor:</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-TsinghuaDogs-1" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Tsinghua Dogs v1</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.01.30</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/TsinghuaDogs-1/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="Tsinghua-Dogs数据集的结构"><a href="#Tsinghua-Dogs数据集的结构" class="headerlink" title="Tsinghua Dogs数据集的结构"></a>Tsinghua Dogs数据集的结构</h3><p>赛题地址:<a href="https://www.educoder.net/competitions/index/Jittor-2" target="_blank" rel="noopener">https://www.educoder.net/competitions/index/Jittor-2</a></p>
+<p>来源：<a href="https://cg.cs.tsinghua.edu.cn/ThuDogs/" target="_blank" rel="noopener">Tsinghua Dogs数据集官网</a></p>
+<ul>
+<li>low-resolution：130类狗狗的图片集合</li>
+<li>low-annotations：130类狗狗的标注结果，其中包括头部、整个身体的包围框</li>
+<li>TrainAndValList：训练验证集切分</li>
+</ul>
+<p>每一类被分别保存在不同的文件夹里，该文件夹名称格式为：\$id-$class_id-\$class_name，其中 \$class_id 为类别标签，\$class_name为类别名称，如文件夹名为 220-n000069-Mexican_hairless 的文件对应的标签为 69，文件夹名为 480-n000125-Pekinese 的文件，对应的标签为 125。</p>
+<h3 id="查看文件目录结构"><a href="#查看文件目录结构" class="headerlink" title="查看文件目录结构"></a>查看文件目录结构</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.listdir(<span class="string">'./dataset/'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;low-annotations&#39;, &#39;low-resolution&#39;, &#39;TEST_A&#39;, &#39;TrainAndValList&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">low_annotations = os.listdir(<span class="string">'./dataset/low-annotations'</span>)</span><br><span class="line">low_resolution = os.listdir(<span class="string">'./dataset/low-resolution'</span>)</span><br><span class="line"></span><br><span class="line">len(low_annotations),len(low_resolution),low_annotations[:<span class="number">5</span>],low_resolution[:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(130,
+ 131,
+ [&#39;1043-n000001-Shiba_Dog&#39;,
+  &#39;1121-n000002-French_bulldog&#39;,
+  &#39;1160-n000003-Siberian_husky&#39;,
+  &#39;1324-n000004-malamute&#39;,
+  &#39;1936-n000005-Pomeranian&#39;],
+ [&#39;1043-n000001-Shiba_Dog&#39;,
+  &#39;1121-n000002-French_bulldog&#39;,
+  &#39;1160-n000003-Siberian_husky&#39;,
+  &#39;1324-n000004-malamute&#39;,
+  &#39;1936-n000005-Pomeranian&#39;])
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 无效文件</span></span><br><span class="line">low_resolution[<span class="number">-1</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>&#39;~$directoryfilecount.xlsx&#39;
+</code></pre><hr>
+<h3 id="可视化Tsinghua-Dogs"><a href="#可视化Tsinghua-Dogs" class="headerlink" title="可视化Tsinghua Dogs"></a>可视化Tsinghua Dogs</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.dom.minidom</span><br><span class="line"><span class="keyword">from</span> xml.dom.minidom <span class="keyword">import</span> parse</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line">DOMTree = parse(<span class="string">'./dataset/low-annotations/1043-n000001-Shiba_Dog/n100001.jpeg.xml'</span>)</span><br><span class="line">collection = DOMTree.documentElement</span><br><span class="line">img = cv2.imread(<span class="string">'./dataset/low-resolution/1043-n000001-Shiba_Dog/n100001.jpeg'</span>)</span><br><span class="line">headbndbox = collection.getElementsByTagName(<span class="string">"headbndbox"</span>)[<span class="number">0</span>]</span><br><span class="line">xmin = int(headbndbox.getElementsByTagName(<span class="string">"xmin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">ymin = int(headbndbox.getElementsByTagName(<span class="string">"ymin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">xmax = int(headbndbox.getElementsByTagName(<span class="string">"xmax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">ymax = int(headbndbox.getElementsByTagName(<span class="string">"ymax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">cv2.rectangle(img, (xmin, ymin), (xmax, ymax), (<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>), <span class="number">2</span>)</span><br><span class="line">bodybndbox = collection.getElementsByTagName(<span class="string">"bodybndbox"</span>)[<span class="number">0</span>]</span><br><span class="line">xmin = int(bodybndbox.getElementsByTagName(<span class="string">"xmin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">ymin = int(bodybndbox.getElementsByTagName(<span class="string">"ymin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">xmax = int(bodybndbox.getElementsByTagName(<span class="string">"xmax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">ymax = int(bodybndbox.getElementsByTagName(<span class="string">"ymax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">cv2.rectangle(img, (xmin, ymin), (xmax, ymax), (<span class="number">0</span>,<span class="number">255</span>,<span class="number">255</span>), <span class="number">2</span>)</span><br><span class="line"><span class="keyword">import</span> pylab <span class="keyword">as</span> pl</span><br><span class="line">pl.figure(figsize=(<span class="number">12</span>,<span class="number">12</span>))</span><br><span class="line">pl.imshow(img[:,:,::<span class="number">-1</span>]);</span><br></pre></td></tr></table></figure>
+<p><img src="/articles/TsinghuaDogs-1/output_8_0.png" alt="png"></p>
+<h3 id="xml2csv"><a href="#xml2csv" class="headerlink" title="xml2csv"></a>xml2csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xml.dom.minidom</span><br><span class="line"><span class="keyword">from</span> xml.dom.minidom <span class="keyword">import</span> parse</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 结构化</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">xml2df</span><span class="params">(root_path,xml_filename)</span>:</span></span><br><span class="line">    </span><br><span class="line">    DOMTree = parse(root_path+xml_filename)</span><br><span class="line">    collection = DOMTree.documentElement</span><br><span class="line">    </span><br><span class="line">    folder = str(collection.getElementsByTagName(<span class="string">"folder"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    filename = str(collection.getElementsByTagName(<span class="string">"filename"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    dog_type = str(collection.getElementsByTagName(<span class="string">"name"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    </span><br><span class="line">    headbndbox = collection.getElementsByTagName(<span class="string">"headbndbox"</span>)[<span class="number">0</span>]</span><br><span class="line">    head_xmin = int(headbndbox.getElementsByTagName(<span class="string">"xmin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    head_ymin = int(headbndbox.getElementsByTagName(<span class="string">"ymin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    head_xmax = int(headbndbox.getElementsByTagName(<span class="string">"xmax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    head_ymax = int(headbndbox.getElementsByTagName(<span class="string">"ymax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    </span><br><span class="line">    bodybndbox = collection.getElementsByTagName(<span class="string">"bodybndbox"</span>)[<span class="number">0</span>]</span><br><span class="line">    body_xmin = int(bodybndbox.getElementsByTagName(<span class="string">"xmin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_ymin = int(bodybndbox.getElementsByTagName(<span class="string">"ymin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_xmax = int(bodybndbox.getElementsByTagName(<span class="string">"xmax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_ymax = int(bodybndbox.getElementsByTagName(<span class="string">"ymax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    </span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'folder'</span>: [folder+<span class="string">'/'</span>+filename],</span><br><span class="line">        <span class="string">'dog_type'</span>: [dog_type],</span><br><span class="line">        <span class="string">'hbox'</span>: [[head_xmin,head_ymin,head_xmax,head_ymax]],</span><br><span class="line">        </span><br><span class="line">        <span class="string">'bbox'</span>: [[body_xmin,body_ymin,body_xmax,body_ymax]],</span><br><span class="line">        <span class="string">'label'</span>:[int(folder.split(<span class="string">'-'</span>)[<span class="number">1</span>][<span class="number">1</span>:].lstrip(<span class="string">'0'</span>))]</span><br><span class="line">    &#125;</span><br><span class="line">    df = pd.DataFrame(data=data)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> df</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">()</span>:</span></span><br><span class="line">    con = []</span><br><span class="line">    <span class="keyword">for</span> path <span class="keyword">in</span> tqdm(os.listdir(<span class="string">'./dataset/low-annotations/'</span>)):</span><br><span class="line">        <span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(<span class="string">'./dataset/low-annotations/'</span> + path):</span><br><span class="line">            root = <span class="string">'./dataset/low-annotations/'</span> + path + <span class="string">'/'</span></span><br><span class="line">            con.append(xml2df(root, file))</span><br><span class="line">    <span class="keyword">return</span> con</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">con = fun()</span><br></pre></td></tr></table></figure>
+<pre><code>100%|████████████████████████████████████████████████████████████████| 130/130 [03:02&lt;00:00,  1.41s/it]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.concat(con,ignore_index=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 70428 张图片</span></span><br><span class="line">df.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 70428 entries, 0 to 70427
+Data columns (total 5 columns):
+bbox        70428 non-null object
+dog_type    70428 non-null object
+folder      70428 non-null object
+hbox        70428 non-null object
+label       70428 non-null int64
+dtypes: int64(1), object(4)
+memory usage: 2.7+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.head()</span><br></pre></td></tr></table></figure>
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bbox</th>
+      <th>dog_type</th>
+      <th>folder</th>
+      <th>hbox</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[241, 47, 720, 720]</td>
+      <td>Shiba_Dog</td>
+      <td>1043-n000001-Shiba_Dog/n100001.jpeg</td>
+      <td>[258, 43, 494, 322]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[126, 200, 462, 494]</td>
+      <td>Shiba_Dog</td>
+      <td>1043-n000001-Shiba_Dog/n100002.jpeg</td>
+      <td>[348, 206, 440, 300]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[81, 0, 587, 720]</td>
+      <td>Shiba_Dog</td>
+      <td>1043-n000001-Shiba_Dog/n100003.jpeg</td>
+      <td>[124, 5, 564, 458]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[81, 81, 342, 332]</td>
+      <td>Shiba_Dog</td>
+      <td>1043-n000001-Shiba_Dog/n100004.jpg</td>
+      <td>[244, 146, 333, 260]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[104, 97, 234, 391]</td>
+      <td>Shiba_Dog</td>
+      <td>1043-n000001-Shiba_Dog/n100005.jpg</td>
+      <td>[127, 118, 222, 247]</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.to_csv(<span class="string">'./ImageInfo.csv'</span>,index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="数据划分"><a href="#数据划分" class="headerlink" title="数据划分"></a>数据划分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_path = <span class="string">'./dataset/low-resolution/'</span></span><br><span class="line">info_path = <span class="string">'./dataset/low-annotations/'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练集</span></span><br><span class="line">train_data = pd.read_csv(<span class="string">'./dataset/TrainAndValList/train.lst'</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 验证集</span></span><br><span class="line">val_data = pd.read_csv(<span class="string">'./dataset/TrainAndValList/validation.lst'</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 完整数据</span></span><br><span class="line">all_data = pd.read_csv(<span class="string">'./ImageInfo.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_data[<span class="string">'folder'</span>] = train_data[<span class="number">0</span>].apply(<span class="keyword">lambda</span> x:x[<span class="number">3</span>:])</span><br><span class="line">val_data[<span class="string">'folder'</span>] = val_data[<span class="number">0</span>].apply(<span class="keyword">lambda</span> x:x[<span class="number">3</span>:])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_data = train_data.drop(columns=<span class="number">0</span>)</span><br><span class="line">val_data = val_data.drop(columns=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 得到最终划分的数据：train/validation</span></span><br><span class="line">train_data = train_data.merge(all_data,on=[<span class="string">'folder'</span>],how=<span class="string">'left'</span>)</span><br><span class="line">val_data = val_data.merge(all_data,on=[<span class="string">'folder'</span>],how=<span class="string">'left'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_data.head()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>folder</th>
+      <th>bbox</th>
+      <th>dog_type</th>
+      <th>hbox</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1043-n000001-Shiba_Dog/n100001.jpeg</td>
+      <td>[241, 47, 720, 720]</td>
+      <td>Shiba_Dog</td>
+      <td>[258, 43, 494, 322]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1043-n000001-Shiba_Dog/n100002.jpeg</td>
+      <td>[126, 200, 462, 494]</td>
+      <td>Shiba_Dog</td>
+      <td>[348, 206, 440, 300]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1043-n000001-Shiba_Dog/n100003.jpeg</td>
+      <td>[81, 0, 587, 720]</td>
+      <td>Shiba_Dog</td>
+      <td>[124, 5, 564, 458]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1043-n000001-Shiba_Dog/n100004.jpg</td>
+      <td>[81, 81, 342, 332]</td>
+      <td>Shiba_Dog</td>
+      <td>[244, 146, 333, 260]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1043-n000001-Shiba_Dog/n100005.jpg</td>
+      <td>[104, 97, 234, 391]</td>
+      <td>Shiba_Dog</td>
+      <td>[127, 118, 222, 247]</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val_data.head()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>folder</th>
+      <th>bbox</th>
+      <th>dog_type</th>
+      <th>hbox</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1043-n000001-Shiba_Dog/n100032.jpeg</td>
+      <td>[109, 44, 471, 533]</td>
+      <td>Shiba_Dog</td>
+      <td>[282, 60, 455, 279]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1043-n000001-Shiba_Dog/n100069.jpg</td>
+      <td>[52, 1, 315, 221]</td>
+      <td>Shiba_Dog</td>
+      <td>[206, 15, 309, 141]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1043-n000001-Shiba_Dog/n100109.jpeg</td>
+      <td>[41, 61, 363, 295]</td>
+      <td>Shiba_Dog</td>
+      <td>[119, 70, 220, 222]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1043-n000001-Shiba_Dog/n100112.jpg</td>
+      <td>[59, 0, 296, 472]</td>
+      <td>Shiba_Dog</td>
+      <td>[58, 0, 281, 227]</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1043-n000001-Shiba_Dog/n100171.jpg</td>
+      <td>[30, 80, 318, 271]</td>
+      <td>Shiba_Dog</td>
+      <td>[188, 91, 257, 187]</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(train_data),len(val_data),len(all_data)</span><br></pre></td></tr></table></figure>
+<pre><code>(65228, 5200, 70428)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存(save to csv file)</span></span><br><span class="line">train_data.to_csv(<span class="string">'./train.data.csv'</span>,index=<span class="literal">False</span>)</span><br><span class="line">val_data.to_csv(<span class="string">'./valid.data.csv'</span>,index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="数据分布"><a href="#数据分布" class="headerlink" title="数据分布"></a>数据分布</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">all_data = pd.read_csv(<span class="string">'./ImageInfo.csv'</span>)</span><br><span class="line">train_data = pd.read_csv(<span class="string">'./train.data.csv'</span>)</span><br><span class="line">val_data = pd.read_csv(<span class="string">'./valid.data.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top 15 类型</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">show</span><span class="params">(d)</span>:</span></span><br><span class="line">    fig = plt.figure(figsize=(<span class="number">15</span>,<span class="number">10</span>))</span><br><span class="line">    plt.pie(d.values,  labels=d.index, autopct=<span class="string">'%1.2f%%'</span>, startangle=<span class="number">160</span>)</span><br><span class="line">    plt.tight_layout()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">for</span> dt <span class="keyword">in</span> [all_data,train_data,val_data]:</span><br><span class="line">    d = dt[<span class="string">'dog_type'</span>].value_counts()[:<span class="number">15</span>]</span><br><span class="line">    show(d)</span><br></pre></td></tr></table></figure>
+<p><img src="/articles/TsinghuaDogs-1/output_35_0.png" alt="png"></p>
+<p><img src="/articles/TsinghuaDogs-1/output_35_1.png" alt="png"></p>
+<p><img src="/articles/TsinghuaDogs-1/output_35_2.png" alt="png"></p>
+<h3 id="check-data"><a href="#check-data" class="headerlink" title="check data"></a>check data</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看数据维度</span></span><br><span class="line">all_data = pd.read_csv(<span class="string">'./ImageInfo.csv'</span>)</span><br><span class="line"></span><br><span class="line">root = <span class="string">'./dataset/low-resolution/'</span></span><br><span class="line">all_data[<span class="string">'flag'</span>] = all_data[<span class="string">'folder'</span>].apply(</span><br><span class="line">    <span class="keyword">lambda</span> x: <span class="number">1</span> <span class="keyword">if</span> <span class="number">3</span> == plt.imread(root + x).shape[<span class="number">2</span>] <span class="keyword">else</span> <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 有一张图像维度不是 3</span></span><br><span class="line">all_data[<span class="string">'flag'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<pre><code>1    70427
+0        1
+Name: flag, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rgba 图像</span></span><br><span class="line">d = all_data[all_data[<span class="string">'flag'</span>]==<span class="number">0</span>][<span class="string">'folder'</span>].values[<span class="number">0</span>]</span><br><span class="line">plt.imread(<span class="string">'./dataset/low-resolution/'</span>+d).shape</span><br></pre></td></tr></table></figure>
+<pre><code>(189, 213, 4)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># delete </span></span><br><span class="line">train_data = pd.read_csv(<span class="string">'./train.data.csv'</span>)</span><br><span class="line">valid_data = pd.read_csv(<span class="string">'./valid.data.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_data[train_data[<span class="string">'folder'</span>]==d]</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>folder</th>
+      <th>bbox</th>
+      <th>dog_type</th>
+      <th>hbox</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">valid_data[valid_data[<span class="string">'folder'</span>]==d]</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>folder</th>
+      <th>bbox</th>
+      <th>dog_type</th>
+      <th>hbox</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4375</th>
+      <td>274-n000110-Shetland_sheepdog/n136188.jpg</td>
+      <td>[3, 0, 203, 183]</td>
+      <td>Shetland_sheepdog</td>
+      <td>[10, 4, 85, 68]</td>
+      <td>110</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">valid_data = valid_data.drop(</span><br><span class="line">    valid_data[valid_data[<span class="string">'folder'</span>] == d].index).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新保存</span></span><br><span class="line">valid_data.to_csv(<span class="string">'./valid.data.csv'</span>,index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="图像增强"><a href="#图像增强" class="headerlink" title="图像增强"></a>图像增强</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 亮度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_bright</span><span class="params">(img, delta=<span class="number">32</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Random change bright</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        im(numpy.array): one H,W,3 image</span></span><br><span class="line"><span class="string">        delta(int): bright ratio</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    im = np.copy(img)</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line">        delta = random.uniform(-delta, delta)</span><br><span class="line">        im += delta</span><br><span class="line">        im = im.clip(min=<span class="number">0</span>, max=<span class="number">255</span>)</span><br><span class="line">    <span class="keyword">return</span> im</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对比度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_contrast</span><span class="params">(img, lower=<span class="number">0.5</span>, upper=<span class="number">1.5</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Random change contrast</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        im(numpy.array): one H,W,3 image</span></span><br><span class="line"><span class="string">        lower(float): change lower limit </span></span><br><span class="line"><span class="string">        upper(float): change upper limit</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    im = np.copy(img)</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line">        alpha = random.uniform(lower, upper)</span><br><span class="line">        im *= alpha</span><br><span class="line">        im = im.clip(min=<span class="number">0</span>, max=<span class="number">255</span>)</span><br><span class="line">    <span class="keyword">return</span> im</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 饱和度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_saturation</span><span class="params">(img, lower=<span class="number">0.5</span>, upper=<span class="number">1.5</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Random change saturation</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        im(numpy.array): one H,W,3 image</span></span><br><span class="line"><span class="string">        lower(float): change lower limit </span></span><br><span class="line"><span class="string">        upper(float): change upper limit</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    im = np.copy(img)</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line">        im[:, :, <span class="number">1</span>] *= random.uniform(lower, upper)</span><br><span class="line">    <span class="keyword">return</span> im</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 色调</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_hue</span><span class="params">(img, delta=<span class="number">18.0</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Random change hue</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Args:</span></span><br><span class="line"><span class="string">        im(numpy.array): one H,W,3 image</span></span><br><span class="line"><span class="string">        delta(int): hue ratio</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    im = np.copy(img)</span><br><span class="line">    <span class="keyword">if</span> random.random() &lt; <span class="number">0.5</span>:</span><br><span class="line">        im = cv.cvtColor(im, cv.COLOR_RGB2HSV)</span><br><span class="line">        im[:, :, <span class="number">0</span>] += random.uniform(-delta, delta)</span><br><span class="line">        im[:, :, <span class="number">0</span>][im[:, :, <span class="number">0</span>] &gt; <span class="number">360.0</span>] -= <span class="number">360.0</span></span><br><span class="line">        im[:, :, <span class="number">0</span>][im[:, :, <span class="number">0</span>] &lt; <span class="number">0.0</span>] += <span class="number">360.0</span></span><br><span class="line">        im = cv.cvtColor(im, cv.COLOR_HSV2RGB)</span><br><span class="line">    <span class="keyword">return</span> im</span><br></pre></td></tr></table></figure>
+<h3 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DataLoad</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,folder=<span class="string">'./'</span>,dtype=<span class="string">'train'</span>,shuffle=False)</span>:</span></span><br><span class="line">        self.folder = folder</span><br><span class="line">        self.shuffle = shuffle</span><br><span class="line">        self.dtype = dtype</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">assert</span> self.dtype <span class="keyword">in</span> [<span class="string">'train'</span>,<span class="string">'test'</span>,<span class="string">'valid'</span>]</span><br><span class="line">        </span><br><span class="line">        self.data = pd.read_csv(os.path.join(self.folder+self.dtype+<span class="string">'.data.csv'</span>))</span><br><span class="line">            </span><br><span class="line">        self.mean = [<span class="number">0.485</span>, <span class="number">0.456</span>, <span class="number">0.406</span>]</span><br><span class="line">        self.std = [<span class="number">0.229</span>, <span class="number">0.224</span>, <span class="number">0.225</span>]</span><br><span class="line">        <span class="keyword">if</span> self.shuffle:</span><br><span class="line">            self.data = self.data.sample(frac=<span class="number">1</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self,i)</span>:</span></span><br><span class="line">        dt = self.data.iloc[i]</span><br><span class="line">        image = cv.imread(<span class="string">'./dataset/low-resolution/'</span>+dt[<span class="string">'folder'</span>])</span><br><span class="line">        image = cv.cvtColor(image,cv.COLOR_BGR2RGB).astype(<span class="string">"float32"</span>)</span><br><span class="line">        </span><br><span class="line">        bbox = np.array([dt[<span class="string">'bbox'</span>].strip(<span class="string">"[]"</span>).split(<span class="string">','</span>)]).astype(<span class="string">"float32"</span>)</span><br><span class="line">        hbox = np.array([dt[<span class="string">'hbox'</span>].strip(<span class="string">"[]"</span>).split(<span class="string">','</span>)]).astype(<span class="string">"float32"</span>)</span><br><span class="line">        label = np.array(dt[<span class="string">'label'</span>])</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> self.dtype == <span class="string">'train'</span>:</span><br><span class="line">            data_enhance = [random_bright, </span><br><span class="line">                            random_contrast, </span><br><span class="line">                            random_saturation, </span><br><span class="line">                            random_hue]</span><br><span class="line">            </span><br><span class="line">            random.shuffle(data_enhance)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> d <span class="keyword">in</span> data_enhance:</span><br><span class="line">                image = d(image)</span><br><span class="line">            </span><br><span class="line"><span class="comment">#             if random.random() &lt; 0.5:</span></span><br><span class="line"><span class="comment">#                 image, boxes = random_expand(image, boxes)            </span></span><br><span class="line"><span class="comment">#             image, boxes, labels = random_crop(image, boxes, labels)           </span></span><br><span class="line"><span class="comment">#             image, boxes = random_flip(image, boxes)</span></span><br><span class="line">            </span><br><span class="line">        height, width, _ = image.shape</span><br><span class="line">        image = cv.resize(image, (<span class="number">300</span>, <span class="number">300</span>))</span><br><span class="line">        image /= <span class="number">255.</span></span><br><span class="line">        image = (image - self.mean) / self.std</span><br><span class="line"><span class="comment">#         image = image.transpose((2,0,1)).astype("float32")</span></span><br><span class="line">        bbox[:,[<span class="number">0</span>,<span class="number">2</span>]] /= width</span><br><span class="line">        </span><br><span class="line">        bbox[:,[<span class="number">1</span>,<span class="number">3</span>]] /= height</span><br><span class="line"></span><br><span class="line">        hbox[:,[<span class="number">0</span>,<span class="number">2</span>]] /= width</span><br><span class="line">        hbox[:,[<span class="number">1</span>,<span class="number">3</span>]] /= height</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> image, bbox, hbox, label</span><br></pre></td></tr></table></figure>
+<h3 id="Build-Model"><a href="#Build-Model" class="headerlink" title="Build Model"></a>Build Model</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> datasets, layers, models</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># VGG16</span></span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line"></span><br><span class="line">model.add(</span><br><span class="line">    layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">                  padding=<span class="string">"same"</span>,</span><br><span class="line">                  activation=<span class="string">'relu'</span>,</span><br><span class="line">                  input_shape=(<span class="number">300</span>, <span class="number">300</span>, <span class="number">3</span>)))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">128</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">128</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Flatten())</span><br><span class="line">model.add(layers.Dense(<span class="number">256</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">130</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train = DataLoad(shuffle=<span class="literal">True</span>)</span><br><span class="line">valid = DataLoad(dtype=<span class="string">'valid'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cat_data</span><span class="params">(dt,n=<span class="number">100</span>)</span>:</span></span><br><span class="line">    con = []</span><br><span class="line">    lab = []</span><br><span class="line">    <span class="keyword">for</span> i,(image, bbox, hbox, label) <span class="keyword">in</span> enumerate(dt):</span><br><span class="line">        <span class="keyword">if</span> i == n:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        con.append(image)</span><br><span class="line">        lab.append(label)</span><br><span class="line">    lab = np.array(lab)    </span><br><span class="line">    <span class="keyword">return</span> np.array(con),lab</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x_train,y_train = cat_data(train,n=<span class="number">200</span>)</span><br><span class="line"></span><br><span class="line">x_test,y_test = cat_data(valid,n=<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_train = tf.constant(y_train)</span><br><span class="line">y_test = tf.constant(y_test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    optimizer=<span class="string">'adam'</span>,</span><br><span class="line">    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">history = model.fit(</span><br><span class="line">    x_train,</span><br><span class="line">    y_train,</span><br><span class="line">    epochs=<span class="number">10</span>,</span><br><span class="line">    batch_size=<span class="number">1</span>,</span><br><span class="line">    shuffle=<span class="literal">True</span>,</span><br><span class="line">    validation_data=(x_test, y_test) </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="SSD-Jittor"><a href="#SSD-Jittor" class="headerlink" title="SSD-Jittor:"></a>SSD-Jittor:</h3><p>New a py file under the root dir: <code>process.py</code></p>
+<p><code>new_parse_annotation()</code> :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">new_parse_annotation</span><span class="params">(annotation_path)</span>:</span></span><br><span class="line">    </span><br><span class="line">    DOMTree = parse(annotation_path)</span><br><span class="line">    collection = DOMTree.documentElement</span><br><span class="line">    </span><br><span class="line">    folder = str(collection.getElementsByTagName(<span class="string">"folder"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line"><span class="comment">#     filename = str(collection.getElementsByTagName("filename")[0].childNodes[0].data)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#     dog_type = str(collection.getElementsByTagName("name")[0].childNodes[0].data)   </span></span><br><span class="line"><span class="comment">#     headbndbox = collection.getElementsByTagName("headbndbox")[0]</span></span><br><span class="line"><span class="comment">#     head_xmin = int(headbndbox.getElementsByTagName("xmin")[0].childNodes[0].data)</span></span><br><span class="line"><span class="comment">#     head_ymin = int(headbndbox.getElementsByTagName("ymin")[0].childNodes[0].data)</span></span><br><span class="line"><span class="comment">#     head_xmax = int(headbndbox.getElementsByTagName("xmax")[0].childNodes[0].data)</span></span><br><span class="line"><span class="comment">#     head_ymax = int(headbndbox.getElementsByTagName("ymax")[0].childNodes[0].data)</span></span><br><span class="line">    difficult = int(collection.getElementsByTagName(<span class="string">"difficult"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    </span><br><span class="line">    bodybndbox = collection.getElementsByTagName(<span class="string">"bodybndbox"</span>)[<span class="number">0</span>]</span><br><span class="line">    body_xmin = int(bodybndbox.getElementsByTagName(<span class="string">"xmin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_ymin = int(bodybndbox.getElementsByTagName(<span class="string">"ymin"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_xmax = int(bodybndbox.getElementsByTagName(<span class="string">"xmax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    body_ymax = int(bodybndbox.getElementsByTagName(<span class="string">"ymax"</span>)[<span class="number">0</span>].childNodes[<span class="number">0</span>].data)</span><br><span class="line">    </span><br><span class="line">    data = &#123;</span><br><span class="line">        <span class="string">'boxes'</span>: [[body_xmin - <span class="number">1</span>,body_ymin - <span class="number">1</span>,body_xmax - <span class="number">1</span>,body_ymax - <span class="number">1</span>]],</span><br><span class="line">        <span class="string">'labels'</span>:[int(folder.split(<span class="string">'-'</span>)[<span class="number">1</span>][<span class="number">1</span>:].lstrip(<span class="string">'0'</span>))],</span><br><span class="line">        <span class="string">'difficulties'</span>:[difficult]</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<p><code>create_json_data()</code> :</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_json_data</span><span class="params">(Lst_dir,anno_dir)</span>:</span></span><br><span class="line">    train_images = list()</span><br><span class="line">    train_objects = list()</span><br><span class="line"></span><br><span class="line">    lst_path = os.path.join(Lst_dir, <span class="string">'train.lst'</span>)</span><br><span class="line">    dt = pd.read_csv(lst_path,header=<span class="literal">None</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> tqdm(dt[<span class="number">0</span>]):</span><br><span class="line">        img = item.split(<span class="string">'/'</span>)[<span class="number">-2</span>] + <span class="string">'/'</span> + item.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line">        train_images.append(img)</span><br><span class="line">        anno_path = os.path.join(anno_dir,img) + <span class="string">'.xml'</span></span><br><span class="line">        train_objects.append(new_parse_annotation(anno_path))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">assert</span> len(train_objects) == len(train_images)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Save to file</span></span><br><span class="line">    <span class="keyword">with</span> open(os.path.join(<span class="string">'./dataset/JsonData/'</span>, <span class="string">'TRAIN_images.json'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> j:</span><br><span class="line">        json.dump(train_images, j)</span><br><span class="line">    <span class="keyword">with</span> open(os.path.join(<span class="string">'./dataset/JsonData/'</span>, <span class="string">'TRAIN_objects.json'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> j:</span><br><span class="line">        json.dump(train_objects, j)</span><br><span class="line">    <span class="keyword">with</span> open(os.path.join(<span class="string">'./dataset/JsonData/'</span>, <span class="string">'label_map.json'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> j:</span><br><span class="line">        json.dump(label_map, j)  <span class="comment"># save label map too</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Validation data</span></span><br><span class="line">    test_images = list()</span><br><span class="line">    test_objects = list()</span><br><span class="line">    </span><br><span class="line">    lst_path = os.path.join(Lst_dir, <span class="string">'validation.lst'</span>)</span><br><span class="line">    dt = pd.read_csv(lst_path,header=<span class="literal">None</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> tqdm(dt[<span class="number">0</span>]):</span><br><span class="line">        img = item.split(<span class="string">'/'</span>)[<span class="number">-2</span>] + <span class="string">'/'</span> + item.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line">        test_images.append(img)</span><br><span class="line">        </span><br><span class="line">        anno_path = os.path.join(anno_dir,img) + <span class="string">'.xml'</span></span><br><span class="line">        test_objects.append(new_parse_annotation(anno_path))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">assert</span> len(test_objects) == len(test_images)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># save to file</span></span><br><span class="line">    <span class="keyword">with</span> open(os.path.join(<span class="string">'./dataset/JsonData/'</span>, <span class="string">'VALID_images.json'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> j:</span><br><span class="line">        json.dump(test_images, j)</span><br><span class="line">    <span class="keyword">with</span> open(os.path.join(<span class="string">'./dataset/JsonData/'</span>, <span class="string">'VALID_objects.json'</span>), <span class="string">'w'</span>) <span class="keyword">as</span> j:</span><br><span class="line">        json.dump(test_objects, j)</span><br><span class="line">        </span><br><span class="line">    print(<span class="string">'Train data:&#123;&#125;,Valid data:&#123;&#125;'</span>.format(len(train_objects),len(test_objects)))</span><br></pre></td></tr></table></figure>
+</div>
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Titanic/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/Tianchi-base-v1/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/TsinghuaDogs-1/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

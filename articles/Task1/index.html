@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Task1 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="data analysis," />
+  
+
+  <meta name="description" content="任务说明 任务主题：论文数量统计，即统计2019年全年计算机各个方向论文数量； 任务内容：赛题的理解、使用 Pandas 读取数据并进行统计； 任务成果：学习 Pandas 的基础操作； 可参考的学习资料：开源组织Datawhale joyful-pandas项目  数据集介绍 数据集来源：数据集链接； 数据集的格式如下： id：arXiv ID，可用于访问论文； submitter：论文提交者；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Task1">
+<meta property="og:url" content="https://hahally.github.io/articles/Task1/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="任务说明 任务主题：论文数量统计，即统计2019年全年计算机各个方向论文数量； 任务内容：赛题的理解、使用 Pandas 读取数据并进行统计； 任务成果：学习 Pandas 的基础操作； 可参考的学习资料：开源组织Datawhale joyful-pandas项目  数据集介绍 数据集来源：数据集链接； 数据集的格式如下： id：arXiv ID，可用于访问论文； submitter：论文提交者；">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/Task1/output_39_0.png">
+<meta property="article:published_time" content="2021-01-10T15:26:15.000Z">
+<meta property="article:modified_time" content="2021-01-10T15:40:21.571Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="data analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/Task1/output_39_0.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务说明"><span class="toc-text">任务说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据集介绍"><span class="toc-text">数据集介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arxiv论文类别介绍"><span class="toc-text">arxiv论文类别介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体代码实现以及讲解"><span class="toc-text">具体代码实现以及讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用pyspark-处理数据"><span class="toc-text">使用pyspark 处理数据</span></a></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Task1" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Task1</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.01.10</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/Task1/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="任务说明"><a href="#任务说明" class="headerlink" title="任务说明"></a>任务说明</h2><ul>
+<li>任务主题：论文数量统计，即统计2019年全年计算机各个方向论文数量；</li>
+<li>任务内容：赛题的理解、使用 <strong>Pandas</strong> 读取数据并进行统计；</li>
+<li>任务成果：学习 <strong>Pandas</strong> 的基础操作；</li>
+<li>可参考的学习资料：<a href="https://github.com/datawhalechina/joyful-pandas" target="_blank" rel="noopener">开源组织Datawhale joyful-pandas项目</a></li>
+</ul>
+<h2 id="数据集介绍"><a href="#数据集介绍" class="headerlink" title="数据集介绍"></a>数据集介绍</h2><ul>
+<li>数据集来源：<a href="https://www.kaggle.com/Cornell-University/arxiv" target="_blank" rel="noopener">数据集链接</a>；</li>
+<li>数据集的格式如下：<ul>
+<li><code>id</code>：arXiv ID，可用于访问论文；</li>
+<li><code>submitter</code>：论文提交者；</li>
+<li><code>authors</code>：论文作者；</li>
+<li><code>title</code>：论文标题；</li>
+<li><code>comments</code>：论文页数和图表等其他信息；</li>
+<li><code>journal-ref</code>：论文发表的期刊的信息；</li>
+<li><code>doi</code>：数字对象标识符，<a href="https://www.doi.org" target="_blank" rel="noopener">https://www.doi.org</a>；</li>
+<li><code>report-no</code>：报告编号；</li>
+<li><code>categories</code>：论文在 arXiv 系统的所属类别或标签；</li>
+<li><code>license</code>：文章的许可证；</li>
+<li><code>abstract</code>：论文摘要；</li>
+<li><code>versions</code>：论文版本；</li>
+<li><code>authors_parsed</code>：作者的信息。</li>
+<li><code>update_date</code>：更新时间</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"root"</span>:&#123;</span><br><span class="line">		<span class="string">"id"</span>:<span class="built_in">string</span><span class="string">"0704.0001"</span></span><br><span class="line">		<span class="string">"submitter"</span>:<span class="built_in">string</span><span class="string">"Pavel Nadolsky"</span></span><br><span class="line">		<span class="string">"authors"</span>:<span class="built_in">string</span><span class="string">"C. Bal\'azs, E. L. Berger, P. M. Nadolsky, C.-P. Yuan"</span></span><br><span class="line">		<span class="string">"title"</span>:<span class="built_in">string</span><span class="string">"Calculation of prompt diphoton production cross sections at Tevatron and LHC energies"</span></span><br><span class="line">		<span class="string">"comments"</span>:<span class="built_in">string</span><span class="string">"37 pages, 15 figures; published version"</span></span><br><span class="line">		<span class="string">"journal-ref"</span>:<span class="built_in">string</span><span class="string">"Phys.Rev.D76:013009,2007"</span></span><br><span class="line">		<span class="string">"doi"</span>:<span class="built_in">string</span><span class="string">"10.1103/PhysRevD.76.013009"</span></span><br><span class="line">		<span class="string">"report-no"</span>:<span class="built_in">string</span><span class="string">"ANL-HEP-PR-07-12"</span></span><br><span class="line">		<span class="string">"categories"</span>:<span class="built_in">string</span><span class="string">"hep-ph"</span></span><br><span class="line">		<span class="string">"license"</span>:<span class="literal">NULL</span></span><br><span class="line">		<span class="string">"abstract"</span>:<span class="built_in">string</span><span class="string">"  A fully differential calculation in perturbative quantum chromodynamics is presented for the production of massive photon pairs at hadron colliders. All next-to-leading order perturbative contributions from quark-antiquark, gluon-(anti)quark, and gluon-gluon subprocesses are included, as well as all-orders resummation of initial-state gluon radiation valid at next-to-next-to leading logarithmic accuracy. The region of phase space is specified in which the calculation is most reliable. Good agreement is demonstrated with data from the Fermilab Tevatron, and predictions are made for more detailed tests with CDF and DO data. Predictions are shown for distributions of diphoton pairs produced at the energy of the Large Hadron Collider (LHC). Distributions of the diphoton pairs from the decay of a Higgs boson are contrasted with those produced from QCD processes at the LHC, showing that enhanced sensitivity to the signal can be obtained with judicious selection of events."</span></span><br><span class="line">		<span class="string">"versions"</span>:[</span><br><span class="line">				<span class="number">0</span>:&#123;</span><br><span class="line">						<span class="string">"version"</span>:<span class="built_in">string</span><span class="string">"v1"</span></span><br><span class="line">						<span class="string">"created"</span>:<span class="built_in">string</span><span class="string">"Mon, 2 Apr 2007 19:18:42 GMT"</span></span><br><span class="line">					&#125;</span><br><span class="line">				<span class="number">1</span>:&#123;</span><br><span class="line">						<span class="string">"version"</span>:<span class="built_in">string</span><span class="string">"v2"</span></span><br><span class="line">						<span class="string">"created"</span>:<span class="built_in">string</span><span class="string">"Tue, 24 Jul 2007 20:10:27 GMT"</span></span><br><span class="line">					&#125;]</span><br><span class="line">		<span class="string">"update_date"</span>:<span class="built_in">string</span><span class="string">"2008-11-26"</span></span><br><span class="line">		<span class="string">"authors_parsed"</span>:[</span><br><span class="line">				<span class="number">0</span>:[</span><br><span class="line">						<span class="number">0</span>:<span class="built_in">string</span><span class="string">"Balázs"</span></span><br><span class="line">						<span class="number">1</span>:<span class="built_in">string</span><span class="string">"C."</span></span><br><span class="line">						<span class="number">2</span>:<span class="built_in">string</span><span class="string">""</span>]</span><br><span class="line">				<span class="number">1</span>:[</span><br><span class="line">						<span class="number">0</span>:<span class="built_in">string</span><span class="string">"Berger"</span></span><br><span class="line">						<span class="number">1</span>:<span class="built_in">string</span><span class="string">"E. L."</span></span><br><span class="line">						<span class="number">2</span>:<span class="built_in">string</span><span class="string">""</span>]</span><br><span class="line">				<span class="number">2</span>:[</span><br><span class="line">						<span class="number">0</span>:<span class="built_in">string</span><span class="string">"Nadolsky"</span></span><br><span class="line">						<span class="number">1</span>:<span class="built_in">string</span><span class="string">"P. M."</span></span><br><span class="line">						<span class="number">2</span>:<span class="built_in">string</span><span class="string">""</span>]</span><br><span class="line">				<span class="number">3</span>:[</span><br><span class="line">						<span class="number">0</span>:<span class="built_in">string</span><span class="string">"Yuan"</span></span><br><span class="line">						<span class="number">1</span>:<span class="built_in">string</span><span class="string">"C. -P."</span></span><br><span class="line">						<span class="number">2</span>:<span class="built_in">string</span><span class="string">""</span>]]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="arxiv论文类别介绍"><a href="#arxiv论文类别介绍" class="headerlink" title="arxiv论文类别介绍"></a>arxiv论文类别介绍</h2><p>我们从arxiv官网，查询到论文的类别名称以及其解释如下。</p>
+<p>链接：<a href="https://arxiv.org/help/api/user-manual" target="_blank" rel="noopener">https://arxiv.org/help/api/user-manual</a>  的 5.3 小节的 Subject Classifications 的部分，或 <a href="https://arxiv.org/category_taxonomy" target="_blank" rel="noopener">https://arxiv.org/category_taxonomy</a>， 具体的153种paper的类别部分如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">'astro-ph': 'Astrophysics',</span><br><span class="line">'astro-ph.CO': 'Cosmology and Nongalactic Astrophysics',</span><br><span class="line">'astro-ph.EP': 'Earth and Planetary Astrophysics',</span><br><span class="line">'astro-ph.GA': 'Astrophysics of Galaxies',</span><br><span class="line">'cs.AI': 'Artificial Intelligence',</span><br><span class="line">'cs.AR': 'Hardware Architecture',</span><br><span class="line">'cs.CC': 'Computational Complexity',</span><br><span class="line">'cs.CE': 'Computational Engineering, Finance, and Science',</span><br><span class="line">'cs.CV': 'Computer Vision and Pattern Recognition',</span><br><span class="line">'cs.CY': 'Computers and Society',</span><br><span class="line">'cs.DB': 'Databases',</span><br><span class="line">'cs.DC': 'Distributed, Parallel, and Cluster Computing',</span><br><span class="line">'cs.DL': 'Digital Libraries',</span><br><span class="line">'cs.NA': 'Numerical Analysis',</span><br><span class="line">'cs.NE': 'Neural and Evolutionary Computing',</span><br><span class="line">'cs.NI': 'Networking and Internet Architecture',</span><br><span class="line">'cs.OH': 'Other Computer Science',</span><br><span class="line">'cs.OS': 'Operating Systems',</span><br></pre></td></tr></table></figure>
+<h2 id="具体代码实现以及讲解"><a href="#具体代码实现以及讲解" class="headerlink" title="具体代码实现以及讲解"></a>具体代码实现以及讲解</h2><h3 id="使用pyspark-处理数据"><a href="#使用pyspark-处理数据" class="headerlink" title="使用pyspark 处理数据"></a>使用pyspark 处理数据</h3><p>脆皮电脑扛不住这么大的内存消耗，所以选择先使用 pyspark 进行初步处理，因为之前用过</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkContext,SparkConf</span><br><span class="line"><span class="keyword">from</span> pyspark.sql <span class="keyword">import</span> SparkSession</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 必要的配置</span></span><br><span class="line">conf = SparkConf().setMaster(<span class="string">"local"</span>).setAppName(<span class="string">"dataframe"</span>).set(</span><br><span class="line">    <span class="string">'spark.local.dir'</span>, <span class="string">'E:\SparkTemp'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化一个spark对象</span></span><br><span class="line">spark = SparkSession.builder.appName(<span class="string">'my_first_app_name'</span>).config(</span><br><span class="line">    conf=conf).getOrCreate()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 读取 2.69 GB大小的json数据</span></span><br><span class="line">json_data = spark.read.json(<span class="string">'./arxiv-metadata-oai-snapshot.json'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看列名,14 个item</span></span><br><span class="line">json_data.columns</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;abstract&#39;,
+ &#39;authors&#39;,
+ &#39;authors_parsed&#39;,
+ &#39;categories&#39;,
+ &#39;comments&#39;,
+ &#39;doi&#39;,
+ &#39;id&#39;,
+ &#39;journal-ref&#39;,
+ &#39;license&#39;,
+ &#39;report-no&#39;,
+ &#39;submitter&#39;,
+ &#39;title&#39;,
+ &#39;update_date&#39;,
+ &#39;versions&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示 行数 和 列数</span></span><br><span class="line">json_data.count(), len(json_data.columns)</span><br></pre></td></tr></table></figure>
+<pre><code>(1796911, 14)
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看前5行：没有透视表，有点烦人</span></span><br><span class="line">json_data.show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>+--------------------+--------------------+--------------------+---------------+--------------------+--------------------+---------+--------------------+--------------------+----------------+------------------+--------------------+-----------+--------------------+
+|            abstract|             authors|      authors_parsed|     categories|            comments|                 doi|       id|         journal-ref|             license|       report-no|         submitter|               title|update_date|            versions|
++--------------------+--------------------+--------------------+---------------+--------------------+--------------------+---------+--------------------+--------------------+----------------+------------------+--------------------+-----------+--------------------+
+|  A fully differe...|C. Bal\&#39;azs, E. L...|[[Balázs, C., ], ...|         hep-ph|37 pages, 15 figu...|10.1103/PhysRevD....|0704.0001|Phys.Rev.D76:0130...|                null|ANL-HEP-PR-07-12|    Pavel Nadolsky|Calculation of pr...| 2008-11-26|[[Mon, 2 Apr 2007...|
+|  We describe a n...|Ileana Streinu an...|[[Streinu, Ileana...|  math.CO cs.CG|To appear in Grap...|                null|0704.0002|                null|http://arxiv.org/...|            null|      Louis Theran|Sparsity-certifyi...| 2008-12-13|[[Sat, 31 Mar 200...|
+|  The evolution o...|         Hongjun Pan|  [[Pan, Hongjun, ]]| physics.gen-ph| 23 pages, 3 figures|                null|0704.0003|                null|                null|            null|       Hongjun Pan|The evolution of ...| 2008-01-13|[[Sun, 1 Apr 2007...|
+|  We show that a ...|        David Callan| [[Callan, David, ]]|        math.CO|            11 pages|                null|0704.0004|                null|                null|            null|      David Callan|A determinant of ...| 2007-05-23|[[Sat, 31 Mar 200...|
+|  In this paper w...|Wael Abu-Shammala...|[[Abu-Shammala, W...|math.CA math.FA|                null|                null|0704.0005|Illinois J. Math....|                null|            null|Alberto Torchinsky|From dyadic $\Lam...| 2013-10-15|[[Mon, 2 Apr 2007...|
++--------------------+--------------------+--------------------+---------------+--------------------+--------------------+---------+--------------------+--------------------+----------------+------------------+--------------------+-----------+--------------------+
+only showing top 5 rows
+</code></pre><p>​    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 压缩保存为parquet格式</span></span><br><span class="line">json_data.coalesce(<span class="number">1</span>).write.parquet(<span class="string">'arxiv-metadata-oai-snapshot.parquet'</span>,</span><br><span class="line">                                    mode=<span class="string">'overwrite'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选着要处理的三列数据</span></span><br><span class="line">data = json_data.select([<span class="string">'id'</span>, <span class="string">'categories'</span>, <span class="string">'update_date'</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看，默认前 20 行</span></span><br><span class="line">data.show()</span><br></pre></td></tr></table></figure>
+<pre><code>+---------+-----------------+-----------+
+|       id|       categories|update_date|
++---------+-----------------+-----------+
+|0704.0001|           hep-ph| 2008-11-26|
+|0704.0002|    math.CO cs.CG| 2008-12-13|
+|0704.0003|   physics.gen-ph| 2008-01-13|
+|0704.0004|          math.CO| 2007-05-23|
+|0704.0005|  math.CA math.FA| 2013-10-15|
+|0704.0006|cond-mat.mes-hall| 2015-05-13|
+|0704.0007|            gr-qc| 2008-11-26|
+|0704.0008|cond-mat.mtrl-sci| 2009-02-05|
+|0704.0009|         astro-ph| 2010-03-18|
+|0704.0010|          math.CO| 2007-05-23|
+|0704.0011|  math.NT math.AG| 2008-08-20|
+|0704.0012|          math.NT| 2007-05-23|
+|0704.0013|          math.NT| 2008-05-26|
+|0704.0014|  math.CA math.AT| 2009-09-29|
+|0704.0015|           hep-th| 2009-11-13|
+|0704.0016|           hep-ph| 2008-12-18|
+|0704.0017|         astro-ph| 2009-06-23|
+|0704.0018|           hep-th| 2007-05-23|
+|0704.0019|  math.PR math.AG| 2007-06-23|
+|0704.0020|           hep-ex| 2015-06-30|
++---------+-----------------+-----------+
+only showing top 20 rows
+</code></pre><p>​    </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 转成 pandas对象，因为只选择了三列，内存消耗在自己电脑承受范围内</span></span><br><span class="line"><span class="comment"># 所以转成pandas对象，通过内存处理起来要快得多</span></span><br><span class="line">df = data.toPandas()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df</span><br></pre></td></tr></table></figure>
+<div>
+
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>categories</th>
+      <th>update_date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0704.0001</td>
+      <td>hep-ph</td>
+      <td>2008-11-26</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0704.0002</td>
+      <td>math.CO cs.CG</td>
+      <td>2008-12-13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0704.0003</td>
+      <td>physics.gen-ph</td>
+      <td>2008-01-13</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0704.0004</td>
+      <td>math.CO</td>
+      <td>2007-05-23</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0704.0005</td>
+      <td>math.CA math.FA</td>
+      <td>2013-10-15</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1796906</th>
+      <td>supr-con/9608008</td>
+      <td>supr-con cond-mat.supr-con</td>
+      <td>2009-10-30</td>
+    </tr>
+    <tr>
+      <th>1796907</th>
+      <td>supr-con/9609001</td>
+      <td>supr-con cond-mat.supr-con</td>
+      <td>2016-11-18</td>
+    </tr>
+    <tr>
+      <th>1796908</th>
+      <td>supr-con/9609002</td>
+      <td>supr-con cond-mat.supr-con</td>
+      <td>2009-10-30</td>
+    </tr>
+    <tr>
+      <th>1796909</th>
+      <td>supr-con/9609003</td>
+      <td>supr-con cond-mat.supr-con</td>
+      <td>2009-10-30</td>
+    </tr>
+    <tr>
+      <th>1796910</th>
+      <td>supr-con/9609004</td>
+      <td>supr-con cond-mat.supr-con</td>
+      <td>2009-10-30</td>
+    </tr>
+  </tbody>
+</table>
+<p>1796911 rows × 3 columns</p>
+
+
+
+
+转成pandas 对象后，就可以方便的按照教程一步一步来了
+
+---
+
+### 导入package并读取原始数据
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入所需的package</span></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment">#用于画图</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="comment">#用于爬取arxiv的数据</span></span><br><span class="line"><span class="keyword">import</span> re <span class="comment">#用于正则表达式，匹配字符串的模式</span></span><br><span class="line"><span class="keyword">import</span> requests <span class="comment">#用于网络连接，发送网络请求，使用域名获取对应信息</span></span><br><span class="line"><span class="keyword">import</span> json <span class="comment">#读取数据，我们的数据为json格式的</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment">#数据处理，数据分析</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt <span class="comment">#画图工具</span></span><br></pre></td></tr></table></figure>
+
+### 数据预处理
+
+首先我们先来粗略统计论文的种类信息：
+
+- `count`：一列数据的元素个数；
+- `unique`：一列数据中元素的种类；
+- `top`：一列数据中出现频率最高的元素；
+- `freq`：一列数据中出现频率最高的元素的个数；
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'categories'</span>].describe()</span><br></pre></td></tr></table></figure>
+
+
+
+
+    count      1796911
+    unique       62055
+    top       astro-ph
+    freq         86914
+    Name: categories, dtype: object
+
+
+
+以上的结果表明：共有1796911个数据，有62055个子类（因为有论文的类别是多个，例如一篇paper的类别是CS.AI & CS.MM和一篇paper的类别是CS.AI & CS.OS属于不同的子类别，这里仅仅是粗略统计），其中最多的种类是astro-ph，即Astrophysics（天体物理学），共出现了86914次。
+
+由于部分论文的类别不止一种，所以下面我们判断在本数据集中共出现了多少种独立的数据集。
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">unique_categories = set([i <span class="keyword">for</span> l <span class="keyword">in</span> [x.split(<span class="string">' '</span>) <span class="keyword">for</span> x <span class="keyword">in</span> df[<span class="string">"categories"</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> l])</span><br><span class="line">len(unique_categories),unique_categories</span><br></pre></td></tr></table></figure>
+
+
+
+
+    (176,
+     {'acc-phys',
+      'adap-org',
+      'alg-geom',
+      'ao-sci',
+      'astro-ph',
+      'astro-ph.CO',
+      'astro-ph.EP',
+      'astro-ph.GA',
+      'astro-ph.HE',
+      'astro-ph.IM',
+      'astro-ph.SR',
+      'atom-ph',
+      'bayes-an',
+      'chao-dyn',
+      'chem-ph',
+      'cmp-lg',
+      'comp-gas',
+      'cond-mat',
+      'cond-mat.dis-nn',
+      'cond-mat.mes-hall',
+      'cond-mat.mtrl-sci',
+      'cond-mat.other',
+      'cond-mat.quant-gas',
+      'cond-mat.soft',
+      'cond-mat.stat-mech',
+      'cond-mat.str-el',
+      'cond-mat.supr-con',
+      'cs.AI',
+      'cs.AR',
+      'cs.CC',
+      'cs.CE',
+      'cs.CG',
+      'cs.CL',
+      'cs.CR',
+      'cs.CV',
+      'cs.CY',
+      'cs.DB',
+      'cs.DC',
+      'cs.DL',
+      'cs.DM',
+      'cs.DS',
+      'cs.ET',
+      'cs.FL',
+      'cs.GL',
+      'cs.GR',
+      'cs.GT',
+      'cs.HC',
+      'cs.IR',
+      'cs.IT',
+      'cs.LG',
+      'cs.LO',
+      'cs.MA',
+      'cs.MM',
+      'cs.MS',
+      'cs.NA',
+      'cs.NE',
+      'cs.NI',
+      'cs.OH',
+      'cs.OS',
+      'cs.PF',
+      'cs.PL',
+      'cs.RO',
+      'cs.SC',
+      'cs.SD',
+      'cs.SE',
+      'cs.SI',
+      'cs.SY',
+      'dg-ga',
+      'econ.EM',
+      'econ.GN',
+      'econ.TH',
+      'eess.AS',
+      'eess.IV',
+      'eess.SP',
+      'eess.SY',
+      'funct-an',
+      'gr-qc',
+      'hep-ex',
+      'hep-lat',
+      'hep-ph',
+      'hep-th',
+      'math-ph',
+      'math.AC',
+      'math.AG',
+      'math.AP',
+      'math.AT',
+      'math.CA',
+      'math.CO',
+      'math.CT',
+      'math.CV',
+      'math.DG',
+      'math.DS',
+      'math.FA',
+      'math.GM',
+      'math.GN',
+      'math.GR',
+      'math.GT',
+      'math.HO',
+      'math.IT',
+      'math.KT',
+      'math.LO',
+      'math.MG',
+      'math.MP',
+      'math.NA',
+      'math.NT',
+      'math.OA',
+      'math.OC',
+      'math.PR',
+      'math.QA',
+      'math.RA',
+      'math.RT',
+      'math.SG',
+      'math.SP',
+      'math.ST',
+      'mtrl-th',
+      'nlin.AO',
+      'nlin.CD',
+      'nlin.CG',
+      'nlin.PS',
+      'nlin.SI',
+      'nucl-ex',
+      'nucl-th',
+      'patt-sol',
+      'physics.acc-ph',
+      'physics.ao-ph',
+      'physics.app-ph',
+      'physics.atm-clus',
+      'physics.atom-ph',
+      'physics.bio-ph',
+      'physics.chem-ph',
+      'physics.class-ph',
+      'physics.comp-ph',
+      'physics.data-an',
+      'physics.ed-ph',
+      'physics.flu-dyn',
+      'physics.gen-ph',
+      'physics.geo-ph',
+      'physics.hist-ph',
+      'physics.ins-det',
+      'physics.med-ph',
+      'physics.optics',
+      'physics.plasm-ph',
+      'physics.pop-ph',
+      'physics.soc-ph',
+      'physics.space-ph',
+      'plasm-ph',
+      'q-alg',
+      'q-bio',
+      'q-bio.BM',
+      'q-bio.CB',
+      'q-bio.GN',
+      'q-bio.MN',
+      'q-bio.NC',
+      'q-bio.OT',
+      'q-bio.PE',
+      'q-bio.QM',
+      'q-bio.SC',
+      'q-bio.TO',
+      'q-fin.CP',
+      'q-fin.EC',
+      'q-fin.GN',
+      'q-fin.MF',
+      'q-fin.PM',
+      'q-fin.PR',
+      'q-fin.RM',
+      'q-fin.ST',
+      'q-fin.TR',
+      'quant-ph',
+      'solv-int',
+      'stat.AP',
+      'stat.CO',
+      'stat.ME',
+      'stat.ML',
+      'stat.OT',
+      'stat.TH',
+      'supr-con'})
+
+
+
+这里使用了 split 函数将多类别使用 “ ”（空格）分开，组成list，并使用 for 循环将独立出现的类别找出来，并使用 set 类别，将重复项去除得到最终所有的独立paper种类。
+
+从以上结果发现，共有176种论文种类，比我们直接从 [https://arxiv.org/help/api/user-manual](https://arxiv.org/help/api/user-manual)  的 5.3 小节的 Subject Classifications 的部分或 [https://arxiv.org/category_taxonomy](https://arxiv.org/category_taxonomy)中的到的类别少，这说明存在一些官网上没有的类别，这是一个小细节。不过对于我们的计算机方向的论文没有影响，依然是以下的40个类别，我们从原数据中提取的和从官网的到的种类是可以一一对应的。
+
+我们的任务要求对于2019年以后的paper进行分析，所以首先对于时间特征进行预处理，从而得到2019年以后的所有种类的论文：
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"year"</span>] = pd.to_datetime(df[<span class="string">"update_date"</span>]).dt.year <span class="comment">#将update_date从例如2019-02-20的str变为datetime格式，并提取处year</span></span><br><span class="line"><span class="keyword">del</span> df[<span class="string">"update_date"</span>] <span class="comment">#删除 update_date特征，其使命已完成</span></span><br><span class="line">df = df[df[<span class="string">"year"</span>] &gt;= <span class="number">2019</span>] <span class="comment">#找出 year 中2019年以后的数据，并将其他数据删除</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># data.groupby(['categories','year']) #以 categories 进行排序，如果同一个categories 相同则使用 year 特征进行排序</span></span><br><span class="line">df.reset_index(drop=<span class="literal">True</span>, inplace=<span class="literal">True</span>) <span class="comment">#重新编号</span></span><br><span class="line">df <span class="comment">#查看结果</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>categories</th>
+      <th>year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0704.0297</td>
+      <td>astro-ph</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0704.0342</td>
+      <td>math.AT</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0704.0360</td>
+      <td>astro-ph</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0704.0525</td>
+      <td>gr-qc</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0704.0535</td>
+      <td>astro-ph</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>395118</th>
+      <td>quant-ph/9911051</td>
+      <td>quant-ph</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>395119</th>
+      <td>solv-int/9511005</td>
+      <td>solv-int nlin.SI</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>395120</th>
+      <td>solv-int/9809008</td>
+      <td>solv-int nlin.SI</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>395121</th>
+      <td>solv-int/9909010</td>
+      <td>solv-int adap-org hep-th nlin.AO nlin.SI</td>
+      <td>2019</td>
+    </tr>
+    <tr>
+      <th>395122</th>
+      <td>solv-int/9909014</td>
+      <td>solv-int nlin.SI</td>
+      <td>2019</td>
+    </tr>
+  </tbody>
+</table>
+<p>395123 rows × 3 columns</p>
+
+
+
+
+这里我们就已经得到了所有2019年以后的论文，下面我们挑选出计算机领域内的所有文章：
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#爬取所有的类别</span></span><br><span class="line">website_url = requests.get(<span class="string">'https://arxiv.org/category_taxonomy'</span>).text <span class="comment">#获取网页的文本数据</span></span><br><span class="line">soup = BeautifulSoup(website_url,<span class="string">'lxml'</span>) <span class="comment">#爬取数据，这里使用lxml的解析器，加速</span></span><br><span class="line">root = soup.find(<span class="string">'div'</span>,&#123;<span class="string">'id'</span>:<span class="string">'category_taxonomy_list'</span>&#125;) <span class="comment">#找出 BeautifulSoup 对应的标签入口</span></span><br><span class="line">tags = root.find_all([<span class="string">"h2"</span>,<span class="string">"h3"</span>,<span class="string">"h4"</span>,<span class="string">"p"</span>], recursive=<span class="literal">True</span>) <span class="comment">#读取 tags</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#初始化 str 和 list 变量</span></span><br><span class="line">level_1_name = <span class="string">""</span></span><br><span class="line">level_2_name = <span class="string">""</span></span><br><span class="line">level_2_code = <span class="string">""</span></span><br><span class="line">level_1_names = []</span><br><span class="line">level_2_codes = []</span><br><span class="line">level_2_names = []</span><br><span class="line">level_3_codes = []</span><br><span class="line">level_3_names = []</span><br><span class="line">level_3_notes = []</span><br><span class="line"></span><br><span class="line"><span class="comment">#进行</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> tags:</span><br><span class="line">    <span class="keyword">if</span> t.name == <span class="string">"h2"</span>:</span><br><span class="line">        level_1_name = t.text    </span><br><span class="line">        level_2_code = t.text</span><br><span class="line">        level_2_name = t.text</span><br><span class="line">    <span class="keyword">elif</span> t.name == <span class="string">"h3"</span>:</span><br><span class="line">        raw = t.text</span><br><span class="line">        level_2_code = re.sub(<span class="string">r"(.*)\((.*)\)"</span>,<span class="string">r"\2"</span>,raw) <span class="comment">#正则表达式：模式字符串：(.*)\((.*)\)；被替换字符串"\2"；被处理字符串：raw</span></span><br><span class="line">        level_2_name = re.sub(<span class="string">r"(.*)\((.*)\)"</span>,<span class="string">r"\1"</span>,raw)</span><br><span class="line">    <span class="keyword">elif</span> t.name == <span class="string">"h4"</span>:</span><br><span class="line">        raw = t.text</span><br><span class="line">        level_3_code = re.sub(<span class="string">r"(.*) \((.*)\)"</span>,<span class="string">r"\1"</span>,raw)</span><br><span class="line">        level_3_name = re.sub(<span class="string">r"(.*) \((.*)\)"</span>,<span class="string">r"\2"</span>,raw)</span><br><span class="line">    <span class="keyword">elif</span> t.name == <span class="string">"p"</span>:</span><br><span class="line">        notes = t.text</span><br><span class="line">        level_1_names.append(level_1_name)</span><br><span class="line">        level_2_names.append(level_2_name)</span><br><span class="line">        level_2_codes.append(level_2_code)</span><br><span class="line">        level_3_names.append(level_3_name)</span><br><span class="line">        level_3_codes.append(level_3_code)</span><br><span class="line">        level_3_notes.append(notes)</span><br><span class="line"></span><br><span class="line"><span class="comment">#根据以上信息生成dataframe格式的数据</span></span><br><span class="line">df_taxonomy = pd.DataFrame(&#123;</span><br><span class="line">    <span class="string">'group_name'</span> : level_1_names,</span><br><span class="line">    <span class="string">'archive_name'</span> : level_2_names,</span><br><span class="line">    <span class="string">'archive_id'</span> : level_2_codes,</span><br><span class="line">    <span class="string">'category_name'</span> : level_3_names,</span><br><span class="line">    <span class="string">'categories'</span> : level_3_codes,</span><br><span class="line">    <span class="string">'category_description'</span>: level_3_notes</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#按照 "group_name" 进行分组，在组内使用 "archive_name" 进行排序</span></span><br><span class="line">df_taxonomy.groupby([<span class="string">"group_name"</span>,<span class="string">"archive_name"</span>])</span><br><span class="line">df_taxonomy</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>archive_id</th>
+      <th>archive_name</th>
+      <th>categories</th>
+      <th>category_description</th>
+      <th>category_name</th>
+      <th>group_name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Computer Science</td>
+      <td>Computer Science</td>
+      <td>cs.AI</td>
+      <td>Covers all areas of AI except Vision, Robotics...</td>
+      <td>Artificial Intelligence</td>
+      <td>Computer Science</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Computer Science</td>
+      <td>Computer Science</td>
+      <td>cs.AR</td>
+      <td>Covers systems organization and hardware archi...</td>
+      <td>Hardware Architecture</td>
+      <td>Computer Science</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Computer Science</td>
+      <td>Computer Science</td>
+      <td>cs.CC</td>
+      <td>Covers models of computation, complexity class...</td>
+      <td>Computational Complexity</td>
+      <td>Computer Science</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Computer Science</td>
+      <td>Computer Science</td>
+      <td>cs.CE</td>
+      <td>Covers applications of computer science to the...</td>
+      <td>Computational Engineering, Finance, and Science</td>
+      <td>Computer Science</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Computer Science</td>
+      <td>Computer Science</td>
+      <td>cs.CG</td>
+      <td>Roughly includes material in ACM Subject Class...</td>
+      <td>Computational Geometry</td>
+      <td>Computer Science</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>Statistics</td>
+      <td>Statistics</td>
+      <td>stat.CO</td>
+      <td>Algorithms, Simulation, Visualization</td>
+      <td>Computation</td>
+      <td>Statistics</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>Statistics</td>
+      <td>Statistics</td>
+      <td>stat.ME</td>
+      <td>Design, Surveys, Model Selection, Multiple Tes...</td>
+      <td>Methodology</td>
+      <td>Statistics</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>Statistics</td>
+      <td>Statistics</td>
+      <td>stat.ML</td>
+      <td>Covers machine learning papers (supervised, un...</td>
+      <td>Machine Learning</td>
+      <td>Statistics</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>Statistics</td>
+      <td>Statistics</td>
+      <td>stat.OT</td>
+      <td>Work in statistics that does not fit into the ...</td>
+      <td>Other Statistics</td>
+      <td>Statistics</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>Statistics</td>
+      <td>Statistics</td>
+      <td>stat.TH</td>
+      <td>stat.TH is an alias for math.ST. Asymptotics, ...</td>
+      <td>Statistics Theory</td>
+      <td>Statistics</td>
+    </tr>
+  </tbody>
+</table>
+<p>155 rows × 6 columns</p>
+
+
+
+
+这里主要说明一下上面代码中的正则操作，这里我们使用re.sub来用于替换字符串中的匹配项
+
+- pattern : 正则中的模式字符串。
+- repl : 替换的字符串，也可为一个函数。
+- string : 要被查找替换的原始字符串。
+- count : 模式匹配后替换的最大次数，默认 0 表示替换所有的匹配。
+- flags : 编译时用的匹配模式，数字形式。
+- 其中pattern、repl、string为必选参数
+
+re.sub(pattern, repl, string, count=0, flags=0)
+
+实例如下：
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">phone = <span class="string">"2004-959-559 # 这是一个电话号码"</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># 删除注释</span></span><br><span class="line">num = re.sub(<span class="string">r'#.*$'</span>, <span class="string">""</span>, phone)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"电话号码 : "</span>, num)</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 移除非数字的内容</span></span><br><span class="line">num = re.sub(<span class="string">r'\D'</span>, <span class="string">""</span>, phone)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"电话号码 : "</span>, num)</span><br></pre></td></tr></table></figure>
+
+    电话号码 :  2004-959-559 
+    电话号码 :  2004959559
+
+
+详细了解可以参考：[https://www.runoob.com/python3/python3-reg-expressions.html](https://www.runoob.com/python3/python3-reg-expressions.html)
+
+对于我们的代码来说：
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">re.sub(<span class="string">r"(.*)\((.*)\)"</span>,<span class="string">r"\2"</span>, <span class="string">" Astrophysics(astro-ph)"</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+    'astro-ph'
+
+
+
+对应的参数
+
+- 正则中的模式字符串 pattern 的格式为 “任意字符” + “(” + "任意字符" + ")"。
+- 替换的字符串 repl 为第2个分组的内容。
+- 要被查找替换的原始字符串 string 为原始的爬取的数据。
+
+这里推荐大家一个在线正则表达式测试的网站：[https://tool.oschina.net/regex/](https://tool.oschina.net/regex/)
+
+### 数据分析及可视化
+
+接下来我们首先看一下所有大类的paper数量分布：
+
+我们使用merge函数，以两个dataframe共同的属性 “categories” 进行合并，并以 “group_name” 作为类别进行统计，统计结果放入 “id” 列中并排序。
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># drop_duplicates去重</span></span><br><span class="line">_df = df.merge(df_taxonomy, on=<span class="string">"categories"</span>, how=<span class="string">"left"</span>).drop_duplicates([<span class="string">"id"</span>,<span class="string">"group_name"</span>]).groupby(<span class="string">"group_name"</span>).agg(&#123;<span class="string">"id"</span>:<span class="string">"count"</span>&#125;).sort_values(by=<span class="string">"id"</span>,ascending=<span class="literal">False</span>).reset_index()</span><br><span class="line"></span><br><span class="line">_df</span><br></pre></td></tr></table></figure>
+
+
+
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>group_name</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Physics</td>
+      <td>79985</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mathematics</td>
+      <td>51567</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Computer Science</td>
+      <td>40067</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Statistics</td>
+      <td>4054</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Electrical Engineering and Systems Science</td>
+      <td>3297</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Quantitative Biology</td>
+      <td>1994</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Quantitative Finance</td>
+      <td>826</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Economics</td>
+      <td>576</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用饼图进行上图结果的可视化：</span></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">15</span>,<span class="number">12</span>))</span><br><span class="line">explode = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>, <span class="number">0.3</span>, <span class="number">0.3</span>, <span class="number">0.2</span>, <span class="number">0.1</span>) </span><br><span class="line">plt.pie(_df[<span class="string">"id"</span>],  labels=_df[<span class="string">"group_name"</span>], autopct=<span class="string">'%1.2f%%'</span>, startangle=<span class="number">160</span>, explode=explode)</span><br><span class="line">plt.tight_layout()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/articles/Task1/output_39_0.png" alt></p>
+<p>plt.pie参数说明：参考<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.pie.html?highlight=pie#matplotlib.pyplot.pie" target="_blank" rel="noopener">官方文档</a></p>
+<p>下面统计在计算机各个子领域2019年后的paper数量，我们同样使用 merge 函数，对于两个dataframe 共同的特征 categories  进行合并并且进行查询。然后我们再对于数据进行统计和排序从而得到以下的结果：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">group_name = <span class="string">"Computer Science"</span></span><br><span class="line">cats = df.merge(df_taxonomy,</span><br><span class="line">                  on=<span class="string">"categories"</span>).query(<span class="string">"group_name == @group_name"</span>)</span><br><span class="line">cats.groupby([<span class="string">"year"</span>, <span class="string">"category_name"</span></span><br><span class="line">              ]).count().reset_index().pivot(index=<span class="string">"category_name"</span>,</span><br><span class="line">                                             columns=<span class="string">"year"</span>,</span><br><span class="line">                                             values=<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>year</th>
+      <th>2019</th>
+      <th>2020</th>
+    </tr>
+    <tr>
+      <th>category_name</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Artificial Intelligence</th>
+      <td>558</td>
+      <td>757</td>
+    </tr>
+    <tr>
+      <th>Computation and Language</th>
+      <td>2153</td>
+      <td>2906</td>
+    </tr>
+    <tr>
+      <th>Computational Complexity</th>
+      <td>131</td>
+      <td>188</td>
+    </tr>
+    <tr>
+      <th>Computational Engineering, Finance, and Science</th>
+      <td>108</td>
+      <td>205</td>
+    </tr>
+    <tr>
+      <th>Computational Geometry</th>
+      <td>199</td>
+      <td>216</td>
+    </tr>
+    <tr>
+      <th>Computer Science and Game Theory</th>
+      <td>281</td>
+      <td>323</td>
+    </tr>
+    <tr>
+      <th>Computer Vision and Pattern Recognition</th>
+      <td>5559</td>
+      <td>6517</td>
+    </tr>
+    <tr>
+      <th>Computers and Society</th>
+      <td>346</td>
+      <td>564</td>
+    </tr>
+    <tr>
+      <th>Cryptography and Security</th>
+      <td>1067</td>
+      <td>1238</td>
+    </tr>
+    <tr>
+      <th>Data Structures and Algorithms</th>
+      <td>711</td>
+      <td>902</td>
+    </tr>
+    <tr>
+      <th>Databases</th>
+      <td>282</td>
+      <td>342</td>
+    </tr>
+    <tr>
+      <th>Digital Libraries</th>
+      <td>125</td>
+      <td>157</td>
+    </tr>
+    <tr>
+      <th>Discrete Mathematics</th>
+      <td>84</td>
+      <td>81</td>
+    </tr>
+    <tr>
+      <th>Distributed, Parallel, and Cluster Computing</th>
+      <td>715</td>
+      <td>774</td>
+    </tr>
+    <tr>
+      <th>Emerging Technologies</th>
+      <td>101</td>
+      <td>84</td>
+    </tr>
+    <tr>
+      <th>Formal Languages and Automata Theory</th>
+      <td>152</td>
+      <td>137</td>
+    </tr>
+    <tr>
+      <th>General Literature</th>
+      <td>5</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>Graphics</th>
+      <td>116</td>
+      <td>151</td>
+    </tr>
+    <tr>
+      <th>Hardware Architecture</th>
+      <td>95</td>
+      <td>159</td>
+    </tr>
+    <tr>
+      <th>Human-Computer Interaction</th>
+      <td>420</td>
+      <td>580</td>
+    </tr>
+    <tr>
+      <th>Information Retrieval</th>
+      <td>245</td>
+      <td>331</td>
+    </tr>
+    <tr>
+      <th>Logic in Computer Science</th>
+      <td>470</td>
+      <td>504</td>
+    </tr>
+    <tr>
+      <th>Machine Learning</th>
+      <td>177</td>
+      <td>538</td>
+    </tr>
+    <tr>
+      <th>Mathematical Software</th>
+      <td>27</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>Multiagent Systems</th>
+      <td>85</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <th>Multimedia</th>
+      <td>76</td>
+      <td>66</td>
+    </tr>
+    <tr>
+      <th>Networking and Internet Architecture</th>
+      <td>864</td>
+      <td>783</td>
+    </tr>
+    <tr>
+      <th>Neural and Evolutionary Computing</th>
+      <td>235</td>
+      <td>279</td>
+    </tr>
+    <tr>
+      <th>Numerical Analysis</th>
+      <td>40</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>Operating Systems</th>
+      <td>36</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>Other Computer Science</th>
+      <td>67</td>
+      <td>69</td>
+    </tr>
+    <tr>
+      <th>Performance</th>
+      <td>45</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>Programming Languages</th>
+      <td>268</td>
+      <td>294</td>
+    </tr>
+    <tr>
+      <th>Robotics</th>
+      <td>917</td>
+      <td>1298</td>
+    </tr>
+    <tr>
+      <th>Social and Information Networks</th>
+      <td>202</td>
+      <td>325</td>
+    </tr>
+    <tr>
+      <th>Software Engineering</th>
+      <td>659</td>
+      <td>804</td>
+    </tr>
+    <tr>
+      <th>Sound</th>
+      <td>7</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Symbolic Computation</th>
+      <td>44</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>Systems and Control</th>
+      <td>415</td>
+      <td>133</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<p>我们可以从结果看出，Computer Vision and Pattern Recognition（计算机视觉与模式识别）类是CS中paper数量最多的子类，遥遥领先于其他的CS子类，并且paper的数量还在逐年增加；另外，Computation and Language（计算与语言）、Cryptography and Security（密码学与安全）以及 Robotics（机器人学）的2019年paper数量均超过1000或接近1000，这与我们的认知是一致的。</p>
+</div></div></div></div></div>
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Algorithm/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/Task2/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/Task1/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

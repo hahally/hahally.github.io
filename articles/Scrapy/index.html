@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Scrapy | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="爬虫," />
+  
+
+  <meta name="description" content="写在前面在很久之前就已经学过了爬虫。那时还是懵懵懂懂的小白，学了一点基础，就买来一本书，然后就开干。代码倒是写了不少，但是没有什么拿的出手的。之后，便又匆匆忙忙的转战 web ，学起了 Django 。这一入坑，不知不觉差不多快一年了。最后发现自己知道的依旧凤毛麟角。没有基础的计算机网络知识，没有良好的代码编写规范…… 意识到问题后，开始试着阅读官方文档，去看协议，看源码。这些天看了 http 协">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Scrapy">
+<meta property="og:url" content="https://hahally.github.io/articles/Scrapy/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="写在前面在很久之前就已经学过了爬虫。那时还是懵懵懂懂的小白，学了一点基础，就买来一本书，然后就开干。代码倒是写了不少，但是没有什么拿的出手的。之后，便又匆匆忙忙的转战 web ，学起了 Django 。这一入坑，不知不觉差不多快一年了。最后发现自己知道的依旧凤毛麟角。没有基础的计算机网络知识，没有良好的代码编写规范…… 意识到问题后，开始试着阅读官方文档，去看协议，看源码。这些天看了 http 协">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png">
+<meta property="article:published_time" content="2020-05-12T04:04:56.000Z">
+<meta property="article:modified_time" content="2020-10-07T12:50:09.902Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="爬虫">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于-Scrapy"><span class="toc-text">关于 Scrapy</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#是什么？"><span class="toc-text">是什么？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#怎么做？"><span class="toc-text">怎么做？</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#框架概述"><span class="toc-text">框架概述</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Scrapy" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Scrapy</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.05.12</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Scrapy/">Scrapy</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/Scrapy/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在很久之前就已经学过了爬虫。那时还是懵懵懂懂的小白，学了一点基础，就买来一本书，然后就开干。代码倒是写了不少，但是没有什么拿的出手的。之后，便又匆匆忙忙的转战 web ，学起了 Django 。这一入坑，不知不觉差不多快一年了。最后发现自己知道的依旧凤毛麟角。没有基础的计算机网络知识，没有良好的代码编写规范……</p>
+<p>意识到问题后，开始试着阅读官方文档，去看协议，看源码。这些天看了 http 协议，计算机网络基础，python 文档，以及 Scrapy 文档。不得不说，看完后虽然记住的不多，但是大致是怎么一回事，多多少少还是了解了。比如，当初的爬虫程序，为什么要设置 <code>header</code> 、<code>cookie</code> 、<code>session</code> 什么的。还有 <code>request</code> 和 <code>response</code> 的含义。</p>
+<p>这些天看了一下 Scrapy 的 <a href="https://doc.scrapy.org/en/latest/intro/overview.html" target="_blank" rel="noopener">官方文档</a>，对这个框架有了一些了解。正如文档中所提到的，scrapy 框架很大程度上借鉴了 Django ，这也是为什么现在的我重新来看待它时，比之前要轻松太多了。</p>
+<h3 id="关于-Scrapy"><a href="#关于-Scrapy" class="headerlink" title="关于 Scrapy"></a>关于 Scrapy</h3><blockquote>
+<p>Scrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.</p>
+</blockquote>
+<p>学习一个框架，得明白，它是什么？怎么做？更深入为什么要这样做？</p>
+<h5 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h5><p>简而言之,就是一个支持分布式的，可扩展的，用于批量爬取网站并提取结构化数据的异步应用程序框架。值得一提的是，Scrapy 是用 <a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 编写的，<a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 是一种流行的 Python 事件驱动的网络框架。因此，它是使用非阻塞（又称为异步）代码并发实现的。</p>
+<p>Scrapy 有着丰富的命令行工具，交互式控制台，内置支持以多种格式(json、xml、csv)等。</p>
+<h5 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h5><p>要使用 Scrapy ，我们不得不先安装它。文档为我们提供的良好的 <a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="noopener">安装指南</a> 。</p>
+<p>我们只需要这样做：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
+<p>不过我们不得不知道下面文档中提到的：</p>
+<blockquote>
+<p>Scrapy is written in pure Python and depends on a few key Python packages (among others)</p>
+</blockquote>
+<p>Scrapy 需要一些依赖包：</p>
+<ul>
+<li><a href="http://lxml.de/" target="_blank" rel="noopener">lxml</a>，高效的XML和HTML解析器</li>
+<li><a href="https://pypi.python.org/pypi/parsel" target="_blank" rel="noopener">parsel</a>，是在lxml之上编写的HTML / XML数据提取库</li>
+<li><a href="https://pypi.python.org/pypi/w3lib" target="_blank" rel="noopener">w3lib</a>，用于处理URL和网页编码的多功能帮助器</li>
+<li><a href="https://twistedmatrix.com/" target="_blank" rel="noopener">twisted</a>，异步网络框架</li>
+<li><a href="https://cryptography.io/" target="_blank" rel="noopener">cryptography</a> 和 <a href="https://pypi.python.org/pypi/pyOpenSSL" target="_blank" rel="noopener">pyOpenSSL</a> ，以处理各种网络级安全需求</li>
+</ul>
+<p>其中还有一些版本要求：</p>
+<ul>
+<li>Twisted 14.0</li>
+<li>lxml 3.4</li>
+<li>pyOpenSSL 0.14</li>
+</ul>
+<p>如果你没有这些依赖包，那你不得不考虑先安装依赖。在此建议使用清华源下载，这样可以避免不必要的 Time out 。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [example_modul] -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
+<p>安装完成后，就可以开始按接下来的<a href="https://doc.scrapy.org/en/latest/intro/tutorial.html" target="_blank" rel="noopener">教程</a> 学习了。</p>
+<p>像这样创建一个项目：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> scrapy startproject tutorial</span></span><br></pre></td></tr></table></figure>
+<p>编写自己的爬虫类：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"quotes"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        urls = [</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url=url, callback=self.parse)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        page = response.url.split(<span class="string">"/"</span>)[<span class="number">-2</span>]</span><br><span class="line">        filename = <span class="string">'quotes-%s.html'</span> % page</span><br><span class="line">        <span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(<span class="string">'Saved file %s'</span> % filename)</span><br></pre></td></tr></table></figure>
+<p>运行项目：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scrapy crawl quotes</span><br></pre></td></tr></table></figure>
+<p>至此，一个基本可以运行的 Scrapy 项目就成型了。</p>
+<h5 id="框架概述"><a href="#框架概述" class="headerlink" title="框架概述"></a><a href="https://doc.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">框架概述</a></h5><p>在依葫芦画瓢的完成一个 Scrapy 项目的编写后，要想明白为什么要这样编写我们的爬虫程序，就不得不了解这个框架的一些细节。</p>
+<p>Scrapy的体系结构及组件如下图所示：</p>
+<p><img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png"></p>
+<p>对照着 Scrapy 的项目结构：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">    scrapy.cfg            <span class="comment"># deploy configuration file</span></span><br><span class="line"></span><br><span class="line">    tutorial/             <span class="comment"># project's Python module, you'll import your code from here</span></span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        <span class="keyword">items</span>.py          <span class="comment"># project items definition file</span></span><br><span class="line"></span><br><span class="line">        middlewares.py    <span class="comment"># project middlewares file</span></span><br><span class="line"></span><br><span class="line">        pipelines.py      <span class="comment"># project pipelines file</span></span><br><span class="line"></span><br><span class="line">        settings.py       <span class="comment"># project settings file</span></span><br><span class="line"></span><br><span class="line">        spiders/          <span class="comment"># a directory where you'll later put your spiders</span></span><br><span class="line">            __init__.py</span><br><span class="line">            quotes_spider.py  <span class="comment"># a spider written by yourself</span></span><br></pre></td></tr></table></figure>
+<p>学过 Django 就会发现，这个框架简直就是套着它的设计模式来的。全局设置的 <code>settings.py</code> 、项目的管道 <code>pipelines.py</code> 、强大可扩展的中间件 <code>middlewares.py</code> 、以及类似模型的 <code>items.py</code> 。从图中我们不难发现，spiders可以对 requests 和 response 进行处理。而中间件 middlewares还可以对 items 进行处理。 管道 pipelines 对输出的 items 进行最后的清洗。所以，在我们明白要对数据做怎样处理时，只需要在对应的地方按要求编写我们的代码来达到我们的目的即可。</p>
+<p>一个例子：如果我们需要对最后清洗的数据保存到一个文件(如：json文件)中，那么你可能就要在管道 <code>pipelines.py</code> 中编写合适代码来实现。像这样子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonWriterPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> cls(crawler)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file = open(<span class="string">'items.jl'</span>, <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file.close()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        line = json.dumps(dict(item)) + <span class="string">"\n"</span></span><br><span class="line">        self.file.write(line)</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>process_item (self, item, spider)</p>
+<blockquote>
+<p>每个项目管道组件均调用此方法，返回一个 item 对象，返回 Twisted Deferred 或引发 DropItem 异常。</p>
+<p>如果要使用自己的管道，那么就不得不实现此方法。</p>
+</blockquote>
+</li>
+</ul>
+<p>  除此之外，还可以实现下面几种方法：</p>
+<ul>
+<li><p>open_spider(self, spider)</p>
+<blockquote>
+<p>This method is called when the spider is opened.</p>
+</blockquote>
+</li>
+<li><p>close_spider(self, spider)</p>
+<blockquote>
+<p>This method is called when the spider is closed.</p>
+</blockquote>
+</li>
+<li><p>from_crawler(cls, crawler)</p>
+<blockquote>
+<p>If present, this classmethod is called to create a pipeline instance from a Crawler. It must return a new instance of the pipeline. Crawler object provides access to all Scrapy core components like settings and signals; it is a way for pipeline to access them and hook its functionality into Scrapy.</p>
+</blockquote>
+<p>编写完自己的 Item Pipeline后，我们还需要在 <code>settings.py</code> 中激活才能使用。像这样：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'myproject.pipelines.JsonWriterPipeline'</span>: <span class="number">800</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，管道组件以字典的形式配置，并分配一整数值(0 ~ 1000)，项目将按升序方式依次执行。</p>
+</li>
+</ul>
+<hr>
+<p>补一篇关于 Scrapy 的笔记算是对很久之前的一个总结吧！</p>
+<blockquote>
+<p>路漫漫其修远兮吾将上下而求索。</p>
+<p>I know nothing but my ignorance.</p>
+</blockquote>
+
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Scrapy%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/CSRent/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/Scrapy/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

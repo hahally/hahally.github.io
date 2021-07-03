@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>oneSimpleDL | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="DeepLearning," />
+  
+
+  <meta name="description" content="123456import tensorflow as tffrom tensorflow.keras import datasets, layers, modelsimport numpy as npimport matplotlib.pyplot as plt%matplotlib inline  123# 数据加载f &#x3D; np.load(&#39;mnist.npz&#39;)f.files [&#39;x_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="oneSimpleDL">
+<meta property="og:url" content="https://hahally.github.io/articles/oneSimpleDL/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="123456import tensorflow as tffrom tensorflow.keras import datasets, layers, modelsimport numpy as npimport matplotlib.pyplot as plt%matplotlib inline  123# 数据加载f &#x3D; np.load(&#39;mnist.npz&#39;)f.files [&#39;x_">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/oneSimpleDL/output_5_1.png">
+<meta property="og:image" content="https://hahally.github.io/articles/oneSimpleDL/output_11_1.png">
+<meta property="article:published_time" content="2021-01-27T03:34:25.000Z">
+<meta property="article:modified_time" content="2021-01-27T03:37:09.922Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="DeepLearning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/oneSimpleDL/output_5_1.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-oneSimpleDL" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">oneSimpleDL</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.01.27</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/oneSimpleDL/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> tensorflow.keras <span class="keyword">import</span> datasets, layers, models</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 数据加载</span></span><br><span class="line">f = np.load(<span class="string">'mnist.npz'</span>)</span><br><span class="line">f.files</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;x_test&#39;, &#39;x_train&#39;, &#39;y_train&#39;, &#39;y_test&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 提取数据</span></span><br><span class="line">data = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f.files:</span><br><span class="line"></span><br><span class="line">    data[i] = f[i]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">'x_test'</span>].shape,data[<span class="string">'x_train'</span>].shape,data[<span class="string">'y_train'</span>].shape,data[<span class="string">'y_test'</span>].shape,</span><br></pre></td></tr></table></figure>
+<pre><code>((10000, 28, 28), (60000, 28, 28), (60000,), (10000,))
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 可视化</span></span><br><span class="line">plt.imshow(data[<span class="string">'x_train'</span>][<span class="number">0</span>]),data[<span class="string">'y_train'</span>][<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(&lt;matplotlib.image.AxesImage at 0x1dcc0eb2860&gt;, 5)
+</code></pre><p><img src="/articles/oneSimpleDL/output_5_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练集</span></span><br><span class="line">x_train = data[<span class="string">'x_train'</span>]/<span class="number">255.0</span></span><br><span class="line">y_train = data[<span class="string">'y_train'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试集</span></span><br><span class="line">x_test = data[<span class="string">'x_test'</span>]/<span class="number">255.0</span></span><br><span class="line">y_test = data[<span class="string">'y_test'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加一个维度变成 [b,h,w,c]</span></span><br><span class="line">x_train = tf.expand_dims(x_train,axis=<span class="number">3</span>)</span><br><span class="line">x_test = tf.expand_dims(x_test,axis=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 卷积网络 LeNet-5</span></span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积层</span></span><br><span class="line">model.add(layers.Conv2D(<span class="number">6</span>,(<span class="number">3</span>, <span class="number">3</span>), input_shape=(<span class="number">28</span>, <span class="number">28</span>,<span class="number">1</span>)))</span><br><span class="line"><span class="comment"># BN层</span></span><br><span class="line">model.add(layers.BatchNormalization())</span><br><span class="line"><span class="comment"># 池化层</span></span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>),strides=<span class="number">2</span>))</span><br><span class="line">model.add(layers.ReLU())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卷积层</span></span><br><span class="line">model.add(layers.Conv2D(<span class="number">16</span>,(<span class="number">3</span>, <span class="number">3</span>)))</span><br><span class="line"><span class="comment"># BN层</span></span><br><span class="line">model.add(layers.BatchNormalization())</span><br><span class="line"><span class="comment"># 池化层</span></span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>),strides=<span class="number">2</span>))</span><br><span class="line">model.add(layers.ReLU())</span><br><span class="line"></span><br><span class="line">model.add(layers.Flatten())</span><br><span class="line">model.add(layers.Dense(<span class="number">120</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">84</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<pre><code>Model: &quot;sequential_2&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_2 (Conv2D)            (None, 26, 26, 6)         60        
+_________________________________________________________________
+batch_normalization_2 (Batch (None, 26, 26, 6)         24        
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 13, 13, 6)         0         
+_________________________________________________________________
+re_lu_2 (ReLU)               (None, 13, 13, 6)         0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 11, 11, 16)        880       
+_________________________________________________________________
+batch_normalization_3 (Batch (None, 11, 11, 16)        64        
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 5, 5, 16)          0         
+_________________________________________________________________
+re_lu_3 (ReLU)               (None, 5, 5, 16)          0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 400)               0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 120)               48120     
+_________________________________________________________________
+dense_4 (Dense)              (None, 84)                10164     
+_________________________________________________________________
+dense_5 (Dense)              (None, 10)                850       
+=================================================================
+Total params: 60,162
+Trainable params: 60,118
+Non-trainable params: 44
+_________________________________________________________________
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置 from_logits=True 相当于在最后输出加了一个 softmax</span></span><br><span class="line">model.compile(</span><br><span class="line">    optimizer=<span class="string">'adam'</span>,</span><br><span class="line">    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">history = model.fit(x_train,</span><br><span class="line">                    y_train,</span><br><span class="line">                    epochs=<span class="number">10</span>,</span><br><span class="line">                    batch_size=<span class="number">200</span>,</span><br><span class="line">                    validation_data=(x_test, y_test))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(history.history[<span class="string">'accuracy'</span>], label=<span class="string">'accuracy'</span>)</span><br><span class="line">plt.plot(history.history[<span class="string">'val_accuracy'</span>], label = <span class="string">'val_accuracy'</span>)</span><br><span class="line">plt.xlabel(<span class="string">'Epoch'</span>)</span><br><span class="line">plt.ylabel(<span class="string">'Accuracy'</span>)</span><br><span class="line">plt.ylim([<span class="number">0.5</span>, <span class="number">1</span>])</span><br><span class="line">plt.legend(loc=<span class="string">'lower right'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">test_loss, test_acc = model.evaluate(x_test,  y_test, verbose=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>10000/10000 - 2s - loss: 0.0346 - accuracy: 0.9896
+</code></pre><p><img src="/articles/oneSimpleDL/output_11_1.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_loss, test_acc</span><br></pre></td></tr></table></figure>
+<pre><code>(0.034577180710506215, 0.9896)
+</code></pre><hr>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unpickle</span><span class="params">(file)</span>:</span></span><br><span class="line">    <span class="keyword">import</span> pickle</span><br><span class="line">    <span class="keyword">with</span> open(file, <span class="string">'rb'</span>) <span class="keyword">as</span> fo:</span><br><span class="line">        dict = pickle.load(fo, encoding=<span class="string">'bytes'</span>)</span><br><span class="line">    <span class="keyword">return</span> dict</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path = <span class="string">'./cifar-10-python/cifar-10-batches-py/'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.listdir(path)</span><br></pre></td></tr></table></figure>
+<pre><code>[&#39;batches.meta&#39;,
+ &#39;data_batch_1&#39;,
+ &#39;data_batch_2&#39;,
+ &#39;data_batch_3&#39;,
+ &#39;data_batch_4&#39;,
+ &#39;data_batch_5&#39;,
+ &#39;readme.html&#39;,
+ &#39;test_batch&#39;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unpickle(<span class="string">'./cifar-10-python/cifar-10-batches-py/batches.meta'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>{b&#39;label_names&#39;: [b&#39;airplane&#39;,
+  b&#39;automobile&#39;,
+  b&#39;bird&#39;,
+  b&#39;cat&#39;,
+  b&#39;deer&#39;,
+  b&#39;dog&#39;,
+  b&#39;frog&#39;,
+  b&#39;horse&#39;,
+  b&#39;ship&#39;,
+  b&#39;truck&#39;],
+ b&#39;num_cases_per_batch&#39;: 10000,
+ b&#39;num_vis&#39;: 3072}
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">x_train = []</span><br><span class="line">y_train = []</span><br><span class="line"></span><br><span class="line">x_test = []</span><br><span class="line">y_test = []</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> os.listdir(path):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'data'</span> <span class="keyword">in</span> i:</span><br><span class="line">        data_dict = unpickle(path + i)</span><br><span class="line">        x_train.append(data_dict[<span class="string">b'data'</span>].reshape(data_dict[<span class="string">b'data'</span>].shape[<span class="number">0</span>],</span><br><span class="line">                                                  <span class="number">3</span>, <span class="number">32</span>,</span><br><span class="line">                                                  <span class="number">32</span>).transpose(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">        y_train = y_train + data_dict[<span class="string">b'labels'</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'test'</span> <span class="keyword">in</span> i:</span><br><span class="line">        test_dict = unpickle(path + i)</span><br><span class="line">        x_test.append(test_dict[<span class="string">b'data'</span>].reshape(test_dict[<span class="string">b'data'</span>].shape[<span class="number">0</span>],</span><br><span class="line">                                                 <span class="number">3</span>, <span class="number">32</span>,</span><br><span class="line">                                                 <span class="number">32</span>).transpose(<span class="number">0</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">        y_test = y_test + test_dict[<span class="string">b'labels'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y_train = tf.constant(y_train)</span><br><span class="line">y_test = tf.constant(y_test)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_train.shape,y_test.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(TensorShape([50000]), TensorShape([10000]))
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x_train = tf.concat(x_train,axis=<span class="number">0</span>)</span><br><span class="line">x_test = tf.concat(x_test,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x_train.shape,x_test.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(TensorShape([50000, 32, 32, 3]), TensorShape([10000, 32, 32, 3]))
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># VGG16</span></span><br><span class="line"></span><br><span class="line">model = models.Sequential()</span><br><span class="line"></span><br><span class="line">model.add(</span><br><span class="line">    layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">                  padding=<span class="string">"same"</span>,</span><br><span class="line">                  activation=<span class="string">'relu'</span>,</span><br><span class="line">                  input_shape=(<span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>)))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">64</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">128</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">128</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">256</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Conv2D(<span class="number">512</span>, (<span class="number">3</span>, <span class="number">3</span>), padding=<span class="string">"same"</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), strides=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># model.add(layers.Flatten())</span></span><br><span class="line">model.add(layers.Dense(<span class="number">256</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">64</span>, activation=<span class="string">'relu'</span>))</span><br><span class="line">model.add(layers.Dense(<span class="number">10</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<pre><code>Model: &quot;sequential&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d (Conv2D)              (None, 32, 32, 64)        1792      
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 32, 32, 64)        36928     
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 16, 16, 64)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 16, 16, 128)       73856     
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 16, 16, 128)       147584    
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 8, 8, 128)         0         
+_________________________________________________________________
+conv2d_4 (Conv2D)            (None, 8, 8, 256)         295168    
+_________________________________________________________________
+conv2d_5 (Conv2D)            (None, 8, 8, 256)         590080    
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 8, 8, 256)         590080    
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 4, 4, 256)         0         
+_________________________________________________________________
+conv2d_7 (Conv2D)            (None, 4, 4, 512)         1180160   
+_________________________________________________________________
+conv2d_8 (Conv2D)            (None, 4, 4, 512)         2359808   
+_________________________________________________________________
+conv2d_9 (Conv2D)            (None, 4, 4, 512)         2359808   
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 2, 2, 512)         0         
+_________________________________________________________________
+conv2d_10 (Conv2D)           (None, 2, 2, 512)         2359808   
+_________________________________________________________________
+conv2d_11 (Conv2D)           (None, 2, 2, 512)         2359808   
+_________________________________________________________________
+conv2d_12 (Conv2D)           (None, 2, 2, 512)         2359808   
+_________________________________________________________________
+max_pooling2d_4 (MaxPooling2 (None, 1, 1, 512)         0         
+_________________________________________________________________
+dense (Dense)                (None, 1, 1, 256)         131328    
+_________________________________________________________________
+dense_1 (Dense)              (None, 1, 1, 64)          16448     
+_________________________________________________________________
+dense_2 (Dense)              (None, 1, 1, 10)          650       
+=================================================================
+Total params: 14,863,114
+Trainable params: 14,863,114
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">model.compile(</span><br><span class="line">    optimizer=<span class="string">'adam'</span>,</span><br><span class="line">    loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">    metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line"></span><br><span class="line">history = model.fit(</span><br><span class="line">    x_train,</span><br><span class="line">    y_train,</span><br><span class="line">    epochs=<span class="number">10</span>,</span><br><span class="line">    batch_size=<span class="number">1</span>,</span><br><span class="line">    shuffle=<span class="literal">True</span>,</span><br><span class="line">    validation_data=(x_test, y_test) </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Task5/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/Titanic/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/oneSimpleDL/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

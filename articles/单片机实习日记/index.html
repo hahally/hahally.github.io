@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>单片机实习日记 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="单片机," />
+  
+
+  <meta name="description" content="I know nothing but my ignorance.  5月18日今天是单片机实习的第一天，因为疫情原因变成了线上开展。 上午，老师把六个选题都一一讲解了一遍，并告诉我们一些在实习过程中可能会出现的一些问题和注意事项。老师讲完后，我们就开始组队和选题了。 在经过一番并不激烈的讨论后，我们组选择了第二个项目：数字频率计设计  一、基本要求： 测量待测 TTL 电平信号的频率  频率范围">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单片机实习日记">
+<meta property="og:url" content="https://hahally.github.io/articles/%E5%8D%95%E7%89%87%E6%9C%BA%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="I know nothing but my ignorance.  5月18日今天是单片机实习的第一天，因为疫情原因变成了线上开展。 上午，老师把六个选题都一一讲解了一遍，并告诉我们一些在实习过程中可能会出现的一些问题和注意事项。老师讲完后，我们就开始组队和选题了。 在经过一番并不激烈的讨论后，我们组选择了第二个项目：数字频率计设计  一、基本要求： 测量待测 TTL 电平信号的频率  频率范围">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-24T01:52:39.000Z">
+<meta property="article:modified_time" content="2020-05-28T16:00:32.406Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="单片机">
+<meta name="twitter:card" content="summary">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#5月18日"><span class="toc-text">5月18日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月19日"><span class="toc-text">5月19日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月20日"><span class="toc-text">5月20日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月21日"><span class="toc-text">5月21日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月22日"><span class="toc-text">5月22日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月25日"><span class="toc-text">5月25日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月26日"><span class="toc-text">5月26日</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5月27日"><span class="toc-text">5月27日</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-单片机实习日记" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">单片机实习日记</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2020.05.24</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+  <span class="article-category">
+    <i class="icon-list"></i>
+    <a class="article-category-link" href="/categories/Diary/">Diary</a>
+  </span>
+
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/%E5%8D%95%E7%89%87%E6%9C%BA%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <blockquote>
+<p><em>I know nothing but my ignorance.</em></p>
+</blockquote>
+<h3 id="5月18日"><a href="#5月18日" class="headerlink" title="5月18日"></a>5月18日</h3><p>今天是单片机实习的第一天，因为疫情原因变成了线上开展。</p>
+<p>上午，老师把六个选题都一一讲解了一遍，并告诉我们一些在实习过程中可能会出现的一些问题和注意事项。老师讲完后，我们就开始组队和选题了。</p>
+<p>在经过一番并不激烈的讨论后，我们组选择了第二个项目：<strong>数字频率计设计</strong> </p>
+<p>一、基本要求：</p>
+<p>测量待测 <code>TTL</code> 电平信号的频率</p>
+<ol>
+<li>频率范围：10 Hz ~ 50kHz，全测量范围误差不大于 1%；</li>
+<li>用液晶屏 <code>LCD1602</code> 显示数值和单位，可显示频率及周期；</li>
+<li>数据刷新率每秒三次以上；</li>
+<li>在同一台单片机上自行设计测试用信号源；</li>
+<li>通过串口通信在远程单片机（仿真环境）显示测量结果。</li>
+</ol>
+<p>二、扩展要求</p>
+<ol>
+<li>占空比测量</li>
+<li>在保证数据刷新率和精度的基础上拓展测量频率范围</li>
+</ol>
+<p>下午，我们组四个人开始查文献讨论总体方案和分工。又是一番并不激烈的讨论后，我们确定好了分工。我选择了串口通信功能的实现。</p>
+<h3 id="5月19日"><a href="#5月19日" class="headerlink" title="5月19日"></a>5月19日</h3><p>上午确定分工合作的一些细节部分的设计，资源的分配，引脚的功能等等。然后，听老师讲一些知识点。</p>
+<p>下午，我开始查找串口通信的资料文献。最终确定采用异步通信的方式实现串口通信。接着开始着重异步通信方面的资料查询。经过一番并不困难的翻阅后，大致了解了异步通信的 4 种方式以及定时器的知识。</p>
+<p>52单片机有三个定时器/计数器，与串口通信有关的就是 T1定时器了。定时器/计数器的实质是加 1 计数器(高 8 位 和低 8 位 两个寄存器组成)。<code>TMOD</code> 是确定工作方式和功能的寄存器；<code>TCON</code> 是控制 T0、T1 的启动和停止及设置溢出标志的寄存器。</p>
+<p><strong><code>TMOD</code></strong>:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位序号</th>
+<th style="text-align:center">D7</th>
+<th style="text-align:center">D6</th>
+<th style="text-align:center">D5</th>
+<th style="text-align:center">D4</th>
+<th style="text-align:center">D3</th>
+<th style="text-align:center">D2</th>
+<th style="text-align:center">D1</th>
+<th style="text-align:center">D0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">位符号</td>
+<td style="text-align:center">$GATE$</td>
+<td style="text-align:center">$C/\overline{\text{T}}$</td>
+<td style="text-align:center">$M1$</td>
+<td style="text-align:center">$M0$</td>
+<td style="text-align:center">$GATE$</td>
+<td style="text-align:center">$C/\overline{\text{T}}$</td>
+<td style="text-align:center">$M1$</td>
+<td style="text-align:center">$M0$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>D7~D4</code> 为 <code>T1</code> 定时器，<code>D3~D0</code> 为 <code>T0</code> 定时器。$C/\overline{\text{T}}$ 为 0 时为定时器模式，为 1 时为计数器模式，<code>M1</code> 和 <code>M0</code> 是工作方式选择位。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">M1</th>
+<th style="text-align:center">M0</th>
+<th style="text-align:center">工作方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">方式0，为13位定时器/计数器</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">方式1，为16位定时器/计数器</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">方式2，8位初值自动重装的8位定时器/计数器</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">方式3，仅适用于 T0，分成两个8位计数器，T1停止计数</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong><code>TCON</code></strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">位序号</th>
+<th style="text-align:center">D7</th>
+<th style="text-align:center">D6</th>
+<th style="text-align:center">D5</th>
+<th style="text-align:center">D4</th>
+<th style="text-align:center">D3</th>
+<th style="text-align:center">D2</th>
+<th style="text-align:center">D1</th>
+<th style="text-align:center">D0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">位符号</td>
+<td style="text-align:center">$TF1$</td>
+<td style="text-align:center">$TR1$</td>
+<td style="text-align:center">$TF0$</td>
+<td style="text-align:center">$TR0$</td>
+<td style="text-align:center">$IE1$</td>
+<td style="text-align:center">$IT1$</td>
+<td style="text-align:center">$IE0$</td>
+<td style="text-align:center">$IT0$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="5月20日"><a href="#5月20日" class="headerlink" title="5月20日"></a>5月20日</h3><p>经过昨天一天的查阅学习，已经对串口通信有了比较全面的了解。所以，今天就是先把串口通信的一些必要环境准备好。下载串口助手和虚拟串口工具，然后测试串口助手。在一番并不花里胡哨的操作后，基本操作都会了。接着就是准备仿真下的串口测试了。在 <code>protues</code> 上，点来点去，又是一番行云流水且不花里胡哨的操作后，仿真环境也搭建好了。然后开始敲代码，在 <code>keil</code> 这个外表朴实无华但功能强大的软件上，敲下第一个简单串口通信的代码。然后结合串口助手观察效果。这样一个发送单个字符的例子就测试成功了。</p>
+<h3 id="5月21日"><a href="#5月21日" class="headerlink" title="5月21日"></a>5月21日</h3><p>今天是周四，上午老师照常开了小小的线上例会。交我们一些小小的调试技巧之类的。在昨天的基础上，今天继续修改代码，实现发送和接收功能。上午把整个代码框架写了出来，本以为会是顺顺利利的一天。但是下午的调试，着实不太顺利。先是，接收的数据并不是期望的数据，在一顿微操后，发现是接收数据的数组出现了溢出现象。调好后，又发现接收的数据有些错位了。又是一顿 <code>Debug</code> 后，自己定义一个简单通信协议，在数据头尾加上标志位，以确保接收方正确接收到期望数据。来来回回这样折腾后，仿真串口通信是没有问题了。</p>
+<h3 id="5月22日"><a href="#5月22日" class="headerlink" title="5月22日"></a>5月22日</h3><p>一觉醒来还是周五，是的，昨晚熬到了十二点。精力显然有些不充沛的我，还是打开了电脑，接着干了。队友那边的频率测量 和<code>LCD</code> 显示功能已经就绪了。今天可以整一块测试一下了。拿到他们的代码后，便开始调试。红红火火恍恍惚惚，就这样一顿朴实无华而实用的 <code>CV</code>大法过后，加以小小微操作为辅助，就调好了。</p>
+<h3 id="5月25日"><a href="#5月25日" class="headerlink" title="5月25日"></a>5月25日</h3><p>短暂的周末一晃就过去了。新的一周，继续干。现在只剩下信号源了。查资料，敲代码，仿真。陷入循环状态。进度十分缓慢。浑浑噩噩，一天就这样结束了。</p>
+<h3 id="5月26日"><a href="#5月26日" class="headerlink" title="5月26日"></a>5月26日</h3><p>距离实习结束，迫在眉睫。但是，实在有些精神疲惫了。打开和昨天一样的软件一样的文件，开始改代码。一番操作，以为成了。结果，一到高频信号，就不受调制了，无法准确控制信号频率的改变。</p>
+<h3 id="5月27日"><a href="#5月27日" class="headerlink" title="5月27日"></a>5月27日</h3><p>今天开始在开发板上进行真机测试，果然不出所料，仿真和真机不一样。一天的疯狂调试，勉强调好，差强人意的样子。</p>
+
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/CSRent/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/Algorithm/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/%E5%8D%95%E7%89%87%E6%9C%BA%E5%AE%9E%E4%B9%A0%E6%97%A5%E8%AE%B0/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

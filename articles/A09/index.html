@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>A09 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
+  
+
+  <meta name="description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：     说明 类型说明     用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A09">
+<meta property="og:url" content="https://hahally.github.io/articles/A09/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：     说明 类型说明     用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/A09/output_21_0.png">
+<meta property="article:published_time" content="2021-02-03T15:59:00.000Z">
+<meta property="article:modified_time" content="2021-02-03T16:04:12.781Z">
+<meta property="article:author" content="hahally">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/A09/output_21_0.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据说明"><span class="toc-text">数据说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入相关库"><span class="toc-text">导入相关库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trips-csv"><span class="toc-text">trips.csv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#users-csv"><span class="toc-text">users.csv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#station-csv"><span class="toc-text">station.csv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#workdays-csv"><span class="toc-text">workdays.csv</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-A09" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">A09</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.02.03</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/A09/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a>数据说明</h3><p>来源：第十二届服创大赛A类数据<a href="http://www.fwwb.org.cn/topic/show/6c22faa0-c905-4482-a0bc-3dfe11657565" target="_blank" rel="noopener">【A09】轨道交通智慧客流分析预测【八维通】</a></p>
+<p>示例数据包含:</p>
+<ul>
+<li>行程数据<code>trips.csv</code></li>
+<li>用户数据<code>users.csv</code></li>
+<li>站点名称数据<code>station.csv</code></li>
+<li>2020年全年节假日数据<code>workdays.csv</code></li>
+</ul>
+<hr>
+<p>trips.csv：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>说明</th>
+<th>类型说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户id</td>
+<td>与user.csv 表中用户id进行关联，可以获取用户对应的行程</td>
+</tr>
+<tr>
+<td>进站名</td>
+<td></td>
+</tr>
+<tr>
+<td>进站时间</td>
+<td>YYYY-MM-DD hh:mm:ss</td>
+</tr>
+<tr>
+<td>出站</td>
+<td></td>
+</tr>
+<tr>
+<td>出站时间</td>
+<td>YYYY-MM-DD hh:mm:ss</td>
+</tr>
+<tr>
+<td>渠道类型</td>
+<td>本例子中不使用</td>
+</tr>
+<tr>
+<td>票价</td>
+<td>单位分</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>users.csv:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>说明</th>
+<th>类型说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>说明</td>
+<td>类型说明</td>
+</tr>
+<tr>
+<td>用户id</td>
+<td>和trip.csv里面的用户ID关联可获取用户对应的行程</td>
+</tr>
+<tr>
+<td>省市</td>
+<td></td>
+</tr>
+<tr>
+<td>出生年份</td>
+<td></td>
+</tr>
+<tr>
+<td>性别</td>
+<td>0 男，1 女</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>station.csv:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>说明</th>
+<th>类型说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>站点id</td>
+<td>无业务意义</td>
+</tr>
+<tr>
+<td>站点名</td>
+<td></td>
+</tr>
+<tr>
+<td>线路名</td>
+<td></td>
+</tr>
+<tr>
+<td>站点所在区</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<p>workdays.csv:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>说明</th>
+<th>类型</th>
+<th>类型说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日期</td>
+<td>string</td>
+<td>YYYYMMDD</td>
+</tr>
+<tr>
+<td>节假日属性</td>
+<td>枚举</td>
+<td>1，2，或3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>1为工作日（包括周末调休变成的工作日）；2为正常周末；3为节假日，包括法定节假日，以及与法定节假日相连的周末。</p>
+<hr>
+<h3 id="导入相关库"><a href="#导入相关库" class="headerlink" title="导入相关库"></a>导入相关库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment">#ignore warnings</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="trips-csv"><a href="#trips-csv" class="headerlink" title="trips.csv"></a>trips.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trips = pd.read_csv(<span class="string">'./trips.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本信息</span></span><br><span class="line">trips.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 791995 entries, 0 to 791994
+Data columns (total 7 columns):
+用户ID    791995 non-null object
+进站名称    791995 non-null object
+进站时间    791995 non-null object
+出站名称    791995 non-null object
+出站时间    791995 non-null object
+渠道编号    791995 non-null int64
+价格      791995 non-null int64
+dtypes: int64(2), object(5)
+memory usage: 42.3+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浏览数据集</span></span><br><span class="line">trips.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>用户ID</th>
+      <th>进站名称</th>
+      <th>进站时间</th>
+      <th>出站名称</th>
+      <th>出站时间</th>
+      <th>渠道编号</th>
+      <th>价格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>361317</th>
+      <td>309d068b9686b17c2eea0f7396d6a3ce</td>
+      <td>Sta34</td>
+      <td>2020-06-14 11:59:47</td>
+      <td>Sta108</td>
+      <td>2020-06-14 12:27:01</td>
+      <td>2</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>369815</th>
+      <td>5f60d49862e08647d83cba6b88826a7c</td>
+      <td>Sta163</td>
+      <td>2020-04-11 09:45:12</td>
+      <td>Sta161</td>
+      <td>2020-04-11 10:21:50</td>
+      <td>2</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>24683</th>
+      <td>456baf61774e89b0f0ecd66561dc1ec3</td>
+      <td>Sta134</td>
+      <td>2020-03-09 19:17:07</td>
+      <td>Sta135</td>
+      <td>2020-03-09 19:24:20</td>
+      <td>3</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>265739</th>
+      <td>8259141547ffe7508d9ed0640064222e</td>
+      <td>Sta63</td>
+      <td>2020-06-19 09:39:06</td>
+      <td>Sta151</td>
+      <td>2020-06-19 10:09:06</td>
+      <td>3</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>360005</th>
+      <td>8e630d272f05413355bd4054ec57e1e4</td>
+      <td>Sta46</td>
+      <td>2020-03-22 14:30:38</td>
+      <td>Sta55</td>
+      <td>2020-03-22 15:05:00</td>
+      <td>3</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>302739</th>
+      <td>93cdc65de998cdfa253308f9e7a722fa</td>
+      <td>Sta49</td>
+      <td>2020-01-15 20:08:53</td>
+      <td>Sta89</td>
+      <td>2020-01-15 20:38:15</td>
+      <td>3</td>
+      <td>500</td>
+    </tr>
+    <tr>
+      <th>577747</th>
+      <td>7829bcf454c66b5bac54b4592f30d1ff</td>
+      <td>Sta137</td>
+      <td>2020-07-03 08:09:22</td>
+      <td>Sta37</td>
+      <td>2020-07-03 08:41:17</td>
+      <td>2</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>449944</th>
+      <td>e45e528ef8575a550847f5b33b732207</td>
+      <td>Sta67</td>
+      <td>2020-06-01 07:52:00</td>
+      <td>Sta100</td>
+      <td>2020-06-01 08:21:47</td>
+      <td>3</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>317479</th>
+      <td>47750740c3ff91bffaac1b92e7d8ac2f</td>
+      <td>Sta25</td>
+      <td>2020-06-15 09:44:47</td>
+      <td>Sta63</td>
+      <td>2020-06-15 10:03:20</td>
+      <td>2</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>430358</th>
+      <td>9fd1d4dae1cbed06dec272607911ed02</td>
+      <td>Sta144</td>
+      <td>2020-06-15 07:56:18</td>
+      <td>Sta20</td>
+      <td>2020-06-15 08:27:03</td>
+      <td>2</td>
+      <td>400</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除渠道编号</span></span><br><span class="line">trips = trips.drop(labels=<span class="string">'渠道编号'</span>,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trips.head()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>用户ID</th>
+      <th>进站名称</th>
+      <th>进站时间</th>
+      <th>出站名称</th>
+      <th>出站时间</th>
+      <th>价格</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>d4ec5a712f2b24ce226970a8d315dfce</td>
+      <td>Sta18</td>
+      <td>2020-07-15 14:21:58</td>
+      <td>Sta9</td>
+      <td>2020-07-15 14:39:29</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>328266c5e7a8fccb976029683f723725</td>
+      <td>Sta74</td>
+      <td>2020-07-15 19:40:46</td>
+      <td>Sta133</td>
+      <td>2020-07-15 20:49:00</td>
+      <td>700</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4ff0e057af749864432d223ae0d0fa49</td>
+      <td>Sta69</td>
+      <td>2020-07-15 20:02:22</td>
+      <td>Sta96</td>
+      <td>2020-07-15 20:17:04</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>59add5aed8f0d030858c01a78c9c79fe</td>
+      <td>Sta110</td>
+      <td>2020-07-15 16:09:38</td>
+      <td>Sta123</td>
+      <td>2020-07-15 16:39:44</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>c285b7d3d347f4a1f46c826307bd1b8a</td>
+      <td>Sta36</td>
+      <td>2020-07-15 15:20:39</td>
+      <td>Sta28</td>
+      <td>2020-07-15 15:40:20</td>
+      <td>400</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户id</span></span><br><span class="line"></span><br><span class="line">id_count = trips.groupby(by=[<span class="string">'用户ID'</span>]).agg(&#123;<span class="string">'用户ID'</span>:[<span class="string">'count'</span>]&#125;).reset_index()</span><br><span class="line">id_count[<span class="string">'用户ID'</span>].describe()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>83049.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>9.536478</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>20.346030</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>3.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>8.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>322.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 站点</span></span><br><span class="line">len(set(trips[<span class="string">'进站名称'</span>])),len(set(trips[<span class="string">'出站名称'</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>(168, 168)
+</code></pre><h3 id="users-csv"><a href="#users-csv" class="headerlink" title="users.csv"></a>users.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users = pd.read_csv(<span class="string">'./users.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 124782 entries, 0 to 124781
+Data columns (total 4 columns):
+用户ID    124782 non-null object
+区域      124782 non-null int64
+出生年份    124782 non-null int64
+性别      124782 non-null int64
+dtypes: int64(3), object(1)
+memory usage: 3.8+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>用户ID</th>
+      <th>区域</th>
+      <th>出生年份</th>
+      <th>性别</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>124450</th>
+      <td>659eb8d7aaff22d8898cbab2ce901eb9</td>
+      <td>5224</td>
+      <td>1988</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>49769</th>
+      <td>ab67516f36608867726bea171cd47af1</td>
+      <td>5113</td>
+      <td>1996</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>95642</th>
+      <td>02dafe7577cba98cd85edf8b7b206e3f</td>
+      <td>5107</td>
+      <td>1993</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>30679</th>
+      <td>691fba5ba30776c4d94ecb9f850e9628</td>
+      <td>5001</td>
+      <td>1985</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>80127</th>
+      <td>f29fd257eb729a263900184e4a4177b4</td>
+      <td>5002</td>
+      <td>1985</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>43695</th>
+      <td>616b3fb46a82b41269cd9833d69d9847</td>
+      <td>3212</td>
+      <td>1975</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>118850</th>
+      <td>914962a14711cee5b7d916711c22b4fd</td>
+      <td>1201</td>
+      <td>1967</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>35179</th>
+      <td>d215e6be7597de23b94b79c577aa7569</td>
+      <td>5002</td>
+      <td>1993</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>37903</th>
+      <td>7634c54e4e8c1bb968ead3da0a38fc7b</td>
+      <td>5002</td>
+      <td>1991</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>91696</th>
+      <td>2e3134b064a1a082f0f204dac0cb9899</td>
+      <td>5002</td>
+      <td>1988</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 男女比例</span></span><br><span class="line">users[<span class="string">'性别'</span>].value_counts()/users.shape[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>1    0.586535
+0    0.413465
+Name: 性别, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 年龄</span></span><br><span class="line">users[<span class="string">'age'</span>] = <span class="number">2020</span> - users[<span class="string">'出生年份'</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.head()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>用户ID</th>
+      <th>区域</th>
+      <th>出生年份</th>
+      <th>性别</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4bd084423e63c9bcf3dd66761506d8cf</td>
+      <td>4115</td>
+      <td>1996</td>
+      <td>0</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>6ce72d2bccd92862119d86713dd4e6fa</td>
+      <td>3623</td>
+      <td>1980</td>
+      <td>1</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>adc40e61672136ba20fc41ed3736afe1</td>
+      <td>5001</td>
+      <td>1996</td>
+      <td>1</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16daef5eb951b4132fdbeb5ede7de172</td>
+      <td>3706</td>
+      <td>1988</td>
+      <td>0</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5e7c6803e0c584f444b20a96104628cb</td>
+      <td>3301</td>
+      <td>1993</td>
+      <td>1</td>
+      <td>27</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.describe()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>区域</th>
+      <th>出生年份</th>
+      <th>性别</th>
+      <th>age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>124782.000000</td>
+      <td>124782.000000</td>
+      <td>124782.000000</td>
+      <td>124782.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>4711.264613</td>
+      <td>1989.136294</td>
+      <td>0.586535</td>
+      <td>30.863706</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>918.747877</td>
+      <td>9.986578</td>
+      <td>0.492457</td>
+      <td>9.986578</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1101.000000</td>
+      <td>1930.000000</td>
+      <td>0.000000</td>
+      <td>10.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>5001.000000</td>
+      <td>1983.000000</td>
+      <td>0.000000</td>
+      <td>23.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5002.000000</td>
+      <td>1992.000000</td>
+      <td>1.000000</td>
+      <td>28.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>5108.000000</td>
+      <td>1997.000000</td>
+      <td>1.000000</td>
+      <td>37.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>6543.000000</td>
+      <td>2010.000000</td>
+      <td>1.000000</td>
+      <td>90.000000</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 省市区域</span></span><br><span class="line">len(set(users[<span class="string">'区域'</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>450
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users[<span class="string">'区域'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+<pre><code>5002    28469
+5001    14904
+5102    12117
+5003     5483
+5116     3713
+        ...  
+3427        1
+5121        1
+4225        1
+6208        1
+6405        1
+Name: 区域, Length: 450, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top 20</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">labels = users[<span class="string">'区域'</span>].value_counts().index[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">y_pos = np.arange(len(labels))</span><br><span class="line"></span><br><span class="line">performance = users[<span class="string">'区域'</span>].value_counts().values[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">error = np.random.rand(len(labels))</span><br><span class="line"></span><br><span class="line">ax.barh(y_pos, performance, xerr=error, align=<span class="string">'center'</span>)</span><br><span class="line">ax.set_yticks(y_pos)</span><br><span class="line">ax.set_yticklabels(labels)</span><br><span class="line">ax.invert_yaxis()  <span class="comment"># labels read top-to-bottom</span></span><br><span class="line">ax.set_xlabel(<span class="string">'Counts'</span>)</span><br><span class="line">ax.set_title(<span class="string">'catagory distribution'</span>);<span class="comment"># 加分号只输出图像</span></span><br></pre></td></tr></table></figure>
+<p><img src="/articles/A09/output_21_0.png" alt="png"></p>
+<h3 id="station-csv"><a href="#station-csv" class="headerlink" title="station.csv"></a>station.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station = pd.read_csv(<span class="string">'./station.csv'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 163 entries, 0 to 162
+Data columns (total 4 columns):
+编号      163 non-null int64
+站点名称    163 non-null object
+线路      163 non-null object
+行政区域    163 non-null object
+dtypes: int64(1), object(3)
+memory usage: 5.2+ KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>编号</th>
+      <th>站点名称</th>
+      <th>线路</th>
+      <th>行政区域</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>138</th>
+      <td>1155</td>
+      <td>Sta145</td>
+      <td>10号线</td>
+      <td>Dist5</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>1172</td>
+      <td>Sta60</td>
+      <td>12号线</td>
+      <td>Dist2</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1022</td>
+      <td>Sta149</td>
+      <td>1号线</td>
+      <td>Dist3</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>1118</td>
+      <td>Sta118</td>
+      <td>11号线</td>
+      <td>Dist5</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>1134</td>
+      <td>Sta152</td>
+      <td>11号线</td>
+      <td>Dist1</td>
+    </tr>
+    <tr>
+      <th>158</th>
+      <td>1185</td>
+      <td>Sta114</td>
+      <td>10号线</td>
+      <td>Dist5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1015</td>
+      <td>Sta80</td>
+      <td>1号线</td>
+      <td>Dist3</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>1094</td>
+      <td>Sta62</td>
+      <td>4号线</td>
+      <td>Dist8</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>1110</td>
+      <td>Sta146</td>
+      <td>11号线</td>
+      <td>Dist6</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>1069</td>
+      <td>Sta39</td>
+      <td>3号线</td>
+      <td>Dist5</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(set(station[<span class="string">'行政区域'</span>])),len(set(station[<span class="string">'站点名称'</span>])),len(set(station[<span class="string">'编号'</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>(9, 163, 163)
+</code></pre><h3 id="workdays-csv"><a href="#workdays-csv" class="headerlink" title="workdays.csv"></a>workdays.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd = pd.read_csv(<span class="string">'./workdays2020.csv'</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd.info()</span><br></pre></td></tr></table></figure>
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 366 entries, 0 to 365
+Data columns (total 2 columns):
+0    366 non-null int64
+1    366 non-null object
+dtypes: int64(1), object(1)
+memory usage: 5.8+ KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd.sample(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>349</th>
+      <td>20201215</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>20200808</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>326</th>
+      <td>20201122</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>20200416</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>281</th>
+      <td>20201008</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table></div>
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Tianchi-base-v1/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/TsinghuaDogs-2/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/A09/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

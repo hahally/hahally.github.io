@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>Task5 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="data analysis," />
+  
+
+  <meta name="description" content="任务说明 学习主题：作者关联（数据建模任务），对论文作者关系进行建模，统计最常出现的作者关系； 学习内容：构建作者关系图，挖掘作者关系 学习成果：论文作者知识图谱、图关系挖掘  数据处理步骤将作者列表进行处理，并完成统计。具体步骤如下：  将论文第一作者与其他作者（论文非第一作者）构建图； 使用图算法统计图中作者与其他作者的联系；  社交网络分析图是复杂网络研究中的一个重要概念。Graph是用点和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Task5">
+<meta property="og:url" content="https://hahally.github.io/articles/Task5/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="任务说明 学习主题：作者关联（数据建模任务），对论文作者关系进行建模，统计最常出现的作者关系； 学习内容：构建作者关系图，挖掘作者关系 学习成果：论文作者知识图谱、图关系挖掘  数据处理步骤将作者列表进行处理，并完成统计。具体步骤如下：  将论文第一作者与其他作者（论文非第一作者）构建图； 使用图算法统计图中作者与其他作者的联系；  社交网络分析图是复杂网络研究中的一个重要概念。Graph是用点和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/Task5/output_6_0.png">
+<meta property="og:image" content="https://hahally.github.io/articles/Task5/output_9_0.png">
+<meta property="article:published_time" content="2021-01-25T15:51:35.000Z">
+<meta property="article:modified_time" content="2021-01-25T15:54:55.697Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="data analysis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/Task5/output_6_0.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#任务说明"><span class="toc-text">任务说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据处理步骤"><span class="toc-text">数据处理步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#社交网络分析"><span class="toc-text">社交网络分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图类型"><span class="toc-text">图类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图统计指标"><span class="toc-text">图统计指标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#具体代码以及讲解"><span class="toc-text">具体代码以及讲解</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-Task5" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">Task5</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.01.25</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/Task5/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h2 id="任务说明"><a href="#任务说明" class="headerlink" title="任务说明"></a>任务说明</h2><ul>
+<li>学习主题：作者关联（数据建模任务），对论文作者关系进行建模，统计最常出现的作者关系；</li>
+<li>学习内容：构建作者关系图，挖掘作者关系</li>
+<li>学习成果：论文作者知识图谱、图关系挖掘</li>
+</ul>
+<h2 id="数据处理步骤"><a href="#数据处理步骤" class="headerlink" title="数据处理步骤"></a>数据处理步骤</h2><p>将作者列表进行处理，并完成统计。具体步骤如下：</p>
+<ul>
+<li>将论文第一作者与其他作者（论文非第一作者）构建图；</li>
+<li>使用图算法统计图中作者与其他作者的联系；</li>
+</ul>
+<h2 id="社交网络分析"><a href="#社交网络分析" class="headerlink" title="社交网络分析"></a>社交网络分析</h2><p>图是复杂网络研究中的一个重要概念。Graph是用<strong>点</strong>和<strong>线</strong>来刻画离散事物集合中的每对事物间以某种方式相联系的数学模型。Graph在现实世界中随处可见，如交通运输图、旅游图、流程图等。利用图可以描述现实生活中的许多事物，如用点可以表示交叉口，点之间的连线表示路径，这样就可以轻而易举的描绘出一个交通运输网络。</p>
+<h3 id="图类型"><a href="#图类型" class="headerlink" title="图类型"></a>图类型</h3><ul>
+<li><p>无向图，忽略了两节点间边的方向。</p>
+</li>
+<li><p>指有向图，考虑了边的有向性。</p>
+</li>
+<li><p>多重无向图，即两个结点之间的边数多于一条，又允许顶点通过同一条边和自己关联。</p>
+</li>
+</ul>
+<h3 id="图统计指标"><a href="#图统计指标" class="headerlink" title="图统计指标"></a>图统计指标</h3><ul>
+<li><p>度：是指和该节点相关联的边的条数，又称关联度。对于有向图，节点的入度 是指进入该节点的边的条数；节点的出度是指从该节点出发的边的条数；</p>
+</li>
+<li><p>迪杰斯特拉路径：.从一个源点到其它各点的最短路径，可使用迪杰斯特拉算法来求最短路径；</p>
+</li>
+<li><p>连通图：在一个无向图 G 中，若从顶点i到顶点j有路径相连，则称i和j是连通的。如果 G 是有向图，那么连接i和j的路径中所有的边都必须同向。如果图中任意两点都是连通的，那么图被称作连通图。如果此图是有向图，则称为强连通图。</p>
+</li>
+</ul>
+<p>对于其他图算法，可以在networkx和igraph两个库中找到。</p>
+<h2 id="具体代码以及讲解"><a href="#具体代码以及讲解" class="headerlink" title="具体代码以及讲解"></a>具体代码以及讲解</h2><p>首先读取我们想要的数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入所需的package</span></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment">#用于画图</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="comment">#用于爬取arxiv的数据</span></span><br><span class="line"><span class="keyword">import</span> re <span class="comment">#用于正则表达式，匹配字符串的模式</span></span><br><span class="line"><span class="keyword">import</span> requests <span class="comment">#用于网络连接，发送网络请求，使用域名获取对应信息</span></span><br><span class="line"><span class="keyword">import</span> json <span class="comment">#读取数据，我们的数据为json格式的</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment">#数据处理，数据分析</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt <span class="comment">#画图工具</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readArxivFile</span><span class="params">(path, columns=[<span class="string">'id'</span>, <span class="string">'submitter'</span>, <span class="string">'authors'</span>, <span class="string">'title'</span>, <span class="string">'comments'</span>, <span class="string">'journal-ref'</span>, <span class="string">'doi'</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">       <span class="string">'report-no'</span>, <span class="string">'categories'</span>, <span class="string">'license'</span>, <span class="string">'abstract'</span>, <span class="string">'versions'</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">       <span class="string">'update_date'</span>, <span class="string">'authors_parsed'</span>], count=None)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    定义读取文件的函数</span></span><br><span class="line"><span class="string">        path: 文件路径</span></span><br><span class="line"><span class="string">        columns: 需要选择的列</span></span><br><span class="line"><span class="string">        count: 读取行数</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    </span><br><span class="line">    data  = []</span><br><span class="line">    <span class="keyword">with</span> open(path, <span class="string">'r'</span>) <span class="keyword">as</span> f: </span><br><span class="line">        <span class="keyword">for</span> idx, line <span class="keyword">in</span> enumerate(f): </span><br><span class="line">            <span class="keyword">if</span> idx == count:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">                </span><br><span class="line">            d = json.loads(line)</span><br><span class="line">            d = &#123;col : d[col] <span class="keyword">for</span> col <span class="keyword">in</span> columns&#125;</span><br><span class="line">            data.append(d)</span><br><span class="line"></span><br><span class="line">    data = pd.DataFrame(data)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line">data = readArxivFile(<span class="string">'arxiv-metadata-oai-snapshot.json'</span>, </span><br><span class="line">                     [<span class="string">'id'</span>, <span class="string">'authors_parsed'</span>],</span><br><span class="line">                    <span class="number">200000</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>authors_parsed</th>
+      <th>id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>[[Balázs, C., ], [Berger, E. L., ], [Nadolsky,...</td>
+      <td>0704.0001</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>[[Streinu, Ileana, ], [Theran, Louis, ]]</td>
+      <td>0704.0002</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>[[Pan, Hongjun, ]]</td>
+      <td>0704.0003</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>[[Callan, David, ]]</td>
+      <td>0704.0004</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>[[Abu-Shammala, Wael, ], [Torchinsky, Alberto, ]]</td>
+      <td>0704.0005</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<p>创建作者链接的无向图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx </span><br><span class="line"><span class="comment"># 创建无向图</span></span><br><span class="line">G = nx.Graph()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 只用五篇论文进行构建</span></span><br><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> data.iloc[:<span class="number">5</span>].itertuples():</span><br><span class="line">    authors = row[<span class="number">1</span>]</span><br><span class="line">    authors = [<span class="string">' '</span>.join(x[:<span class="number">-1</span>]) <span class="keyword">for</span> x <span class="keyword">in</span> authors]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 第一个作者 与 其他作者链接</span></span><br><span class="line">    <span class="keyword">for</span> author <span class="keyword">in</span> authors[<span class="number">1</span>:]:</span><br><span class="line">        G.add_edge(authors[<span class="number">0</span>],author) <span class="comment">#　添加节点２，３并链接２３节点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将作者关系图进行绘制：</span></span><br><span class="line">nx.draw(G, with_labels=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/articles/Task5/output_6_0.png" alt="png"></p>
+<p>如果我们500片论文构建图，则可以得到更加完整作者关系，并选择最大联通子图进行绘制，折线图为子图节点度值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> row <span class="keyword">in</span> data.iloc[:<span class="number">500</span>].itertuples():</span><br><span class="line">    authors = row[<span class="number">1</span>]</span><br><span class="line">    authors = [<span class="string">' '</span>.join(x[:<span class="number">-1</span>]) <span class="keyword">for</span> x <span class="keyword">in</span> authors]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 第一个作者 与 其他作者链接</span></span><br><span class="line">    <span class="keyword">for</span> author <span class="keyword">in</span> authors[<span class="number">1</span>:]:</span><br><span class="line">        G.add_edge(authors[<span class="number">0</span>],author) <span class="comment">#　添加节点２，３并链接２３节点</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">degree_sequence = sorted([d <span class="keyword">for</span> n, d <span class="keyword">in</span> G.degree()], reverse=<span class="literal">True</span>)</span><br><span class="line">dmax = max(degree_sequence)</span><br><span class="line"></span><br><span class="line">plt.loglog(degree_sequence, <span class="string">"b-"</span>, marker=<span class="string">"o"</span>)</span><br><span class="line">plt.title(<span class="string">"Degree rank plot"</span>)</span><br><span class="line">plt.ylabel(<span class="string">"degree"</span>)</span><br><span class="line">plt.xlabel(<span class="string">"rank"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># draw graph in inset</span></span><br><span class="line">plt.axes([<span class="number">0.45</span>, <span class="number">0.45</span>, <span class="number">0.45</span>, <span class="number">0.45</span>])</span><br><span class="line">Gcc = G.subgraph(sorted(nx.connected_components(G), key=len, reverse=<span class="literal">True</span>)[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">pos = nx.spring_layout(Gcc)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">nx.draw_networkx_nodes(Gcc, pos, node_size=<span class="number">20</span>)</span><br><span class="line">nx.draw_networkx_edges(Gcc, pos, alpha=<span class="number">0.4</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/articles/Task5/output_9_0.png" alt="png"></p>
+
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Task4/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/articles/oneSimpleDL/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/Task5/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
