@@ -15,21 +15,20 @@
     <meta name="keywords" content="paper reading," />
   
 
-  <meta name="description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：   基于神经网络的seq2seq  很好的解">
+  <meta name="description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：  基于神经网络的seq2seq  很好的解决">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sequence-to-sequence-learning-with-neural-networks">
 <meta property="og:url" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：   基于神经网络的seq2seq  很好的解">
+<meta property="og:description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：  基于神经网络的seq2seq  很好的解决">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/[Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf">
 <meta property="og:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png">
 <meta property="article:published_time" content="2021-07-10T09:30:14.000Z">
-<meta property="article:modified_time" content="2021-07-10T09:38:52.732Z">
+<meta property="article:modified_time" content="2021-07-10T09:48:13.733Z">
 <meta property="article:author" content="hahally">
 <meta property="article:tag" content="paper reading">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/[Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf">
+<meta name="twitter:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png">
 
   
 
@@ -249,13 +248,12 @@ ga('send', 'pageview');
 </blockquote>
 <p>很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。</p>
 <p>模型结构：</p>
-<p><img src="./[Sequence to Sequence Learning with Neural Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf" alt="image-20210710154526137"></p>
 <blockquote>
 <p>基于神经网络的seq2seq</p>
 </blockquote>
 <p>很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。</p>
 <p>模型结构：</p>
-<p><img src="/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png" alt="image-20210710154526137"></p>
+<p><img src="/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png" alt="images"></p>
 <p>这里使用了两个串联的 lstm 网络，前一个用于读取输入序列，产生一个大的固定维度的向量表示，然后再用一个lstm 网络从向量表示中提取输出序列。一个编码器(Encoder)，一个解码器(Decoder)。</p>
 <p>值得注意的是，论文提到在实现时，有三点与 lstm 不一样。【Our actual models differ from the above description in three important ways.】</p>
 <ul>
