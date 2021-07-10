@@ -7,7 +7,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Lost-in-just-the-translation | Hahally&#39;s BLOG</title>
+  <title>sequence-to-sequence-learning-with-neural-networks | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,20 +15,21 @@
     <meta name="keywords" content="paper reading," />
   
 
-  <meta name="description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+  <meta name="description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：   基于神经网络的seq2seq  很好的解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lost-in-just-the-translation">
-<meta property="og:url" content="https://hahally.github.io/articles/Lost-in-just-the-translation/index.html">
+<meta property="og:title" content="sequence-to-sequence-learning-with-neural-networks">
+<meta property="og:url" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+<meta property="og:description" content="Sequence to Sequence Learning with Neural Networks 基于神经网络的seq2seq  很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。 模型结构：   基于神经网络的seq2seq  很好的解">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
-<meta property="article:published_time" content="2021-07-09T14:09:24.000Z">
-<meta property="article:modified_time" content="2021-07-09T14:10:35.104Z">
+<meta property="og:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/[Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf">
+<meta property="og:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png">
+<meta property="article:published_time" content="2021-07-10T09:30:14.000Z">
+<meta property="article:modified_time" content="2021-07-10T09:38:52.732Z">
 <meta property="article:author" content="hahally">
 <meta property="article:tag" content="paper reading">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
+<meta name="twitter:image" content="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/[Sequence%20to%20Sequence%20Learning%20with%20Neural%20Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf">
 
   
 
@@ -199,22 +200,17 @@ ga('send', 'pageview');
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协议"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-Lost-in-just-the-translation" class="article article-type-post" itemprop="blogPost">
+   <article id="post-sequence-to-sequence-learning-with-neural-networks" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Lost-in-just-the-translation</h1>
+    <h1 class="post-title">sequence-to-sequence-learning-with-neural-networks</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.07.09</span>
+        <span>2021.07.10</span>
       </span>
 
       
@@ -230,7 +226,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/Lost-in-just-the-translation/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/#disqus_thread"></a>
         </span>
       
 
@@ -248,28 +244,60 @@ ga('send', 'pageview');
   <div class="article-content">
     
       <blockquote>
-<p>Lost in just the translation</p>
+<p><a href="https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf" target="_blank" rel="noopener">Sequence to Sequence Learning with Neural Networks</a></p>
+<p>基于神经网络的seq2seq</p>
 </blockquote>
-<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议<strong>只需要翻译文本就可以恢复隐藏信息</strong>。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。</p>
-<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><img src="/articles/Lost-in-just-the-translation/image-20210709214343204.png" alt="image-20210709214343204"></p>
+<p>很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。</p>
+<p>模型结构：</p>
+<p><img src="./[Sequence to Sequence Learning with Neural Networks](https://papers.nips.cc/paper/2014/file/a14ac55a4f27472c5d894ec1c3c743d2-Paper.pdf" alt="image-20210710154526137"></p>
+<blockquote>
+<p>基于神经网络的seq2seq</p>
+</blockquote>
+<p>很好的解决了序列到序列之间的映射问题，在语音识别和机器翻译这种长度未知且具有顺序的问题能够得到很好的解决。该模型应用到英语到法语的翻译任务，数据集来自WMT’14，在整个测试集上的BLEU得到达到34.8。</p>
+<p>模型结构：</p>
+<p><img src="/articles/sequence-to-sequence-learning-with-neural-networks/image-20210710154526137.png" alt="image-20210710154526137"></p>
+<p>这里使用了两个串联的 lstm 网络，前一个用于读取输入序列，产生一个大的固定维度的向量表示，然后再用一个lstm 网络从向量表示中提取输出序列。一个编码器(Encoder)，一个解码器(Decoder)。</p>
+<p>值得注意的是，论文提到在实现时，有三点与 lstm 不一样。【Our actual models differ from the above description in three important ways.】</p>
 <ul>
-<li><p>Producing translations</p>
-<p>方法大致与论文【Translation-Based Steganography】中提到的一样</p>
-</li>
-<li><p>Tokenization</p>
-<p>双方使用相同的 Tokenization 算法，以获得相同的句子序列</p>
-</li>
-<li><p>Choosing h</p>
-<p>选择合适的 h ($h \ge 0$)，h表示将信息隐藏在每个句子中的长度的位数。</p>
-</li>
-<li><p>Selecting translations</p>
-<p>对于所有翻译，编码器首先使用与接收方共享的密钥计算每个翻译的加密键值散列。其基本思想是在给定句子的所有译文中选择一个句子，然后对其进行适当的长度编码，并在隐藏的信息中选择合适的位置。然而，由于给定句子中的位编码数量是可变的，因此该算法在这方面有很大的自由度。</p>
-</li>
-<li><p>Optimized Handling of Hash Collisions</p>
-<p>哈希冲突的处理优化</p>
-</li>
+<li>使用两个不同的lstm</li>
+<li>4层 lstm</li>
+<li>将输入序列进行反转【a,b,c —&gt; c,b,a】【PS： 这就是传说中的反向操作吗？！莫名其妙的trick，滑稽.jpg】</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了不传输源文本，从而，引入了哈希映射和 Tokenization以及参数 h。产生翻译文本过程中混合人机翻译结果，使得隐藏的信息更加难以检测。</p>
+<p>目标函数：</p>
+<script type="math/tex; mode=display">
+\frac{1}{|S|}\sum_{(T,S)\in S}logP(T|S)</script><p>S为训练集，T表示正确的翻译。训练结束后，进行翻译时，在模型产生的多个翻译结果中找到最可能正确的翻译：</p>
+<script type="math/tex; mode=display">
+\hat T = \mathop{argmax}_{T}P(T|S)</script><p>通过一个简单的 <em>left-to-right beam search</em> 解码器(decoder)搜索最可能的翻译。</p>
+<blockquote>
+<p>We search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses, where a partial hypothesis is a prefix of some translation. At each timestep we extend each partial hypothesis in the beam with every possible word in the vocabulary. This greatly increases the number of the hypotheses so we discard all but the B most likely hypotheses according to the model’s log probability. As soon as the “<EOS>“ symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses. While this decoder is approximate, it is simple to implement. Interestingly, our system performs well even with a beam size of 1, and a beam of size 2 provides most of the benefits of beam search(Table 1).</EOS></p>
+</blockquote>
+<p><strong>一个小的总结</strong></p>
+<p>总的来说， <em>Reversing the Source Sentences</em> 这个操作给模型带来了很大的提升。</p>
+<blockquote>
+<p>the LSTM’s test perplexity dropped from 5.8 to 4.7, and the test BLEU scores of its decoded translations increased from 25.9 to 30.6.</p>
+</blockquote>
+<p>至于为什么，论文中也没有给出很好的解释（大概是说，反转后，前面源句子的前几个词与目标句子的前几个词距离更近，模型能更好收敛。【a,b,c |w,x,y—&gt; c,b,a|w,x,y】w,x,y为a,b,c对应的翻译，反转后，a,b,c与w,x,y的平均距离不变，a离w更近了。但是c离y更远却没有影响模型精度。可能这就是玄学吧？！）。【PS：难道是因为误打误撞的尝试然后发现效果惊人，然后就发论文了？不过这篇论文确实奠定了之后的seq2seq模型的基础。】image-20210710154526137.png)</p>
+<p>这里使用了两个串联的 lstm 网络，前一个用于读取输入序列，产生一个大的固定维度的向量表示，然后再用一个lstm 网络从向量表示中提取输出序列。一个编码器(Encoder)，一个解码器(Decoder)。</p>
+<p>值得注意的是，论文提到在实现时，有三点与 lstm 不一样。【Our actual models differ from the above description in three important ways.】</p>
+<ul>
+<li>使用两个不同的lstm</li>
+<li>4层 lstm</li>
+<li>将输入序列进行反转【a,b,c —&gt; c,b,a】【PS： 这就是传说中的反向操作吗？！莫名其妙的trick，滑稽.jpg】</li>
+</ul>
+<p>目标函数：</p>
+<script type="math/tex; mode=display">
+\frac{1}{|S|}\sum_{(T,S)\in S}logP(T|S)</script><p>S为训练集，T表示正确的翻译。训练结束后，进行翻译时，在模型产生的多个翻译结果中找到最可能正确的翻译：</p>
+<script type="math/tex; mode=display">
+\hat T = \mathop{argmax}_{T}P(T|S)</script><p>通过一个简单的 <em>left-to-right beam search</em> 解码器(decoder)搜索最可能的翻译。</p>
+<blockquote>
+<p>We search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses, where a partial hypothesis is a prefix of some translation. At each timestep we extend each partial hypothesis in the beam with every possible word in the vocabulary. This greatly increases the number of the hypotheses so we discard all but the B most likely hypotheses according to the model’s log probability. As soon as the “<EOS>“ symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses. While this decoder is approximate, it is simple to implement. Interestingly, our system performs well even with a beam size of 1, and a beam of size 2 provides most of the benefits of beam search(Table 1).</EOS></p>
+</blockquote>
+<p><strong>一个小的总结</strong></p>
+<p>总的来说， <em>Reversing the Source Sentences</em> 这个<strong>trick</strong>给模型带来了很大的提升。</p>
+<blockquote>
+<p>the LSTM’s test perplexity dropped from 5.8 to 4.7, and the test BLEU scores of its decoded translations increased from 25.9 to 30.6.</p>
+</blockquote>
+<p>至于为什么，论文中也没有给出很好的解释（大概是说，反转后，前面源句子的前几个词与目标句子的前几个词距离更近，模型能更好收敛。【a, b, c |w, x, y—&gt; c, b, a|w, x, y】w, x, y为a, b, c对应的翻译，反转后，a, b, c 与 w, x, y的平均距离不变，a 离 w 更近了。但是 c 离 y 更远却没有影响模型精度。可能这就是玄学吧？！）。【PS：难道是因为误打误撞的尝试然后发现效果惊人，然后就发论文了？不过这篇论文确实奠定了之后的seq2seq模型的基础。】</p>
 
     
   </div>
@@ -337,10 +365,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/">
+    <a class="show pull-left" href="/articles/Lost-in-just-the-translation/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/sequence-to-sequence-learning-with-neural-networks/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -464,7 +492,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/Lost-in-just-the-translation/';
+    var disqus_url = 'https://hahally.github.io/articles/sequence-to-sequence-learning-with-neural-networks/';
     
     (function(){
       var dsq = document.createElement('script');
