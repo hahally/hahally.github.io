@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+  
+  <title>蛋白质结构预测 | Hahally&#39;s BLOG</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="BDC," />
+  
+
+  <meta name="description" content="赛题：蛋白质结构预测挑战赛 数据集一共包含245种折叠类型，11843条蛋白质序列样本，其中训练集中有9472个样本，测试集中有2371个样本。 继上次lgb的base模型) 后，尝试过word2vec + 神经网络的方法，最后效果甚微。今天尝试了一下双向GRU模型，相比之前，有几个百分点的提高。 代码： 1234567891011121314151617181920212223242526272">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蛋白质结构预测">
+<meta property="og:url" content="https://hahally.github.io/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/index.html">
+<meta property="og:site_name" content="Hahally&#39;s BLOG">
+<meta property="og:description" content="赛题：蛋白质结构预测挑战赛 数据集一共包含245种折叠类型，11843条蛋白质序列样本，其中训练集中有9472个样本，测试集中有2371个样本。 继上次lgb的base模型) 后，尝试过word2vec + 神经网络的方法，最后效果甚微。今天尝试了一下双向GRU模型，相比之前，有几个百分点的提高。 代码： 1234567891011121314151617181920212223242526272">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hahally.github.io/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/image-20210730140527003.png">
+<meta property="article:published_time" content="2021-07-30T05:47:35.000Z">
+<meta property="article:modified_time" content="2021-07-30T06:06:36.862Z">
+<meta property="article:author" content="hahally">
+<meta property="article:tag" content="BDC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/image-20210730140527003.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbeddx" rel="stylesheet">
+
+
+  
+    
+<link rel="stylesheet" href="/css/personal-style.css">
+
+  
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-38189205-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+
+
+  
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/tag/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            标签
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/link/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            友链
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/atom.xml"
+            rel="noopener noreferrer"
+            target="_blank"
+            >
+            RSS
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/search/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-蛋白质结构预测" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">蛋白质结构预测</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2021.07.30</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>hahally</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://hahally.github.io/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <p>赛题：<a href="https://challenge.xfyun.cn/topic/info?type=protein" target="_blank" rel="noopener">蛋白质结构预测挑战赛</a></p>
+<p>数据集一共包含245种折叠类型，11843条蛋白质序列样本，其中训练集中有9472个样本，测试集中有2371个样本。</p>
+<p>继上次<a href="[蛋白质结构预测之lgb的baseline | Hahally&#39;s BLOG](https://hahally.github.io/articles/蛋白质结构预测之lgb的baseline/">lgb的base模型</a>) 后，尝试过word2vec + 神经网络的方法，最后效果甚微。今天尝试了一下双向GRU模型，相比之前，有几个百分点的提高。</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据加载</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_fa</span><span class="params">(file, mode=<span class="string">'train'</span>)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> mode <span class="keyword">in</span> &#123;<span class="string">'train'</span>,<span class="string">'test'</span>&#125;</span><br><span class="line">    labels = []</span><br><span class="line">    seqs_info = []</span><br><span class="line">    cates_id = []</span><br><span class="line">    seq = <span class="string">''</span></span><br><span class="line">    <span class="keyword">with</span> open(file,mode=<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline().strip()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            <span class="keyword">if</span> line[<span class="number">0</span>]==<span class="string">'&gt;'</span>:</span><br><span class="line">                info = line[<span class="number">1</span>:].split(<span class="string">' '</span>)</span><br><span class="line">                cates_id.append(info[<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">                    label = <span class="string">''</span>.join(info[<span class="number">1</span>].split(<span class="string">'.'</span>)[:<span class="number">2</span>]</span><br><span class="line">                    label = label[<span class="number">0</span>]+<span class="string">'.'</span>+label[<span class="number">1</span>:]</span><br><span class="line">                    labels.append(label)</span><br><span class="line">                <span class="keyword">if</span> seq:</span><br><span class="line">                    seqs_info.append(seq)</span><br><span class="line">                    seq = <span class="string">''</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                seq += line</span><br><span class="line">            line = f.readline().strip()</span><br><span class="line">        seqs_info.append(seq)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cates_id,seqs_info,labels</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">()</span>:</span></span><br><span class="line">    train_file = <span class="string">'/kaggle/input/textfiles/astral_train.fa'</span></span><br><span class="line">    test_file = <span class="string">'/kaggle/input/textfiles/astral_test.fa'</span></span><br><span class="line"></span><br><span class="line">    train_sample_id, train_seqs_info, train_labels = read_fa(train_file, mode=<span class="string">'train'</span>)</span><br><span class="line">    test_sample_id, test_seqs_info, _ = read_fa(test_file, mode=<span class="string">'test'</span>)</span><br><span class="line">    </span><br><span class="line">    train_data = &#123;</span><br><span class="line">    <span class="string">'sample_id'</span>: train_sample_id,</span><br><span class="line">    <span class="string">'seq_info'</span>: train_seqs_info,</span><br><span class="line">    <span class="string">'label'</span>: train_labels</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test_data = &#123;</span><br><span class="line">        <span class="string">'sample_id'</span>: test_sample_id,</span><br><span class="line">        <span class="string">'seq_info'</span>: test_seqs_info,</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    train = pd.DataFrame(data=train_data)</span><br><span class="line">    train = shuffle(train,random_state=<span class="number">2021</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    test = pd.DataFrame(data=test_data)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> train,test</span><br><span class="line"></span><br><span class="line"><span class="comment"># 滑窗分词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_windows</span><span class="params">(sentence,w = <span class="number">3</span>)</span>:</span></span><br><span class="line">    new_sentence = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sentence)-w+<span class="number">1</span>):</span><br><span class="line">        new_sentence.append(sentence[i:i+w])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> new_sentence</span><br><span class="line">     </span><br><span class="line">data = pd.concat(load_data(),ignore_index=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># label to idx</span></span><br><span class="line">label2idx = &#123; l:idx <span class="keyword">for</span> idx, l <span class="keyword">in</span> enumerate(data[~data[<span class="string">'label'</span>].isna()][<span class="string">'label'</span>].unique().tolist())&#125;</span><br><span class="line">idx2label = &#123; idx:l <span class="keyword">for</span> l,idx <span class="keyword">in</span> label2idx.items()&#125;</span><br><span class="line"></span><br><span class="line">data[<span class="string">'label'</span>] = data[<span class="string">'label'</span>].map(label2idx)</span><br><span class="line">data[<span class="string">'new_seq_info'</span>] = data[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:split_windows(x,w = <span class="number">1</span>))</span><br><span class="line">train,test = data[~data[<span class="string">'label'</span>].isna()].reset_index(drop=<span class="literal">True</span>),data[data[<span class="string">'label'</span>].isna()].reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">max_features= <span class="number">1000</span></span><br><span class="line">max_len= <span class="number">256</span></span><br><span class="line">embed_size=<span class="number">128</span></span><br><span class="line">batch_size = <span class="number">24</span></span><br><span class="line">epochs = <span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.text <span class="keyword">import</span> Tokenizer</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> sequence</span><br><span class="line"></span><br><span class="line">tokens = Tokenizer(num_words = max_features)</span><br><span class="line">tokens.fit_on_texts(list(data[<span class="string">'new_seq_info'</span>]))</span><br><span class="line"></span><br><span class="line">x_data = tokens.texts_to_sequences(data[<span class="string">'new_seq_info'</span>])</span><br><span class="line">x_data = sequence.pad_sequences(x_data, maxlen=max_len)</span><br><span class="line">x_train = x_data[:<span class="number">9472</span>]</span><br><span class="line">y_train = data[<span class="string">'label'</span>][:<span class="number">9472</span>]</span><br><span class="line">x_test = x_data[<span class="number">9472</span>:]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Input,LSTM,Bidirectional,Activation,Conv1D,GRU</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dropout,Embedding,GlobalMaxPooling1D, MaxPooling1D, Add, Flatten</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> GlobalAveragePooling1D, GlobalMaxPooling1D, concatenate, SpatialDropout1D<span class="comment"># Keras Callback Functions:</span></span><br><span class="line"><span class="keyword">from</span> keras.callbacks <span class="keyword">import</span> Callback</span><br><span class="line"><span class="keyword">from</span> keras.callbacks <span class="keyword">import</span> EarlyStopping,ModelCheckpoint</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> initializers, regularizers, constraints, optimizers, layers, callbacks</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adam</span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line">sequence_input = Input(shape=(max_len, ))</span><br><span class="line">x = Embedding(max_features, embed_size, trainable=<span class="literal">True</span>)(sequence_input)</span><br><span class="line">x = SpatialDropout1D(<span class="number">0.2</span>)(x)</span><br><span class="line">x = Bidirectional(GRU(<span class="number">128</span>, return_sequences=<span class="literal">True</span>,dropout=<span class="number">0.1</span>,recurrent_dropout=<span class="number">0.1</span>))(x)</span><br><span class="line">x = Conv1D(<span class="number">64</span>, kernel_size = <span class="number">3</span>, padding = <span class="string">"valid"</span>, kernel_initializer = <span class="string">"glorot_uniform"</span>)(x)</span><br><span class="line">avg_pool = GlobalAveragePooling1D()(x)</span><br><span class="line">max_pool = GlobalMaxPooling1D()(x)</span><br><span class="line">x = concatenate([avg_pool, max_pool]) </span><br><span class="line">preds = Dense(<span class="number">245</span>)(x)</span><br><span class="line"></span><br><span class="line">model = Model(sequence_input, preds)</span><br><span class="line">model.compile(loss=keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">              optimizer=keras.optimizers.Adam(<span class="number">1e-3</span>),</span><br><span class="line">              metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(x_train, y_train, </span><br><span class="line">          batch_size=batch_size, </span><br><span class="line">          validation_split=<span class="number">0.2</span>,</span><br><span class="line">          epochs=epochs)</span><br></pre></td></tr></table></figure>
+<p>提交结果：目前【39/130(提交团队数)】</p>
+<p><img src="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/image-20210730140527003.png" alt="image-20210730140527003"></p>
+
+    
+  </div>
+
+     <div id="gitalk-container"></div>
+     
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+
+</article>
+
+
+   
+  <div class="text-center donation">
+    <div class="inner-donation">
+      <span class="btn-donation">支持一下</span>
+      <div class="donation-body">
+        <div class="tip text-center">扫一扫，支持hahally</div>
+        <ul>
+        
+          <li class="item">
+            
+              <span>微信扫一扫</span>
+            
+            <img src="/images/qr-wechat.png" alt="">
+          </li>
+        
+          <li class="item">
+            
+              <span>支付宝扫一扫</span>
+            
+            <img src="/images/qr-alipay.png" alt="">
+          </li>
+        
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/articles/Attention-Is-All-You-Need/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/tag/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              标签
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/link/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              友链
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/atom.xml"
+              rel="noopener noreferrer"
+              target="_blank"
+              >
+              RSS
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/search/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              搜索
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'https://hahally.github.io/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+
+<!-- Gitalk评论插件通用代码 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script>
+const gitalk = new Gitalk({
+  clientID: 'ee979f0e6d62adec6722',
+  clientSecret: 'af19f8bdcad202e18bd00c4b65105281776a7570',
+  repo: 'hahally.github.io',
+  owner: 'hahally',
+  // 在这里设置一下截取前50个字符串, 这是因为 github 对 label 的长度有了要求, 如果超过
+  // 50个字符串则会报错.
+  // id: location.pathname.split('/').pop().substring(0, 49),
+  id: md5(location.pathname),
+  admin: ['hahally'],
+  // facebook-like distraction free mode
+  distractionFreeMode: false
+})
+gitalk.render('gitalk-container')
+</script>
+<!-- Gitalk代码结束 -->
+
+
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
