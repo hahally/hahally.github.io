@@ -255,7 +255,7 @@ ga('send', 'pageview');
 </blockquote>
 <p><strong>Bib TeX</strong></p>
 <blockquote>
-<p>@inproceedings{luong-etal-2015-effective,<br> title = “Effective Approaches to Attention-based Neural Machine Translation”,<br> author = “Luong, Thang  and<br>   Pham, Hieu  and<br>   Manning, Christopher D.”,<br> booktitle = “Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing”,<br> month = sep,<br> year = “2015”,<br> address = “Lisbon, Portugal”,<br> publisher = “Association for Computational Linguistics”,<br> url = “<a href="https://aclanthology.org/D15-1166" target="_blank" rel="noopener">https://aclanthology.org/D15-1166</a>“,<br> doi = “10.18653/v1/D15-1166”,<br> pages = “1412—1421”,<br>}</p>
+<p>@inproceedings{luong-etal-2015-effective,<br> title = “Effective Approaches to Attention-based Neural Machine Translation”,<br> author = “Luong, Thang  and<br>   Pham, Hieu  and<br>   Manning, Christopher D.”,<br> booktitle = “Proceedings of the 2015 Conference on Empirical Methods in Natural Language Processing”,<br> month = sep,<br> year = “2015”,<br> address = “Lisbon, Portugal”,<br> publisher = “Association for Computational Linguistics”,<br> url = “<a href="https://aclanthology.org/D15-1166&quot;" target="_blank" rel="noopener">https://aclanthology.org/D15-1166&quot;</a>,<br> doi = “10.18653/v1/D15-1166”,<br> pages = “1412–1421”,<br>}</p>
 </blockquote>
 <h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><p>在神经机器翻译中引入注意力机制(Attention)，使模型在翻译过程中选择性的关注句子中的某一部分。本文研究了两种简单有效的注意力机制。</p>
 <ul>
@@ -268,24 +268,10 @@ ga('send', 'pageview');
 </blockquote>
 <h3 id="Neural-Machine-Translation"><a href="#Neural-Machine-Translation" class="headerlink" title="Neural Machine Translation"></a>Neural Machine Translation</h3><p>模型结构：</p>
 <p><img src="/articles/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E7%A5%9E%E7%BB%8F%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E7%9A%84%E6%9C%89%E6%95%88%E6%96%B9%E6%B3%95/image-20210712173309790.png" alt="image-20210712173309790"></p>
-<p>采用堆叠的 <em>LSTM</em>结构<strong>[3]</strong>。其目标函数为：</p>
-<script type="math/tex; mode=display">
-J_t = \sum_{(x,y)\in D}-logP(y|x)</script><p>D为训练的语料。x 表示源句子，y表示翻译后的目标句子。</p>
-<h3 id="Attention-based-Models"><a href="#Attention-based-Models" class="headerlink" title="Attention-based Models"></a>Attention-based Models</h3><p>这部分包括两种注意力机制：global 和 local。两种方式在解码阶段，将使用堆叠LSTM顶层的隐藏状态 $h_t$ 作为输入。区别在于获取上下文向量表示$c_t$方法不同。然后通过一个 简单的 <em>concatenate layer</em> 获得一个注意力隐藏状态$\hat h_t$:</p>
-<script type="math/tex; mode=display">
-\hat h_t = tanh(W_c[c_t;h_t])</script><p>最后通过 <em>softmax layer</em> 得出预测概率分布:</p>
-<script type="math/tex; mode=display">
-p(y_t|y<t,x)=softmax(W_s\hat h_t)</script><p><strong>Global Attention</strong></p>
+<p>采用堆叠的 <em>LSTM</em>结构<strong>[3]</strong>。其目标函数为：<br>$$<br>J_t = \sum_{(x,y)\in D}-logP(y|x)<br>$$<br>D为训练的语料。x 表示源句子，y表示翻译后的目标句子。</p>
+<h3 id="Attention-based-Models"><a href="#Attention-based-Models" class="headerlink" title="Attention-based Models"></a>Attention-based Models</h3><p>这部分包括两种注意力机制：global 和 local。两种方式在解码阶段，将使用堆叠LSTM顶层的隐藏状态 $h_t$ 作为输入。区别在于获取上下文向量表示$c_t$方法不同。然后通过一个 简单的 <em>concatenate layer</em> 获得一个注意力隐藏状态$\hat h_t$:<br>$$<br>\hat h_t = tanh(W_c[c_t;h_t])<br>$$<br>最后通过 <em>softmax layer</em> 得出预测概率分布:<br>$$<br>p(y_t|y&lt;t,x)=softmax(W_s\hat h_t)<br>$$<br><strong>Global Attention</strong></p>
 <p><img src="/articles/%E5%9F%BA%E4%BA%8E%E6%B3%A8%E6%84%8F%E5%8A%9B%E6%9C%BA%E5%88%B6%E7%9A%84%E7%A5%9E%E7%BB%8F%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91%E7%9A%84%E6%9C%89%E6%95%88%E6%96%B9%E6%B3%95/image-20210712174342526.png" alt="image-20210712174342526"></p>
-<p>主要思想是通过编码器的所有隐藏状态(hidden state)来获取上下文向量(context vector)表示 $c_t$。可变长度对齐向量$a_t$通过比较当前目标隐藏状态$h_t$和每个源隐藏状态$\overline h_s$得到：</p>
-<script type="math/tex; mode=display">
-a_t(s) = align(h_t,\overline h_s)=\frac{exp(score(h_t,\overline h_s))}{\sum_{s'}exp(h_t,\overline h_{s^{'}})}</script><p>score被称为 <em>content-based</em> 函数：</p>
-<script type="math/tex; mode=display">
-score(h_t,\overline h_s)=\begin{cases}
-h_t^{T}\overline h_s, dot\\
-h_t^{T}W_a\overline h_s, general\\
-W_a[h_t;\overline h_s], concat
-\end{cases}</script><p>与<strong>[1]</strong>的区别在于：</p>
+<p>主要思想是通过编码器的所有隐藏状态(hidden state)来获取上下文向量(context vector)表示 $c_t$。可变长度对齐向量$a_t$通过比较当前目标隐藏状态$h_t$和每个源隐藏状态$\overline h_s$得到：<br>$$<br>a_t(s) = align(h_t,\overline h_s)=\frac{exp(score(h_t,\overline h_s))}{\sum_{s’}exp(h_t,\overline h_{s^{‘}})}<br>$$<br>score被称为 <em>content-based</em> 函数：<br>$$<br>score(h_t,\overline h_s)=\begin{cases}<br>h_t^{T}\overline h_s, dot\<br>h_t^{T}W_a\overline h_s, general\<br>W_a[h_t;\overline h_s], concat<br>\end{cases}<br>$$<br>与<strong>[1]</strong>的区别在于：</p>
 <ul>
 <li>只在编码器和解码器的顶部使用隐藏状态</li>
 <li>计算路径更加简单：$h_t-&gt;a_t-&gt;c_t-&gt;\hat h_t$</li>
