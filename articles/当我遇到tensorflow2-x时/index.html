@@ -7,28 +7,26 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Lost-in-just-the-translation | Hahally&#39;s BLOG</title>
+  <title>当我遇到tensorflow2.x时 | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="paper reading," />
+    <meta name="keywords" content="tensorflow," />
   
 
-  <meta name="description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+  <meta name="description" content="前言  近日，使用tensorflow的频率比较高，使用过程中也是遇到了一些大大小小的问题。有些着实让人脑瓜子疼。此刻借着模型训练的时间，开始码码字。本来标题想取：  什么？2021了，还有人用Tensorflow? 震惊！代码练习生竟然在用······Tensorflow? 我和tensorflow不共戴天 我想给tensorflow来一大嘴巴子 ······  最后，用了这个当我遇到tens">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lost-in-just-the-translation">
-<meta property="og:url" content="https://hahally.github.io/articles/Lost-in-just-the-translation/index.html">
+<meta property="og:title" content="当我遇到tensorflow2.x时">
+<meta property="og:url" content="https://hahally.github.io/articles/%E5%BD%93%E6%88%91%E9%81%87%E5%88%B0tensorflow2-x%E6%97%B6/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+<meta property="og:description" content="前言  近日，使用tensorflow的频率比较高，使用过程中也是遇到了一些大大小小的问题。有些着实让人脑瓜子疼。此刻借着模型训练的时间，开始码码字。本来标题想取：  什么？2021了，还有人用Tensorflow? 震惊！代码练习生竟然在用······Tensorflow? 我和tensorflow不共戴天 我想给tensorflow来一大嘴巴子 ······  最后，用了这个当我遇到tens">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
-<meta property="article:published_time" content="2021-07-09T14:09:24.000Z">
-<meta property="article:modified_time" content="2021-07-09T14:10:35.104Z">
+<meta property="article:published_time" content="2021-09-15T08:12:03.000Z">
+<meta property="article:modified_time" content="2021-09-15T14:01:15.410Z">
 <meta property="article:author" content="hahally">
-<meta property="article:tag" content="paper reading">
+<meta property="article:tag" content="tensorflow">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
 
   
 
@@ -199,22 +197,17 @@ ga('send', 'pageview');
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协议"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-Lost-in-just-the-translation" class="article article-type-post" itemprop="blogPost">
+   <article id="post-当我遇到tensorflow2-x时" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Lost-in-just-the-translation</h1>
+    <h1 class="post-title">当我遇到tensorflow2.x时</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.07.09</span>
+        <span>2021.09.15</span>
       </span>
 
       
@@ -230,7 +223,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/Lost-in-just-the-translation/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/%E5%BD%93%E6%88%91%E9%81%87%E5%88%B0tensorflow2-x%E6%97%B6/#disqus_thread"></a>
         </span>
       
 
@@ -248,28 +241,53 @@ ga('send', 'pageview');
   <div class="article-content">
     
       <blockquote>
-<p>Lost in just the translation</p>
+<p>前言</p>
 </blockquote>
-<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议<strong>只需要翻译文本就可以恢复隐藏信息</strong>。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。</p>
-<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><img src="/articles/Lost-in-just-the-translation/image-20210709214343204.png" alt="image-20210709214343204"></p>
+<p>近日，使用tensorflow的频率比较高，使用过程中也是遇到了一些大大小小的问题。有些着实让人脑瓜子疼。此刻借着模型训练的时间，开始码码字。本来标题想取：</p>
 <ul>
-<li><p>Producing translations</p>
-<p>方法大致与论文【Translation-Based Steganography】中提到的一样</p>
-</li>
-<li><p>Tokenization</p>
-<p>双方使用相同的 Tokenization 算法，以获得相同的句子序列</p>
-</li>
-<li><p>Choosing h</p>
-<p>选择合适的 h ($h \ge 0$)，h表示将信息隐藏在每个句子中的长度的位数。</p>
-</li>
-<li><p>Selecting translations</p>
-<p>对于所有翻译，编码器首先使用与接收方共享的密钥计算每个翻译的加密键值散列。其基本思想是在给定句子的所有译文中选择一个句子，然后对其进行适当的长度编码，并在隐藏的信息中选择合适的位置。然而，由于给定句子中的位编码数量是可变的，因此该算法在这方面有很大的自由度。</p>
-</li>
-<li><p>Optimized Handling of Hash Collisions</p>
-<p>哈希冲突的处理优化</p>
-</li>
+<li>什么？2021了，还有人用Tensorflow?</li>
+<li>震惊！代码练习生竟然在用······Tensorflow?</li>
+<li>我和tensorflow不共戴天</li>
+<li>我想给tensorflow来一大嘴巴子</li>
+<li>······</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了不传输源文本，从而，引入了哈希映射和 Tokenization以及参数 h。产生翻译文本过程中混合人机翻译结果，使得隐藏的信息更加难以检测。</p>
+<p>最后，用了这个<code>当我遇到tensorflow2.x时</code> 。无论学习还是生活中，我们都会遇到各种各样的人或事或物。当我们遇到时，会发生什么？我们是会充满期待的。<code>当我遇到···时，我会···</code> 。这个句式是喜欢的，大部分人习惯在前半部分大胆设想，后半句夸下豪言壮语。这里取前半句，是因为已经发生了，而省去后半句，恰恰是因为豪言壮语很容易翻车。</p>
+<p>这是一篇记录使用tensorflow过程中遇到的一些小而折磨人的问题的博文。但我预言这也将是一篇持久的对tensorflow的血泪吐槽文。</p>
+<blockquote>
+<p>如何看待Keras正式从TensorFlow中分离？</p>
+</blockquote>
+<p>不知道为什么想到了这个知乎话题。六月份的某天，Keras 之父 Francois Chollet宣布将 Keras 的代码从 TensorFlow 代码库中分离出来，移回到了自己的 repo。乍一看，还以为以后tensorflow的keras接口用不了了。但人家只是把keras代码搬回了属于自己的repo。原本的<code>tf.keras</code> 还是能用的。</p>
+<blockquote>
+<p>For you as a user, absolutely nothing changes, now or in the future.</p>
+</blockquote>
+<p>底下全是一片叫好，天下苦tensorflow久已。而我也并不看好这对情侣或者说组合。各自单飞，独自美丽不好吗？keras何必委曲求全做别人的嫁衣。</p>
+<blockquote>
+<p>抛开keraas，tensorflow还剩什么？</p>
+</blockquote>
+<p>我想这应该是吐槽后，该冷静思考的问题。而回答这个问题，是需要去阅读官方文档以及实践的。所以，那个句式的后半句也可以是下面的记录。才疏学浅，当厚积薄发。</p>
+<p>言归正传，之后遇到的bug都记录在下面部分。</p>
+<p>—————————————–———-—-————分割线——————-—————————————————–—</p>
+<blockquote>
+<p><code>tf.config.run_functions_eagerly(True)</code></p>
+</blockquote>
+<p>有关<code>Eager Execution</code> <a href="https://www.tensorflow.org/guide/eager" target="_blank" rel="noopener">戳这里</a> </p>
+<p>然后以下是我粗俗的理解：</p>
+<p>这是即时运行和计算图运行相关的概念。即时运行可以让你的程序立马返回结果，计算图运行会先构建计算图（记录你的程序执行行为及顺序），在最后按照构建的图进行计算。</p>
+<p>有些晦涩难理解。</p>
+<p>模型训练时一般有：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tf.function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_step</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        ···train model code···</span><br></pre></td></tr></table></figure>
+
+<p>这在模型训练过程中是会构建计算图的（具体参考[戳这里](<a href="https://www.tensorflow.org/guide/intro_to_graphs" target="_blank" rel="noopener">Introduction to graphs and tf.function  | TensorFlow Core</a>)），构建计算图可以，这时如果在代码中<code>print(x)</code> 一下，就会发现这是没有具体值的，而且没有<code>.numpy()</code> 属性。返回的即<code>计算图中节点的符号句柄</code> 。所以我为什么要在这里<code>print</code>呢？当然是为了调试代码(/滑稽.jpg)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tensor(<span class="string">"x:0"</span>, shape=(<span class="number">32</span>, <span class="number">32</span>), dtype=int32)</span><br></pre></td></tr></table></figure>
+
+<p>官网提到tensorflow2.x是默认开启<code>Eager Execution</code> 的，然而代码中(如上)使用了<code>@tf.function</code> 装饰器，默认以图的方式执行。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">The</span> <span class="meta">code</span> in a <span class="meta">Function</span> can <span class="keyword">be </span>executed <span class="keyword">both </span>eagerly <span class="keyword">and </span>as a graph. <span class="keyword">By </span>default, <span class="meta">Function</span> executes <span class="keyword">its </span><span class="meta">code</span> as a graph.</span><br></pre></td></tr></table></figure>
+
+<p>要关闭默认方式，可以通过设置：<code>tf.config.run_functions_eagerly(True)</code> 来实现。</p>
+<p>最后，<code>Eager Execution</code> 增强了开发和调试的交互性，而<code>@tf.function</code> 计算图执行在分布式训练、性能优化和生产部署方面具有优势。</p>
+<blockquote>
+<p>TODO</p>
+</blockquote>
 
     
   </div>
@@ -337,10 +355,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/">
+    <a class="show pull-left" href="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/sequence-to-sequence-learning-with-neural-networks/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -464,7 +482,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/Lost-in-just-the-translation/';
+    var disqus_url = 'https://hahally.github.io/articles/%E5%BD%93%E6%88%91%E9%81%87%E5%88%B0tensorflow2-x%E6%97%B6/';
     
     (function(){
       var dsq = document.createElement('script');
