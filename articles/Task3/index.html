@@ -260,20 +260,22 @@ ga('send', 'pageview');
 <li>完成相关的统计；</li>
 </ul>
 <h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式(regular expression)描述了一种字符串匹配的模式（pattern），可以用来检查一个串是否含有某种子串、将匹配的子串替换或者从某个串中取出符合某个条件的子串等。</p>
-<h4 id="普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号"><a href="#普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号" class="headerlink" title="普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号"></a>普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号</h4><table>
+<h4 id="普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号"><a href="#普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号" class="headerlink" title="普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号"></a>普通字符：大写和小写字母、所有数字、所有标点符号和一些其他符号</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>字符</th>
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><strong>[ABC]</strong></td>
 <td>匹配 […] 中的所有字符，例如 [aeiou] 匹配字符串 “google runoob taobao” 中所有的 e o u a 字母。</td>
 </tr>
 <tr>
-<td><strong>[^ABC]</strong></td>
-<td>匹配除了 <strong>[…]</strong> 中字符的所有字符，例如 <strong>[^aeiou]</strong> 匹配字符串 “google runoob taobao” 中除了 e o u a 字母的所有字母。</td>
+<td><strong><sup><a href="#fn_ABC" id="reffn_ABC">ABC</a></sup></strong></td>
+<td>匹配除了 <strong>[…]</strong> 中字符的所有字符，例如 <strong><sup><a href="#fn_aeiou" id="reffn_aeiou">aeiou</a></sup></strong> 匹配字符串 “google runoob taobao” 中除了 e o u a 字母的所有字母。</td>
 </tr>
 <tr>
 <td><strong>[A-Z]</strong></td>
@@ -281,7 +283,7 @@ ga('send', 'pageview');
 </tr>
 <tr>
 <td>.</td>
-<td>匹配除换行符（\n、\r）之外的任何单个字符，相等于 <strong>[^\n\r]</strong>。</td>
+<td>匹配除换行符（\n、\r）之外的任何单个字符，相等于 <strong><sup><a href="#fn_\n\r" id="reffn_\n\r">\n\r</a></sup></strong>。</td>
 </tr>
 <tr>
 <td><strong>[\s\S]</strong></td>
@@ -291,99 +293,104 @@ ga('send', 'pageview');
 <td><strong>\w</strong></td>
 <td>匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</td>
 </tr>
-</tbody></table>
-<h4 id="特殊字符：有特殊含义的字符"><a href="#特殊字符：有特殊含义的字符" class="headerlink" title="特殊字符：有特殊含义的字符"></a>特殊字符：有特殊含义的字符</h4><table>
+</tbody>
+</table>
+</div>
+<h4 id="特殊字符：有特殊含义的字符"><a href="#特殊字符：有特殊含义的字符" class="headerlink" title="特殊字符：有特殊含义的字符"></a>特殊字符：有特殊含义的字符</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">特别字符</th>
-<th align="left">描述</th>
+<th style="text-align:left">特别字符</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">( )</td>
-<td align="left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
+<tbody>
+<tr>
+<td style="text-align:left">( )</td>
+<td style="text-align:left">标记一个子表达式的开始和结束位置。子表达式可以获取供以后使用。要匹配这些字符，请使用 ( 和 )。</td>
 </tr>
 <tr>
-<td align="left">*</td>
-<td align="left">匹配前面的子表达式零次或多次。要匹配 * 字符，请使用 *。</td>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配前面的子表达式零次或多次。要匹配 <em> 字符，请使用 \</em>。</td>
 </tr>
 <tr>
-<td align="left">+</td>
-<td align="left">匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">匹配前面的子表达式一次或多次。要匹配 + 字符，请使用 +。</td>
 </tr>
 <tr>
-<td align="left">.</td>
-<td align="left">匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">匹配除换行符 \n 之外的任何单字符。要匹配 . ，请使用 . 。</td>
 </tr>
 <tr>
-<td align="left">[</td>
-<td align="left">标记一个中括号表达式的开始。要匹配 [，请使用 [。</td>
+<td style="text-align:left">[</td>
+<td style="text-align:left">标记一个中括号表达式的开始。要匹配 [，请使用 [。</td>
 </tr>
 <tr>
-<td align="left">?</td>
-<td align="left">匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 ?。</td>
+<td style="text-align:left">?</td>
+<td style="text-align:left">匹配前面的子表达式零次或一次，或指明一个非贪婪限定符。要匹配 ? 字符，请使用 \?。</td>
 </tr>
 <tr>
-<td align="left">\</td>
-<td align="left">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\‘ 匹配 “&quot;，而 ‘(‘ 则匹配 “(“。</td>
+<td style="text-align:left">\</td>
+<td style="text-align:left">将下一个字符标记为或特殊字符、或原义字符、或向后引用、或八进制转义符。例如， ‘n’ 匹配字符 ‘n’。’\n’ 匹配换行符。序列 ‘\\’ 匹配 “\”，而 ‘(‘ 则匹配 “(“。</td>
 </tr>
 <tr>
-<td align="left">^</td>
-<td align="left">匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 ^。</td>
+<td style="text-align:left">^</td>
+<td style="text-align:left">匹配输入字符串的开始位置，除非在方括号表达式中使用，当该符号在方括号表达式中使用时，表示不接受该方括号表达式中的字符集合。要匹配 ^ 字符本身，请使用 \^。</td>
 </tr>
 <tr>
-<td align="left">{</td>
-<td align="left">标记限定符表达式的开始。要匹配 {，请使用 {。</td>
+<td style="text-align:left">{</td>
+<td style="text-align:left">标记限定符表达式的开始。要匹配 {，请使用 \{。</td>
 </tr>
 <tr>
-<td align="left">|</td>
-<td align="left">指明两项之间的一个选择。要匹配 |，请使用 |。</td>
+<td style="text-align:left">\</td>
+<td style="text-align:left"></td>
+<td>指明两项之间的一个选择。要匹配 \</td>
+<td>，请使用 \</td>
+<td>。</td>
 </tr>
-</tbody></table>
-<h4 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h4><table>
+</tbody>
+</table>
+</div>
+<h4 id="限定符"><a href="#限定符" class="headerlink" title="限定符"></a>限定符</h4><div class="table-container">
+<table>
 <thead>
 <tr>
-<th align="left">字符</th>
-<th align="left">描述</th>
+<th style="text-align:left">字符</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">*</td>
-<td align="left">匹配前面的子表达式零次或多次。例如，zo* 能匹配 “z” 以及 “zoo”。* 等价于{0,}。</td>
+<tbody>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配前面的子表达式零次或多次。例如，zo<em> 能匹配 “z” 以及 “zoo”。</em> 等价于{0,}。</td>
 </tr>
 <tr>
-<td align="left">+</td>
-<td align="left">匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。</td>
+<td style="text-align:left">+</td>
+<td style="text-align:left">匹配前面的子表达式一次或多次。例如，’zo+’ 能匹配 “zo” 以及 “zoo”，但不能匹配 “z”。+ 等价于 {1,}。</td>
 </tr>
 <tr>
-<td align="left">?</td>
-<td align="left">匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 、 “does” 中的 “does” 、 “doxy” 中的 “do” 。? 等价于 {0,1}。</td>
+<td style="text-align:left">?</td>
+<td style="text-align:left">匹配前面的子表达式零次或一次。例如，”do(es)?” 可以匹配 “do” 、 “does” 中的 “does” 、 “doxy” 中的 “do” 。? 等价于 {0,1}。</td>
 </tr>
 <tr>
-<td align="left">{n}</td>
-<td align="left">n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。</td>
+<td style="text-align:left">{n}</td>
+<td style="text-align:left">n 是一个非负整数。匹配确定的 n 次。例如，’o{2}’ 不能匹配 “Bob” 中的 ‘o’，但是能匹配 “food” 中的两个 o。</td>
 </tr>
 <tr>
-<td align="left">{n,}</td>
-<td align="left">n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*’。</td>
+<td style="text-align:left">{n,}</td>
+<td style="text-align:left">n 是一个非负整数。至少匹配n 次。例如，’o{2,}’ 不能匹配 “Bob” 中的 ‘o’，但能匹配 “foooood” 中的所有 o。’o{1,}’ 等价于 ‘o+’。’o{0,}’ 则等价于 ‘o*’。</td>
 </tr>
 <tr>
-<td align="left">{n,m}</td>
-<td align="left">m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。</td>
+<td style="text-align:left">{n,m}</td>
+<td style="text-align:left">m 和 n 均为非负整数，其中n &lt;= m。最少匹配 n 次且最多匹配 m 次。例如，”o{1,3}” 将匹配 “fooooood” 中的前三个 o。’o{0,1}’ 等价于 ‘o?’。请注意在逗号和两个数之间不能有空格。</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="具体代码实现以及讲解"><a href="#具体代码实现以及讲解" class="headerlink" title="具体代码实现以及讲解"></a>具体代码实现以及讲解</h2><p>首先我们来统计论文页数，也就是在<code>comments</code>字段中抽取pages和figures和个数，首先完成字段读取。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入所需的package</span></span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns <span class="comment">#用于画图</span></span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="comment">#用于爬取arxiv的数据</span></span><br><span class="line"><span class="keyword">import</span> re <span class="comment">#用于正则表达式，匹配字符串的模式</span></span><br><span class="line"><span class="keyword">import</span> requests <span class="comment">#用于网络连接，发送网络请求，使用域名获取对应信息</span></span><br><span class="line"><span class="keyword">import</span> json <span class="comment">#读取数据，我们的数据为json格式的</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd <span class="comment">#数据处理，数据分析</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt <span class="comment">#画图工具</span></span><br></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">readArxivFile</span><span class="params">(path,</span></span></span><br><span class="line"><span class="function"><span class="params">                  columns=[</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="string">'id'</span>, <span class="string">'submitter'</span>, <span class="string">'authors'</span>, <span class="string">'title'</span>, <span class="string">'comments'</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="string">'journal-ref'</span>, <span class="string">'doi'</span>, <span class="string">'report-no'</span>, <span class="string">'categories'</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="string">'license'</span>, <span class="string">'abstract'</span>, <span class="string">'versions'</span>, <span class="string">'update_date'</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                      <span class="string">'authors_parsed'</span></span></span></span><br><span class="line"><span class="function"><span class="params">                  ],</span></span></span><br><span class="line"><span class="function"><span class="params">                  count=None)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    定义读取文件的函数</span></span><br><span class="line"><span class="string">        path: 文件路径</span></span><br><span class="line"><span class="string">        columns: 需要选择的列</span></span><br><span class="line"><span class="string">        count: 读取行数</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line"></span><br><span class="line">    data = []</span><br><span class="line">    <span class="keyword">with</span> open(path, <span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">for</span> idx, line <span class="keyword">in</span> enumerate(f):</span><br><span class="line">            <span class="keyword">if</span> idx == count:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            d = json.loads(line)</span><br><span class="line">            d = &#123;col: d[col] <span class="keyword">for</span> col <span class="keyword">in</span> columns&#125;</span><br><span class="line">            data.append(d)</span><br><span class="line"></span><br><span class="line">    data = pd.DataFrame(data)</span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">data = readArxivFile(<span class="string">'arxiv-metadata-oai-2019.json'</span>,</span><br><span class="line">                     [<span class="string">'id'</span>, <span class="string">'abstract'</span>, <span class="string">'categories'</span>, <span class="string">'comments'</span>])</span><br></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head()</span><br></pre></td></tr></table></figure>
-
-
-
-
 <div>
 
 <table border="1" class="dataframe">
@@ -440,13 +447,8 @@ ga('send', 'pageview');
 
 <p>对pages进行抽取：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用正则表达式匹配，XX pages</span></span><br><span class="line">data[<span class="string">'pages'</span>] = data[<span class="string">'comments'</span>].apply(<span class="keyword">lambda</span> x: re.findall(<span class="string">'[1-9][0-9]* pages'</span>, str(x)))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 筛选出有pages的论文</span></span><br><span class="line">data = data[data[<span class="string">'pages'</span>].apply(len) &gt; <span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于匹配得到的是一个list，如['19 pages']，需要进行转换</span></span><br><span class="line">data[<span class="string">'pages'</span>] = data[<span class="string">'pages'</span>].apply(<span class="keyword">lambda</span> x: float(x[<span class="number">0</span>].replace(<span class="string">' pages'</span>, <span class="string">''</span>)))</span><br></pre></td></tr></table></figure>
-
 <p>对pages进行统计，统计结果如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">'pages'</span>].describe().astype(int)</span><br></pre></td></tr></table></figure>
-
-
-
-
 <pre><code>count    80696
 mean        18
 std         20
@@ -455,27 +457,19 @@ min          1
 50%         14
 75%         24
 max       1958
-Name: pages, dtype: int32</code></pre><p>接下来按照分类统计论文页数，选取了论文的第一个类别的主要类别：</p>
+Name: pages, dtype: int32
+</code></pre><p>接下来按照分类统计论文页数，选取了论文的第一个类别的主要类别：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择主要类别</span></span><br><span class="line">data[<span class="string">'categories'</span>] = data[<span class="string">'categories'</span>].apply(<span class="keyword">lambda</span> x: x.split(<span class="string">' '</span>)[<span class="number">0</span>])</span><br><span class="line">data[<span class="string">'categories'</span>] = data[<span class="string">'categories'</span>].apply(<span class="keyword">lambda</span> x: x.split(<span class="string">'.'</span>)[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 每类论文的平均页数</span></span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">data.groupby([<span class="string">'categories'</span>])[<span class="string">'pages'</span>].mean().plot(kind=<span class="string">'bar'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7dc314748&gt;</code></pre><p><img src="/articles/Task3/output_11_1.png" alt="png"></p>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e7dc314748&gt;
+</code></pre><p><img src="/articles/Task3/output_11_1.png" alt="png"></p>
 <p>接下来对论文图表个数进行抽取：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data[<span class="string">'figures'</span>] = data[<span class="string">'comments'</span>].apply(<span class="keyword">lambda</span> x: re.findall(<span class="string">'[1-9][0-9]* figures'</span>, str(x)))</span><br><span class="line">data = data[data[<span class="string">'figures'</span>].apply(len) &gt; <span class="number">0</span>]</span><br><span class="line">data[<span class="string">'figures'</span>] = data[<span class="string">'figures'</span>].apply(<span class="keyword">lambda</span> x: float(x[<span class="number">0</span>].replace(<span class="string">' figures'</span>, <span class="string">''</span>)))</span><br></pre></td></tr></table></figure>
-
 <p>最后我们对论文的代码链接进行提取，为了简化任务我们只抽取github链接：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 筛选包含github的论文</span></span><br><span class="line">data_with_code = data[(data.comments.str.contains(<span class="string">'github'</span>) == <span class="literal">True</span>) |</span><br><span class="line">                      (data.abstract.str.contains(<span class="string">'github'</span>) == <span class="literal">True</span>)]</span><br><span class="line">data_with_code[<span class="string">'text'</span>] = data_with_code[<span class="string">'abstract'</span>].fillna(</span><br><span class="line">    <span class="string">''</span>) + data_with_code[<span class="string">'comments'</span>].fillna(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用正则表达式匹配论文</span></span><br><span class="line">pattern = <span class="string">'[a-zA-z]+://github[^\s]*'</span></span><br><span class="line">data_with_code[<span class="string">'code_flag'</span>] = data_with_code[<span class="string">'text'</span>].str.findall(</span><br><span class="line">    pattern).apply(len)</span><br></pre></td></tr></table></figure>
-
-
 <p>并对论文按照类别进行绘图：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">data_with_code = data_with_code[data_with_code[<span class="string">'code_flag'</span>] == <span class="number">1</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">12</span>, <span class="number">6</span>))</span><br><span class="line">data_with_code.groupby([<span class="string">'categories'</span>])[<span class="string">'code_flag'</span>].count().plot(kind=<span class="string">'bar'</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e710f15ef0&gt;</code></pre><p><img src="/articles/Task3/output_17_1.png" alt="png"></p>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1e710f15ef0&gt;
+</code></pre><p><img src="/articles/Task3/output_17_1.png" alt="png"></p>
 </div>
     
   </div>
@@ -755,7 +749,22 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
