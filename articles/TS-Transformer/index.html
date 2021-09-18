@@ -7,28 +7,25 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Lost-in-just-the-translation | Hahally&#39;s BLOG</title>
+  <title>TS-Transformer | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="paper reading," />
+    <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+  <meta name="description" content="切勿当真…… 纯属趣味……  前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lost-in-just-the-translation">
-<meta property="og:url" content="https://hahally.github.io/articles/Lost-in-just-the-translation/index.html">
+<meta property="og:title" content="TS-Transformer">
+<meta property="og:url" content="https://hahally.github.io/articles/TS-Transformer/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+<meta property="og:description" content="切勿当真…… 纯属趣味……  前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
-<meta property="article:published_time" content="2021-07-09T14:09:24.000Z">
-<meta property="article:modified_time" content="2021-07-09T14:10:35.104Z">
+<meta property="article:published_time" content="2021-09-17T13:58:41.000Z">
+<meta property="article:modified_time" content="2021-09-18T14:54:32.113Z">
 <meta property="article:author" content="hahally">
-<meta property="article:tag" content="paper reading">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
 
   
 
@@ -199,22 +196,17 @@ ga('send', 'pageview');
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协议"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-Lost-in-just-the-translation" class="article article-type-post" itemprop="blogPost">
+   <article id="post-TS-Transformer" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Lost-in-just-the-translation</h1>
+    <h1 class="post-title">TS-Transformer</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.07.09</span>
+        <span>2021.09.17</span>
       </span>
 
       
@@ -230,7 +222,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/Lost-in-just-the-translation/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/TS-Transformer/#disqus_thread"></a>
         </span>
       
 
@@ -247,29 +239,46 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <blockquote>
-<p>Lost in just the translation</p>
+      <p>切勿当真……</p>
+<p>纯属趣味……</p>
+<blockquote>
+<p>前言</p>
 </blockquote>
-<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议<strong>只需要翻译文本就可以恢复隐藏信息</strong>。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。</p>
-<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><img src="/articles/Lost-in-just-the-translation/image-20210709214343204.png" alt="image-20210709214343204"></p>
-<ul>
-<li><p>Producing translations</p>
-<p>方法大致与论文【Translation-Based Steganography】中提到的一样</p>
-</li>
-<li><p>Tokenization</p>
-<p>双方使用相同的 Tokenization 算法，以获得相同的句子序列</p>
-</li>
-<li><p>Choosing h</p>
-<p>选择合适的 h ($h \ge 0$)，h表示将信息隐藏在每个句子中的长度的位数。</p>
-</li>
-<li><p>Selecting translations</p>
-<p>对于所有翻译，编码器首先使用与接收方共享的密钥计算每个翻译的加密键值散列。其基本思想是在给定句子的所有译文中选择一个句子，然后对其进行适当的长度编码，并在隐藏的信息中选择合适的位置。然而，由于给定句子中的位编码数量是可变的，因此该算法在这方面有很大的自由度。</p>
-</li>
-<li><p>Optimized Handling of Hash Collisions</p>
-<p>哈希冲突的处理优化</p>
-</li>
-</ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了不传输源文本，从而，引入了哈希映射和 Tokenization以及参数 h。产生翻译文本过程中混合人机翻译结果，使得隐藏的信息更加难以检测。</p>
+<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code> 的论文，初略一看，这个模型结构不就是<code>textcnn</code> 吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
+<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。几乎就是这些了不同了。</p>
+<p>搞清楚后，利用零碎课余时间复现，在师兄给的数据上训练测试，模型能work。就在准备整理代码时，老师让复现另一篇有关<code>rnn</code>的论文方法。这篇论文title很直接<code>TS-RNN:··· based on ···</code> 。</p>
+<p>看到那个pdf文件名的时候，心里咯噔一下，有种十分微妙的感觉。打开一看，噢，惊呼真的很<code>nice</code>（原则上我只说ok）。我这才明白那种微妙的感觉叫伏笔，那种惊呼叫出乎意料又在情理之中。论文中交代了两种<code>rnn</code>结构（<code>TS-LSTM</code> 、<code>TS-BiLSTM</code>） 。</p>
+<p>至于为什么没有开源代码，我想·····还是不做讨论了。</p>
+<blockquote>
+<p>构筑未来，希望之光———特利迦</p>
+</blockquote>
+<p>值得注意的是，这两篇论文出自同一团队。最后查了查这个领域的其他论文，发现近几年，该团队以及发表了许多论文，几乎标题都是一个模子（<code>xxx based on xxx</code>）。 稍稍观察，嗯，颇有一股移花接木的赶脚。真是妙不可言（手动滑稽）。<code>RNN、CNN、GAN、seq2seq</code> 几乎都被用遍了，这些成熟的经典模型在该团队的手上焕发新生命力，连发多篇paper（慕了）。这是返璞归真还是致敬？</p>
+<blockquote>
+<p>I know nothing but my ignorance……</p>
+</blockquote>
+<p>2017年谷歌一篇<code>Attention is all you need</code> 在自然语言处理领域炸开了锅。此后<code>transformer</code> 成为了许多人发paper密码 。之后的<code>bert</code> 更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code> ，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code> 。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em> 或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em> 。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
+<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code> 的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code> 又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
+<p>有意思的是，<code>transformer</code> 又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
+<blockquote>
+<p>方兴未艾</p>
+</blockquote>
+<p>基于自己有限的认知，随便瞎扯了一下。</p>
+<p>回归正题，自然语言处理技术在其他领域的应用正在悄悄进行中，就像开头提到的那个团队所做的工作一样。仔细一想，他们似乎也是在填充这一块空白，为后继者提供一个新的基线，这是有利于领域发展的。这是一个十分优秀的团队，有责任有担当。</p>
+<p>而作为新入行者的我或者其他人，应该也是倍感压力的。眼下借助自然语言处理技术发光发热的路子似乎并没有那么简单了。</p>
+<blockquote>
+<p>班门弄斧</p>
+</blockquote>
+<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code> 那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code> 来建模呢？这两种可能性还是很大的。</p>
+<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code> 来做隐写分析。</p>
+<p>采用<code>Transformer</code> 的<code>encoder</code> 部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code> 两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code> 。基于此实现的<code>TS-Transformer</code> 已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
+<p>【后续补个模型图】</p>
+<p>【后续补个实验结果】</p>
+<p>然后……中秋放假了。</p>
+<blockquote>
+<p>有空在更</p>
+</blockquote>
+<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code> 。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code> 。</p>
+<p>【高开低走的特特利迦竟然试图让泽塔串场来拯救低迷的收视率以及低到可怜的评分，笑死】</p>
 
     
   </div>
@@ -337,10 +346,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/">
+    <a class="show pull-left" href="/articles/%E5%BD%93%E6%88%91%E9%81%87%E5%88%B0tensorflow2-x%E6%97%B6/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/sequence-to-sequence-learning-with-neural-networks/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -464,7 +473,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/Lost-in-just-the-translation/';
+    var disqus_url = 'https://hahally.github.io/articles/TS-Transformer/';
     
     (function(){
       var dsq = document.createElement('script');
