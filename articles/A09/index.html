@@ -15,12 +15,12 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：    说明 类型说明    用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站时间">
+  <meta name="description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：     说明 类型说明     用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A09">
 <meta property="og:url" content="https://hahally.github.io/articles/A09/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：    说明 类型说明    用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站时间">
+<meta property="og:description" content="数据说明来源：第十二届服创大赛A类数据【A09】轨道交通智慧客流分析预测【八维通】 示例数据包含:  行程数据trips.csv 用户数据users.csv 站点名称数据station.csv 2020年全年节假日数据workdays.csv   trips.csv：     说明 类型说明     用户id 与user.csv 表中用户id进行关联，可以获取用户对应的行程   进站名    进站">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hahally.github.io/articles/A09/output_21_0.png">
 <meta property="article:published_time" content="2021-02-03T15:59:00.000Z">
@@ -256,6 +256,7 @@ ga('send', 'pageview');
 </ul>
 <hr>
 <p>trips.csv：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -263,7 +264,8 @@ ga('send', 'pageview');
 <th>类型说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>用户id</td>
 <td>与user.csv 表中用户id进行关联，可以获取用户对应的行程</td>
 </tr>
@@ -291,9 +293,12 @@ ga('send', 'pageview');
 <td>票价</td>
 <td>单位分</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <p>users.csv:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -301,7 +306,8 @@ ga('send', 'pageview');
 <th>类型说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>说明</td>
 <td>类型说明</td>
 </tr>
@@ -321,9 +327,12 @@ ga('send', 'pageview');
 <td>性别</td>
 <td>0 男，1 女</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <p>station.csv:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -331,7 +340,8 @@ ga('send', 'pageview');
 <th>类型说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>站点id</td>
 <td>无业务意义</td>
 </tr>
@@ -345,11 +355,13 @@ ga('send', 'pageview');
 </tr>
 <tr>
 <td>站点所在区</td>
-<td></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <hr>
 <p>workdays.csv:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -358,7 +370,8 @@ ga('send', 'pageview');
 <th>类型说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>日期</td>
 <td>string</td>
 <td>YYYYMMDD</td>
@@ -368,17 +381,15 @@ ga('send', 'pageview');
 <td>枚举</td>
 <td>1，2，或3</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>1为工作日（包括周末调休变成的工作日）；2为正常周末；3为节假日，包括法定节假日，以及与法定节假日相连的周末。</p>
 <hr>
 <h3 id="导入相关库"><a href="#导入相关库" class="headerlink" title="导入相关库"></a>导入相关库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment">#ignore warnings</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></table></figure>
-
 <h3 id="trips-csv"><a href="#trips-csv" class="headerlink" title="trips.csv"></a>trips.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trips = pd.read_csv(<span class="string">'./trips.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 基本信息</span></span><br><span class="line">trips.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 791995 entries, 0 to 791994
 Data columns (total 7 columns):
 用户ID    791995 non-null object
@@ -389,9 +400,8 @@ Data columns (total 7 columns):
 渠道编号    791995 non-null int64
 价格      791995 non-null int64
 dtypes: int64(2), object(5)
-memory usage: 42.3+ MB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浏览数据集</span></span><br><span class="line">trips.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
+memory usage: 42.3+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 浏览数据集</span></span><br><span class="line">trips.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
 <div>
 
 <table border="1" class="dataframe">
@@ -514,12 +524,8 @@ memory usage: 42.3+ MB</code></pre><figure class="highlight python"><table><tr><
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除渠道编号</span></span><br><span class="line">trips = trips.drop(labels=<span class="string">'渠道编号'</span>,axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">trips.head()</span><br></pre></td></tr></table></figure>
-
-
-<div>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -584,9 +590,7 @@ memory usage: 42.3+ MB</code></pre><figure class="highlight python"><table><tr><
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 用户id</span></span><br><span class="line"></span><br><span class="line">id_count = trips.groupby(by=[<span class="string">'用户ID'</span>]).agg(&#123;<span class="string">'用户ID'</span>:[<span class="string">'count'</span>]&#125;).reset_index()</span><br><span class="line">id_count[<span class="string">'用户ID'</span>].describe()</span><br></pre></td></tr></table></figure>
-
-
-<div>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -633,14 +637,10 @@ memory usage: 42.3+ MB</code></pre><figure class="highlight python"><table><tr><
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 站点</span></span><br><span class="line">len(set(trips[<span class="string">'进站名称'</span>])),len(set(trips[<span class="string">'出站名称'</span>]))</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>(168, 168)</code></pre><h3 id="users-csv"><a href="#users-csv" class="headerlink" title="users.csv"></a>users.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users = pd.read_csv(<span class="string">'./users.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-
+<pre><code>(168, 168)
+</code></pre><h3 id="users-csv"><a href="#users-csv" class="headerlink" title="users.csv"></a>users.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users = pd.read_csv(<span class="string">'./users.csv'</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 124782 entries, 0 to 124781
 Data columns (total 4 columns):
 用户ID    124782 non-null object
@@ -648,10 +648,9 @@ Data columns (total 4 columns):
 出生年份    124782 non-null int64
 性别      124782 non-null int64
 dtypes: int64(3), object(1)
-memory usage: 3.8+ MB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-<div>
+memory usage: 3.8+ MB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -738,17 +737,12 @@ memory usage: 3.8+ MB</code></pre><figure class="highlight python"><table><tr><t
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 男女比例</span></span><br><span class="line">users[<span class="string">'性别'</span>].value_counts()/users.shape[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-
-
 <pre><code>1    0.586535
 0    0.413465
-Name: 性别, dtype: float64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 年龄</span></span><br><span class="line">users[<span class="string">'age'</span>] = <span class="number">2020</span> - users[<span class="string">'出生年份'</span>]</span><br></pre></td></tr></table></figure>
-
-
+Name: 性别, dtype: float64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 年龄</span></span><br><span class="line">users[<span class="string">'age'</span>] = <span class="number">2020</span> - users[<span class="string">'出生年份'</span>]</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.head()</span><br></pre></td></tr></table></figure>
-
-
-<div>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -806,9 +800,7 @@ Name: 性别, dtype: float64</code></pre><figure class="highlight python"><table
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users.describe()</span><br></pre></td></tr></table></figure>
-
-
-<div>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -881,11 +873,8 @@ Name: 性别, dtype: float64</code></pre><figure class="highlight python"><table
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 省市区域</span></span><br><span class="line">len(set(users[<span class="string">'区域'</span>]))</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>450</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users[<span class="string">'区域'</span>].value_counts()</span><br></pre></td></tr></table></figure>
-
-
+<pre><code>450
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">users[<span class="string">'区域'</span>].value_counts()</span><br></pre></td></tr></table></figure>
 <pre><code>5002    28469
 5001    14904
 5102    12117
@@ -897,16 +886,12 @@ Name: 性别, dtype: float64</code></pre><figure class="highlight python"><table
 4225        1
 6208        1
 6405        1
-Name: 区域, Length: 450, dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top 20</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">labels = users[<span class="string">'区域'</span>].value_counts().index[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">y_pos = np.arange(len(labels))</span><br><span class="line"></span><br><span class="line">performance = users[<span class="string">'区域'</span>].value_counts().values[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">error = np.random.rand(len(labels))</span><br><span class="line"></span><br><span class="line">ax.barh(y_pos, performance, xerr=error, align=<span class="string">'center'</span>)</span><br><span class="line">ax.set_yticks(y_pos)</span><br><span class="line">ax.set_yticklabels(labels)</span><br><span class="line">ax.invert_yaxis()  <span class="comment"># labels read top-to-bottom</span></span><br><span class="line">ax.set_xlabel(<span class="string">'Counts'</span>)</span><br><span class="line">ax.set_title(<span class="string">'catagory distribution'</span>);<span class="comment"># 加分号只输出图像</span></span><br></pre></td></tr></table></figure>
-
-
+Name: 区域, Length: 450, dtype: int64
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># top 20</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line"></span><br><span class="line">labels = users[<span class="string">'区域'</span>].value_counts().index[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">y_pos = np.arange(len(labels))</span><br><span class="line"></span><br><span class="line">performance = users[<span class="string">'区域'</span>].value_counts().values[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">error = np.random.rand(len(labels))</span><br><span class="line"></span><br><span class="line">ax.barh(y_pos, performance, xerr=error, align=<span class="string">'center'</span>)</span><br><span class="line">ax.set_yticks(y_pos)</span><br><span class="line">ax.set_yticklabels(labels)</span><br><span class="line">ax.invert_yaxis()  <span class="comment"># labels read top-to-bottom</span></span><br><span class="line">ax.set_xlabel(<span class="string">'Counts'</span>)</span><br><span class="line">ax.set_title(<span class="string">'catagory distribution'</span>);<span class="comment"># 加分号只输出图像</span></span><br></pre></td></tr></table></figure>
 <p><img src="/articles/A09/output_21_0.png" alt="png"></p>
 <h3 id="station-csv"><a href="#station-csv" class="headerlink" title="station.csv"></a>station.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station = pd.read_csv(<span class="string">'./station.csv'</span>)</span><br></pre></td></tr></table></figure>
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 163 entries, 0 to 162
 Data columns (total 4 columns):
 编号      163 non-null int64
@@ -914,10 +899,9 @@ Data columns (total 4 columns):
 线路      163 non-null object
 行政区域    163 non-null object
 dtypes: int64(1), object(3)
-memory usage: 5.2+ KB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
-
-
-<div>
+memory usage: 5.2+ KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">station.sample(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1004,23 +988,18 @@ memory usage: 5.2+ KB</code></pre><figure class="highlight python"><table><tr><t
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">len(set(station[<span class="string">'行政区域'</span>])),len(set(station[<span class="string">'站点名称'</span>])),len(set(station[<span class="string">'编号'</span>]))</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>(9, 163, 163)</code></pre><h3 id="workdays-csv"><a href="#workdays-csv" class="headerlink" title="workdays.csv"></a>workdays.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd = pd.read_csv(<span class="string">'./workdays2020.csv'</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
-
-
+<pre><code>(9, 163, 163)
+</code></pre><h3 id="workdays-csv"><a href="#workdays-csv" class="headerlink" title="workdays.csv"></a>workdays.csv</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd = pd.read_csv(<span class="string">'./workdays2020.csv'</span>,header=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd.info()</span><br></pre></td></tr></table></figure>
-
-<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 366 entries, 0 to 365
 Data columns (total 2 columns):
 0    366 non-null int64
 1    366 non-null object
 dtypes: int64(1), object(1)
-memory usage: 5.8+ KB</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd.sample(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
-
-
-<div>
+memory usage: 5.8+ KB
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wd.sample(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p><div></div></p>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1056,7 +1035,7 @@ memory usage: 5.8+ KB</code></pre><figure class="highlight python"><table><tr><t
       <td>1</td>
     </tr>
   </tbody>
-</table></div></div></div></div></div></div></div></div>
+</table></div>
     
   </div>
 

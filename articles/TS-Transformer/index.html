@@ -15,15 +15,15 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="切勿当真…… 纯属趣味……  前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特">
+  <meta name="description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TS-Transformer">
 <meta property="og:url" content="https://hahally.github.io/articles/TS-Transformer/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="切勿当真…… 纯属趣味……  前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特">
+<meta property="og:description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-17T13:58:41.000Z">
-<meta property="article:modified_time" content="2021-09-18T15:00:55.232Z">
+<meta property="article:modified_time" content="2021-09-19T06:35:57.225Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 
@@ -239,20 +239,11 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>切勿当真……</p>
-<p>纯属趣味……</p>
-<blockquote>
+      <blockquote>
 <p>前言</p>
 </blockquote>
 <p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code> 的论文，初略一看，这个模型结构不就是<code>textcnn</code> 吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
-<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。几乎就是这些了不同了。</p>
-<p>搞清楚后，利用零碎课余时间复现，在师兄给的数据上训练测试，模型能work。就在准备整理代码时，老师让复现另一篇有关<code>rnn</code>的论文方法。这篇论文title很直接<code>TS-RNN:··· based on ···</code> 。</p>
-<p>看到那个pdf文件名的时候，心里咯噔一下，有种十分微妙的感觉。打开一看，噢，惊呼真的很<code>nice</code>（原则上我只说ok）。我这才明白那种微妙的感觉叫伏笔，那种惊呼叫出乎意料又在情理之中。论文中交代了两种<code>rnn</code>结构（<code>TS-LSTM</code> 、<code>TS-BiLSTM</code>） 。</p>
-<p>至于为什么没有开源代码，我想·····还是不做讨论了。</p>
-<blockquote>
-<p>构筑未来，希望之光———特利迦</p>
-</blockquote>
-<p>值得注意的是，这两篇论文出自同一团队。最后查了查这个领域的其他论文，发现近几年，该团队以及发表了许多论文，几乎标题都是一个模子（<code>xxx based on xxx</code>）。 稍稍观察，嗯，颇有一股移花接木的赶脚。真是妙不可言（手动滑稽）。<code>RNN、CNN、GAN、seq2seq</code> 几乎都被用遍了，这些成熟的经典模型在该团队的手上焕发新生命力，连发多篇paper（慕了）。这是返璞归真还是致敬？</p>
+<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
 <blockquote>
 <p>I know nothing but my ignorance……</p>
 </blockquote>
