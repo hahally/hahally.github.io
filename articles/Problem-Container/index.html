@@ -7,7 +7,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>TS-Transformer | Hahally&#39;s BLOG</title>
+  <title>Problem-Container | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,15 +15,15 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
+  <meta name="description" content="前言  这里收纳遇到的一些Problem ，不仅仅指coding 过程中遇到的问题，也包含一些生活中遇到的琐事。是泛指，绝不是某类问题。想法来源与SCP 基金会。 ————————————————————————-分割线——————-———————————————— 以下是收容的一些Problem 。  Shuffle  StratifiedKFold and  reset_index  使用不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TS-Transformer">
-<meta property="og:url" content="https://hahally.github.io/articles/TS-Transformer/index.html">
+<meta property="og:title" content="Problem-Container">
+<meta property="og:url" content="https://hahally.github.io/articles/Problem-Container/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
+<meta property="og:description" content="前言  这里收纳遇到的一些Problem ，不仅仅指coding 过程中遇到的问题，也包含一些生活中遇到的琐事。是泛指，绝不是某类问题。想法来源与SCP 基金会。 ————————————————————————-分割线——————-———————————————— 以下是收容的一些Problem 。  Shuffle  StratifiedKFold and  reset_index  使用不">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-17T13:58:41.000Z">
-<meta property="article:modified_time" content="2021-09-19T06:35:57.225Z">
+<meta property="article:published_time" content="2021-09-27T15:03:40.000Z">
+<meta property="article:modified_time" content="2021-09-27T15:53:45.488Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 
@@ -199,14 +199,14 @@ ga('send', 'pageview');
 
 
 <div class="content content-post CENTER">
-   <article id="post-TS-Transformer" class="article article-type-post" itemprop="blogPost">
+   <article id="post-Problem-Container" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">TS-Transformer</h1>
+    <h1 class="post-title">Problem-Container</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.09.17</span>
+        <span>2021.09.27</span>
       </span>
 
       
@@ -222,7 +222,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/TS-Transformer/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/Problem-Container/#disqus_thread"></a>
         </span>
       
 
@@ -242,36 +242,21 @@ ga('send', 'pageview');
       <blockquote>
 <p>前言</p>
 </blockquote>
-<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code> 的论文，初略一看，这个模型结构不就是<code>textcnn</code> 吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
-<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
+<p>这里收纳遇到的一些<code>Problem</code> ，不仅仅指<code>coding</code> 过程中遇到的问题，也包含一些生活中遇到的琐事。是泛指，绝不是某类问题。想法来源与<code>SCP</code> 基金会。</p>
+<p>————————————————————————-分割线——————-————————————————</p>
+<p>以下是收容的一些<code>Problem</code> 。</p>
 <blockquote>
-<p>I know nothing but my ignorance……</p>
+<p><code>Shuffle</code>  <code>StratifiedKFold</code> and  <code>reset_index</code></p>
 </blockquote>
-<p>2017年谷歌一篇<code>Attention is all you need</code> 在自然语言处理领域炸开了锅。此后<code>transformer</code> 成为了许多人发paper密码 。之后的<code>bert</code> 更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code> ，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code> 。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em> 或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em> 。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
-<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code> 的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code> 又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
-<p>有意思的是，<code>transformer</code> 又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
-<blockquote>
-<p>方兴未艾</p>
-</blockquote>
-<p>基于自己有限的认知，随便瞎扯了一下。</p>
-<p>回归正题，自然语言处理技术在其他领域的应用正在悄悄进行中，就像开头提到的那个团队所做的工作一样。仔细一想，他们似乎也是在填充这一块空白，为后继者提供一个新的基线，这是有利于领域发展的。这是一个十分优秀的团队，有责任有担当。</p>
-<p>而作为新入行者的我或者其他人，应该也是倍感压力的。眼下借助自然语言处理技术发光发热的路子似乎并没有那么简单了。</p>
-<blockquote>
-<p>班门弄斧</p>
-</blockquote>
-<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code> 那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code> 来建模呢？这两种可能性还是很大的。</p>
-<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code> 来做隐写分析。</p>
-<p>采用<code>Transformer</code> 的<code>encoder</code> 部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code> 两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code> 。基于此实现的<code>TS-Transformer</code> 已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
-<p>【后续补个模型图】</p>
-<p>【后续补个实验结果】</p>
-<p>似乎使用大规模预训练<code>bert</code>模型来代替<code>word2vec</code> 效果应该更好吧。毕竟<code>word2vec</code> 还是属于浅层特征表示吧。【又挖个坑】</p>
-<p>按照这个路子，<code>TS-bert、TS-GNN、TS-GCN......</code> 都是可能work的。</p>
-<blockquote>
-<p>有空在更</p>
-</blockquote>
-<p>然后……中秋放假了。</p>
-<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code> 。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code> 。</p>
-<p>【高开低走的特特利迦竟然试图让泽塔串场来拯救低迷的收视率以及低到可怜的评分，笑死】</p>
+<p>使用不当，容易造成模型训练失败，<code>acc</code>低于50%。一般不易察觉，令人十分困惑。出现情况一般是需要打乱数据并且使用<code>StratifiedKFold</code>进行交叉验证时。</p>
+<p>比如数据：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">train	<span class="number">1</span></span><br><span class="line">train	<span class="number">1</span></span><br><span class="line">train	<span class="number">1</span></span><br><span class="line">train	<span class="number">1</span></span><br><span class="line">train	<span class="number">1</span></span><br><span class="line">···</span><br><span class="line">train	<span class="number">0</span></span><br><span class="line">train	<span class="number">0</span></span><br><span class="line">train	<span class="number">0</span></span><br><span class="line">train	<span class="number">0</span></span><br><span class="line">train	<span class="number">0</span></span><br><span class="line">···</span><br><span class="line">test	<span class="number">1</span></span><br><span class="line">test	<span class="number">1</span></span><br><span class="line">test	<span class="number">1</span></span><br><span class="line">test	<span class="number">1</span></span><br><span class="line">test	<span class="number">1</span></span><br><span class="line">···</span><br><span class="line">test	<span class="number">0</span></span><br><span class="line">test	<span class="number">0</span></span><br><span class="line">test	<span class="number">0</span></span><br><span class="line">test	<span class="number">0</span></span><br><span class="line">test	<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>对于这样规则排列的数据，直接采用交叉验证显然是有问题的，每一折的训练数据可能只有一类数据，故在验证时，很可能出现acc在50%徘徊。</p>
+<p>使用<code>shuffle</code>函数打乱：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line">new_train = shuffle(train, random_state=<span class="number">2021</span>)</span><br><span class="line"><span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds.split(new_train, new_train[<span class="string">'label'</span>])):</span><br><span class="line">    ···</span><br></pre></td></tr></table></figure>
+<p>可以预见这样的操作是无法避免上述问题的。<code>shuffle</code>后， 只是排列打乱了，但是<code>index</code> 没有改变。所以正确方式应该是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_train = shuffle(train, random_state=<span class="number">2021</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>值得一提的是，养成良好习惯设置<code>random_state</code>  。不然每次<code>shuffle</code>结果都不同，无法复现。若是竞赛中，则可以尝试改变种子，在千分位的对决中或许可以碰碰运气。</p>
 
     
   </div>
@@ -339,10 +324,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/%E5%BD%93%E6%88%91%E9%81%87%E5%88%B0tensorflow2-x%E6%97%B6/">
+    <a class="show pull-left" href="/articles/TS-Transformer/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/Problem-Container/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -466,7 +451,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/TS-Transformer/';
+    var disqus_url = 'https://hahally.github.io/articles/Problem-Container/';
     
     (function(){
       var dsq = document.createElement('script');
