@@ -31,9 +31,10 @@
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006194032511.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006200116402.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006202356732.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png">
 <meta property="article:published_time" content="2021-10-06T02:39:46.000Z">
-<meta property="article:modified_time" content="2021-10-06T15:03:43.862Z">
+<meta property="article:modified_time" content="2021-10-07T02:59:23.861Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png">
@@ -403,6 +404,13 @@ P = {(si,pi)}_{i=1}^M</script><p><code>si</code> 表示同义词，<code>pi</cod
 </ul>
 <p>无论哪一种情况，其实都是在做一件事：就是将词与其对应的同义词之间进行绑定。第一种更像是比较直接的方式，第二种则略显委婉点。殊途同归！！！</p>
 <p>不管是不是这两种情况，其实那块代码都是有问题的。</p>
+<ol>
+<li>有关 paddings</li>
+</ol>
+<p><code>data_load.py</code> 中有段这样的代码，用来获取一个batch size 数据的dataset函数：</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png" alt="image-20211007104255666"></p>
+<p>其中关于<code>paddings</code> 处的地方自认为还是有些不妥的，对于src、tgt句子进行0填充是正常操作，但是对于<code>x_paraphrased_dict</code>也进行0填充是欠考虑的。</p>
+<p>对于<code>x_paraphrased_dict</code> ，0填充，就会出现一部分<code>[[0,0],[0,0],…]</code>的情况 默认将[pad]字符与位置0的词对应了。</p>
 <blockquote>
 <p>总结</p>
 </blockquote>
@@ -413,7 +421,7 @@ P = {(si,pi)}_{i=1}^M</script><p><code>si</code> 表示同义词，<code>pi</cod
 <ul>
 <li>对于 paraphrase_type 的两种情况按上述理解做了调整。</li>
 <li>对<code>&lt;unk&gt;</code> 匹配第一个单词的情况进行纠正，将<code>tme2 = &lt;unk&gt;</code> 时(句子中没有词存在同义词的情况)，用第一个词与第一个词匹配。即将x1的同义词匹配为x1，这样还是比较妥当的。</li>
-<li>过滤了空行，减少不必要的噪声。（空行对应的同义词对为 <unk>-&gt;<unk>）</unk></unk></li>
+<li>过滤了空行，减少不必要的噪声。（空行对应的同义词对为 \<unk\>-&gt;\<unk\>）</unk\></unk\></li>
 <li>synonym_label中使用2进行padding。训练时，是需要对其进行padding的保证输入的数据工整的。比如句子idx会使用0进行填充直到maxlen，而idx=0对应词为 <code>&lt;pad&gt;</code> 。显然，<code>&lt;pad&gt;</code> 和其他词一样，是一个单独的类别了。所以，为了区分，synonym_label的padding_value设置为2。最后做成一个三分类任务。无伤大雅，主要是为了适配句子的填充。</li>
 </ul>
 <p>不知道效果如何，资源有限，训练完要很久很久。敬佩所有敢于开源代码的科研人员，也希望所有开源代码可读性越来越好吧。也希望所有开源代码都能复现结果。至少把种子固定了吧！！！</p>
