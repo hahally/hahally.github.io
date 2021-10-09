@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png">
 <meta property="article:published_time" content="2021-10-06T02:39:46.000Z">
-<meta property="article:modified_time" content="2021-10-07T04:23:43.744Z">
+<meta property="article:modified_time" content="2021-10-09T08:34:29.101Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png">
@@ -394,7 +394,7 @@ position pairs</code>,使用<code>P</code> 表示。<br>$$<br>P = {(si,pi)}_{i=1
 <p>而这一段代码，也属实有些魔幻。</p>
 <p>首先<code>parser.add_argument(&#39;--paraphrase_type&#39;, default=1, type=int)</code> 这里使用的是1。而取值为1时，对应代码中esle：部分。不用很仔细就可以看出：0时，使用word_set，1时，使用pos_set。我们在观察后面的<code>synonym_label</code> 那一句：</p>
 <p><code>synonym_label = [i in word_set if paraphrase_type else w in word_set for i, w in enumerate(in_words)]</code></p>
-<p>码字到这里，我掐了以下人中，方才缓过神来。接着分析，为1的情况下，那么考虑<code>w in word_set</code> 的真值情况。而<code>for i, w in enumerate(in_words)</code> ，w属于in_words。word_set是什么呢？<code>word_set.add(tem1)</code> 哇哦，是同义词集合诶，in_words是什么？<code>in_words=sent1.split()+[&#39;&lt;/s&gt;&#39;]</code> 欸，那w难道不是don’t exit in word_set forever？</p>
+<p>码字到这里，我掐了以下人中，方才缓过神来。接着分析，为0的情况下，那么考虑<code>w in word_set</code> 的真值情况。而<code>for i, w in enumerate(in_words)</code> ，w属于in_words。word_set是什么呢？<code>word_set.add(tem1)</code> 哇哦，是同义词集合诶，in_words是什么？<code>in_words=sent1.split()+[&#39;&lt;/s&gt;&#39;]</code> 欸，那w难道不是don’t exit in word_set forever？</p>
 <p>离谱的是，这里讨论的是paraphrase_type = 1的情况，也就是关word_set屁事的情况。word_set这时都是空的。所以synonym_label 难道不是<em>always be False</em> 。</p>
 <p><code>Are you kidding me? %$*#@&gt;?*&amp;。。。。</code> </p>
 <p>而且<code>x_paraphrase_dic</code> 那里也是有问题的。</p>
