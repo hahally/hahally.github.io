@@ -23,7 +23,7 @@
 <meta property="og:description" content="前言  这里收纳遇到的一些Problem ，不仅仅指coding 过程中遇到的问题，也包含一些生活中遇到的琐事。是泛指，而绝不是某类问题。想法来源于SCP 基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。 我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！— 新城 不拼尽全力试一下又怎么会知道啊！ —阿七 随着时间推移，愈发感觉对于">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-27T15:03:40.000Z">
-<meta property="article:modified_time" content="2021-09-29T13:17:39.057Z">
+<meta property="article:modified_time" content="2021-10-14T12:28:01.420Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 
@@ -272,6 +272,12 @@ ga('send', 'pageview');
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_train = shuffle(train, random_state=<span class="number">2021</span>).reset_index(drop=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 
 <p>值得一提的是，养成良好习惯设置<code>random_state</code>  。不然每次<code>shuffle</code>结果都不同，无法复现。若是竞赛中，则可以尝试改变种子，在千分位的对决中或许可以碰碰运气。</p>
+<blockquote>
+<p>dataset.repeat()</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataset = dataset.repeat()</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">    <span class="keyword">for</span> batch, inputs <span class="keyword">in</span> enumerate(dataset):</span><br><span class="line">        ···train model···</span><br><span class="line">    ckpt_save_path = ckpt_manager.save()</span><br></pre></td></tr></table></figure>
+
+<p>有生之年运行了这样的代码，算是倒霉。<code>dataset.repeat()</code> 会让数据无限循环，所以这里的<code>epoch</code> 形同虚设，而且我是一轮结束保存一次模型，所以当运行这段代码后，很久很久直到发现问题时，都是在做无用功。</p>
 
     
   </div>
