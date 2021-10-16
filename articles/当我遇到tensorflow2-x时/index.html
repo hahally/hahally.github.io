@@ -23,7 +23,7 @@
 <meta property="og:description" content="前言  近日，使用tensorflow的频率比较高，使用过程中也是遇到了一些大大小小的问题。有些着实让人脑瓜子疼。此刻借着模型训练的时间，开始码码字。本来标题想取：  什么？2021了，还有人用Tensorflow? 震惊！代码练习生竟然在用······Tensorflow? 我和tensorflow不共戴天 我想给tensorflow来一大嘴巴子 ······  最后，用了这个当我遇到tens">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-15T08:12:03.000Z">
-<meta property="article:modified_time" content="2021-10-06T16:01:22.464Z">
+<meta property="article:modified_time" content="2021-10-16T10:14:35.022Z">
 <meta property="article:author" content="hahally">
 <meta property="article:tag" content="tensorflow">
 <meta name="twitter:card" content="summary">
@@ -344,8 +344,13 @@ ga('send', 'pageview');
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tf.cast(x, dtype=tf.int64)</span><br></pre></td></tr></table></figure>
 
+<p>——————-2021.10.16更———————</p>
+<blockquote>
+<p><code>tf.keras.layers.MultiHeadAttention</code></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi = tf.keras.layers.MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)</span><br><span class="line"></span><br><span class="line">out = multi(v,k,q,mask*<span class="number">-1e9</span>)</span><br></pre></td></tr></table></figure>
 
-
+<p>如果mask是0、1矩阵，记得乘以<strong>-1e9</strong> ，否者掩码无效。</p>
 <blockquote>
 <p>TODO</p>
 </blockquote>
