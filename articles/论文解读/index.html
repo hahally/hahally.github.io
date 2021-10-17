@@ -15,12 +15,12 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="真的不是在吐槽，有认认真真研读！！！ 有关：Integrating Linguistic Knowledge to Sentence Paraphrase Generation 论文解读。  模型框架  典型Transformer-based  结构，编码器和解码器都是多个Multi-head Attention 组成。如图：  大概分为三个部分：Sentence Encoder、Paraphra">
+  <meta name="description" content="那就告一段落吧。   在平衡内心与周遭的过程中，缝缝补补自己眼中千疮百孔的世界……  很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。 可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一篇论文解读">
 <meta property="og:url" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="真的不是在吐槽，有认认真真研读！！！ 有关：Integrating Linguistic Knowledge to Sentence Paraphrase Generation 论文解读。  模型框架  典型Transformer-based  结构，编码器和解码器都是多个Multi-head Attention 组成。如图：  大概分为三个部分：Sentence Encoder、Paraphra">
+<meta property="og:description" content="那就告一段落吧。   在平衡内心与周遭的过程中，缝缝补补自己眼中千疮百孔的世界……  很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。 可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006182655905.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png">
 <meta property="og:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png">
 <meta property="article:published_time" content="2021-10-06T02:39:46.000Z">
-<meta property="article:modified_time" content="2021-10-16T15:11:41.042Z">
+<meta property="article:modified_time" content="2021-10-17T14:40:30.977Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hahally.github.io/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png">
@@ -251,7 +251,18 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <p>真的不是在吐槽，有认认真真研读！！！</p>
+      <p>那就告一段落吧。</p>
+<blockquote>
+<p> 在平衡内心与周遭的过程中，缝缝补补自己眼中千疮百孔的世界……</p>
+</blockquote>
+<p>很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。</p>
+<p>可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息，养老等死，我的墓志铭大概就是我的第一个”hello world”代码。这是我最后的倔强，而不是暂时的妥协。</p>
+<p>技术无罪，资本作祟的时代，人人都好像鬼怪，争夺面包，吸食人xie，手捧圣经，说着抱歉，最后还不忘总结，口感似乎差了点……</p>
+<p>二十一岁我还在对自己说：<em>管他三七二十一，先做自己想做的事，说自己想说的话，走自己想走的路……</em></p>
+<p>时过境迁，我才意识到，这是原来是叫愤青啊。在深感无力的同时，我也只能长叹一口气（很长很长，用英文就是long long long…）。我还以为我在做自己认为对的事情，我在做自己能做到的事情。</p>
+<p>每一次成长，都是和自己谈判的过程，而每次妥协都是在塑造新的自己。over!!!</p>
+<hr>
+<p>真的不是在吐槽，有认认真真研读！！！</p>
 <p>有关：<code>Integrating Linguistic Knowledge to Sentence Paraphrase Generation</code> 论文解读。</p>
 <blockquote>
 <p>模型框架</p>
@@ -440,7 +451,10 @@ position pairs</code>,使用<code>P</code> 表示。<br>$$<br>P = {(si,pi)}_{i=1
 <p>一点思考</p>
 </blockquote>
 <p>兜兜转转，模型训练了好几遍，从训练指标来看，loss有下降，acc有升高，但是推理的时候，预测的起始符号&lt;s&gt;后一个词总是结束符&lt;/s&gt; 。debug无数遍，优化了一些细节上的小问题，还是出现那样的情况。最后将问题锁定在了<strong>padding_mask</strong> 和<strong>look_ahead_mask</strong> 上，其实最可能猜到就是<strong>look_ahead_mask</strong> 有问题。此处的mask都是0和1填充的，代码中使用了<code>tf.keras.layers.MultiHeadAttention</code> 接口，对于0、1矩阵的mask，在里面并没有进行<code>mask*-1e9</code> 的掩码操作，这也导致了训练时出现了数据穿越/泄露问题。所以在推理时，输入的起始字符进行预测时不能得到正确结果，至于为什么是结束符，可能是起止符在词表中相邻的缘故。</p>
-<p>今天改好后，重新训练，十多个小时过去了，还没训练完（3090，24显存）。</p>
+<p>今天改好后，重新训练，十多个小时过去了，还没训练完（3090，24G显存）。</p>
+<p>如今的顶会基本被财大气粗的大公司大实验室的团队承包，小作坊式实验室夹缝求生。顶会期刊也不乏滥竽充数者，实验结果复现难，开源名存实亡……等等一系列骚操作。现有大环境下，一言难尽。</p>
+<p>————————————–——–———-———10月17日更——————-–—-———————————————</p>
+<p>开完组会，被老师叫停，没有硬件资源，也只好先放弃，把其他事情提上日程。</p>
 <p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png" alt="image-20211006221538257"></p>
 
     
