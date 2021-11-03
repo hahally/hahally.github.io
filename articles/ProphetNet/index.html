@@ -7,7 +7,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Problem-Container | Hahally&#39;s BLOG</title>
+  <title>ProphetNet | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,20 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="前言  这里收纳遇到的一些Problem ，包含一些生活中遇到的人或事。是泛指，而绝不是某类问题。想法来源于SCP 基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。 我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！— 新城 不拼尽全力试一下又怎么会知道啊！ —阿七 随着时间推移，愈发感觉对于很多事情都很无力。被矫枉过正的灵魂，嘴硬">
+  <meta name="description" content="论文地址：ProphetNet: Predicting Future N-gram for Sequence-to-Sequence Pre-training 前言 论文出自微软亚洲研究院，提出了一种新的预训练模型：ProphetNet ，该模型可以同时预测多个未来字符。 提出了新的自我监督目标：future n-gram prediction，以及新的注意力机制：n-stream self-at">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Problem-Container">
-<meta property="og:url" content="https://hahally.github.io/articles/Problem-Container/index.html">
+<meta property="og:title" content="ProphetNet">
+<meta property="og:url" content="https://hahally.github.io/articles/ProphetNet/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="前言  这里收纳遇到的一些Problem ，包含一些生活中遇到的人或事。是泛指，而绝不是某类问题。想法来源于SCP 基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。 我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！— 新城 不拼尽全力试一下又怎么会知道啊！ —阿七 随着时间推移，愈发感觉对于很多事情都很无力。被矫枉过正的灵魂，嘴硬">
+<meta property="og:description" content="论文地址：ProphetNet: Predicting Future N-gram for Sequence-to-Sequence Pre-training 前言 论文出自微软亚洲研究院，提出了一种新的预训练模型：ProphetNet ，该模型可以同时预测多个未来字符。 提出了新的自我监督目标：future n-gram prediction，以及新的注意力机制：n-stream self-at">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-27T15:03:40.000Z">
-<meta property="article:modified_time" content="2021-11-03T03:02:41.484Z">
+<meta property="og:image" content="https://hahally.github.io/articles/ProphetNet/image-20211020105341644.png">
+<meta property="og:image" content="https://hahally.github.io/articles/ProphetNet/image-20211020142921253.png">
+<meta property="article:published_time" content="2021-10-20T01:45:04.000Z">
+<meta property="article:modified_time" content="2021-11-03T03:06:20.802Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/ProphetNet/image-20211020105341644.png">
 
   
 
@@ -199,14 +202,14 @@ ga('send', 'pageview');
 
 
 <div class="content content-post CENTER">
-   <article id="post-Problem-Container" class="article article-type-post" itemprop="blogPost">
+   <article id="post-ProphetNet" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Problem-Container</h1>
+    <h1 class="post-title">ProphetNet</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.09.27</span>
+        <span>2021.10.20</span>
       </span>
 
       
@@ -222,7 +225,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/Problem-Container/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/ProphetNet/#disqus_thread"></a>
         </span>
       
 
@@ -239,51 +242,28 @@ ga('send', 'pageview');
 
   <div class="article-content">
     
-      <blockquote>
-<p>前言</p>
-</blockquote>
-<p>这里收纳遇到的一些<code>Problem</code> ，包含一些生活中遇到的人或事。是泛指，而绝不是某类问题。想法来源于<code>SCP</code> 基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。</p>
-<p><em>我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！— 新城</em></p>
-<p><em>不拼尽全力试一下又怎么会知道啊！ —阿七</em></p>
-<p>随着时间推移，愈发感觉对于很多事情都很无力。<em>被矫枉过正的灵魂，嘴硬蛮横</em>。</p>
-<p>没有那么果敢（三思而后行/胆怯），没有那么坦诚（冷暖自知/尔虞我诈）、没有那么期待（活在当下/躺平）……然后成熟稳重。</p>
-<p>要藏起一些光芒（谦逊/自卑），收敛一些个性（低调/普通），寻找一些共性（合群/跟风）……然后求同存异。</p>
-<p>大道理听了很多，依旧过不好。可总是有人唠叨，也总是有人听。以至于我们活的越来越像别人……</p>
-<p>当大人不在苦口婆心耐心教导小孩明辨是非时，他们开始试图将自认为不适合小孩的东西封杀雪藏。可谓另辟蹊径，偷教育的懒。似乎想达到<em>同步教育</em> 的目的。</p>
-<p><em>同步教育： 并不是所有家长都能管好自家小孩，譬如打游戏，看电视。于是举报游戏，举报动画片，以此达到所有小孩都玩不了游戏，看不了动画片的目的，这样看似省心省事。</em> </p>
-<p>几十载的一生，活着的意义又是什么呢。以前什么都不懂，过一天是一天，现在懂的多了，过一天算一天，还要总结昨天，规划明天，才能过好今天。</p>
-<p>夜深人静，当我们思考这一天，或最近的状况时，都企图得出一些人生大道理，悟出生活中的真谛，寻求内心的平静。自己到底是一个什么样的人？对于这个问题，好像每天都有不同的答案。</p>
-<p>于是在百无聊赖的生活里，寻找明天继续的理由……</p>
-<p>最后感恩！迪迦又上架了。</p>
-<p><code>Problem Container</code> 将作为理由之一，在互联网的大海里漂流。以下是收容的一些<code>Problem</code> 。</p>
+      <p>论文地址：<a href="https://arxiv.org/pdf/2001.04063.pdf" target="_blank" rel="noopener">ProphetNet: Predicting Future N-gram for Sequence-to-Sequence Pre-training</a></p>
+<p><strong>前言</strong></p>
+<p>论文出自微软亚洲研究院，提出了一种新的预训练模型：<strong>ProphetNet</strong> ，该模型可以同时预测多个未来字符。</p>
+<p>提出了新的自我监督目标：<strong>future n-gram prediction</strong>，以及新的注意力机制：<strong>n-stream self-attention mechanism</strong>。</p>
+<p>其动机如下：</p>
 <blockquote>
-<p>布丁</p>
+<p>传统自回归语言模型通过估计文本语料概率分布被广泛用于文本建模，序列到序列的建模（seq2seq），以及预训练语言模型中（如 GPT 等）。这类模型通常使用 teacher-forcing 的方法训练，即每一时刻通过给定之前时刻的所有字符以预测下一个时刻的字符。然而，<strong>这种方式可能会让模型偏向于依赖最近的字符，而非通过捕捉长依赖（long-term dependency）的信息去预测下一个字符。</strong>有如以下原因：（1）局部的关系，如两元字符的组合，往往比长依赖更强烈；（2）Teacher-forcing 每一时刻只考虑对下一个字符的预测，并未显式地让模型学习对其他未来字符的建模和规划。最终可能导致模型对局部字符组合的学习过拟合，而对全局的一致性和长依赖欠拟合。尤其是当模型通过贪心解码（greedy decoding）的方式生成序列时，序列往往倾向于维持局部的一致性而忽略有意义的全局结构。 </p>
+<p>———                                                                   <a href="https://mp.weixin.qq.com/s/sK5uP1L9CIVOSFBOG8-F5A" target="_blank" rel="noopener">预训练模型ProphetNet：根据未来文本信息进行自然语言生成 </a></p>
+<hr>
 </blockquote>
-<p>——2020.8.21 ——</p>
-<p>布丁是妹妹过年时带回家的宠物狗。全身白色，眼睛很大，个子却很小，年龄有一年多了吧。听说是花五十块买的。</p>
-<p>记得刚到家时，它很是胆小，只敢跟在妹妹脚边转悠。布丁这个名字只有我妹妹叫，才有用，其他人不行。后来慢慢熟悉了，它也开始放的开了。每天都会发疯一样来回窜。布丁好像对一切充满了好奇，能吃的，都要尝一尝，以至于给它的狗粮，成了它最不济的选择。</p>
-<p>家里有只猫，布丁很怕猫，每次布丁想去接近猫的时候，猫都会用爪子示意。猫有时会去偷吃狗粮，布丁看见了，只能在旁边看着干着急，然后发出委屈的声音。有次它跑过来挠我的脚，示意我把猫弄走。我把猫赶走后，布丁就开始吃狗粮了。虽然，它不喜欢吃狗粮，但也不许别人动它的东西。</p>
-<p>妹妹回深圳上班了，特殊时期，只能把狗留在家里了。那天晚上布丁没有见到妹妹，它就在妹妹房间门口等，眼睛泪汪汪的，身体蜷缩着，压在妹妹的拖鞋上面。我打开房间门，布丁立马起身跑进去，然后扒拉床沿，看妹妹在不在上面。确认没有后，它失望地走了出来。</p>
-<p>从此，布丁就交给我了。每天早上布丁会早早地起来扒拉床沿，把我弄醒，示意我开门下楼放它出去上厕所。刚开始，看着它越走越远时，还是有些担心的，怕它不知道回来。庆幸的是，每次在我焦急等着喊它名字的时候，它都兴冲冲地跑回来了。</p>
-<p>布丁好像很孤独。那段时间，明天都上网课，然后它就趴在地上，在旁边陪着我。久而久之，布丁已经摸清我的习惯了。什么时候下课，什么时候吃饭，什么时候睡觉，什么时候在房间里。我也知道每天早上七点下楼开门放它出去玩半个小时，然后回来陪我上网课，中午大概十二点和我一起下楼去吃午饭，吃完后，我会先上楼，布丁会在一点多的时候，上楼来挠我房间门，示意我开门。开门后，布丁会先喝水，然后走到窝里睡午觉。布丁晚上睡觉很早，但是我每天都会熬到十二点多才睡，开着灯，有些影响它。它的耳朵很灵，晚上我关灯躺床上刷手机，一点点声音，它就会过来床边，两只爪子扒在床上，然后抓蚊帐，示意我关掉。有段时间，它可以和周边其它狗打成一片了，甚至成了团宠。我感到有些欣慰，但也有些忧虑。其他狗都是散养的，乡下那种土狗。布丁是个娇生惯养的宠物狗，和土狗打成一片，不可避免要惹上一些虫子。每天给布丁洗澡，成了我每天最烦恼的事情。有那么几次，被朋友约出去玩。上午出门，傍晚才回家。每次回家刚把钥匙插进去，布丁就知道我回来了，马上从楼上跑下来，汪汪地叫着。我一进去，布丁就开始扒拉我的脚，时不时发出一种憋屈地要哭了的声音。看得出，布丁在用尽它所有的动作或表情来欢迎我。它大概是以为我不回来了，把它抛弃了吧。</p>
-<p>布丁是会哭的。妹妹回来过一次，布丁开心得活蹦乱跳的，两只小脚不停的扑妹妹。好像在倾其所有表达它有多爱妹妹。妹妹没让布丁去她房间里，依旧把它留在我房间。布丁不停的用爪子挠门，想要出去，进妹妹房间。见我不开门，布丁开始急了，扑我身上，用一只小爪子挠我，发出委屈的声音，两眼泪汪汪的，眼泪都出来了。我开门后，它又不停的去挠妹妹房间的门。最后累了就躺在妹妹拖鞋上面，蜷缩着身子，等着。</p>
-<p>几个月的时光，就这样患得患失地过来了。很快到了返校时间。一大早就急匆匆的离开了，布丁应该以为我会像以前一样，到了晚上就会回来吧。它大概在楼上阳台观望，等待，直到夜幕降临。</p>
-<p>陪我半年的布丁，无疑是我这半年来最大的收获。朝夕相处的那段时光，算是我最开心的时候吧。</p>
-<blockquote>
-<p>师姐</p>
-</blockquote>
-<p>我想已是风浊残年，拄着拐杖，倚仗在一棵桂花树旁，微风徐来，桂花如雨洒落……是晚秋，是悲凉，是思念，是一段往事。<br>顺着目光，一瓣桂花随风而去，思绪也随风飘远……</p>
-<p>人啊，总会遇到形形色色的人，生命中路过的人成百上千，然而真正值得你花时间的人大概只有几个。我本就性格孤僻，能认识一些人就已经值得庆幸，能交心，能让我出门的人那就是我的宝藏。</p>
-<p>很幸运，研一认识了一个好到爆炸的师姐。开始并不觉得师姐真的很在意我，毕竟我也只是按老师说词帮忙调试代码而已。但是在这短短一个多月的时间里，我宣布，她是我心中宇宙超级无敌可爱善良美丽大方的第一师姐曦大王我从没想过，如此短时间内，就能打开自己说好多好多的话。被师姐人格魅力折服。</p>
-<p>起初只是调试代码交流，后面日常交流，再后来一起看电影吃饭逛街……</p>
-<p>真是神奇，第一次出去，约到五一吃饭时，本是想拒绝的。因为我深知没有键盘的我，宛如一个放废物，吃完饭后估计就形同陌路了。后来还是答应了，是的，转念一想啊，就算那样也好啊，让师姐看清现实中的我其实话少，其实沉闷，一点都不主动，声音也难听。然后败坏所有好的印象。但是师姐没有嫌弃我这个笨蛋师弟。感动.jpg。</p>
-<p>第二次约着干饭，是国庆假后了。起初自己只想一个人去看一场电影，五个扑水的少年。然后师姐说她也想看，巴拉巴拉，然后就约好去看了(凯德广场)。<br>没人在乎你累不累，苦不苦，别人只看你行不行。</p>
-<p>看着看着自己那微妙的情绪就被触动了，眼泪沿着眼角溢出，泪珠发着淡淡的光，很不巧被师姐看见了。(她竟然说她以为那是发光的眼屎)。我承认自己很容易被一些很平常的东西打动或打击。一方面以前过于敏感而导致的后遗症吧，另一方面电影真的很戳心。</p>
-<p>前不久，师姐要去五一的华为店给手机贴膜。然后我们就又约起来了，哈哈哈哈哈。到了后，找人找了半天(确实路痴)，然后吃饭(费大厨)，聊天逛街，五一人很多，熙熙攘攘，人来人往。那天看见了唱歌的，我们一起听了几首。碰见了画肖像画的，我们一起看了一会。一路逛了很久，也聊了很久，是开心的。</p>
-<p>师姐很善良的，会扶路边倒了的车。师姐也是撒娇的，特别是喝了酒以后，哈哈哈哈哈。师姐也会记得自己做的梦，并且记录下来。她也是挑食的，不吃好多好多东西……</p>
-<p>仔细想想，其实我们聊了好多好多，关于扫黄的故事，关于包养小白脸的梦想，关于吃不完就要被抓起来的梗等等好多好多(写不完了)……师姐说我是来克她的，哈哈哈哈哈哈，笑死了。</p>
-<p>师姐说博客可以写一篇关于她的，但是我好像很难写好。真的，我朋友不多，十根手指都数的过来，师姐现在占了一席之地了。</p>
-<p>最后用一本书里的话结尾: 遇见你就像跋山涉水遇见一轮明月，从此天黑心伤，就问那天借一点月光。</p>
+<p>prophetnet在预测下一个字符的同时，会考虑对未来n个字符的预测。这会显示的鼓励模型学习对未来字符的规划，防止出现强局部相关性过拟合问题。</p>
+<p>ProphetNet的设计有两个目标：</p>
+<ul>
+<li>模型能够以高效的方式在训练过程中完成每时刻同时预测未来的 N 个字符</li>
+<li>模型可以灵活地转换为传统的 seq2seq 架构（每时刻只预测一下个字符），以在推理或微调阶段兼容现有的方法和任务</li>
+</ul>
+<p>未来达到这两个目标，ProphetNet 在设计上借鉴了<strong>XLNet</strong> 中 <em>two-stream self-attention</em> 的思想，提出一种<em>n-stream self-attention</em> 。ProphetNet 中的decoder部分包含一个 <em>main stream self-attention</em> 以及 n 个额外的 <em>self-attention<br>predicting streams</em> 。前者与原始transfomer中的<em>self-attention</em> 一致，后者是用来对未来n-gram进行预测的。</p>
+<p><strong>模型结构</strong></p>
+<p><img src="/articles/ProphetNet/image-20211020105341644.png" alt="image-20211020105341644"><br>$$<br>H_{enc} = Encoder(x_1,..,x_M)\<br>p(y_t|y_{&lt;t},x),…,p(y_{t+n-1}|y_{&lt;t},x) = Decoder(y_{&lt;t},H_{enc})<br>$$<br>预测n-gram的目标函数定义为：</p>
+<p><img src="/articles/ProphetNet/image-20211020142921253.png" alt="image-20211020142921253"></p>
+<p>可以看作是传统语言模型的loss加上n-1个未来字符预测的loss之和。其中权重系数为：<br>$$<br>\alpha_j = \frac{\gamma^j}{\sum_{i=0}^{n-1}\gamma^i}<br>$$<br>$\gamma$ 为一个衰减系数。距离越远权重占比越小。</p>
+<p><strong>N-Stream Self-Attention</strong></p>
 
     
   </div>
@@ -351,10 +331,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/TS-Transformer/">
+    <a class="show pull-left" href="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -478,7 +458,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/Problem-Container/';
+    var disqus_url = 'https://hahally.github.io/articles/ProphetNet/';
     
     (function(){
       var dsq = document.createElement('script');
