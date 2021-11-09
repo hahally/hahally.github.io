@@ -260,14 +260,9 @@ ga('send', 'pageview');
 </ul>
 <p>未来达到这两个目标，ProphetNet 在设计上借鉴了<strong>XLNet</strong> 中 <em>two-stream self-attention</em> 的思想，提出一种<em>n-stream self-attention</em> 。ProphetNet 中的decoder部分包含一个 <em>main stream self-attention</em> 以及 n 个额外的 <em>self-attention<br>predicting streams</em> 。前者与原始transfomer中的<em>self-attention</em> 一致，后者是用来对未来n-gram进行预测的。</p>
 <p><strong>模型结构</strong></p>
-<p><img src="/articles/ProphetNet/image-20211020105341644.png" alt="image-20211020105341644"></p>
-<script type="math/tex; mode=display">
-H_{enc} = Encoder(x_1,..,x_M)\\
-p(y_t|y_{<t},x),...,p(y_{t+n-1}|y_{<t},x) = Decoder(y_{<t},H_{enc})</script><p>预测n-gram的目标函数定义为：</p>
+<p><img src="/articles/ProphetNet/image-20211020105341644.png" alt="image-20211020105341644"><br>$$<br>H_{enc} = Encoder(x_1,..,x_M)\<br>p(y_t|y_{&lt;t},x),…,p(y_{t+n-1}|y_{&lt;t},x) = Decoder(y_{&lt;t},H_{enc})<br>$$<br>预测n-gram的目标函数定义为：</p>
 <p><img src="/articles/ProphetNet/image-20211020142921253.png" alt="image-20211020142921253"></p>
-<p>可以看作是传统语言模型的loss加上n-1个未来字符预测的loss之和。其中权重系数为：</p>
-<script type="math/tex; mode=display">
-\alpha_j = \frac{\gamma^j}{\sum_{i=0}^{n-1}\gamma^i}</script><p>$\gamma$ 为一个衰减系数。距离越远权重占比越小。</p>
+<p>可以看作是传统语言模型的loss加上n-1个未来字符预测的loss之和。其中权重系数为：<br>$$<br>\alpha_j = \frac{\gamma^j}{\sum_{i=0}^{n-1}\gamma^i}<br>$$<br>$\gamma$ 为一个衰减系数。距离越远权重占比越小。</p>
 <p><strong>N-Stream Self-Attention</strong></p>
 
     
@@ -339,7 +334,7 @@ gitalk.render('gitalk-container')
     <a class="show pull-left" href="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="hide pull-right" href="/">
+    <a class="show pull-right" href="/articles/knn-lm/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
