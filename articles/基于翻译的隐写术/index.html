@@ -297,7 +297,7 @@ ga('send', 'pageview');
 <ul>
 <li>找出 d1 的所有其他翻译的集合，并称这个集合为$E_{d1}$。 $E_{d1}$是语义替换的候选集。$e_1 \in E_{d1}$。</li>
 <li>找出 e1 的所有翻译；将此集合称为 $D_{e1}$。此集合称为集合<em>witnesses</em>。</li>
-<li>对于每个单词$e \in  E_{d1}-{e1}$找到所有的翻译 $D_{e1}$并计算$D_e \cap D_{e1}$中元素的数量。如果该数字高于给定的阈值 t，则将 e 添加到 e1 的可能语义替代列表中。</li>
+<li>对于每个单词$e \in  E_{d1}-\{e1\}$找到所有的翻译 $D_{e1}$并计算$D_e \cap D_{e1}$中元素的数量。如果该数字高于给定的阈值 t，则将 e 添加到 e1 的可能语义替代列表中。</li>
 </ul>
 <p>一个<em>witness</em>是源语言中的一个词，它也翻译成目标语言中的两个词，从而确认两个词的语义接近度。<em>witness</em>阈值 t 可用于将更多可能的替换与更高的不适当替换的可能性进行交换。</p>
 <h4 id="Adding-plausible-mistakes"><a href="#Adding-plausible-mistakes" class="headerlink" title="Adding plausible mistakes"></a>Adding plausible mistakes</h4><p>另一种可能的 post-pass 将 MT 系统常见的错误添加到翻译中。我们的实现可以使用的转换基于第 4 节中对 MT 错误的研究。当前系统支持使用手工制作的语言特定替换来更改冠词和介词，这些替换尝试模仿观察到的可能错误。</p>
@@ -591,7 +591,22 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</script>
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
