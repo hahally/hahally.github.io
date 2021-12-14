@@ -15,15 +15,15 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="auth : hahally    start : 2020.1.11  Django常用命令   django-admin startproject locallibrary   # 创建项目  python manage.py startapp catalog        # 创建应用  python manage.py runserver               # 启动服务">
+  <meta name="description" content="auth : hahally    start : 2020.1.11  colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setIn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CopyText">
 <meta property="og:url" content="https://hahally.github.io/articles/CopyText/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="auth : hahally    start : 2020.1.11  Django常用命令   django-admin startproject locallibrary   # 创建项目  python manage.py startapp catalog        # 创建应用  python manage.py runserver               # 启动服务">
+<meta property="og:description" content="auth : hahally    start : 2020.1.11  colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setIn">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-12T03:28:56.000Z">
-<meta property="article:modified_time" content="2021-02-10T06:21:41.921Z">
+<meta property="article:modified_time" content="2021-12-14T06:26:45.611Z">
 <meta property="article:author" content="hahally">
 <meta name="twitter:card" content="summary">
 
@@ -198,7 +198,7 @@ ga('send', 'pageview');
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Django"><span class="toc-text">Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrapy-常用命令"><span class="toc-text">Scrapy 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-第三方库安装源"><span class="toc-text">python 第三方库安装源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#笔记"><span class="toc-text">笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk环境变量配置"><span class="toc-text">jdk环境变量配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#windows-dos-命令"><span class="toc-text">windows dos 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux命令"><span class="toc-text">Linux命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-命令"><span class="toc-text">git 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker命令"><span class="toc-text">docker命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop命令"><span class="toc-text">hadoop命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行hadoop自带MapReduce程序"><span class="toc-text">运行hadoop自带MapReduce程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark"><span class="toc-text">Spark</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#colab-长连接脚本"><span class="toc-text">colab 长连接脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Django"><span class="toc-text">Django</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrapy-常用命令"><span class="toc-text">Scrapy 常用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#python-第三方库安装源"><span class="toc-text">python 第三方库安装源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#笔记"><span class="toc-text">笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#jdk环境变量配置"><span class="toc-text">jdk环境变量配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#windows-dos-命令"><span class="toc-text">windows dos 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Linux命令"><span class="toc-text">Linux命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#git-命令"><span class="toc-text">git 命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker命令"><span class="toc-text">docker命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hadoop命令"><span class="toc-text">hadoop命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#运行hadoop自带MapReduce程序"><span class="toc-text">运行hadoop自带MapReduce程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Spark"><span class="toc-text">Spark</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注意点"><span class="toc-text">注意点</span></a></li></ol></li></ol>
   </div>
 
 
@@ -254,6 +254,7 @@ ga('send', 'pageview');
 
   start : 2020.1.11
 </code></pre></blockquote>
+<h3 id="colab-长连接脚本"><a href="#colab-长连接脚本" class="headerlink" title="colab 长连接脚本"></a>colab 长连接脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>常用命令</p>
 <blockquote>
 <pre><code> django-admin startproject locallibrary   # 创建项目
