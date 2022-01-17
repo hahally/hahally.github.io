@@ -296,9 +296,16 @@ ga('send', 'pageview');
 </li>
 </ul>
 <h3 id="导入相关的库"><a href="#导入相关的库" class="headerlink" title="导入相关的库"></a>导入相关的库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="comment">#ignore warnings</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></table></figure>
+
 <h3 id="数据预览"><a href="#数据预览" class="headerlink" title="数据预览"></a>数据预览</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### 读取数据</span></span><br><span class="line">dt_train = pd.read_csv(<span class="string">'../dataset/train.csv'</span>)</span><br></pre></td></tr></table></figure>
+
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># head() 函数默认查看前 5 条数据</span></span><br><span class="line">dt_train.head()</span><br></pre></td></tr></table></figure>
-<p><div></div></p>
+
+
+
+
+<div>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -400,6 +407,8 @@ ga('send', 'pageview');
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sample() 随机采样</span></span><br><span class="line">train.sample(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+
 <div>
 
 <table border="1" class="dataframe">
@@ -472,7 +481,8 @@ ga('send', 'pageview');
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># info() 查看数据基本信息</span></span><br><span class="line">dt_train.info()</span><br></pre></td></tr></table></figure>
-<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+
+<pre><code>&lt;class &apos;pandas.core.frame.DataFrame&apos;&gt;
 RangeIndex: 891 entries, 0 to 890
 Data columns (total 12 columns):
 PassengerId    891 non-null int64
@@ -488,8 +498,7 @@ Fare           891 non-null float64
 Cabin          204 non-null object
 Embarked       889 non-null object
 dtypes: float64(2), int64(5), object(5)
-memory usage: 83.7+ KB
-</code></pre><p>可以看到总共有 12 columns(12个字段,通过 <code>dt_train.columns</code> 可以得到)。<br>info中也可以大致知道各个字段缺失情况：<code>Age</code>、<code>Fare</code>、<code>Cabin</code>、<code>Embarked</code>都是存在缺失值的。<br>除此外，各个字段的数据类型也一目了然。</p>
+memory usage: 83.7+ KB</code></pre><p>可以看到总共有 12 columns(12个字段,通过 <code>dt_train.columns</code> 可以得到)。<br>info中也可以大致知道各个字段缺失情况：<code>Age</code>、<code>Fare</code>、<code>Cabin</code>、<code>Embarked</code>都是存在缺失值的。<br>除此外，各个字段的数据类型也一目了然。</p>
 <ul>
 <li>Survived: int</li>
 <li>Pclass: int</li>
@@ -504,10 +513,13 @@ memory usage: 83.7+ KB
 <li>Embarked: string</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取字段名称</span></span><br><span class="line">dt_train.columns</span><br></pre></td></tr></table></figure>
-<pre><code>Index([&#39;PassengerId&#39;, &#39;Survived&#39;, &#39;Pclass&#39;, &#39;Name&#39;, &#39;Sex&#39;, &#39;Age&#39;, &#39;SibSp&#39;,
-       &#39;Parch&#39;, &#39;Ticket&#39;, &#39;Fare&#39;, &#39;Cabin&#39;, &#39;Embarked&#39;],
-      dtype=&#39;object&#39;)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看数值类型字段的大致数据分布情况</span></span><br><span class="line">dt_train.describe()</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>Index([&apos;PassengerId&apos;, &apos;Survived&apos;, &apos;Pclass&apos;, &apos;Name&apos;, &apos;Sex&apos;, &apos;Age&apos;, &apos;SibSp&apos;,
+       &apos;Parch&apos;, &apos;Ticket&apos;, &apos;Fare&apos;, &apos;Cabin&apos;, &apos;Embarked&apos;],
+      dtype=&apos;object&apos;)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看数值类型字段的大致数据分布情况</span></span><br><span class="line">dt_train.describe()</span><br></pre></td></tr></table></figure>
+
+
 <div>
 
 <table border="1" class="dataframe">
@@ -610,6 +622,8 @@ memory usage: 83.7+ KB
 
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看缺失值分布: 主要年龄特征缺失严重</span></span><br><span class="line">dt_train.isnull().sum()</span><br></pre></td></tr></table></figure>
+
+
 <pre><code>PassengerId      0
 Survived         0
 Pclass           0
@@ -622,8 +636,9 @@ Ticket           0
 Fare             0
 Cabin          687
 Embarked         2
-dtype: int64
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缺失百分比</span></span><br><span class="line">pd.isnull(dt_train).sum()*<span class="number">100</span>/dt_train.shape[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+dtype: int64</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 缺失百分比</span></span><br><span class="line">pd.isnull(dt_train).sum()*<span class="number">100</span>/dt_train.shape[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+
+
 <pre><code>PassengerId     0.000000
 Survived        0.000000
 Pclass          0.000000
@@ -636,17 +651,18 @@ Ticket          0.000000
 Fare            0.000000
 Cabin          77.104377
 Embarked        0.224467
-dtype: float64
-</code></pre><p>PS：从数据出发，思考哪些因素或那类特征的人更容易从这场灾难中存活下来</p>
+dtype: float64</code></pre><p>PS：从数据出发，思考哪些因素或那类特征的人更容易从这场灾难中存活下来</p>
 <h3 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 绘制条形图观察 性别 特征</span></span><br><span class="line">sns.barplot(x=<span class="string">"Sex"</span>, y=<span class="string">"Survived"</span>, data=dt_train)</span><br><span class="line"></span><br><span class="line"><span class="comment">#print percentages of females vs. males that survive</span></span><br><span class="line">print(</span><br><span class="line">    <span class="string">"Percentage of females who survived:"</span>,</span><br><span class="line">    dt_train.Survived[dt_train.Sex == <span class="string">'female'</span>].value_counts(normalize=<span class="literal">True</span>)[<span class="number">1</span>] *</span><br><span class="line">    <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">print(</span><br><span class="line">    <span class="string">"Percentage of males who survived:"</span>,</span><br><span class="line">    dt_train.Survived[dt_train.Sex == <span class="string">'male'</span>].value_counts(normalize=<span class="literal">True</span>)[<span class="number">1</span>] * <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
 <pre><code>Percentage of females who survived: 74.20382165605095
-Percentage of males who survived: 18.890814558058924
-</code></pre><p><img src="/articles/Titanic/output_15_1.png" alt="png"></p>
+Percentage of males who survived: 18.890814558058924</code></pre><p><img src="/articles/Titanic/output_15_1.png" alt="png"></p>
 <p>从上面可以看到，女性比男性其实具有更高的生存机会。其他特征，可自行类比做图分析。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直方图</span></span><br><span class="line"></span><br><span class="line">cols = [<span class="string">'Age'</span>, <span class="string">'SibSp'</span>, <span class="string">'Parch'</span>, <span class="string">'Fare'</span>, <span class="string">'Pclass'</span>]</span><br><span class="line">dt_train[cols].hist(figsize = (<span class="number">15</span>, <span class="number">6</span>), color = <span class="string">'steelblue'</span>, edgecolor = <span class="string">'firebrick'</span>, linewidth = <span class="number">1.5</span>, layout = (<span class="number">2</span>, <span class="number">3</span>));</span><br></pre></td></tr></table></figure>
+
 <p><img src="/articles/Titanic/output_17_0.png" alt="png"></p>
 <p>从年龄来看，大部分是40岁以下的年轻人；Fare中大部分在一百美元内；Parch与SibSp可以知道独自乘船的人较多；Pclass说明大部分人订的是3等舱。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 年龄分布情况</span></span><br><span class="line">men = dt_train[dt_train[<span class="string">'Sex'</span>]  == <span class="string">'male'</span>]</span><br><span class="line">women = dt_train[dt_train[<span class="string">'Sex'</span>]  == <span class="string">'female'</span>]</span><br><span class="line"></span><br><span class="line">fig, (ax1, ax2, ax3) = plt.subplots(<span class="number">1</span>, <span class="number">3</span>, figsize = (<span class="number">13</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">sns.distplot(dt_train[dt_train[<span class="string">'Survived'</span>] == <span class="number">1</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Survived'</span>, ax = ax1, kde = <span class="literal">False</span>)</span><br><span class="line">sns.distplot(dt_train[dt_train[<span class="string">'Survived'</span>] == <span class="number">0</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Deceased'</span>, ax = ax1, kde = <span class="literal">False</span>)</span><br><span class="line">ax1.legend()</span><br><span class="line">ax1.set_title(<span class="string">'Age Distribution - All Passengers'</span>)</span><br><span class="line"></span><br><span class="line">sns.distplot(women[women[<span class="string">'Survived'</span>] == <span class="number">1</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Survived'</span>, ax = ax2, kde = <span class="literal">False</span>)</span><br><span class="line">sns.distplot(women[women[<span class="string">'Survived'</span>] == <span class="number">0</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Deceased'</span>, ax = ax2, kde = <span class="literal">False</span>)</span><br><span class="line">ax2.legend()</span><br><span class="line">ax2.set_title(<span class="string">'Age Distribution - Women'</span>)</span><br><span class="line"></span><br><span class="line">sns.distplot(men[men[<span class="string">'Survived'</span>] == <span class="number">1</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Survived'</span>, ax = ax3, kde = <span class="literal">False</span>)</span><br><span class="line">sns.distplot(men[men[<span class="string">'Survived'</span>] == <span class="number">0</span>][<span class="string">'Age'</span>].dropna(), bins = <span class="number">20</span>, label = <span class="string">'Deceased'</span>, ax = ax3, kde = <span class="literal">False</span>)</span><br><span class="line">ax3.legend()</span><br><span class="line">ax3.set_title(<span class="string">'Age Distribution - Men'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout()</span><br></pre></td></tr></table></figure>
+
 <p><img src="/articles/Titanic/output_19_0.png" alt="png"></p>
 <p>这三幅图似乎表明：</p>
 <ul>
@@ -654,20 +670,23 @@ Percentage of males who survived: 18.890814558058924
 <li>十岁以下的年龄段出现的峰值说明婴幼儿也更容易存活下来</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 相关性矩阵图</span></span><br><span class="line">names = [<span class="string">'Survived'</span>, <span class="string">'Pclass'</span>, <span class="string">'Sex'</span>, <span class="string">'Age'</span>, <span class="string">'SibSp'</span>, <span class="string">'Parch'</span>, <span class="string">'Fare'</span>]</span><br><span class="line"></span><br><span class="line">correlations = dt_train.corr()</span><br><span class="line">correction = abs(correlations)          <span class="comment"># 取绝对值，只看相关程度 ，不关心正相关还是负相关</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># plot correlation matrix</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = fig.add_subplot(figsize=(<span class="number">20</span>, <span class="number">20</span>))  <span class="comment">#图的大小为20*20</span></span><br><span class="line"></span><br><span class="line">ax = sns.heatmap(correction,</span><br><span class="line">                 cmap=plt.cm.Greys,</span><br><span class="line">                 linewidths=<span class="number">0.05</span>,</span><br><span class="line">                 vmax=<span class="number">1</span>,</span><br><span class="line">                 vmin=<span class="number">0</span>,</span><br><span class="line">                 annot=<span class="literal">True</span>,</span><br><span class="line">                 annot_kws=&#123;</span><br><span class="line">                     <span class="string">'size'</span>: <span class="number">6</span>,</span><br><span class="line">                     <span class="string">'weight'</span>: <span class="string">'bold'</span></span><br><span class="line">                 &#125;)</span><br><span class="line"><span class="comment">#热力图参数设置（相关系数矩阵，颜色，每个值间隔等）</span></span><br><span class="line">plt.xticks(np.arange(len(names)) + <span class="number">0.5</span>, names)  <span class="comment">#横坐标标注点</span></span><br><span class="line">plt.yticks(np.arange(len(names)) + <span class="number">0.5</span>, names)  <span class="comment">#纵坐标标注点</span></span><br><span class="line">ax.set_title(<span class="string">'Characteristic correlation'</span>)      <span class="comment">#标题设置</span></span><br></pre></td></tr></table></figure>
-<pre><code>Text(0.5,1,&#39;Characteristic correlation&#39;)
-</code></pre><p><img src="/articles/Titanic/output_17_1.png" alt="png"></p>
+
+
+<pre><code>Text(0.5,1,&apos;Characteristic correlation&apos;)</code></pre><p><img src="/articles/Titanic/output_17_1.png" alt="png"></p>
 <h4 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># value_counts():返回各个属性的数量</span></span><br><span class="line"><span class="comment"># 这里可以看到 男性 557人，女性 314人</span></span><br><span class="line"><span class="comment"># 参数 normalize=True 时，返回的是各自的比例</span></span><br><span class="line">dt_train[<span class="string">'Sex'</span>].value_counts()</span><br></pre></td></tr></table></figure>
+
+
 <pre><code>(male      577
  female    314
- Name: Sex, dtype: int64, &#39; &#39;, male      0.647587
+ Name: Sex, dtype: int64, &apos; &apos;, male      0.647587
  female    0.352413
- Name: Sex, dtype: float64)
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt_train[<span class="string">'Sex'</span>].value_counts(normalize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+ Name: Sex, dtype: float64)</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dt_train[<span class="string">'Sex'</span>].value_counts(normalize=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+
 <pre><code>male      0.647587
 female    0.352413
-Name: Sex, dtype: float64
-</code></pre><h3 id="关于缺失值"><a href="#关于缺失值" class="headerlink" title="关于缺失值"></a>关于缺失值</h3><p>对于数据中的缺失值如何处理是需要我们结合问题具体分析的。有时会用均值或中位数等统计值来填充，有的也可以用模型进行预测，对于缺失不是很严重的我们甚至可以直接丢弃。</p>
-</div></div>
+Name: Sex, dtype: float64</code></pre><h3 id="关于缺失值"><a href="#关于缺失值" class="headerlink" title="关于缺失值"></a>关于缺失值</h3><p>对于数据中的缺失值如何处理是需要我们结合问题具体分析的。有时会用均值或中位数等统计值来填充，有的也可以用模型进行预测，对于缺失不是很严重的我们甚至可以直接丢弃。</p>
+</div></div></div>
     
   </div>
 
@@ -946,22 +965,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

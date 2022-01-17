@@ -267,27 +267,18 @@ ga('send', 'pageview');
 <p>这一部分由多个(N=6)相同的层堆叠而成。每一层又包括两个子层，对应图中部分。第一个是一个多头自注意力机制[<em>a multi-head self-attention</em>]，第二个是一个全连接的前馈神经网络[a position-wise feed-forward networks]。这两个子层通过残差连接（residual connection ）。所有子层和embedding 层的输出维度都统一为512（便于进行残差连接）。</p>
 <p><strong>Decoder</strong></p>
 <p>同样地，解码器也由多个(N=6)相同的层堆叠而成。每层包括三个子层。在编码器的子层基础上增加了一个<em>masked multi-head self-attention</em> 。三个子层通过残差连接起来。</p>
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>论文中对 attention定义如下：</p>
-<script type="math/tex; mode=display">
-Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V</script><p>Q, k, V即quary、key、value对应的向量。$Q\in R^{n\times d_k},K\in R^{m\times d_k},V\in R^{d_v}$。</p>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>论文中对 attention定义如下：<br>$$<br>Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V<br>$$<br>Q, k, V即quary、key、value对应的向量。$Q\in R^{n\times d_k},K\in R^{m\times d_k},V\in R^{d_v}$。</p>
 <p>两种常见的注意力机制是：additive attention 和 dot-product attention ，显然从公式中可见使用的是后者。其中$\sqrt{d_k}$ 起到了缩放的作用，使得softmax能更好的work。并且命名为 Scaled Dot-Product Attention：</p>
 <p><img src="/articles/Attention-Is-All-You-Need/image-20210715171719397.png" alt="image-20210715171719397"></p>
 <p><strong>Multi-Head Attention</strong></p>
 <p><img src="/articles/Attention-Is-All-You-Need/image-20210715172114776.png" alt="image-20210715172114776"></p>
-<p>Multi-Head Attention其实就是多个Scaled Dot-Product Attention并行，然后将结果 concat 拼接。从公式来看：</p>
-<script type="math/tex; mode=display">
-MultiHead(Q,K,V)=Concat(head_1,...,head_h)W^O\\
-Head_i = Attention(QW_i^Q,KW_i^K,VW_i^V)</script><p>其中，$W_i^Q\in R^{d_{model}\times d_k},W_i^K\in R^{d_{model}\times d_k},W_i^V\in R^{d_{model}\times d_v},W^O\in R^{hd_v\times d_{model}}$ 。本文采用的self-attention，即取Q，K，V相同。</p>
-<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>进行非线性变换：也就是 linear 后面加个 ReLU而已。</p>
-<script type="math/tex; mode=display">
-FFN(X)=max(0,xW_1+b_1)W_2+b_2</script><blockquote>
+<p>Multi-Head Attention其实就是多个Scaled Dot-Product Attention并行，然后将结果 concat 拼接。从公式来看：<br>$$<br>MultiHead(Q,K,V)=Concat(head_1,…,head_h)W^O\<br>Head_i = Attention(QW_i^Q,KW_i^K,VW_i^V)<br>$$<br>其中，$W_i^Q\in R^{d_{model}\times d_k},W_i^K\in R^{d_{model}\times d_k},W_i^V\in R^{d_{model}\times d_v},W^O\in R^{hd_v\times d_{model}}$ 。本文采用的self-attention，即取Q，K，V相同。</p>
+<h3 id="Position-wise-Feed-Forward-Networks"><a href="#Position-wise-Feed-Forward-Networks" class="headerlink" title="Position-wise Feed-Forward Networks"></a>Position-wise Feed-Forward Networks</h3><p>进行非线性变换：也就是 linear 后面加个 ReLU而已。<br>$$<br>FFN(X)=max(0,xW_1+b_1)W_2+b_2<br>$$</p>
+<blockquote>
 <p>While the linear transformations are the same across different positions, they use different parameters from layer to layer.   Another way of describing this is as two convolutions with kernel size 1.</p>
 </blockquote>
 <p>【PS：Another way of describing this is as <em>two convolutions with kernel size 1</em> /惊！看来还是有借鉴cnn的卷积思想嘛。/滑稽】</p>
-<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><p>这一部分的作用就是为了引入序列中的顺序信息，或者说位置信息。positional encodings（位置编码） 与input embeddings（如：词向量） 具有相同的维度$d_{model}$ 。通过将两向量相加，从而将对应的位置信息嵌入进去。位置编码的方式如下：</p>
-<script type="math/tex; mode=display">
-PE(pos,2i)=sin(pos/10000^{2i/d_{model}})\\
-PE(pos,2i+1)=cos(pos/10000^{2i/d_{model}})</script><p>其中，$pos$ 表示位置，$i$ 是维度，这样，每个位置编码都对应一个正弦信号。</p>
+<h3 id="Positional-Encoding"><a href="#Positional-Encoding" class="headerlink" title="Positional Encoding"></a>Positional Encoding</h3><p>这一部分的作用就是为了引入序列中的顺序信息，或者说位置信息。positional encodings（位置编码） 与input embeddings（如：词向量） 具有相同的维度$d_{model}$ 。通过将两向量相加，从而将对应的位置信息嵌入进去。位置编码的方式如下：<br>$$<br>PE(pos,2i)=sin(pos/10000^{2i/d_{model}})\<br>PE(pos,2i+1)=cos(pos/10000^{2i/d_{model}})<br>$$<br>其中，$pos$ 表示位置，$i$ 是维度，这样，每个位置编码都对应一个正弦信号。</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>抛弃cnn和rnn后，仅仅使用attention显然是不够的，为了捕获输入序列中词向量之间的前后位置信息，不得不引入Positional Encoding。不过很好解决了传统encoder-decoder无法并行训练的问题。因此，transformer 训练速度要快得多。transformer模型在nlp任务上的非凡表现，也引来了其他人将其应用在其他任务上的思考，目前在其他领域上，也出现了各种花里胡哨的transformer改版。</p>
 <p><a href="https://github.com/tensorflow/tensor2tensor" target="_blank" rel="noopener">官方开源代码</a></p>
 <p>这里给上苏神大佬对《Attention is All You Need》的解读：<a href="https://kexue.fm/archives/4765" target="_blank" rel="noopener">《Attention is All You Need》浅读（简介+代码） - 科学空间|Scientific Spaces (kexue.fm)</a></p>
@@ -570,22 +561,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

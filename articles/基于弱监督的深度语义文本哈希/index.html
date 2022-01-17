@@ -7,7 +7,7 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Lost-in-just-the-translation | Hahally&#39;s BLOG</title>
+  <title>基于弱监督的深度语义文本哈希 | Hahally&#39;s BLOG</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,20 +15,18 @@
     <meta name="keywords" content="paper reading," />
   
 
-  <meta name="description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+  <meta name="description" content="论文：Deep Semantic Text Hashing with Weak Supervision，SIGIR，2018  论文提出一种弱监督学习方法。采用bm25对相似文档进行排序，提取数据中的弱监督信号。先训练一个可以得到整个文档的语义向量表示的模型，然后根据语义向量，运用一些规则（设置阈值）将对应维度变成0或1。  通过使用无监督排序来逼近真实的文档空间，从而弥补了标记数据的不足。 设">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Lost-in-just-the-translation">
-<meta property="og:url" content="https://hahally.github.io/articles/Lost-in-just-the-translation/index.html">
+<meta property="og:title" content="基于弱监督的深度语义文本哈希">
+<meta property="og:url" content="https://hahally.github.io/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="Lost in just the translation  摘要本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议只需要翻译文本就可以恢复隐藏信息。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。 协议  Producin">
+<meta property="og:description" content="论文：Deep Semantic Text Hashing with Weak Supervision，SIGIR，2018  论文提出一种弱监督学习方法。采用bm25对相似文档进行排序，提取数据中的弱监督信号。先训练一个可以得到整个文档的语义向量表示的模型，然后根据语义向量，运用一些规则（设置阈值）将对应维度变成0或1。  通过使用无监督排序来逼近真实的文档空间，从而弥补了标记数据的不足。 设">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
-<meta property="article:published_time" content="2021-07-09T14:09:24.000Z">
-<meta property="article:modified_time" content="2021-07-09T14:10:35.104Z">
+<meta property="article:published_time" content="2022-01-17T12:36:27.000Z">
+<meta property="article:modified_time" content="2022-01-17T12:38:41.544Z">
 <meta property="article:author" content="hahally">
 <meta property="article:tag" content="paper reading">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hahally.github.io/articles/Lost-in-just-the-translation/image-20210709214343204.png">
 
   
 
@@ -199,22 +197,17 @@ ga('send', 'pageview');
 </div>
 
 
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#摘要"><span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#协议"><span class="toc-text">协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
-  </div>
-
 
 
 <div class="content content-post CENTER">
-   <article id="post-Lost-in-just-the-translation" class="article article-type-post" itemprop="blogPost">
+   <article id="post-基于弱监督的深度语义文本哈希" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">Lost-in-just-the-translation</h1>
+    <h1 class="post-title">基于弱监督的深度语义文本哈希</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2021.07.09</span>
+        <span>2022.01.17</span>
       </span>
 
       
@@ -230,7 +223,7 @@ ga('send', 'pageview');
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://hahally.github.io/articles/Lost-in-just-the-translation/#disqus_thread"></a>
+          <a href="https://hahally.github.io/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/#disqus_thread"></a>
         </span>
       
 
@@ -248,28 +241,42 @@ ga('send', 'pageview');
   <div class="article-content">
     
       <blockquote>
-<p>Lost in just the translation</p>
+<p>论文：Deep Semantic Text Hashing with Weak Supervision，SIGIR，2018</p>
 </blockquote>
-<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>本文介绍了自然语言翻译文本信息隐藏系统的设计与实现，并给出了实验结果。与前人的工作不同，本文提出的协议<strong>只需要翻译文本就可以恢复隐藏信息</strong>。这是一个重大的改进，因为传输源文本既浪费资源又不安全。现在，系统的安全性得到了改善，这不仅是因为源文本不再对敌方有用，还因为现在可以使用更广泛的防御系统(如混合人机翻译)。</p>
-<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><p><img src="/articles/Lost-in-just-the-translation/image-20210709214343204.png" alt="image-20210709214343204"></p>
+<p>论文提出一种弱监督学习方法。采用bm25对相似文档进行排序，提取数据中的弱监督信号。先训练一个可以得到整个文档的语义向量表示的模型，然后根据语义向量，运用一些规则（设置阈值）将对应维度变成0或1。</p>
 <ul>
-<li><p>Producing translations</p>
-<p>方法大致与论文【Translation-Based Steganography】中提到的一样</p>
-</li>
-<li><p>Tokenization</p>
-<p>双方使用相同的 Tokenization 算法，以获得相同的句子序列</p>
-</li>
-<li><p>Choosing h</p>
-<p>选择合适的 h ($h \ge 0$)，h表示将信息隐藏在每个句子中的长度的位数。</p>
-</li>
-<li><p>Selecting translations</p>
-<p>对于所有翻译，编码器首先使用与接收方共享的密钥计算每个翻译的加密键值散列。其基本思想是在给定句子的所有译文中选择一个句子，然后对其进行适当的长度编码，并在隐藏的信息中选择合适的位置。然而，由于给定句子中的位编码数量是可变的，因此该算法在这方面有很大的自由度。</p>
-</li>
-<li><p>Optimized Handling of Hash Collisions</p>
-<p>哈希冲突的处理优化</p>
-</li>
+<li>通过使用无监督排序来逼近真实的文档空间，从而弥补了标记数据的不足。</li>
+<li>设计了两个深度生成模型来利用文档的内容和估计的邻域来学习语义哈希函数。（NbrReg和NbrReg+doc）</li>
 </ul>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>为了不传输源文本，从而，引入了哈希映射和 Tokenization以及参数 h。产生翻译文本过程中混合人机翻译结果，使得隐藏的信息更加难以检测。</p>
+<p>两个语义向量表示模型（NbrReg和NbrReg+doc）区别在于是否利用了近邻文档信息。每个模型包含两个部分：encoder、decoder。</p>
+<p>该方法步骤包括三个部分：Document Space Estimation —&gt; NbrReg（NbrReg+doc） —&gt; Binarization</p>
+<ul>
+<li>Document Space Estimation：得到整个文档数据的空间分布情况</li>
+</ul>
+<p>在有标签信息的情况下，可以得到真实文档空间分布。没有标签信息的时候，利用bm25为每个文档 d 检索出一组与之最相似的近邻文档NN(d)。论文假设：近邻文档中大多数与文档 d 具有相同标签，因此任何文档的二进制哈希值在相近的向量空间模型中应该更加近似。</p>
+<ul>
+<li>NbrReg：语义向量模型</li>
+</ul>
+<p>文档语义向量 s ，满足标准正态分布 N(0,1)</p>
+<p> $w_i \in d$ ，概率 $P_A(w_i|s)$  ； $\hat w_j \in NN(d)$ ,概率$P_B(\hat w_j|s)$</p>
+<p>定义联合概率： $P(d) = \prod_{i}P_A(w_i|s)$ ，$P(NN(d))=\prod_{j}P_B(\hat w_j|s)$</p>
+<p>目标函数：最大化$P(d,NN(d)) = P(d)P(NN(d))$<br>$$<br>logP(d,NN(d)) = log\int_{s}P(d|s)P(NN(d)|s)P(s)ds\\geq E_{Q(s|·)}[logP(dd|s)] + E_{Q(s|·)}[logP(NN(d)|s)]-D_{KL}(Q(s|·)||P(s))<br>$$<br>其中 $Q(d|·)$ 表示从数据中学到的近似后验概率分布；<strong>·</strong> 符号表示输入随机变量的占位符；$D_{KL}$ 表示KL散度；</p>
+<p><strong>Decoder Function</strong><br>$$<br>P(d) = \prod_{i}P_A(w_i|s)=\prod_{i}\frac{exp(s^TAe_i)}{exp(\sum_{j}s^TAe_j)}<br>$$<br>$e_j$ 表示一个词袋向量，矩阵A将语义向量s映射到词编码空间。$P(NN(d))$ 与上面类似，只是映射矩阵用B表示。</p>
+<p><strong>Encoder Function</strong></p>
+<p>定义 $Q(s|·)$ 为文档d参数化的正态分布：$Q(s|·) = N(s,f(d))$ 。<em>f(·)</em> 函数将d表示为均值为$\mu$ 标准差为$\sigma$ 正态分布的向量。 为了表征两个参数，定义$f = &lt;f_{\mu},f_{\sigma}&gt;$  ，相当于定义了两个前馈神经网络：<br>$$<br>f_{\mu}(d) = W_{\mu}·h(d)+b_{\mu} \f_{\sigma}(d) = W_{\sigma}·h(d)+b_{\sigma}\h(d) = relu(W_2·relu(W_1·d+b_1)+b_2)<br>$$</p>
+<p>语义向量s从Q中采样：<br>$$<br>s \sim Q(s|d)=N(s;\mu=f_{\mu}(d),\sigma = f_{\sigma}(d))<br>$$</p>
+<ul>
+<li>Utilize Neighbor Documents：(NbrReg+Doc）</li>
+</ul>
+<p>论文中提到相邻文档使用的一组单词可以表示该区域所有文档的主题，但是来自相邻文档的额外的词可能会引入噪声，混淆模型。为了削减噪声带来的影响，引入了一层隐藏层，用该层向量来表示近邻文档，使用一个平均池化层得到 近邻文档的中心表示。只有编码器部分有所不同，其他与NbrReg一致。<br>$$<br>Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\h_{NN}(NN(d)) = mean(Z^{NN})\f_{\mu}(d,NN(d)) = W_{\mu}·(h(d)+h_{NN}(NN(d)))+b_{\mu}<br>$$</p>
+<ul>
+<li>Binarization</li>
+</ul>
+<p>根据编码器 $Q(s|·)$ 为文档d生成一个连续的语义向量。论文中对编码器的输出取平均来表示语义向量 $\overline s = E[Q(s|·)]$，然后使用中值法生成二进制编码。若大于该阈值就令该位为1，否者为0.</p>
+<blockquote>
+<p>思考</p>
+</blockquote>
+<p>论文并没有显示道德直接学习二进制表示，而是通过训练一个语义模型，假设语义相近文档对应二进制表示应该相近，然后通过语义向量进一步转化为二进制哈希值。值得一提的是语义向量是服从标准正太分布的，一方面便于训练，另一方面也可以给模型提供很好的可解释性，所有文档可以映射到相同标准正态分布的语义空间，语义相近的向量具有相近的分布值，这也确保了二值化的时候语义相近的文档在映射为二进制哈希值后也保持距离相近。</p>
 
     
   </div>
@@ -337,10 +344,10 @@ gitalk.render('gitalk-container')
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/">
+    <a class="show pull-left" href="/articles/knn-lm/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/articles/sequence-to-sequence-learning-with-neural-networks/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -464,7 +471,7 @@ gitalk.render('gitalk-container')
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'https://hahally.github.io/articles/Lost-in-just-the-translation/';
+    var disqus_url = 'https://hahally.github.io/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/';
     
     (function(){
       var dsq = document.createElement('script');
