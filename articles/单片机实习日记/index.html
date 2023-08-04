@@ -275,101 +275,89 @@ ga('send', 'pageview');
 <p>下午，我开始查找串口通信的资料文献。最终确定采用异步通信的方式实现串口通信。接着开始着重异步通信方面的资料查询。经过一番并不困难的翻阅后，大致了解了异步通信的 4 种方式以及定时器的知识。</p>
 <p>52单片机有三个定时器/计数器，与串口通信有关的就是 T1定时器了。定时器/计数器的实质是加 1 计数器(高 8 位 和低 8 位 两个寄存器组成)。<code>TMOD</code> 是确定工作方式和功能的寄存器；<code>TCON</code> 是控制 T0、T1 的启动和停止及设置溢出标志的寄存器。</p>
 <p><strong><code>TMOD</code></strong>:</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">位序号</th>
-<th style="text-align:center">D7</th>
-<th style="text-align:center">D6</th>
-<th style="text-align:center">D5</th>
-<th style="text-align:center">D4</th>
-<th style="text-align:center">D3</th>
-<th style="text-align:center">D2</th>
-<th style="text-align:center">D1</th>
-<th style="text-align:center">D0</th>
+<th align="center">位序号</th>
+<th align="center">D7</th>
+<th align="center">D6</th>
+<th align="center">D5</th>
+<th align="center">D4</th>
+<th align="center">D3</th>
+<th align="center">D2</th>
+<th align="center">D1</th>
+<th align="center">D0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">位符号</td>
-<td style="text-align:center">$GATE$</td>
-<td style="text-align:center">$C/\overline{\text{T}}$</td>
-<td style="text-align:center">$M1$</td>
-<td style="text-align:center">$M0$</td>
-<td style="text-align:center">$GATE$</td>
-<td style="text-align:center">$C/\overline{\text{T}}$</td>
-<td style="text-align:center">$M1$</td>
-<td style="text-align:center">$M0$</td>
+<tbody><tr>
+<td align="center">位符号</td>
+<td align="center">$GATE$</td>
+<td align="center">$C/\overline{\text{T}}$</td>
+<td align="center">$M1$</td>
+<td align="center">$M0$</td>
+<td align="center">$GATE$</td>
+<td align="center">$C/\overline{\text{T}}$</td>
+<td align="center">$M1$</td>
+<td align="center">$M0$</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><code>D7~D4</code> 为 <code>T1</code> 定时器，<code>D3~D0</code> 为 <code>T0</code> 定时器。$C/\overline{\text{T}}$ 为 0 时为定时器模式，为 1 时为计数器模式，<code>M1</code> 和 <code>M0</code> 是工作方式选择位。</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">M1</th>
-<th style="text-align:center">M0</th>
-<th style="text-align:center">工作方式</th>
+<th align="center">M1</th>
+<th align="center">M0</th>
+<th align="center">工作方式</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">方式0，为13位定时器/计数器</td>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">方式0，为13位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">方式1，为16位定时器/计数器</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">方式1，为16位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">方式2，8位初值自动重装的8位定时器/计数器</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">方式2，8位初值自动重装的8位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">方式3，仅适用于 T0，分成两个8位计数器，T1停止计数</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">方式3，仅适用于 T0，分成两个8位计数器，T1停止计数</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p><strong><code>TCON</code></strong></p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
-<th style="text-align:center">位序号</th>
-<th style="text-align:center">D7</th>
-<th style="text-align:center">D6</th>
-<th style="text-align:center">D5</th>
-<th style="text-align:center">D4</th>
-<th style="text-align:center">D3</th>
-<th style="text-align:center">D2</th>
-<th style="text-align:center">D1</th>
-<th style="text-align:center">D0</th>
+<th align="center">位序号</th>
+<th align="center">D7</th>
+<th align="center">D6</th>
+<th align="center">D5</th>
+<th align="center">D4</th>
+<th align="center">D3</th>
+<th align="center">D2</th>
+<th align="center">D1</th>
+<th align="center">D0</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">位符号</td>
-<td style="text-align:center">$TF1$</td>
-<td style="text-align:center">$TR1$</td>
-<td style="text-align:center">$TF0$</td>
-<td style="text-align:center">$TR0$</td>
-<td style="text-align:center">$IE1$</td>
-<td style="text-align:center">$IT1$</td>
-<td style="text-align:center">$IE0$</td>
-<td style="text-align:center">$IT0$</td>
+<tbody><tr>
+<td align="center">位符号</td>
+<td align="center">$TF1$</td>
+<td align="center">$TR1$</td>
+<td align="center">$TF0$</td>
+<td align="center">$TR0$</td>
+<td align="center">$IE1$</td>
+<td align="center">$IT1$</td>
+<td align="center">$IE0$</td>
+<td align="center">$IT0$</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="5月20日"><a href="#5月20日" class="headerlink" title="5月20日"></a>5月20日</h3><p>经过昨天一天的查阅学习，已经对串口通信有了比较全面的了解。所以，今天就是先把串口通信的一些必要环境准备好。下载串口助手和虚拟串口工具，然后测试串口助手。在一番并不花里胡哨的操作后，基本操作都会了。接着就是准备仿真下的串口测试了。在 <code>protues</code> 上，点来点去，又是一番行云流水且不花里胡哨的操作后，仿真环境也搭建好了。然后开始敲代码，在 <code>keil</code> 这个外表朴实无华但功能强大的软件上，敲下第一个简单串口通信的代码。然后结合串口助手观察效果。这样一个发送单个字符的例子就测试成功了。</p>
 <h3 id="5月21日"><a href="#5月21日" class="headerlink" title="5月21日"></a>5月21日</h3><p>今天是周四，上午老师照常开了小小的线上例会。交我们一些小小的调试技巧之类的。在昨天的基础上，今天继续修改代码，实现发送和接收功能。上午把整个代码框架写了出来，本以为会是顺顺利利的一天。但是下午的调试，着实不太顺利。先是，接收的数据并不是期望的数据，在一顿微操后，发现是接收数据的数组出现了溢出现象。调好后，又发现接收的数据有些错位了。又是一顿 <code>Debug</code> 后，自己定义一个简单通信协议，在数据头尾加上标志位，以确保接收方正确接收到期望数据。来来回回这样折腾后，仿真串口通信是没有问题了。</p>
 <h3 id="5月22日"><a href="#5月22日" class="headerlink" title="5月22日"></a>5月22日</h3><p>一觉醒来还是周五，是的，昨晚熬到了十二点。精力显然有些不充沛的我，还是打开了电脑，接着干了。队友那边的频率测量 和<code>LCD</code> 显示功能已经就绪了。今天可以整一块测试一下了。拿到他们的代码后，便开始调试。红红火火恍恍惚惚，就这样一顿朴实无华而实用的 <code>CV</code>大法过后，加以小小微操作为辅助，就调好了。</p>
