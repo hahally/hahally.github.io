@@ -264,7 +264,6 @@ ga('send', 'pageview');
 <h5 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h5><p>要使用 Scrapy ，我们不得不先安装它。文档为我们提供的良好的 <a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="noopener">安装指南</a> 。</p>
 <p>我们只需要这样做：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
-
 <p>不过我们不得不知道下面文档中提到的：</p>
 <blockquote>
 <p>Scrapy is written in pure Python and depends on a few key Python packages (among others)</p>
@@ -285,29 +284,22 @@ ga('send', 'pageview');
 </ul>
 <p>如果你没有这些依赖包，那你不得不考虑先安装依赖。在此建议使用清华源下载，这样可以避免不必要的 Time out 。如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [example_modul] -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
-
 <p>安装完成后，就可以开始按接下来的<a href="https://doc.scrapy.org/en/latest/intro/tutorial.html" target="_blank" rel="noopener">教程</a> 学习了。</p>
 <p>像这样创建一个项目：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> scrapy startproject tutorial</span></span><br></pre></td></tr></table></figure>
-
 <p>编写自己的爬虫类：</p>
 <figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuotesSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"quotes"</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></span><br><span class="line">        urls = [</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/1/'</span>,</span><br><span class="line">            <span class="string">'http://quotes.toscrape.com/page/2/'</span>,</span><br><span class="line">        ]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="keyword">yield</span> scrapy.Request(url=url, callback=self.parse)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        page = response.url.split(<span class="string">"/"</span>)[<span class="number">-2</span>]</span><br><span class="line">        filename = <span class="string">'quotes-%s.html'</span> % page</span><br><span class="line">        <span class="keyword">with</span> open(filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">            f.write(response.body)</span><br><span class="line">        self.log(<span class="string">'Saved file %s'</span> % filename)</span><br></pre></td></tr></table></figure>
-
 <p>运行项目：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scrapy crawl quotes</span><br></pre></td></tr></table></figure>
-
 <p>至此，一个基本可以运行的 Scrapy 项目就成型了。</p>
 <h5 id="框架概述"><a href="#框架概述" class="headerlink" title="框架概述"></a><a href="https://doc.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">框架概述</a></h5><p>在依葫芦画瓢的完成一个 Scrapy 项目的编写后，要想明白为什么要这样编写我们的爬虫程序，就不得不了解这个框架的一些细节。</p>
 <p>Scrapy的体系结构及组件如下图所示：</p>
-<img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png">
-
+<p><img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png"></p>
 <p>对照着 Scrapy 的项目结构：</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">    scrapy.cfg            <span class="comment"># deploy configuration file</span></span><br><span class="line"></span><br><span class="line">    tutorial/             <span class="comment"># project's Python module, you'll import your code from here</span></span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        <span class="keyword">items</span>.py          <span class="comment"># project items definition file</span></span><br><span class="line"></span><br><span class="line">        middlewares.py    <span class="comment"># project middlewares file</span></span><br><span class="line"></span><br><span class="line">        pipelines.py      <span class="comment"># project pipelines file</span></span><br><span class="line"></span><br><span class="line">        settings.py       <span class="comment"># project settings file</span></span><br><span class="line"></span><br><span class="line">        spiders/          <span class="comment"># a directory where you'll later put your spiders</span></span><br><span class="line">            __init__.py</span><br><span class="line">            quotes_spider.py  <span class="comment"># a spider written by yourself</span></span><br></pre></td></tr></table></figure>
-
 <p>学过 Django 就会发现，这个框架简直就是套着它的设计模式来的。全局设置的 <code>settings.py</code> 、项目的管道 <code>pipelines.py</code> 、强大可扩展的中间件 <code>middlewares.py</code> 、以及类似模型的 <code>items.py</code> 。从图中我们不难发现，spiders可以对 requests 和 response 进行处理。而中间件 middlewares还可以对 items 进行处理。 管道 pipelines 对输出的 items 进行最后的清洗。所以，在我们明白要对数据做怎样处理时，只需要在对应的地方按要求编写我们的代码来达到我们的目的即可。</p>
 <p>一个例子：如果我们需要对最后清洗的数据保存到一个文件(如：json文件)中，那么你可能就要在管道 <code>pipelines.py</code> 中编写合适代码来实现。像这样子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonWriterPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> cls(crawler)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file = open(<span class="string">'items.jl'</span>, <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file.close()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        line = json.dumps(dict(item)) + <span class="string">"\n"</span></span><br><span class="line">        self.file.write(line)</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>process_item (self, item, spider)</p>
 <blockquote>
@@ -334,7 +326,6 @@ ga('send', 'pageview');
 </blockquote>
 <p>编写完自己的 Item Pipeline后，我们还需要在 <code>settings.py</code> 中激活才能使用。像这样：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'myproject.pipelines.JsonWriterPipeline'</span>: <span class="number">800</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>需要注意的是，管道组件以字典的形式配置，并分配一整数值(0 ~ 1000)，项目将按升序方式依次执行。</p>
 </li>
 </ul>
@@ -342,8 +333,6 @@ ga('send', 'pageview');
 <p>补一篇关于 Scrapy 的笔记算是对很久之前的一个总结吧！</p>
 <blockquote>
 <p>路漫漫其修远兮吾将上下而求索。</p>
-</blockquote>
-<blockquote>
 <p>I know nothing but my ignorance.</p>
 </blockquote>
 
