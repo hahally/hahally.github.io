@@ -264,23 +264,16 @@ ga('send', 'pageview');
 <p>文档语义向量 s ，满足标准正态分布 N(0,1)</p>
 <p> $w_i \in d$ ，概率 $P_A(w_i|s)$  ； $\hat w_j \in NN(d)$ ,概率$P_B(\hat w_j|s)$</p>
 <p>定义联合概率： $P(d) = \prod_{i}P_A(w_i|s)$ ，$P(NN(d))=\prod_{j}P_B(\hat w_j|s)$</p>
-<p>目标函数：最大化$P(d,NN(d)) = P(d)P(NN(d))$  </p>
-<script type="math/tex; mode=display">
-logP(d,NN(d)) = log\int_{s}P(d|s)P(NN(d)|s)P(s)ds\\\geq E_{Q(s|·)}[logP(dd|s)] + E_{Q(s|·)}[logP(NN(d)|s)]-D_{KL}(Q(s|·)||P(s))</script><p>其中 $Q(d|·)$ 表示从数据中学到的近似后验概率分布；<strong>·</strong> 符号表示输入随机变量的占位符；$D_{KL}$ 表示KL散度；</p>
-<p><strong>Decoder Function</strong></p>
-<script type="math/tex; mode=display">
-P(d) = \prod_{i}P_A(w_i|s)=\prod_{i}\frac{exp(s^TAe_i)}{exp(\sum_{j}s^TAe_j)}</script><p>$e_j$ 表示一个词袋向量，矩阵A将语义向量s映射到词编码空间。$P(NN(d))$ 与上面类似，只是映射矩阵用B表示。</p>
+<p>目标函数：最大化$P(d,NN(d)) = P(d)P(NN(d))$<br>$$<br>logP(d,NN(d)) = log\int_{s}P(d|s)P(NN(d)|s)P(s)ds\\geq E_{Q(s|·)}[logP(dd|s)] + E_{Q(s|·)}[logP(NN(d)|s)]-D_{KL}(Q(s|·)||P(s))<br>$$<br>其中 $Q(d|·)$ 表示从数据中学到的近似后验概率分布；<strong>·</strong> 符号表示输入随机变量的占位符；$D_{KL}$ 表示KL散度；</p>
+<p><strong>Decoder Function</strong><br>$$<br>P(d) = \prod_{i}P_A(w_i|s)=\prod_{i}\frac{exp(s^TAe_i)}{exp(\sum_{j}s^TAe_j)}<br>$$<br>$e_j$ 表示一个词袋向量，矩阵A将语义向量s映射到词编码空间。$P(NN(d))$ 与上面类似，只是映射矩阵用B表示。</p>
 <p><strong>Encoder Function</strong></p>
-<p>定义 $Q(s|·)$ 为文档d参数化的正态分布：$Q(s|·) = N(s,f(d))$ 。<em>f(·)</em> 函数将d表示为均值为$\mu$ 标准差为$\sigma$ 正态分布的向量。 为了表征两个参数，定义$f = <f_{\mu},f_{\sigma}>$  ，相当于定义了两个前馈神经网络：</f_{\mu},f_{\sigma}></p>
-<script type="math/tex; mode=display">
-f_{\mu}(d) = W_{\mu}·h(d)+b_{\mu} \\f_{\sigma}(d) = W_{\sigma}·h(d)+b_{\sigma}\\h(d) = relu(W_2·relu(W_1·d+b_1)+b_2)</script><p>语义向量s从Q中采样：</p>
-<script type="math/tex; mode=display">
-s \sim Q(s|d)=N(s;\mu=f_{\mu}(d),\sigma = f_{\sigma}(d))</script><ul>
+<p>定义 $Q(s|·)$ 为文档d参数化的正态分布：$Q(s|·) = N(s,f(d))$ 。<em>f(·)</em> 函数将d表示为均值为$\mu$ 标准差为$\sigma$ 正态分布的向量。 为了表征两个参数，定义$f = &lt;f_{\mu},f_{\sigma}&gt;$  ，相当于定义了两个前馈神经网络：<br>$$<br>f_{\mu}(d) = W_{\mu}·h(d)+b_{\mu} \f_{\sigma}(d) = W_{\sigma}·h(d)+b_{\sigma}\h(d) = relu(W_2·relu(W_1·d+b_1)+b_2)<br>$$</p>
+<p>语义向量s从Q中采样：<br>$$<br>s \sim Q(s|d)=N(s;\mu=f_{\mu}(d),\sigma = f_{\sigma}(d))<br>$$</p>
+<ul>
 <li>Utilize Neighbor Documents：(NbrReg+Doc）</li>
 </ul>
-<p>论文中提到相邻文档使用的一组单词可以表示该区域所有文档的主题，但是来自相邻文档的额外的词可能会引入噪声，混淆模型。为了削减噪声带来的影响，引入了一层隐藏层，用该层向量来表示近邻文档，使用一个平均池化层得到 近邻文档的中心表示。只有编码器部分有所不同，其他与NbrReg一致。</p>
-<script type="math/tex; mode=display">
-Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\\h_{NN}(NN(d)) = mean(Z^{NN})\\f_{\mu}(d,NN(d)) = W_{\mu}·(h(d)+h_{NN}(NN(d)))+b_{\mu}</script><ul>
+<p>论文中提到相邻文档使用的一组单词可以表示该区域所有文档的主题，但是来自相邻文档的额外的词可能会引入噪声，混淆模型。为了削减噪声带来的影响，引入了一层隐藏层，用该层向量来表示近邻文档，使用一个平均池化层得到 近邻文档的中心表示。只有编码器部分有所不同，其他与NbrReg一致。<br>$$<br>Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\h_{NN}(NN(d)) = mean(Z^{NN})\f_{\mu}(d,NN(d)) = W_{\mu}·(h(d)+h_{NN}(NN(d)))+b_{\mu}<br>$$</p>
+<ul>
 <li>Binarization</li>
 </ul>
 <p>根据编码器 $Q(s|·)$ 为文档d生成一个连续的语义向量。论文中使用编码器输出的正态分布的均值来表示语义向量 $\overline s = E[Q(s|·)]$，然后使用中值法生成二进制编码。若大于该阈值就令该位为1，否者为0.</p>
@@ -302,6 +295,7 @@ Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\\h_{NN}(NN(d)) = mea
 <p><strong>数据处理</strong></p>
 <p>提供的数据是20newsgroups数据集，20ng-all-stemmed.txt：18820行，20个类别</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alt.atheism	alt atheism faq atheist resourc archiv <span class="built_in">name</span> atheism resourc alt atheism...</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
+
 <p>格式为：label    w1 w2 w3…，一行为一条数据，由标签和对应文档组成，文档由一个空格分开的词组成。</p>
 <p>数据处理代码为：prepare_data.py</p>
 <ul>
@@ -314,14 +308,8 @@ Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\\h_{NN}(NN(d)) = mea
 </li>
 </ul>
 <p>这部分代码主要是得到用于模型输入的数据，即将文本数据用数值表示。这里将每个文档用bm25权重值表示。BM25是信息索引领域用来计算query与文档相似度得分的经典算法。论文中使用bm25检索近邻文档，作为训练的弱监督信号。</p>
-<p>BM25的一般公式：</p>
-<script type="math/tex; mode=display">
-Score(Q,d) = \sum_{i=1}^{n}W_i*R(q_i,d)</script><p>$Q$表示一个query，$q_i$  表示$Q$中的单词，$d$表示某个搜索文档。$W_i$ 表示单词权重，用$idf$ 表示：</p>
-<script type="math/tex; mode=display">
-idf(q_i) = log\frac{N-df_i+0.5}{df_i+0.5}</script><p>$df_i$ 为包含了$q_i$ 的文档个数。依据IDF的作用，对于某个 $q_i$，包含 $q_i$的文档数越多，说明$q_i$重要性越小，或者区分度越低，IDF越小，因此IDF可以用来刻画$q_i$与文档的相似性。</p>
-<p>$R(q_i,d)$ 表示为：</p>
-<script type="math/tex; mode=display">
-R(q_i,d) = \frac{(k_1+1)·f(q_i,d)}{f(q_i,d)+k_1·(1-b+b·\frac{|d|}{avgdL})}</script><p>$f(q_i,d)$ 表示$q_i$在文档 d 中的词频，$|d|$ 表示文档 d的长度，avgdL是语料库全部文档的平均长度。$k_1$ 和 $b$ 为经验参数，一般的$k_1\in [1.2,2.0],b=0.75$</p>
+<p>BM25的一般公式：<br>$$<br>Score(Q,d) = \sum_{i=1}^{n}W_i*R(q_i,d)<br>$$<br>$Q$表示一个query，$q_i$  表示$Q$中的单词，$d$表示某个搜索文档。$W_i$ 表示单词权重，用$idf$ 表示：<br>$$<br>idf(q_i) = log\frac{N-df_i+0.5}{df_i+0.5}<br>$$<br>$df_i$ 为包含了$q_i$ 的文档个数。依据IDF的作用，对于某个 $q_i$，包含 $q_i$的文档数越多，说明$q_i$重要性越小，或者区分度越低，IDF越小，因此IDF可以用来刻画$q_i$与文档的相似性。</p>
+<p>$R(q_i,d)$ 表示为：<br>$$<br>R(q_i,d) = \frac{(k_1+1)·f(q_i,d)}{f(q_i,d)+k_1·(1-b+b·\frac{|d|}{avgdL})}<br>$$<br>$f(q_i,d)$ 表示$q_i$在文档 d 中的词频，$|d|$ 表示文档 d的长度，avgdL是语料库全部文档的平均长度。$k_1$ 和 $b$ 为经验参数，一般的$k_1\in [1.2,2.0],b=0.75$</p>
 <p>假设一共有 n 个文档，按照该公式计算最终一个文档 d 会得到 n 个得分。但是代码中计算的是$Score(d,d)$ ，而且没有求和操作。所以一个文档 d 会由一个vocab_size维度大小的向量表示。按照论文要求，会根据 n 个得分进行降序排列，选 k 个作为文档 d 的近邻文档$NN(d)$ 。复现的代码中则是根据上述向量计算余弦相似度然后选取近邻文档的。</p>
 <p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126205246354.png" alt="image-20220126205246354"></p>
 <p>其中$term_freq$ 对应词频$f(q_i,d)$ 的$n\times vocab_size$ 大小的矩阵，$cosin_similarity(train_docs)$ 计算文档与文档之间的余弦相似度得分。<strong>代码中近邻文档选取了100个</strong> 。</p>
@@ -330,9 +318,11 @@ R(q_i,d) = \frac{(k_1+1)·f(q_i,d)}{f(q_i,d)+k_1·(1-b+b·\frac{|d|}{avgdL})}</s
 <p>这一处分母应该是$(df+0.5)$ 。少了一个括号！！！</p>
 <p>模型训练测试代码都在一个文件里：nbrreg.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NbrReg</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, lex_size, bit_size=<span class="number">32</span>, h_size=<span class="number">1000</span>)</span>:</span></span><br><span class="line">        super(NbrReg, self).__init__()</span><br><span class="line">        self.lnr_h1 = torch.nn.Linear(lex_size, h_size)</span><br><span class="line">        self.lnr_h2 = torch.nn.Linear(h_size, h_size)</span><br><span class="line">        self.lnr_mu = torch.nn.Linear(h_size, bit_size)</span><br><span class="line">        self.lnr_sigma = torch.nn.Linear(h_size, bit_size)</span><br><span class="line">        self.lnr_rec_doc = torch.nn.Linear(bit_size, lex_size)</span><br><span class="line">        self.lnr_nn_rec_doc = torch.nn.Linear(bit_size, lex_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, docs)</span>:</span></span><br><span class="line">        mu, sigma = self.encode(docs)</span><br><span class="line">        <span class="comment"># qdist表示语义向量s，服从正态分布 N~(mu,sigma^2)</span></span><br><span class="line">        qdist = tdist.Normal(mu, sigma)</span><br><span class="line">        log_prob_words, log_nn_prob_words = self.decode(qdist.rsample())</span><br><span class="line">        <span class="keyword">return</span> qdist, log_prob_words, log_nn_prob_words</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 对应论文中的编码函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, docs)</span>:</span></span><br><span class="line">        relu = torch.nn.ReLU()</span><br><span class="line">        sigmoid = torch.nn.Sigmoid()</span><br><span class="line">        hidden = relu(self.lnr_h2(relu(self.lnr_h1(docs))))</span><br><span class="line">        mu = self.lnr_mu(hidden)</span><br><span class="line">        <span class="comment"># Use sigmoid for positive standard deviation</span></span><br><span class="line">        sigma = sigmoid(self.lnr_sigma(hidden))</span><br><span class="line">        <span class="keyword">return</span> mu, sigma</span><br><span class="line">	<span class="comment"># 对应论文中解码函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, latent)</span>:</span></span><br><span class="line">        log_softmax = torch.nn.LogSoftmax(dim=<span class="number">1</span>)</span><br><span class="line">        log_prob_words = log_softmax(self.lnr_rec_doc(latent))</span><br><span class="line">        log_nn_prob_words = log_softmax(self.lnr_nn_rec_doc(latent))</span><br><span class="line">        <span class="keyword">return</span> log_prob_words, log_nn_prob_words</span><br></pre></td></tr></table></figure>
+
 <p>模型部分按照论文中的描述，使前馈神经网络就可以实现。值得一提的是 $qdist$ 应该才是文中对应的服从正态分布的语义向量 s。但在生成二进制哈希值时，取的是编码器输出的均值。</p>
 <p>训练代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(train_docs, train_cats, train_knn, cv_docs, cv_cats, bitsize=<span class="number">32</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">          epoch=<span class="number">30</span>, bsize=<span class="number">100</span>, lr=<span class="number">1e-3</span>, latent_size=<span class="number">1000</span>, resume=None,</span></span></span><br><span class="line"><span class="function"><span class="params">          imp_trial=<span class="number">0</span>)</span>:</span></span><br><span class="line">    nsize, lexsize = train_docs.shape</span><br><span class="line">    num_iter = int(np.ceil(nsize / bsize))</span><br><span class="line">    model = resume <span class="keyword">if</span> resume <span class="keyword">else</span> NbrReg(lexsize, bitsize, h_size=latent_size)</span><br><span class="line">    model.double()</span><br><span class="line">    optim = torch.optim.Adam(model.parameters(), lr=lr)</span><br><span class="line">    norm = tdist.Normal(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    best_prec = <span class="number">0.0</span></span><br><span class="line">    trial = <span class="number">0</span></span><br><span class="line">    epoch_range = itertools.count() <span class="keyword">if</span> imp_trial <span class="keyword">else</span> epoch</span><br><span class="line">    epoch = <span class="string">"INF"</span> <span class="keyword">if</span> imp_trial <span class="keyword">else</span> epoch</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> epoch_range:</span><br><span class="line">        model.train()</span><br><span class="line">        losses = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num_iter):</span><br><span class="line">            print(<span class="string">f"Epoch: <span class="subst">&#123;e + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;epoch&#125;</span>, Iteration: <span class="subst">&#123;i + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;num_iter&#125;</span>"</span>,</span><br><span class="line">                  end=<span class="string">"\r"</span>)</span><br><span class="line">            batch_i = np.random.choice(nsize, bsize)</span><br><span class="line">            np_batch = train_docs[batch_i].todense()</span><br><span class="line">            doc_batch = torch.from_numpy(np_batch).double()</span><br><span class="line">            knn_batch = train_knn[batch_i]</span><br><span class="line">            optim.zero_grad()</span><br><span class="line">            qdist, log_prob_words, log_nn_prob_words = model(doc_batch)</span><br><span class="line">            doc_rl = doc_rec_loss(log_prob_words, doc_batch)</span><br><span class="line">            doc_nn_rl = doc_nn_rec_loss(log_nn_prob_words, knn_batch,train_docs)</span><br><span class="line">            kl_loss = tdist.kl_divergence(qdist, norm)</span><br><span class="line">            kl_loss = torch.mean(torch.sum(kl_loss, dim=<span class="number">1</span>))</span><br><span class="line">            loss = doc_rl + doc_nn_rl + kl_loss</span><br><span class="line">            losses.append(loss.item())</span><br><span class="line">            loss.backward()</span><br><span class="line">            optim.step()</span><br><span class="line">        avg_loss = np.mean(losses)</span><br><span class="line">        avg_prec = test(train_docs, train_cats, cv_docs, cv_cats, model)</span><br><span class="line">        best_prec = max(avg_prec, best_prec)</span><br><span class="line">        print(<span class="string">f"Epoch <span class="subst">&#123;e + <span class="number">1</span>&#125;</span>: Avg Loss: <span class="subst">&#123;avg_loss&#125;</span>, Avg Prec: <span class="subst">&#123;avg_prec&#125;</span>"</span>)</span><br><span class="line">        <span class="keyword">if</span> best_prec == avg_prec:</span><br><span class="line">            trial = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            trial += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> trial == imp_trial:</span><br><span class="line">                print(<span class="string">f"Avg Prec could not be improved for <span class="subst">&#123;imp_trial&#125;</span> times, "</span></span><br><span class="line">                      <span class="string">"giving up training"</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model, best_prec</span><br></pre></td></tr></table></figure>
+
 <p>没有使用GPU！！！<code>kl_loss = tdist.kl_divergence(qdist, norm)​</code> 计算KL散度。norm 为标准正态分布。</p>
 <p>测试代码：</p>
 <p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126214013570.png" alt="image-20220126214013570"></p>
@@ -629,22 +619,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

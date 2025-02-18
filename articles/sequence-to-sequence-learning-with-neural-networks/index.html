@@ -256,11 +256,7 @@ ga('send', 'pageview');
 <li>4层 lstm</li>
 <li>将输入序列进行反转【a,b,c —&gt; c,b,a】【PS： 这就是传说中的反向操作吗？！莫名其妙的trick，滑稽.jpg】</li>
 </ul>
-<p>目标函数：</p>
-<script type="math/tex; mode=display">
-\frac{1}{|S|}\sum_{(T,S)\in S}logP(T|S)</script><p>S为训练集，T表示正确的翻译。训练结束后，进行翻译时，在模型产生的多个翻译结果中找到最可能正确的翻译：</p>
-<script type="math/tex; mode=display">
-\hat T = \mathop{argmax}_{T}P(T|S)</script><p>通过一个简单的 <em>left-to-right beam search</em> 解码器(decoder)搜索最可能的翻译。</p>
+<p>目标函数：<br>$$<br>\frac{1}{|S|}\sum_{(T,S)\in S}logP(T|S)<br>$$<br>S为训练集，T表示正确的翻译。训练结束后，进行翻译时，在模型产生的多个翻译结果中找到最可能正确的翻译：<br>$$<br>\hat T = \mathop{argmax}_{T}P(T|S)<br>$$<br>通过一个简单的 <em>left-to-right beam search</em> 解码器(decoder)搜索最可能的翻译。</p>
 <blockquote>
 <p>We search for the most likely translation using a simple left-to-right beam search decoder which maintains a small number B of partial hypotheses, where a partial hypothesis is a prefix of some translation. At each timestep we extend each partial hypothesis in the beam with every possible word in the vocabulary. This greatly increases the number of the hypotheses so we discard all but the B most likely hypotheses according to the model’s log probability. As soon as the “<EOS>“ symbol is appended to a hypothesis, it is removed from the beam and is added to the set of complete hypotheses. While this decoder is approximate, it is simple to implement. Interestingly, our system performs well even with a beam size of 1, and a beam of size 2 provides most of the benefits of beam search(Table 1).</EOS></p>
 </blockquote>
@@ -549,22 +545,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

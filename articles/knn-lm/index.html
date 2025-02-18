@@ -243,20 +243,13 @@ ga('send', 'pageview');
     
       <p>论文：<a href="https://arxiv.org/abs/1911.00172" target="_blank" rel="noopener">GENERALIZATION THROUGH MEMORIZATION: NEAREST NEIGHBOR LANGUAGE MODELS</a></p>
 <p>code：<a href="https://github.com/urvashik/knnlm" target="_blank" rel="noopener">knn-lm</a></p>
-<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90890672?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=1046686491727724544&amp;utm_campaign=shareopn" target="_blank" rel="noopener">香侬读 | 用上文K最近邻特征表示增强语言模型 </a></p>
+<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90890672?utm_source=wechat_session&utm_medium=social&utm_oi=1046686491727724544&utm_campaign=shareopn" target="_blank" rel="noopener">香侬读 | 用上文K最近邻特征表示增强语言模型 </a></p>
 <p>论文的主要思想是使用传统 <em>knn</em> 算法对预训练神经语言模型进行线性插值扩展。</p>
 <p>ps：传统算法在这个深度学习领域的一次融合……印象中，都是使用预训练模型在小数据集上进行微调，这篇论文似乎有点东西。</p>
-<p>对于语言模型<strong>LM</strong>，给定一个上下文序列tokens：</p>
-<script type="math/tex; mode=display">
-c_t = (w_1,...,w_{t-1})</script><p>自回归语言模型通过建模$p(w_t|c_t)$ 来预测目标词 $w_t$  的概率分布。</p>
+<p>对于语言模型<strong>LM</strong>，给定一个上下文序列tokens：<br>$$<br>c_t = (w_1,…,w_{t-1})<br>$$<br>自回归语言模型通过建模$p(w_t|c_t)$ 来预测目标词 $w_t$  的概率分布。</p>
 <p>kNN-LM可以在没有任何额外的训练情况下，用最邻近检索机制增强预训练语言模型。在模型预训练后，会对训练集的文本集合进行一次前向传播，任何得到 context-target pairs，并将其以键值对形式存储起来（a key-value datastore），以便在推理过程中查找。</p>
 <p><img src="/articles/knn-lm/image-20211109212234007.png" alt="image-20211109212234007"></p>
-<p>具体的：设语言模型为 f(·)，可以将一个上文 c 映射为固定长度的向量表示。对于给定的第 i 个训练样本$(c_i, w_i)\in D$ ，定义一个键值对$(k_i, v_i)$ ，$k_i$ 表示上文$c_i$ 的向量表示，$v_i$ 表示目标词$w_i$ ，<strong>datastore </strong>(K, V)表示这样一个集合：</p>
-<script type="math/tex; mode=display">
-(K, V) = \{(f(c_i), w_i)|(c_i,w_i)\in D\}</script><p>在推理阶段，对于给定上文信息 x ，预测 y 概率分布。使用knn算法进行插值，有：</p>
-<script type="math/tex; mode=display">
-p(y|x) = \lambda p_{knn}(y|x) + (1-\lambda)p_{LM}(y|x)\\
-p_{knn}(y|x) \propto \sum_{(k_i,v_i)\in N} 1_{y=v_i}exp(-d(k_i,f(x)))\\</script><p>$\lambda$ 表示调谐参数，N表示更具距离得到的k邻近集合。距离计算公式采用欧氏距离（L2范数）。在这里knn只是为了得到集合N。</p>
+<p>具体的：设语言模型为 f(·)，可以将一个上文 c 映射为固定长度的向量表示。对于给定的第 i 个训练样本$(c_i, w_i)\in D$ ，定义一个键值对$(k_i, v_i)$ ，$k_i$ 表示上文$c_i$ 的向量表示，$v_i$ 表示目标词$w_i$ ，*<em>datastore *</em>(K, V)表示这样一个集合：<br>$$<br>(K, V) = {(f(c_i), w_i)|(c_i,w_i)\in D}<br>$$<br>在推理阶段，对于给定上文信息 x ，预测 y 概率分布。使用knn算法进行插值，有：<br>$$<br>p(y|x) = \lambda p_{knn}(y|x) + (1-\lambda)p_{LM}(y|x)\<br>p_{knn}(y|x) \propto \sum_{(k_i,v_i)\in N} 1_{y=v_i}exp(-d(k_i,f(x)))\<br>$$<br>$\lambda$ 表示调谐参数，N表示更具距离得到的k邻近集合。距离计算公式采用欧氏距离（L2范数）。在这里knn只是为了得到集合N。</p>
 <p>当然这种使用knn算法的方法不免存在一些算法本身的缺点。一是距离计算公式的选择，二是查询速度，三是k的选择。对于一个预训练语言模型，需要的语料是巨大的，该方法需要将训练集语料的所有键值对保存下来，便于查询。可想而知，从如此巨大的键值对中获取 k 近邻集合N，其查询代价是相当巨大的！！！</p>
 <p>正因如此，为了knn-lm更好的work，在实现时，使用了FAISS库来加速查询过程。</p>
 <p><strong>一点补充</strong></p>
@@ -560,22 +553,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

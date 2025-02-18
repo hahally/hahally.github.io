@@ -15,12 +15,12 @@
     <meta name="keywords" content="Hahally,Django后端,Python,深度学习,机器学习,Hexo主题" />
   
 
-  <meta name="description" content="auth : hahally    start : 2020.1.11  colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setIn">
+  <meta name="description" content="auth : hahally  start : 2020.1.11 colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setInterva">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CopyText">
 <meta property="og:url" content="https://hahally.github.io/articles/CopyText/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="auth : hahally    start : 2020.1.11  colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setIn">
+<meta property="og:description" content="auth : hahally  start : 2020.1.11 colab 长连接脚本12345function ClickConnect()&amp;#123;    console.log(&quot;Clicked on connect button&quot;);     document.querySelector(&quot;colab-connect-button&quot;).click()&amp;#125;setInterva">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-12T03:28:56.000Z">
 <meta property="article:modified_time" content="2021-12-14T06:26:45.611Z">
@@ -250,34 +250,31 @@ ga('send', 'pageview');
   <div class="article-content">
     
       <blockquote>
-<pre><code>  auth : hahally
+<pre><code>auth : hahally
 
-  start : 2020.1.11
-</code></pre></blockquote>
+start : 2020.1.11</code></pre></blockquote>
 <h3 id="colab-长连接脚本"><a href="#colab-长连接脚本" class="headerlink" title="colab 长连接脚本"></a>colab 长连接脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
+
 <h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>常用命令</p>
 <blockquote>
-<pre><code> django-admin startproject locallibrary   # 创建项目
- python manage.py startapp catalog        # 创建应用
- python manage.py runserver               # 启动服务
- python manage.py makemigrations          # 数据库迁移
- python manage.py migrate
- python manage.py createsuperuser         # 创建管理员账号
-</code></pre></blockquote>
+<pre><code>django-admin startproject locallibrary   # 创建项目
+python manage.py startapp catalog        # 创建应用
+python manage.py runserver               # 启动服务
+python manage.py makemigrations          # 数据库迁移
+python manage.py migrate
+python manage.py createsuperuser         # 创建管理员账号</code></pre></blockquote>
 <pre><code>views.py
     posts.content = markdown.markdown(
     posts.content,
     extensions = [
         # 包含 缩写、表格等常用扩展
-        &#39;markdown.extensions.extra&#39;,
+        &apos;markdown.extensions.extra&apos;,
         # 语法高亮扩展
-        &#39;markdown.extensions.codehilite&#39;,
+        &apos;markdown.extensions.codehilite&apos;,
         ]
-    )
-</code></pre><h3 id="Scrapy-常用命令"><a href="#Scrapy-常用命令" class="headerlink" title="Scrapy 常用命令"></a>Scrapy 常用命令</h3><blockquote>
-<pre><code>           scrapy startproject proj     # 创建项目
-           scrapy crawl spider_name     # 运行爬虫
-</code></pre></blockquote>
+    )</code></pre><h3 id="Scrapy-常用命令"><a href="#Scrapy-常用命令" class="headerlink" title="Scrapy 常用命令"></a>Scrapy 常用命令</h3><blockquote>
+<pre><code>scrapy startproject proj     # 创建项目
+scrapy crawl spider_name     # 运行爬虫</code></pre></blockquote>
 <h3 id="python-第三方库安装源"><a href="#python-第三方库安装源" class="headerlink" title="python 第三方库安装源"></a>python 第三方库安装源</h3><pre><code>清华大学镜像
 https://pypi.tuna.tsinghua.edu.cn/simple/
 阿里云
@@ -287,26 +284,34 @@ https://pypi.mirrors.ustc.edu.cn/simple/
 豆瓣镜像
 http://pypi.douban.com/simple/
 中科大镜像2
-http://pypi.mirrors.ustc.edu.cn/simple/
-</code></pre><hr>
+http://pypi.mirrors.ustc.edu.cn/simple/</code></pre><hr>
 <h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><pre><code>      Auth       : hahally
 createTime       : 2019.10.26
-  abstract       : 大数据辅修学习笔记
-</code></pre><h4 id="jdk环境变量配置"><a href="#jdk环境变量配置" class="headerlink" title="jdk环境变量配置"></a><code>jdk</code>环境变量配置</h4><pre><code>    在、/etc/profile或~/.bashrc中的文件底部
-    JAVA_HOME=/usr/java/jdk1.8.0_162
-    JRE_HOME=$JAVA_HOME/jre
-    CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
-    PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
-    export JAVA_HOME JRE_HOME CLASS_PATH PATH
-    [root@master~]# source /etc/profile   使配置生效
-</code></pre><h4 id="windows-dos-命令"><a href="#windows-dos-命令" class="headerlink" title="windows dos 命令"></a><code>windows dos</code> 命令</h4><pre><code>    C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
-    C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程
-</code></pre><h4 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a><code>Linux</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
+  abstract       : 大数据辅修学习笔记</code></pre><h4 id="jdk环境变量配置"><a href="#jdk环境变量配置" class="headerlink" title="jdk环境变量配置"></a><code>jdk</code>环境变量配置</h4><pre><code>在、/etc/profile或~/.bashrc中的文件底部
+JAVA_HOME=/usr/java/jdk1.8.0_162
+JRE_HOME=$JAVA_HOME/jre
+CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+export JAVA_HOME JRE_HOME CLASS_PATH PATH
+[root@master~]# source /etc/profile   使配置生效</code></pre><h4 id="windows-dos-命令"><a href="#windows-dos-命令" class="headerlink" title="windows dos 命令"></a><code>windows dos</code> 命令</h4><pre><code>C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
+C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程</code></pre><h4 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a><code>Linux</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
+
 <h4 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a><code>git</code> 命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init   初始化</span><br><span class="line">git add filename  将上传文件加到缓冲区</span><br><span class="line">git commit [-m] [注释]</span><br><span class="line">git remote add origin https://github.com/[用户名名]/[仓库名].git</span><br><span class="line">git push -u origin master -f    上传到远程仓库分支</span><br><span class="line">git clone https://github.com/[用户名名]/[仓库名].git        拉取代码</span><br></pre></td></tr></table></figure>
+
 <h4 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a><code>docker</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# sudo docker run -it -v /home/hahally/myimage:/data --name slave2 -h slave2 new_image:newhadoop /bin/bash      运行容器指定共享目录</span><br><span class="line">[root@master~]# sudo docker start slave2      启动容器</span><br><span class="line">[root@master~]# sudo docker exec -i -t s2 /bin/bash		进入容器</span><br><span class="line">[root@master~]# docker commit master new_image:tag    提交容器</span><br><span class="line">[root@master~]# sudo docker rm contianername          删除容器</span><br><span class="line">[root@master~]# sudo docker rmi imagesname            删除镜像</span><br><span class="line">[root@master~]# sudo docker rename name1 name2        重新命名容器</span><br></pre></td></tr></table></figure>
+
 <h4 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a><code>hadoop</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# hadoop dfsadmin -report      命令查看磁盘使用情况</span><br><span class="line">[root@master~]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output 运行jar包</span><br><span class="line">[root@master~]# hadoop dfsadmin -safemode leave    退出安全模式</span><br><span class="line">[root@master~]# hadoop jar  x.jar  MainClassName[主类名称] [inputPath] [outputPath]</span><br></pre></td></tr></table></figure>
+
 <h4 id="运行hadoop自带MapReduce程序"><a href="#运行hadoop自带MapReduce程序" class="headerlink" title="运行hadoop自带MapReduce程序"></a>运行<code>hadoop</code>自带<code>MapReduce</code>程序</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.5]# hadoop fs -mkdir -p /wordcount/input              [创建一个目录]</span><br><span class="line">[root@master hadoop-2.7.5]# hadoop fs -put a.txt  b.txt  /wordcount/input     [将文件上传到input文件夹中]</span><br><span class="line">[root@master hadoop-2.7.5]# cd share/hadoop/mapreduce/                        [进入程序所在目录]</span><br><span class="line">[root@master mapreduce]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output   [运行jar包]</span><br><span class="line">[root@master mapreduce]# hadoop fs -cat /wordcount/output/part-r-00000     [查看输出结果]</span><br></pre></td></tr></table></figure>
-<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4><p>环境变量<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure><br><code>spark-env.sh</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure><br>运行<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure></p>
+
+<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4><p>环境变量</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+<p><code>spark-env.sh</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure>
+<p>运行</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure>
+
+
 <h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>运行<code>jar</code>包时，先删掉 <code>/output</code>文件夹，否则无法发查看输出结果</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk1.8.0_162</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JRE_HOME</span>=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=.:$&#123;JAVA_HOME&#125;/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_HOME</span>=/usr/local/hadoop-2.7.5</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:/usr/local/hbase-1.3.6/bin</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_HOME</span>=/usr/local/hbase-1.3.6</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_CLASSPATH</span>=/usr/local/hbase-1.3.6/lib/hbase-common-1.3.6.jar:/usr/local/hbase-1.3.6/lib/</span><br><span class="line">hbase-server-1.3.6.jar</span><br></pre></td></tr></table></figure>
     
@@ -587,22 +592,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

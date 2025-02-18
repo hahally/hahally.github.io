@@ -254,6 +254,7 @@ ga('send', 'pageview');
 <hr>
 <h3 id="Paginator-对象"><a href="#Paginator-对象" class="headerlink" title="Paginator 对象"></a>Paginator 对象</h3><p>先看看源码中的初始化或者说构造方法:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Paginator</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, object_list, per_page, orphans=<span class="number">0</span>,allow_empty_first_page=True)</span>:</span></span><br><span class="line">		self.object_list = object_list</span><br><span class="line">		self._check_object_list_is_ordered()</span><br><span class="line">		self.per_page = int(per_page)</span><br><span class="line">		self.orphans = int(orphans)</span><br><span class="line">		self.allow_empty_first_page = allow_empty_first_page</span><br></pre></td></tr></table></figure>
+
 <p>显然，要创建一个 Paginator 对象, 就不得不提供 object_list 和 per_page 对象。</p>
 <p><code>object_list</code></p>
 <blockquote>
@@ -274,16 +275,17 @@ ga('send', 'pageview');
 <h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>文档中给出了一个十分详细的例子供我们参考：</p>
 <p>在我们的视图 views.py 中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">listing</span><span class="params">(request)</span>:</span></span><br><span class="line">    contact_list = Contacts.objects.all()</span><br><span class="line">    paginator = Paginator(contact_list, <span class="number">25</span>) <span class="comment"># Show 25 contacts per page</span></span><br><span class="line">    page = request.GET.get(<span class="string">'page'</span>)</span><br><span class="line">    contacts = paginator.get_page(page)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'list.html'</span>, &#123;<span class="string">'contacts'</span>: contacts&#125;)</span><br></pre></td></tr></table></figure>
+
 <p>在我们的模板 list.html 中：</p>
 <figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> contact <span class="keyword">in</span> contacts %&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="comment">&#123;# Each "contact" is a Contact model object. #&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; contact.full_name|<span class="name">upper</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">    ...</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"step-links"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> contacts.has_previous %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=1"</span>&gt;</span><span class="symbol">&amp;laquo;</span> first<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.previous_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>previous<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"current"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            Page </span><span class="template-variable">&#123;&#123; contacts.number &#125;&#125;</span><span class="xml"> of </span><span class="template-variable">&#123;&#123; contacts.paginator.num_pages &#125;&#125;</span><span class="xml">.</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> contacts.has_next %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.next_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>next<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.paginator.num_pages &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>last <span class="symbol">&amp;raquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
 <p>一点点注释：</p>
 <blockquote>
 <pre><code>has_previous() 判断是否有上一页
 has_next() 判断是否有上一页
 previous_page_number() 返回上一个页码
 contacts.number 一个基于 1 的页码
-paginator.num_pages() 页码的基于 1 的范围迭代器
-</code></pre></blockquote>
+paginator.num_pages() 页码的基于 1 的范围迭代器</code></pre></blockquote>
 <p>获取更多可以参考 <a href="https://docs.djangoproject.com/zh-hans/2.1/topics/pagination/#example" target="_blank" rel="noopener">官方文档</a></p>
 <hr>
 <h3 id="欢迎参观"><a href="#欢迎参观" class="headerlink" title="欢迎参观"></a>欢迎参观</h3><p>学Django时，顺便写了简单的<a href="http://114.55.102.217/blog/" target="_blank" rel="noopener">个人博客</a>。前端用的<a href="https://www.bootcss.com/" target="_blank" rel="noopener">bootstrap</a>框架。笔记都会同步的。</p>
@@ -566,22 +568,7 @@ gitalk.render('gitalk-container')
       // load success
     });
   }
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
