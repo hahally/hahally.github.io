@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Pacifico:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -223,18 +223,16 @@
           <blockquote>
 <pre><code>  auth : hahally
 
-  start : 2020.1.11
-</code></pre></blockquote>
-<h3 id="colab-长连接脚本"><a href="#colab-长连接脚本" class="headerlink" title="colab 长连接脚本"></a>colab 长连接脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>常用命令</p>
-<blockquote>
-<pre><code> django-admin startproject locallibrary   # 创建项目
- python manage.py startapp catalog        # 创建应用
- python manage.py runserver               # 启动服务
- python manage.py makemigrations          # 数据库迁移
- python manage.py migrate
- python manage.py createsuperuser         # 创建管理员账号
-</code></pre></blockquote>
+  start : 2020.1.11</code></pre>
+</blockquote>
+<h3 id="colab-长连接脚本">colab 长连接脚本</h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="django">Django</h3>
+<p>常用命令 &gt; django-admin startproject locallibrary # 创建项目 &gt;
+python manage.py startapp catalog # 创建应用 &gt; python manage.py
+runserver # 启动服务 &gt; python manage.py makemigrations # 数据库迁移
+&gt; python manage.py migrate &gt; python manage.py createsuperuser #
+创建管理员账号</p>
 <pre><code>views.py
     posts.content = markdown.markdown(
     posts.content,
@@ -244,12 +242,14 @@
         # 语法高亮扩展
         &#39;markdown.extensions.codehilite&#39;,
         ]
-    )
-</code></pre><h3 id="Scrapy-常用命令"><a href="#Scrapy-常用命令" class="headerlink" title="Scrapy 常用命令"></a>Scrapy 常用命令</h3><blockquote>
-<pre><code>           scrapy startproject proj     # 创建项目
-           scrapy crawl spider_name     # 运行爬虫
-</code></pre></blockquote>
-<h3 id="python-第三方库安装源"><a href="#python-第三方库安装源" class="headerlink" title="python 第三方库安装源"></a>python 第三方库安装源</h3><pre><code>清华大学镜像
+    )</code></pre>
+<h3 id="scrapy-常用命令">Scrapy 常用命令</h3>
+<blockquote>
+<pre><code>          scrapy startproject proj     # 创建项目
+          scrapy crawl spider_name     # 运行爬虫</code></pre>
+</blockquote>
+<h3 id="python-第三方库安装源">python 第三方库安装源</h3>
+<pre><code>清华大学镜像
 https://pypi.tuna.tsinghua.edu.cn/simple/
 阿里云
 http://mirrors.aliyun.com/pypi/simple/
@@ -258,28 +258,41 @@ https://pypi.mirrors.ustc.edu.cn/simple/
 豆瓣镜像
 http://pypi.douban.com/simple/
 中科大镜像2
-http://pypi.mirrors.ustc.edu.cn/simple/
-</code></pre><hr>
-<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><pre><code>      Auth       : hahally
+http://pypi.mirrors.ustc.edu.cn/simple/</code></pre>
+<hr>
+<h3 id="笔记">笔记</h3>
+<pre><code>      Auth       : hahally
 createTime       : 2019.10.26
-  abstract       : 大数据辅修学习笔记
-</code></pre><h4 id="jdk环境变量配置"><a href="#jdk环境变量配置" class="headerlink" title="jdk环境变量配置"></a><code>jdk</code>环境变量配置</h4><pre><code>    在、/etc/profile或~/.bashrc中的文件底部
+  abstract       : 大数据辅修学习笔记</code></pre>
+<h4 id="jdk环境变量配置"><code>jdk</code>环境变量配置</h4>
+<pre><code>    在、/etc/profile或~/.bashrc中的文件底部
     JAVA_HOME=/usr/java/jdk1.8.0_162
     JRE_HOME=$JAVA_HOME/jre
     CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
     PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
     export JAVA_HOME JRE_HOME CLASS_PATH PATH
-    [root@master~]# source /etc/profile   使配置生效
-</code></pre><h4 id="windows-dos-命令"><a href="#windows-dos-命令" class="headerlink" title="windows dos 命令"></a><code>windows dos</code> 命令</h4><pre><code>    C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
-    C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程
-</code></pre><h4 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a><code>Linux</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
-<h4 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a><code>git</code> 命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init   初始化</span><br><span class="line">git add filename  将上传文件加到缓冲区</span><br><span class="line">git commit [-m] [注释]</span><br><span class="line">git remote add origin https://github.com/[用户名名]/[仓库名].git</span><br><span class="line">git push -u origin master -f    上传到远程仓库分支</span><br><span class="line">git clone https://github.com/[用户名名]/[仓库名].git        拉取代码</span><br></pre></td></tr></table></figure>
-<h4 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a><code>docker</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# sudo docker run -it -v /home/hahally/myimage:/data --name slave2 -h slave2 new_image:newhadoop /bin/bash      运行容器指定共享目录</span><br><span class="line">[root@master~]# sudo docker start slave2      启动容器</span><br><span class="line">[root@master~]# sudo docker exec -i -t s2 /bin/bash		进入容器</span><br><span class="line">[root@master~]# docker commit master new_image:tag    提交容器</span><br><span class="line">[root@master~]# sudo docker rm contianername          删除容器</span><br><span class="line">[root@master~]# sudo docker rmi imagesname            删除镜像</span><br><span class="line">[root@master~]# sudo docker rename name1 name2        重新命名容器</span><br></pre></td></tr></table></figure>
-<h4 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a><code>hadoop</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# hadoop dfsadmin -report      命令查看磁盘使用情况</span><br><span class="line">[root@master~]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output 运行jar包</span><br><span class="line">[root@master~]# hadoop dfsadmin -safemode leave    退出安全模式</span><br><span class="line">[root@master~]# hadoop jar  x.jar  MainClassName[主类名称] [inputPath] [outputPath]</span><br></pre></td></tr></table></figure>
-<h4 id="运行hadoop自带MapReduce程序"><a href="#运行hadoop自带MapReduce程序" class="headerlink" title="运行hadoop自带MapReduce程序"></a>运行<code>hadoop</code>自带<code>MapReduce</code>程序</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.5]# hadoop fs -mkdir -p /wordcount/input              [创建一个目录]</span><br><span class="line">[root@master hadoop-2.7.5]# hadoop fs -put a.txt  b.txt  /wordcount/input     [将文件上传到input文件夹中]</span><br><span class="line">[root@master hadoop-2.7.5]# cd share/hadoop/mapreduce/                        [进入程序所在目录]</span><br><span class="line">[root@master mapreduce]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output   [运行jar包]</span><br><span class="line">[root@master mapreduce]# hadoop fs -cat /wordcount/output/part-r-00000     [查看输出结果]</span><br></pre></td></tr></table></figure>
-<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4><p>环境变量<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure><br><code>spark-env.sh</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure><br>运行<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure></p>
-<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>运行<code>jar</code>包时，先删掉 <code>/output</code>文件夹，否则无法发查看输出结果</p>
+    [root@master~]# source /etc/profile   使配置生效</code></pre>
+<h4 id="windows-dos-命令"><code>windows dos</code> 命令</h4>
+<pre><code>    C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
+    C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程</code></pre>
+<h4 id="linux命令"><code>Linux</code>命令</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
+<h4 id="git-命令"><code>git</code> 命令</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init   初始化</span><br><span class="line">git add filename  将上传文件加到缓冲区</span><br><span class="line">git commit [-m] [注释]</span><br><span class="line">git remote add origin https://github.com/[用户名名]/[仓库名].git</span><br><span class="line">git push -u origin master -f    上传到远程仓库分支</span><br><span class="line">git clone https://github.com/[用户名名]/[仓库名].git        拉取代码</span><br></pre></td></tr></table></figure>
+<h4 id="docker命令"><code>docker</code>命令</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# sudo docker run -it -v /home/hahally/myimage:/data --name slave2 -h slave2 new_image:newhadoop /bin/bash      运行容器指定共享目录</span><br><span class="line">[root@master~]# sudo docker start slave2      启动容器</span><br><span class="line">[root@master~]# sudo docker exec -i -t s2 /bin/bash		进入容器</span><br><span class="line">[root@master~]# docker commit master new_image:tag    提交容器</span><br><span class="line">[root@master~]# sudo docker rm contianername          删除容器</span><br><span class="line">[root@master~]# sudo docker rmi imagesname            删除镜像</span><br><span class="line">[root@master~]# sudo docker rename name1 name2        重新命名容器</span><br></pre></td></tr></table></figure>
+<h4 id="hadoop命令"><code>hadoop</code>命令</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# hadoop dfsadmin -report      命令查看磁盘使用情况</span><br><span class="line">[root@master~]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output 运行jar包</span><br><span class="line">[root@master~]# hadoop dfsadmin -safemode leave    退出安全模式</span><br><span class="line">[root@master~]# hadoop jar  x.jar  MainClassName[主类名称] [inputPath] [outputPath]</span><br></pre></td></tr></table></figure>
+<h4 id="运行hadoop自带mapreduce程序">运行<code>hadoop</code>自带<code>MapReduce</code>程序</h4>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.5]# hadoop fs -mkdir -p /wordcount/input              [创建一个目录]</span><br><span class="line">[root@master hadoop-2.7.5]# hadoop fs -put a.txt  b.txt  /wordcount/input     [将文件上传到input文件夹中]</span><br><span class="line">[root@master hadoop-2.7.5]# cd share/hadoop/mapreduce/                        [进入程序所在目录]</span><br><span class="line">[root@master mapreduce]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output   [运行jar包]</span><br><span class="line">[root@master mapreduce]# hadoop fs -cat /wordcount/output/part-r-00000     [查看输出结果]</span><br></pre></td></tr></table></figure>
+<h4 id="spark">Spark</h4>
+<p>环境变量 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure> <code>spark-env.sh</code> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure> 运行
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure></p>
+<h4 id="注意点">注意点</h4>
+<p>运行<code>jar</code>包时，先删掉
+<code>/output</code>文件夹，否则无法发查看输出结果</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk1.8.0_162</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JRE_HOME</span>=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=.:$&#123;JAVA_HOME&#125;/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_HOME</span>=/usr/local/hadoop-2.7.5</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:/usr/local/hbase-1.3.6/bin</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_HOME</span>=/usr/local/hbase-1.3.6</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_CLASSPATH</span>=/usr/local/hbase-1.3.6/lib/hbase-common-1.3.6.jar:/usr/local/hbase-1.3.6/lib/</span><br><span class="line">hbase-server-1.3.6.jar</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -352,28 +365,56 @@ createTime       : 2019.10.26
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>随着自己写的博客日益增加，博客列表页的展示也逐渐变得有些力不从心。要浏览所有的博客就不得不疯狂的滑鼠标。冗长的页面带来的体验十分的差劲。这个时候不得不将他们做一下简单分页处理。分页的方式有很多，而便捷的 Django 为我们准备了十分友好的类 <code>Paginator</code> 来帮助我们进行分页。</p>
+          <h3 id="写在前面">写在前面</h3>
+<p>随着自己写的博客日益增加，博客列表页的展示也逐渐变得有些力不从心。要浏览所有的博客就不得不疯狂的滑鼠标。冗长的页面带来的体验十分的差劲。这个时候不得不将他们做一下简单分页处理。分页的方式有很多，而便捷的
+Django 为我们准备了十分友好的类 <code>Paginator</code>
+来帮助我们进行分页。</p>
 <hr>
-<h3 id="Paginator-对象"><a href="#Paginator-对象" class="headerlink" title="Paginator 对象"></a>Paginator 对象</h3><p>先看看源码中的初始化或者说构造方法:</p>
+<h3 id="paginator-对象">Paginator 对象</h3>
+<p>先看看源码中的初始化或者说构造方法:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Paginator</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, object_list, per_page, orphans=<span class="number">0</span>,allow_empty_first_page=True)</span>:</span></span><br><span class="line">		self.object_list = object_list</span><br><span class="line">		self._check_object_list_is_ordered()</span><br><span class="line">		self.per_page = int(per_page)</span><br><span class="line">		self.orphans = int(orphans)</span><br><span class="line">		self.allow_empty_first_page = allow_empty_first_page</span><br></pre></td></tr></table></figure>
-<p>显然，要创建一个 Paginator 对象, 就不得不提供 object_list 和 per_page 对象。</p>
+<p>显然，要创建一个 Paginator 对象, 就不得不提供 object_list 和 per_page
+对象。</p>
 <p><code>object_list</code></p>
 <blockquote>
-<p>A list, tuple, QuerySet, or other sliceable object with a count() or <strong>len</strong>() method. For consistent pagination, QuerySets should be ordered, e.g. with an order_by() clause or with a default ordering on the model.</p>
+<p>A list, tuple, QuerySet, or other sliceable object with a count() or
+<strong>len</strong>() method. For consistent pagination, QuerySets
+should be ordered, e.g. with an order_by() clause or with a default
+ordering on the model.</p>
 </blockquote>
-<p>从这段文档说明中，可以大致了解 object_list 是个这样的对象：列表、元组、QuerySet…同时，文档建议如果是 QuerySet 对象的话，应当对其进行排序，如使用 order_by() 方法，或者采用模型中默认的排序方法。</p>
+<p>从这段文档说明中，可以大致了解 object_list
+是个这样的对象：列表、元组、QuerySet…同时，文档建议如果是 QuerySet
+对象的话，应当对其进行排序，如使用 order_by()
+方法，或者采用模型中默认的排序方法。</p>
 <p><code>per_page</code></p>
 <blockquote>
-<p>The maximum number of items to include on a page, not including orphans (see the orphans optional argument below).</p>
+<p>The maximum number of items to include on a page, not including
+orphans (see the orphans optional argument below).</p>
 </blockquote>
-<p>显然，per_page 指的是每页要展示的选项最大个数。例如：每页显示 5 篇文章，那么就是 <code>per_page=5</code>。同时也强调，不包括 orphans。</p>
+<p>显然，per_page 指的是每页要展示的选项最大个数。例如：每页显示 5
+篇文章，那么就是 <code>per_page=5</code>。同时也强调，不包括
+orphans。</p>
 <p><code>orphans</code></p>
 <blockquote>
-<p>Use this when you don’t want to have a last page with very few items. If the last page would normally have a number of items less than or equal to orphans, then those items will be added to the previous page (which becomes the last page) instead of leaving the items on a page by themselves. For example, with 23 items, per_page=10, and orphans=3, there will be two pages; the first page with 10 items and the second (and last) page with 13 items. orphans defaults to zero, which means pages are never combined and the last page may have one item.</p>
+<p>Use this when you don’t want to have a last page with very few items.
+If the last page would normally have a number of items less than or
+equal to orphans, then those items will be added to the previous page
+(which becomes the last page) instead of leaving the items on a page by
+themselves. For example, with 23 items, per_page=10, and orphans=3,
+there will be two pages; the first page with 10 items and the second
+(and last) page with 13 items. orphans defaults to zero, which means
+pages are never combined and the last page may have one item.</p>
 </blockquote>
-<p>orphans 顾名思义就是孤儿的意思。通俗来讲就是，在分页时，发现最后一页可能就只有一两个选项去了，如果觉得最后一页只是很少一部分，不想单独占一页，那么就可以将其添加在前一页中。而 orphans 值恰恰就是这样一个阈值，当小于它时，就可以将剩下那部分加到前一页中。假设我们有 23 个选项，每页展示是个选项，那么最多可以分成 3 页，第三页就只有 3 个选项。如果我们设置 orphans 大于等于 3，那么第一页是 10，第二页是 13 了。</p>
+<p>orphans
+顾名思义就是孤儿的意思。通俗来讲就是，在分页时，发现最后一页可能就只有一两个选项去了，如果觉得最后一页只是很少一部分，不想单独占一页，那么就可以将其添加在前一页中。而
+orphans
+值恰恰就是这样一个阈值，当小于它时，就可以将剩下那部分加到前一页中。假设我们有
+23 个选项，每页展示是个选项，那么最多可以分成 3 页，第三页就只有 3
+个选项。如果我们设置 orphans 大于等于 3，那么第一页是 10，第二页是 13
+了。</p>
 <hr>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>文档中给出了一个十分详细的例子供我们参考：</p>
+<h3 id="如何使用">如何使用</h3>
+<p>文档中给出了一个十分详细的例子供我们参考：</p>
 <p>在我们的视图 views.py 中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">listing</span><span class="params">(request)</span>:</span></span><br><span class="line">    contact_list = Contacts.objects.all()</span><br><span class="line">    paginator = Paginator(contact_list, <span class="number">25</span>) <span class="comment"># Show 25 contacts per page</span></span><br><span class="line">    page = request.GET.get(<span class="string">'page'</span>)</span><br><span class="line">    contacts = paginator.get_page(page)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'list.html'</span>, &#123;<span class="string">'contacts'</span>: contacts&#125;)</span><br></pre></td></tr></table></figure>
 <p>在我们的模板 list.html 中：</p>
@@ -384,11 +425,12 @@ createTime       : 2019.10.26
 has_next() 判断是否有上一页
 previous_page_number() 返回上一个页码
 contacts.number 一个基于 1 的页码
-paginator.num_pages() 页码的基于 1 的范围迭代器
-</code></pre></blockquote>
+paginator.num_pages() 页码的基于 1 的范围迭代器</code></pre>
+</blockquote>
 <p>获取更多可以参考 <a href="https://docs.djangoproject.com/zh-hans/2.1/topics/pagination/#example" target="_blank" rel="noopener">官方文档</a></p>
 <hr>
-<h3 id="欢迎参观"><a href="#欢迎参观" class="headerlink" title="欢迎参观"></a>欢迎参观</h3><p>学Django时，顺便写了简单的<a href="http://114.55.102.217/blog/" target="_blank" rel="noopener">个人博客</a>。前端用的<a href="https://www.bootcss.com/" target="_blank" rel="noopener">bootstrap</a>框架。笔记都会同步的。</p>
+<h3 id="欢迎参观">欢迎参观</h3>
+<p>学Django时，顺便写了简单的<a href="http://114.55.102.217/blog/" target="_blank" rel="noopener">个人博客</a>。前端用的<a href="https://www.bootcss.com/" target="_blank" rel="noopener">bootstrap</a>框架。笔记都会同步的。</p>
 
       
     </div>
