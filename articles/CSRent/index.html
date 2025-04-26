@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hahally.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="交互式Python爬虫分析实例小项目  先抛出项目地址吧： 厦门大学数据库实验室 项目简述实现一个简单的交互式的租房信息分析展示 $web$ 平台。 数据来源 ： http:&#x2F;&#x2F;www.xhj.com&#x2F;zufang&#x2F; 技术栈 ：  $python$ 爬虫 $pyspark$ 数据分析 $flask$  $web$ 后端 $pyecharts$  可视化  最终呈现效果 ：   租房信息爬取地址：">
+  <meta name="description" content="交互式Python爬虫分析实例小项目  先抛出项目地址吧： 厦门大学数据库实验室 项目简述 实现一个简单的交互式的租房信息分析展示 web 平台。 数据来源 ： http:&#x2F;&#x2F;www.xhj.com&#x2F;zufang&#x2F; 技术栈 ：  python 爬虫 pyspark 数据分析 flask web 后端 pyecharts 可视化  最终呈现效果 ：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSRent">
 <meta property="og:url" content="https://hahally.github.io/articles/CSRent/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="交互式Python爬虫分析实例小项目  先抛出项目地址吧： 厦门大学数据库实验室 项目简述实现一个简单的交互式的租房信息分析展示 $web$ 平台。 数据来源 ： http:&#x2F;&#x2F;www.xhj.com&#x2F;zufang&#x2F; 技术栈 ：  $python$ 爬虫 $pyspark$ 数据分析 $flask$  $web$ 后端 $pyecharts$  可视化  最终呈现效果 ：   租房信息爬取地址：">
+<meta property="og:description" content="交互式Python爬虫分析实例小项目  先抛出项目地址吧： 厦门大学数据库实验室 项目简述 实现一个简单的交互式的租房信息分析展示 web 平台。 数据来源 ： http:&#x2F;&#x2F;www.xhj.com&#x2F;zufang&#x2F; 技术栈 ：  python 爬虫 pyspark 数据分析 flask web 后端 pyecharts 可视化  最终呈现效果 ：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hahally.github.io/articles/CSRent/image-20200517220605897.png">
 <meta property="og:image" content="https://hahally.github.io/articles/CSRent/image-20200517220645343.png">
@@ -226,57 +226,108 @@
 <p>交互式Python爬虫分析实例小项目</p>
 </blockquote>
 <p>先抛出项目地址吧： <a href="http://dblab.xmu.edu.cn/blog/2355/#more-2355" target="_blank" rel="noopener">厦门大学数据库实验室</a></p>
-<h3 id="项目简述"><a href="#项目简述" class="headerlink" title="项目简述"></a>项目简述</h3><p>实现一个简单的交互式的租房信息分析展示 $web$ 平台。</p>
-<p>数据来源 ： <a href="http://www.xhj.com/zufang/" target="_blank" rel="noopener">http://www.xhj.com/zufang/</a></p>
+<h3 id="项目简述">项目简述</h3>
+<p>实现一个简单的交互式的租房信息分析展示 <span class="math inline"><em>w</em><em>e</em><em>b</em></span> 平台。</p>
+<p>数据来源 ： http://www.xhj.com/zufang/</p>
 <p><strong>技术栈</strong> ：</p>
 <ul>
-<li>$python$ 爬虫</li>
-<li>$pyspark$ 数据分析</li>
-<li>$flask$  $web$ 后端</li>
-<li>$pyecharts$  可视化</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>t</em><em>h</em><em>o</em><em>n</em></span>
+爬虫</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>s</em><em>p</em><em>a</em><em>r</em><em>k</em></span>
+数据分析</li>
+<li><span class="math inline"><em>f</em><em>l</em><em>a</em><em>s</em><em>k</em></span>
+<span class="math inline"><em>w</em><em>e</em><em>b</em></span>
+后端</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>e</em><em>c</em><em>h</em><em>a</em><em>r</em><em>t</em><em>s</em></span>
+可视化</li>
 </ul>
 <p><strong>最终呈现效果</strong> ：</p>
-<p><img src="/articles/CSRent/image-20200517220605897.png" alt="image-20200517220605897"></p>
-<p><img src="/articles/CSRent/image-20200517220645343.png" alt="image-20200517220645343"></p>
-<h3 id="租房信息爬取"><a href="#租房信息爬取" class="headerlink" title="租房信息爬取"></a>租房信息爬取</h3><p>地址： <a href="http://www.xhj.com/zufang/" target="_blank" rel="noopener">http://www.xhj.com/zufang/</a></p>
-<p><img src="/articles/CSRent/image-20200517222251986.png" alt="image-20200517222251986"></p>
+<figure>
+<img src="/articles/CSRent/image-20200517220605897.png" alt="image-20200517220605897">
+<figcaption aria-hidden="true">image-20200517220605897</figcaption>
+</figure>
+<figure>
+<img src="/articles/CSRent/image-20200517220645343.png" alt="image-20200517220645343">
+<figcaption aria-hidden="true">image-20200517220645343</figcaption>
+</figure>
+<h3 id="租房信息爬取">租房信息爬取</h3>
+<p>地址： http://www.xhj.com/zufang/</p>
+<figure>
+<img src="/articles/CSRent/image-20200517222251986.png" alt="image-20200517222251986">
+<figcaption aria-hidden="true">image-20200517222251986</figcaption>
+</figure>
 <p><strong>网页分析</strong></p>
-<h4 id="地址分析"><a href="#地址分析" class="headerlink" title="地址分析"></a>地址分析</h4><p>在 <em>区域找房</em>  一栏找到长沙的各个区域。这里选取了长沙的六个区：【天心区、芙蓉区、开福区、岳麓区、雨花区、望城】</p>
-<p>逐个点击 六个区可以观察到每个区域都对应有 $40$ 页 ，而且地址可以简单按下面这样方式拼接：</p>
+<h4 id="地址分析">地址分析</h4>
+<p>在 <em>区域找房</em>
+一栏找到长沙的各个区域。这里选取了长沙的六个区：【天心区、芙蓉区、开福区、岳麓区、雨花区、望城】</p>
+<p>逐个点击 六个区可以观察到每个区域都对应有 <span class="math inline">40</span> 页
+，而且地址可以简单按下面这样方式拼接：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>www.xhj.com<span class="regexp">/zufang/</span> + 区域+<span class="regexp">/pg + 页码/</span></span><br></pre></td></tr></table></figure>
 <p>所以代码中可以这样构造地址：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">base_url</span> = <span class="string">'http://www.xhj.com/zufang/'</span></span><br><span class="line"><span class="attr">param</span> = [<span class="string">'tianxinqu'</span>,<span class="string">'furongqu'</span>,<span class="string">'kaifuqu'</span>,<span class="string">'yueluqu'</span>,<span class="string">'yuhuaqu'</span>,<span class="string">'wangcheng'</span>]</span><br><span class="line"><span class="comment"># region in param</span></span><br><span class="line"><span class="attr">url</span> = base_url + region + <span class="string">'/pg%d/'</span>%i <span class="comment"># region为区域，i 为页码</span></span><br></pre></td></tr></table></figure>
 <p>这样很容易就可以通过两个循环来爬取我们需要的数据了。</p>
-<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>通过开发者工具查看源码：</p>
-<p><img src="/articles/CSRent/image-20200517223429820.png" alt="image-20200517223429820"></p>
-<p>显然，这个网站的前端非常的给力，结构一目了然，而且没有动态加载。要是能改为 $ajax$ 的请求方式加载数据或许会更友好。</p>
-<p>不用仔细观察都可以看见，每个租房信息都被一个 <code>&lt;div​ class=&quot;lp_wrap&quot;&gt;...&lt;/div&gt;​</code> 包裹着。</p>
-<p>我们很容易就可以通过 $xpath$ 定位到每个租房信息，像这样：</p>
+<h4 id="源码分析">源码分析</h4>
+<p>通过开发者工具查看源码：</p>
+<figure>
+<img src="/articles/CSRent/image-20200517223429820.png" alt="image-20200517223429820">
+<figcaption aria-hidden="true">image-20200517223429820</figcaption>
+</figure>
+<p>显然，这个网站的前端非常的给力，结构一目了然，而且没有动态加载。要是能改为
+<span class="math inline"><em>a</em><em>j</em><em>a</em><em>x</em></span>
+的请求方式加载数据或许会更友好。</p>
+<p>不用仔细观察都可以看见，每个租房信息都被一个
+<code>&lt;div​ class="lp_wrap"&gt;...&lt;/div&gt;​</code> 包裹着。</p>
+<p>我们很容易就可以通过 <span class="math inline"><em>x</em><em>p</em><em>a</em><em>t</em><em>h</em></span>
+定位到每个租房信息，像这样：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># html is the source code of webpage.</span></span><br><span class="line"><span class="attr">div</span> = html.xpath(<span class="string">'//*/div[@class="lp_wrap"]'</span>)</span><br></pre></td></tr></table></figure>
-<p>这样提取的 <code>div​</code> 对象为一个 $list$ 。最后将结果保存在 <code>rent_info.csv</code> 中。</p>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>经过这么一波并不花里胡哨的简单操作和分析，基本上可以写出对应的代码了。但是，这看似普普通通的网站，还是会封你的 $ip$ 的。所以，一般的加 <code>headers[&#39;User-Agent&#39;]​</code>  已经不行了。这里，我选择了添加代理来绕过它的反爬机制。【备注：很久之前爬过免费高匿代理存放在 <code>mongodb</code> 中】</p>
-<p>(此处省略个几百字)一顿花里胡哨的操作后，数据库中的代理 $ip$ 果然已经基本失效了。毕竟一年多了。</p>
+<p>这样提取的 <code>div​</code> 对象为一个 <span class="math inline"><em>l</em><em>i</em><em>s</em><em>t</em></span>
+。最后将结果保存在 <code>rent_info.csv</code> 中。</p>
+<h4 id="补充">补充</h4>
+<p>经过这么一波并不花里胡哨的简单操作和分析，基本上可以写出对应的代码了。但是，这看似普普通通的网站，还是会封你的
+<span class="math inline"><em>i</em><em>p</em></span> 的。所以，一般的加
+<code>headers['User-Agent']​</code>
+已经不行了。这里，我选择了添加代理来绕过它的反爬机制。【备注：很久之前爬过免费高匿代理存放在
+<code>mongodb</code> 中】</p>
+<p>(此处省略个几百字)一顿花里胡哨的操作后，数据库中的代理 <span class="math inline"><em>i</em><em>p</em></span>
+果然已经基本失效了。毕竟一年多了。</p>
 <p>后面发现，这个网站只会封你半分钟不到好像(应该是的，被禁后，刷新了好几下网页，然后刷回来了)。所以说，代码中是不是可以通过设置休眠时间来降低访问速度呢。三思过后，放弃的这个想法，这样的做法好像一点都不干脆利落。还是决定自己做个代理池算了。</p>
-<p>于是开启了免费代理的寻找之路，又是一顿的花里胡哨操作后(此处省略几百字)。很多 <strong>西刺代理</strong> 这样的免费代理网站已经迭代升级了，不在是曾经那个亚子了。它也开始封我 $ip$ 了。差点当场炸裂开来……因为它不是封你一两分钟酱紫玩玩。</p>
-<p>不过没关系，多爬几个这样的网站就可以有比较多得代理了。如果不想爬也不打紧，不妨逛一逛这里<a href="https://ip.ihuan.me/" target="_blank" rel="noopener">小幻http代理</a>  </p>
+<p>于是开启了免费代理的寻找之路，又是一顿的花里胡哨操作后(此处省略几百字)。很多
+<strong>西刺代理</strong>
+这样的免费代理网站已经迭代升级了，不在是曾经那个亚子了。它也开始封我
+<span class="math inline"><em>i</em><em>p</em></span>
+了。差点当场炸裂开来……因为它不是封你一两分钟酱紫玩玩。</p>
+<p>不过没关系，多爬几个这样的网站就可以有比较多得代理了。如果不想爬也不打紧，不妨逛一逛这里<a href="https://ip.ihuan.me/" target="_blank" rel="noopener">小幻http代理</a></p>
 <p>支持批量提取，十分友好，可以帮我们省十几行代码了。</p>
 <p><strong>一点建议</strong></p>
 <p>记得用我们的目标网站测试一下这些免费代理是否失效。</p>
 <p><strong>下面是我选出来的比较好的</strong></p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">proxies = [</span><br><span class="line">    &#123;<span class="symbol">'https</span>':<span class="string">"https://221.6.201.18:9999"</span>&#125;,</span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//39.137.69.9:80'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span>': <span class="symbol">'https</span>:<span class="comment">//221.122.91.64:80'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//39.137.69.8:8080'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//125.59.223.27:8380'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//118.212.104.22:9999'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span><span class="string">':'</span>https:<span class="comment">//47.106.59.75:3128'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//221.180.170.104:8080'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//113.59.99.138:8910'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//123.194.231.55:8197'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span><span class="string">':'</span>https:<span class="comment">//218.60.8.99:3129'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//218.58.194.162:8060'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span>': <span class="symbol">'https</span>:<span class="comment">//221.122.91.64:80'&#125;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="pyspark-数据分析"><a href="#pyspark-数据分析" class="headerlink" title="pyspark 数据分析"></a>pyspark 数据分析</h3><p>这一步主要使用 <code>pyspark.sql.SparkSession</code> 来操作。从 <code>rent_info.csv</code> 中读取数据获得一个 <code>DataFrame</code> 对象，然后通过一系列动作(过滤筛选，聚合，统计)完成简单分析。</p>
-<h3 id="flask-后端"><a href="#flask-后端" class="headerlink" title="flask 后端"></a>flask 后端</h3><p>使用 <code>flask_socketio.SocketIO</code>  来注册一个 <code>flask app</code> 对象。调用 <code>run</code> 方法启动服务。</p>
+<h3 id="pyspark-数据分析">pyspark 数据分析</h3>
+<p>这一步主要使用 <code>pyspark.sql.SparkSession</code> 来操作。从
+<code>rent_info.csv</code> 中读取数据获得一个 <code>DataFrame</code>
+对象，然后通过一系列动作(过滤筛选，聚合，统计)完成简单分析。</p>
+<h3 id="flask-后端">flask 后端</h3>
+<p>使用 <code>flask_socketio.SocketIO</code> 来注册一个
+<code>flask app</code> 对象。调用 <code>run</code> 方法启动服务。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'xmudblab'</span></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    socketio.<span class="builtin-name">run</span>(app, <span class="attribute">debug</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <p>剩下的就是一些简单的路由配置(通过装饰器来实现)：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端访问 http://127.0.0.1:5000/，可以看到index界面</span></span><br><span class="line">@app.route(<span class="string">"/"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_mes</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"index.html"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对客户端发来的start_spider事件作出相应</span></span><br><span class="line">@socketio.on(<span class="string">"start_spider"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_spider</span><span class="params">(message)</span></span><span class="symbol">:</span></span><br><span class="line">    print(message)</span><br><span class="line">    run_spider()</span><br><span class="line">    socketio.emit(<span class="string">'get_result'</span>, &#123;<span class="string">'data'</span>: <span class="string">"请获取最后结果"</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对客户端发来的/Get_result事件作出相应</span></span><br><span class="line">@app.route(<span class="string">"/Get_result"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_result</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"result.html"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="socketio-补充"><a href="#socketio-补充" class="headerlink" title="socketio 补充"></a>socketio 补充</h3><p>使用 <code>socketio</code> 可以轻松实现 <code>web</code> 后台和前端的信息交互，这种连接是基于 <code>websocket</code> 协议的全双工通信。</p>
+<h3 id="socketio-补充">socketio 补充</h3>
+<p>使用 <code>socketio</code> 可以轻松实现 <code>web</code>
+后台和前端的信息交互，这种连接是基于 <code>websocket</code>
+协议的全双工通信。</p>
 <p>前端 <code>socketio</code> 库</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"static/js/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>未完待续…..</p>
 </blockquote>
-<h3 id="改进空间"><a href="#改进空间" class="headerlink" title="改进空间"></a>改进空间</h3><p>整个项目中，<code>spark</code> 的强大好像并没有发挥出来。毕竟 <code>spark</code> 在实时数据处理方面可是碾压 <code>mapreduce</code>的，好像一套组合拳，只使出了一点花拳绣腿。不妨大点想象一下，能不能实现一个实时房租信息交互系统，通过可视化工具在地图上直观的显示租房信息，每隔一小段时间更新数据，同时发送邮件提醒。甚至结合微信小程序在移动端也能查看。</p>
-<p>嗯，想一想，挺好的。但是，这里的数据来源的可信度还有待考察。或许应该去 <a href="https://cs.zu.ke.com/zufang/changshaxian/" target="_blank" rel="noopener">贝壳找房</a> 看看(当事人非常后悔)。怎么开始就没想到去贝壳找。【不是打广告/手动滑稽】</p>
+<h3 id="改进空间">改进空间</h3>
+<p>整个项目中，<code>spark</code> 的强大好像并没有发挥出来。毕竟
+<code>spark</code> 在实时数据处理方面可是碾压
+<code>mapreduce</code>的，好像一套组合拳，只使出了一点花拳绣腿。不妨大点想象一下，能不能实现一个实时房租信息交互系统，通过可视化工具在地图上直观的显示租房信息，每隔一小段时间更新数据，同时发送邮件提醒。甚至结合微信小程序在移动端也能查看。</p>
+<p>嗯，想一想，挺好的。但是，这里的数据来源的可信度还有待考察。或许应该去
+<a href="https://cs.zu.ke.com/zufang/changshaxian/" target="_blank" rel="noopener">贝壳找房</a>
+看看(当事人非常后悔)。怎么开始就没想到去贝壳找。【不是打广告/手动滑稽】</p>
 <hr>
 
     </div>
