@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=霞鹜文楷, Noto Serif SC, serif:300,300italic,400,400italic,700,700italic|Dancing Script:300,300italic,400,400italic,700,700italic|ZCOOL QingKe HuangYou, cursive:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:300,300italic,400,400italic,700,700italic|Dancing Script:300,300italic,400,400italic,700,700italic|ZCOOL QingKe HuangYou, cursive:300,300italic,400,400italic,700,700italic|霞鹜文楷, Noto Serif SC, serif:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
@@ -206,68 +206,173 @@
 
       
           <blockquote>
-<p><a href="https://dl.acm.org/doi/10.1007/11558859_17" target="_blank" rel="noopener">Translation-Based Steganography</a></p>
+<p><a href="https://dl.acm.org/doi/10.1007/11558859_17" target="_blank" rel="noopener">Translation-Based
+Steganography</a></p>
 <p>基于翻译的隐写术</p>
 </blockquote>
-<h3 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h3><p>这篇论文研究了用隐写术在自然语言文档自动翻译产生的噪音(“noise”)中隐藏信息的可能性。由于自然语言固有的冗余性为翻译的变化创造了足够的空间，因此机器翻译非常适合隐写。此外，因为在自动文本翻译中经常出现错误，信息隐藏机制插入的额外错误就很难检测出来，看起来就像是翻译过程中产生的正常噪音的一部分。正因如此，我们是很难确定翻译中的不准确是由隐写术的使用还是由翻译软件的缺陷造成的。</p>
-<h3 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h3><p>本文提出了一种用于自然语言文本中的隐蔽消息传输的新协议，为此我们有一个概念验证(proof-of-concept )实现。关键点就是将信息隐藏在自然语言翻译中经常出现的噪音中。在一对自然语言之间翻译[non-trivial]文本时，通常有许多可能的翻译结果。【大概意思应该是在不改变原文意思的情况下，翻译的结果是多种多样的】。选择这些翻译结果之一就可用于对信息进行编码。一个 <em>adversary</em> 要想检测出其中隐藏的信息，就必须明白包含隐藏信息的翻译是不可能由普通翻译生成的。由于翻译过程中本就夹杂一些噪声，这使得检测隐藏信息是十分困难的。例如，由于同义词的存在，在对原文进行翻译的过程中，使用同义词进行替换。随着翻译结果的增加，也增加了信息隐藏的可能性。</p>
-<p>本文评估了使用自动机器翻译 (MT) 的自然语言翻译中隐蔽消息传输的潜在性。为了描述在机器翻译中的哪种变化是合理的，我们研究了各种 MT 系统产生的不同类型的错误。在机器翻译中观察到的一些变化对于人工翻译也显然是合理的。除了让 <em>adversary</em> 难以检测到隐藏信息的存在之外，基于翻译的隐写术也更容易使用。与之前的基于文本、图像和声音的隐写系统不一样，基于翻译的隐写，其 <em>cover</em> 是不需要保密的【the cover does not have to be secret.】。在基于翻译的隐写术中，源语言的原始文本可以是公开的，可以从公共资源中获取，并与译文一起，在<em>adversary</em>的视线范围内，在两方之间进行交换。在传统的图像隐写术中，经常出现的问题是，随后隐藏消息的源图像必须由发送者保密并且只使用一次（否则“diff”攻击将揭示隐藏消息的存在）。这增加了用户为每条消息创建新的秘密封面(secret cover)【周杰伦的专辑《不能说的秘密》？！滑稽脸.jpg】的负担。</p>
+<h3 id="abstract">abstract</h3>
+<p>这篇论文研究了用隐写术在自然语言文档自动翻译产生的噪音(“noise”)中隐藏信息的可能性。由于自然语言固有的冗余性为翻译的变化创造了足够的空间，因此机器翻译非常适合隐写。此外，因为在自动文本翻译中经常出现错误，信息隐藏机制插入的额外错误就很难检测出来，看起来就像是翻译过程中产生的正常噪音的一部分。正因如此，我们是很难确定翻译中的不准确是由隐写术的使用还是由翻译软件的缺陷造成的。</p>
+<h3 id="introduction">introduction</h3>
+<p>本文提出了一种用于自然语言文本中的隐蔽消息传输的新协议，为此我们有一个概念验证(proof-of-concept
+)实现。关键点就是将信息隐藏在自然语言翻译中经常出现的噪音中。在一对自然语言之间翻译[non-trivial]文本时，通常有许多可能的翻译结果。【大概意思应该是在不改变原文意思的情况下，翻译的结果是多种多样的】。选择这些翻译结果之一就可用于对信息进行编码。一个
+<em>adversary</em>
+要想检测出其中隐藏的信息，就必须明白包含隐藏信息的翻译是不可能由普通翻译生成的。由于翻译过程中本就夹杂一些噪声，这使得检测隐藏信息是十分困难的。例如，由于同义词的存在，在对原文进行翻译的过程中，使用同义词进行替换。随着翻译结果的增加，也增加了信息隐藏的可能性。</p>
+<p>本文评估了使用自动机器翻译 (MT)
+的自然语言翻译中隐蔽消息传输的潜在性。为了描述在机器翻译中的哪种变化是合理的，我们研究了各种
+MT
+系统产生的不同类型的错误。在机器翻译中观察到的一些变化对于人工翻译也显然是合理的。除了让
+<em>adversary</em>
+难以检测到隐藏信息的存在之外，基于翻译的隐写术也更容易使用。与之前的基于文本、图像和声音的隐写系统不一样，基于翻译的隐写，其
+<em>cover</em> 是不需要保密的【the cover does not have to be
+secret.】。在基于翻译的隐写术中，源语言的原始文本可以是公开的，可以从公共资源中获取，并与译文一起，在<em>adversary</em>的视线范围内，在两方之间进行交换。在传统的图像隐写术中，经常出现的问题是，随后隐藏消息的源图像必须由发送者保密并且只使用一次（否则“diff”攻击将揭示隐藏消息的存在）。这增加了用户为每条消息创建新的秘密封面(secret
+cover)【周杰伦的专辑《不能说的秘密》？！滑稽脸.jpg】的负担。</p>
 <blockquote>
-<p> In translation-based steganography, the original text in the source language can be publically known, obtained from public sources, and, together with the translation, exchanged between the two parties in plain sight of the adversary. In traditional image steganography, the problem often occurs that the source image in which the message is subsequently hidden must be kept secret by the sender and used only once (as otherwise a “diff” attack would reveal the presence of a hidden message). This burdens the user with creating a new, secret cover for each message.</p>
+<p>In translation-based steganography, the original text in the source
+language can be publically known, obtained from public sources, and,
+together with the translation, exchanged between the two parties in
+plain sight of the adversary. In traditional image steganography, the
+problem often occurs that the source image in which the message is
+subsequently hidden must be kept secret by the sender and used only once
+(as otherwise a “diff” attack would reveal the presence of a hidden
+message). This burdens the user with creating a new, secret cover for
+each message.</p>
 </blockquote>
 <p>基于翻译的隐写术没有这个缺点，因为对手无法对翻译应用差异分析来检测隐藏的消息。对手可能会生成原始消息的翻译，但无论使用隐写术，翻译可能会有所不同，使得差异分析无法检测隐藏的消息。</p>
-<p>为了证明这一点，我们实现了一个隐写编码器和解码器。该系统通过以类似于在现有 MT 系统中观察到的变化和错误的方式更改机器翻译来隐藏消息。我们的网页上提供了原型的交互式版本。</p>
-<p>在本文的其余结构如下。首先，第 2 节回顾了相关工作。在第 3 节中，描述了隐写交换的基本协议。在第 4 节中，我们给出了现有机器翻译系统中产生的错误的特征。第 5 节概述了实现和一些实验结果。在第 6 节中，我们讨论了基本协议的变体，以及各种攻击和可能的防御。</p>
-<h3 id="Related-Work"><a href="#Related-Work" class="headerlink" title="Related Work"></a>Related Work</h3><h3 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h3><p>本文的基本隐写协议工作如下。发件人首先需要获得源语言的封面(cover)。封面不必是保密的(secret)，可以从公共来源获得 ， 例如，新闻网站。然后发送者使用隐写编码器将源文本中的句子翻译成目标语言。隐写编码器本质上为每个句子创建多个翻译，并选择其中之一来对隐藏消息中的位进行编码。然后将翻译后的文本连同足以获得源文本的信息一起发送给接收者。这可以是源文本本身或对源的引用。然后接收者还使用相同的隐写编码器配置执行源文本的翻译。通过比较结果句子，接收者重建隐藏消息的比特流。图 1 说明了基本协议。</p>
-<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/image-20210709163311687.png" alt="image-20210709163311687"></p>
-<h4 id="Producing-translations"><a href="#Producing-translations" class="headerlink" title="Producing translations"></a>Producing translations</h4><p>获取源文本后，发送方和接收方的第一步是使用相同的算法生成源文本的多个翻译。此步骤的目标是确定性地生成源文本的多个不同翻译。实现这一目标的最简单方法是在源文本中的每个句子上应用所有可用 MT 系统的（子集）。如果各方可以完全访问统计 MT 系统的代码，他们可以通过使用不同的语料库训练，从同一代码库生成多个 MT 系统。</p>
-<p>除了使用多个翻译系统生成不同的句子外，还可以对结果翻译应用后处理以获得额外的变化。这种后处理包括模拟任何（MT）翻译中固有噪声的转换。例如，后处理器可以插入常见的翻译错误（如第 4 节所述）。</p>
-<p>由于不同引擎之间的翻译质量不同，并且还取决于应用了哪些后处理器来处理结果，因此翻译系统使用启发式方法为每个翻译分配一个概率，描述其与其他翻译相比的相对质量。启发式可以基于生成器的经验和基于语言模型对句子质量进行排名的算法 。用于生成翻译及其排名的特定翻译引擎、训练语料库和后处理操作集是想要进行秘密通信的两方密钥共享的一部分。</p>
-<h4 id="Selecting-a-translation"><a href="#Selecting-a-translation" class="headerlink" title="Selecting a translation"></a>Selecting a translation</h4><p>选择翻译以对隐藏消息进行编码时，编码器首先使用生成器算法分配的概率构建可用转换的霍夫曼树。然后算法选择与要编码的位序列对应的句子。 </p>
+<p>为了证明这一点，我们实现了一个隐写编码器和解码器。该系统通过以类似于在现有
+MT
+系统中观察到的变化和错误的方式更改机器翻译来隐藏消息。我们的网页上提供了原型的交互式版本。</p>
+<p>在本文的其余结构如下。首先，第 2 节回顾了相关工作。在第 3
+节中，描述了隐写交换的基本协议。在第 4
+节中，我们给出了现有机器翻译系统中产生的错误的特征。第 5
+节概述了实现和一些实验结果。在第 6
+节中，我们讨论了基本协议的变体，以及各种攻击和可能的防御。</p>
+<h3 id="related-work">Related Work</h3>
+<h3 id="protocol">Protocol</h3>
+<p>本文的基本隐写协议工作如下。发件人首先需要获得源语言的封面(cover)。封面不必是保密的(secret)，可以从公共来源获得
+，
+例如，新闻网站。然后发送者使用隐写编码器将源文本中的句子翻译成目标语言。隐写编码器本质上为每个句子创建多个翻译，并选择其中之一来对隐藏消息中的位进行编码。然后将翻译后的文本连同足以获得源文本的信息一起发送给接收者。这可以是源文本本身或对源的引用。然后接收者还使用相同的隐写编码器配置执行源文本的翻译。通过比较结果句子，接收者重建隐藏消息的比特流。图
+1 说明了基本协议。</p>
+<figure>
+<img src="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/image-20210709163311687.png" alt="image-20210709163311687">
+<figcaption aria-hidden="true">image-20210709163311687</figcaption>
+</figure>
+<h4 id="producing-translations">Producing translations</h4>
+<p>获取源文本后，发送方和接收方的第一步是使用相同的算法生成源文本的多个翻译。此步骤的目标是确定性地生成源文本的多个不同翻译。实现这一目标的最简单方法是在源文本中的每个句子上应用所有可用
+MT 系统的（子集）。如果各方可以完全访问统计 MT
+系统的代码，他们可以通过使用不同的语料库训练，从同一代码库生成多个 MT
+系统。</p>
+<p>除了使用多个翻译系统生成不同的句子外，还可以对结果翻译应用后处理以获得额外的变化。这种后处理包括模拟任何（MT）翻译中固有噪声的转换。例如，后处理器可以插入常见的翻译错误（如第
+4 节所述）。</p>
+<p>由于不同引擎之间的翻译质量不同，并且还取决于应用了哪些后处理器来处理结果，因此翻译系统使用启发式方法为每个翻译分配一个概率，描述其与其他翻译相比的相对质量。启发式可以基于生成器的经验和基于语言模型对句子质量进行排名的算法
+。用于生成翻译及其排名的特定翻译引擎、训练语料库和后处理操作集是想要进行秘密通信的两方密钥共享的一部分。</p>
+<h4 id="selecting-a-translation">Selecting a translation</h4>
+<p>选择翻译以对隐藏消息进行编码时，编码器首先使用生成器算法分配的概率构建可用转换的霍夫曼树。然后算法选择与要编码的位序列对应的句子。</p>
 <p>使用霍夫曼树根据翻译质量估计选择句子可确保较少选择翻译质量较低的句子。此外，所选翻译的质量越低，传输的比特数就越高。</p>
 <p>这减少了所需的封面文本总量，从而减少了对手可以分析的文本量。编码器可以使用相对翻译质量的下限来排除估计翻译质量低于某个阈值的句子，在这种情况下，该阈值成为发送者和接收者之间共享秘密的一部分。</p>
-<h4 id="Keeping-the-source-text-secret"><a href="#Keeping-the-source-text-secret" class="headerlink" title="Keeping the source text secret"></a>Keeping the source text secret</h4><p>所提出的方案可以适用于需要对源文本保密的水印。这可以按如下方式实现。编码器计算每个翻译句子的（加密）哈希。然后它选择一个句子，使得翻译句子的散列的最后一位对应于要传输的隐藏消息中的下一位。 然后解码器只计算接收到的句子的散列码并连接相应的最低位获取隐藏信息。</p>
+<h4 id="keeping-the-source-text-secret">Keeping the source text
+secret</h4>
+<p>所提出的方案可以适用于需要对源文本保密的水印。这可以按如下方式实现。编码器计算每个翻译句子的（加密）哈希。然后它选择一个句子，使得翻译句子的散列的最后一位对应于要传输的隐藏消息中的下一位。
+然后解码器只计算接收到的句子的散列码并连接相应的最低位获取隐藏信息。</p>
 <p>该方案假设句子足够长，几乎总是有足够的变化来获得具有所需最低位的散列。每当没有一个句子产生可接受的哈希码时，就必须使用纠错码来纠正错误。使用这种变化会降低编码所能达到的比特率。更多细节可以在我们的技术报告中找到。</p>
-<h3 id="Lost-in-Translation"><a href="#Lost-in-Translation" class="headerlink" title="Lost in Translation"></a>Lost in Translation</h3><p>现代 MT 系统会在翻译中产生许多常见错误。本节描述了其中一些错误的特征。虽然我们描述的错误不是可能错误的完整列表，但它们代表了我们在示例翻译中经常观察到的错误类型。翻译错误的扩展特征可以在我们的技术报告中找到（由于篇幅限制，此处省略）。这些错误中的大多数是由于当代 MT 系统对统计和句法文本分析的依赖造成的，导致缺乏语义和上下文意识。这会产生一系列错误类型，我们可以使用它们来合理地改变文本，从而产生进一步的标记可能性。</p>
-<h4 id="Functional-Words"><a href="#Functional-Words" class="headerlink" title="Functional Words"></a>Functional Words</h4><p>一类经常发生但不破坏意义的错误是功能词翻译不正确，如冠词、代词和介词。因为这些功能词通常与句子中的另一个词或短语有很强的关联，复杂的结构似乎经常会导致这些词的翻译错误。此外，不同的语言对这些词的处理方式非常不同，因此在使用未考虑这些差异的引擎时会导致翻译错误。</p>
-<p>例如，许多使用冠词的语言并不在所有名词前使用它们。这在从文章规则不同的语言翻译时会导致问题。例如，法语句子“La vie est paralysee.”在英语中翻译为“Life is paralyzed.”。然而，翻译引擎可以预见地将其翻译为“The life is paralyzed.”；“life in general”意义上的“life”并没有用出现在一篇英文文章中。这与许多不可数名词如“水”和 “钱”一样，而导致类似的错误。</p>
-<p>通常，介词的正确选择完全取决于句子的上下文。例如，法语中的 $J’habite$ $\grave{a}$ 100 $m\grave{e}tres$ $de$ $lui$在英语中的意思是“我住在离他100米的地方”。然而，[20] 将其翻译为“我与他一起生活 100 米”，而 [71]将其翻译为“在他的 100 米处生活”。两者都使用“$\grave{a}$”（“with/in”）的不同翻译这完全不适合上下文。</p>
-<h4 id="Blatant-Word-Choice-Errors"><a href="#Blatant-Word-Choice-Errors" class="headerlink" title="Blatant Word Choice Errors"></a>Blatant Word Choice Errors</h4><p>不太常见的是，在翻译中选择完全不相关的单词或短语。例如，<em>I’m staying home</em>和<em>I am staying home</em>都被[20]翻译成德语为<em>Ich bleibe Haupt</em>（<em>I’m staying head</em>）而不是<em>Ich bleibe zu Hause</em>。这些不同于语义错误，反映了实际引擎或其字典中的某种缺陷，明显影响了翻译质量。</p>
-<h4 id="Additional-Errors"><a href="#Additional-Errors" class="headerlink" title="Additional Errors"></a>Additional Errors</h4><p>遇到了其他几种有趣的错误类型，由于篇幅原因，我们将只简要介绍这些错误类型。</p>
+<h3 id="lost-in-translation">Lost in Translation</h3>
+<p>现代 MT
+系统会在翻译中产生许多常见错误。本节描述了其中一些错误的特征。虽然我们描述的错误不是可能错误的完整列表，但它们代表了我们在示例翻译中经常观察到的错误类型。翻译错误的扩展特征可以在我们的技术报告中找到（由于篇幅限制，此处省略）。这些错误中的大多数是由于当代
+MT
+系统对统计和句法文本分析的依赖造成的，导致缺乏语义和上下文意识。这会产生一系列错误类型，我们可以使用它们来合理地改变文本，从而产生进一步的标记可能性。</p>
+<h4 id="functional-words">Functional Words</h4>
+<p>一类经常发生但不破坏意义的错误是功能词翻译不正确，如冠词、代词和介词。因为这些功能词通常与句子中的另一个词或短语有很强的关联，复杂的结构似乎经常会导致这些词的翻译错误。此外，不同的语言对这些词的处理方式非常不同，因此在使用未考虑这些差异的引擎时会导致翻译错误。</p>
+<p>例如，许多使用冠词的语言并不在所有名词前使用它们。这在从文章规则不同的语言翻译时会导致问题。例如，法语句子“La
+vie est paralysee.”在英语中翻译为“Life is
+paralyzed.”。然而，翻译引擎可以预见地将其翻译为“The life is
+paralyzed.”；“life in
+general”意义上的“life”并没有用出现在一篇英文文章中。这与许多不可数名词如“水”和
+“钱”一样，而导致类似的错误。</p>
+<p>通常，介词的正确选择完全取决于句子的上下文。例如，法语中的 <span class="math inline"><em>J</em><sup>′</sup><em>h</em><em>a</em><em>b</em><em>i</em><em>t</em><em>e</em></span>
+<span class="math inline"><em>à</em></span> 100 <span class="math inline"><em>m</em><em>è</em><em>t</em><em>r</em><em>e</em><em>s</em></span>
+<span class="math inline"><em>d</em><em>e</em></span> <span class="math inline"><em>l</em><em>u</em><em>i</em></span>在英语中的意思是“我住在离他100米的地方”。然而，[20]
+将其翻译为“我与他一起生活 100 米”，而 [71]将其翻译为“在他的 100
+米处生活”。两者都使用“<span class="math inline"><em>à</em></span>”（“with/in”）的不同翻译这完全不适合上下文。</p>
+<h4 id="blatant-word-choice-errors">Blatant Word Choice Errors</h4>
+<p>不太常见的是，在翻译中选择完全不相关的单词或短语。例如，<em>I’m
+staying home</em>和<em>I am staying home</em>都被[20]翻译成德语为<em>Ich
+bleibe Haupt</em>（<em>I’m staying head</em>）而不是<em>Ich bleibe zu
+Hause</em>。这些不同于语义错误，反映了实际引擎或其字典中的某种缺陷，明显影响了翻译质量。</p>
+<h4 id="additional-errors">Additional Errors</h4>
+<p>遇到了其他几种有趣的错误类型，由于篇幅原因，我们将只简要介绍这些错误类型。</p>
 <ul>
 <li>基本语法错误导致翻译如<em>It do not work</em></li>
-<li>逐字翻译，尤其是惯用语的翻译，会产生诸如<em>The pencils are at me.</em>这样的结构</li>
+<li>逐字翻译，尤其是惯用语的翻译，会产生诸如<em>The pencils are at
+me.</em>这样的结构</li>
 <li>源词典中没有的单词只是不翻译</li>
-<li>语言之间反身结构的不正确映射会导致反身冠词被错误地插入目标翻译中（例如，<em>Ich kamme mich</em>变成了<em>I comb myself</em>）。</li>
+<li>语言之间反身结构的不正确映射会导致反身冠词被错误地插入目标翻译中（例如，<em>Ich
+kamme mich</em>变成了<em>I comb myself</em>）。</li>
 </ul>
-<h4 id="Translations-between-Typologically-Dissimilar-Languages"><a href="#Translations-between-Typologically-Dissimilar-Languages" class="headerlink" title="Translations between Typologically Dissimilar Languages"></a>Translations between Typologically Dissimilar Languages</h4><p>类型学上相距遥远的语言是指形式结构彼此完全不同的语言。这些结构差异体现在许多领域（例如句法（短语和句子结构）、语义（含义结构）和形态（词结构））。毫不奇怪，由于这些差异，在类型上相距遥远的语言（中文和英文、英文和阿拉伯文等）之间的翻译经常很糟糕，以至于不连贯或不可读。我们在这项工作中没有考虑这些语言，因为翻译质量通常很差，结果翻译的交换可能是难以置信的。</p>
-<h3 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h3><p>本节描述了实现的一些方面，重点介绍了用于获得生成的翻译变化的不同技术。</p>
-<h4 id="Translation-Engines"><a href="#Translation-Engines" class="headerlink" title="Translation Engines"></a>Translation Engines</h4><p>当前实现使用 Internet 上可用的不同翻译服务来获得初始翻译。当前的实现支持三种不同的服务，我们计划在未来添加更多服务。添加新服务只需要编写一个函数，将给定的句子从源语言翻译成目标语言。应使用可用 MT 服务的哪个子集由用户决定，但必须至少选择一个引擎。</p>
+<h4 id="translations-between-typologically-dissimilar-languages">Translations
+between Typologically Dissimilar Languages</h4>
+<p>类型学上相距遥远的语言是指形式结构彼此完全不同的语言。这些结构差异体现在许多领域（例如句法（短语和句子结构）、语义（含义结构）和形态（词结构））。毫不奇怪，由于这些差异，在类型上相距遥远的语言（中文和英文、英文和阿拉伯文等）之间的翻译经常很糟糕，以至于不连贯或不可读。我们在这项工作中没有考虑这些语言，因为翻译质量通常很差，结果翻译的交换可能是难以置信的。</p>
+<h3 id="implementation">Implementation</h3>
+<p>本节描述了实现的一些方面，重点介绍了用于获得生成的翻译变化的不同技术。</p>
+<h4 id="translation-engines">Translation Engines</h4>
+<p>当前实现使用 Internet
+上可用的不同翻译服务来获得初始翻译。当前的实现支持三种不同的服务，我们计划在未来添加更多服务。添加新服务只需要编写一个函数，将给定的句子从源语言翻译成目标语言。应使用可用
+MT 服务的哪个子集由用户决定，但必须至少选择一个引擎。</p>
 <p>选择多个不同翻译引擎的一个可能问题是它们可能具有不同的错误特征（例如，一个引擎可能无法翻译带有缩写的单词）。知道特定机器翻译系统存在此类问题的对手可能会发现所有句子中有一半存在与这些特征匹配的错误。由于普通用户不太可能在不同的翻译引擎之间交替，这将揭示隐藏消息的存在。</p>
-<p>更好的选择是使用相同的机器翻译软件，但使用不同的语料库对其进行训练。特定语料库成为隐写编码器使用的密钥的一部分； Victor Raskin 和 Umut Topkara 之前在另一个上下文（[2] 的上下文）中讨论了这种使用语料库作为关键字的情况。因此，对手无法再检测到不同机器翻译算法导致的差异。这种方法的一个问题是获得好的语料库很昂贵。此外，划分单个语料库以生成多个较小的语料库将导致更糟糕的翻译，这可能再次导致可疑文本。也就是说，完全控制翻译引擎还可以允许翻译算法本身的微小变化。例如，GIZA++系统提供了多种计算翻译的算法[9]。这些算法的主要区别在于如何生成翻译“候选结果”。更改这些选项也有助于生成多个翻译。</p>
+<p>更好的选择是使用相同的机器翻译软件，但使用不同的语料库对其进行训练。特定语料库成为隐写编码器使用的密钥的一部分；
+Victor Raskin 和 Umut Topkara 之前在另一个上下文（[2]
+的上下文）中讨论了这种使用语料库作为关键字的情况。因此，对手无法再检测到不同机器翻译算法导致的差异。这种方法的一个问题是获得好的语料库很昂贵。此外，划分单个语料库以生成多个较小的语料库将导致更糟糕的翻译，这可能再次导致可疑文本。也就是说，完全控制翻译引擎还可以允许翻译算法本身的微小变化。例如，GIZA++系统提供了多种计算翻译的算法[9]。这些算法的主要区别在于如何生成翻译“候选结果”。更改这些选项也有助于生成多个翻译。</p>
 <p>从翻译引擎获得一个或多个翻译后，该工具会使用各种后处理算法生成其他变体。只需使用一个高质量的翻译引擎并依靠后处理生成替代翻译，就可以避免使用多个引擎的问题。</p>
-<h4 id="Semantic-Substitution"><a href="#Semantic-Substitution" class="headerlink" title="Semantic Substitution"></a>Semantic Substitution</h4><p>语义替换是一种非常有效的 post-pass，并且已在以前的方法中用于隐藏信息 [2,5]。与以前工作的一个主要区别是，与原始文本中的语义替换相比，由语义替换引起的错误在翻译中更合理。</p>
+<h4 id="semantic-substitution">Semantic Substitution</h4>
+<p>语义替换是一种非常有效的 post-pass，并且已在以前的方法中用于隐藏信息
+[2,5]。与以前工作的一个主要区别是，与原始文本中的语义替换相比，由语义替换引起的错误在翻译中更合理。</p>
 <p>传统语义替换的一个典型问题是需要替换列表。替换列表是由语义上足够接近的词组成的元组列表，可以在任意句子中用一个词替换另一个词。对于传统的语义替换，这些列表是手工生成的。语义替换列表中的一对单词的示例将是舒适和方便的。不仅手工构建替换列表很乏味，而且列表中包含的内容也必须是保守的。例如，一般替换列表不能包含诸如明亮和光之类的词对，因为光可以用于不同的意义（意味着轻松、不精确甚至用作名词）。</p>
 <p>翻译的语义替换没有这个问题。使用原始句子，可以自动生成语义替换，甚至可以包含上述某些情况（无法添加到一般单语替换列表中）。基本思想是在两种语言之间来回翻译以找到语义相似的单词。假设翻译是准确的，源语言中的单词可以帮助提供必要的上下文信息，以限制对当前上下文中语义接近的单词的替换。</p>
-<p>假设源语言是德语（d），翻译的目标语言是英语（e）。原始句子包含一个德语单词 d1<br>并且翻译包含一个单词 e1，它是 d1的翻译。基本算法如下，如图2所示：</p>
-<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/image-20210709175052191.png" alt="image-20210709175052191"></p>
+<p>假设源语言是德语（d），翻译的目标语言是英语（e）。原始句子包含一个德语单词
+d1 并且翻译包含一个单词 e1，它是 d1的翻译。基本算法如下，如图2所示：</p>
+<figure>
+<img src="/articles/%E5%9F%BA%E4%BA%8E%E7%BF%BB%E8%AF%91%E7%9A%84%E9%9A%90%E5%86%99%E6%9C%AF/image-20210709175052191.png" alt="image-20210709175052191">
+<figcaption aria-hidden="true">image-20210709175052191</figcaption>
+</figure>
 <ul>
-<li>找出 d1 的所有其他翻译的集合，并称这个集合为$E_{d1}$。 $E_{d1}$是语义替换的候选集。$e_1 \in E_{d1}$。</li>
-<li>找出 e1 的所有翻译；将此集合称为 $D_{e1}$。此集合称为集合<em>witnesses</em>。</li>
-<li>对于每个单词$e \in  E_{d1}-\{e1\}$找到所有的翻译 $D_{e1}$并计算$D_e \cap D_{e1}$中元素的数量。如果该数字高于给定的阈值 t，则将 e 添加到 e1 的可能语义替代列表中。</li>
+<li>找出 d1 的所有其他翻译的集合，并称这个集合为<span class="math inline"><em>E</em><sub><em>d</em>1</sub></span>。 <span class="math inline"><em>E</em><sub><em>d</em>1</sub></span>是语义替换的候选集。<span class="math inline"><em>e</em><sub>1</sub> ∈ <em>E</em><sub><em>d</em>1</sub></span>。</li>
+<li>找出 e1 的所有翻译；将此集合称为 <span class="math inline"><em>D</em><sub><em>e</em>1</sub></span>。此集合称为集合<em>witnesses</em>。</li>
+<li>对于每个单词<span class="math inline"><em>e</em> ∈ <em>E</em><sub><em>d</em>1</sub> − {<em>e</em>1}</span>找到所有的翻译
+<span class="math inline"><em>D</em><sub><em>e</em>1</sub></span>并计算<span class="math inline"><em>D</em><sub><em>e</em></sub> ∩ <em>D</em><sub><em>e</em>1</sub></span>中元素的数量。如果该数字高于给定的阈值
+t，则将 e 添加到 e1 的可能语义替代列表中。</li>
 </ul>
-<p>一个<em>witness</em>是源语言中的一个词，它也翻译成目标语言中的两个词，从而确认两个词的语义接近度。<em>witness</em>阈值 t 可用于将更多可能的替换与更高的不适当替换的可能性进行交换。</p>
-<h4 id="Adding-plausible-mistakes"><a href="#Adding-plausible-mistakes" class="headerlink" title="Adding plausible mistakes"></a>Adding plausible mistakes</h4><p>另一种可能的 post-pass 将 MT 系统常见的错误添加到翻译中。我们的实现可以使用的转换基于第 4 节中对 MT 错误的研究。当前系统支持使用手工制作的语言特定替换来更改冠词和介词，这些替换尝试模仿观察到的可能错误。</p>
-<h4 id="Results-from-the-Prototype"><a href="#Results-from-the-Prototype" class="headerlink" title="Results from the Prototype"></a>Results from the Prototype</h4><p>系统的不同配置产生不同质量的翻译，但即使质量下降也是不可预测的。有时我们的修改实际上（巧合）提高了翻译质量。</p>
-<p>应该注意的是，为简单起见，原型当前使用的引擎是公开可用的免费网络引擎，并且这不是自定义生成引擎或付费商业软件的输出的示范。为了更好地说明原型系统，给出了以下稍微更广泛的示例： 24 位字符串“lit”是在来自 Deutsche Welle 网站的电影评论部分的翻译中编码的。使用我们的原型将文本从德语翻译成英语，没有语义替换，启用冠词和介词替换，也没有“不良阈值”。源引擎是 Babelfish、Google 和 LinguaTec。德语文本是一段关于摩洛哥电影《风马》的评论的第一部分，内容如下：</p>
+<p>一个<em>witness</em>是源语言中的一个词，它也翻译成目标语言中的两个词，从而确认两个词的语义接近度。<em>witness</em>阈值
+t 可用于将更多可能的替换与更高的不适当替换的可能性进行交换。</p>
+<h4 id="adding-plausible-mistakes">Adding plausible mistakes</h4>
+<p>另一种可能的 post-pass 将 MT
+系统常见的错误添加到翻译中。我们的实现可以使用的转换基于第 4 节中对 MT
+错误的研究。当前系统支持使用手工制作的语言特定替换来更改冠词和介词，这些替换尝试模仿观察到的可能错误。</p>
+<h4 id="results-from-the-prototype">Results from the Prototype</h4>
+<p>系统的不同配置产生不同质量的翻译，但即使质量下降也是不可预测的。有时我们的修改实际上（巧合）提高了翻译质量。</p>
+<p>应该注意的是，为简单起见，原型当前使用的引擎是公开可用的免费网络引擎，并且这不是自定义生成引擎或付费商业软件的输出的示范。为了更好地说明原型系统，给出了以下稍微更广泛的示例：
+24 位字符串“lit”是在来自 Deutsche Welle
+网站的电影评论部分的翻译中编码的。使用我们的原型将文本从德语翻译成英语，没有语义替换，启用冠词和介词替换，也没有“不良阈值”。源引擎是
+Babelfish、Google 和
+LinguaTec。德语文本是一段关于摩洛哥电影《风马》的评论的第一部分，内容如下：</p>
 <p>······省略······</p>
-<h3 id="Discussion"><a href="#Discussion" class="headerlink" title="Discussion"></a>Discussion</h3><p>本节讨论对隐写编码的各种攻击以及针对这些攻击的可能防御。讨论是非正式的，因为该系统基于 MT 的缺陷，这些缺陷很难正式分析（这也是 MT 是一个如此困难的话题的原因之一）。</p>
-<h4 id="Future-Machine-Translation-Systems"><a href="#Future-Machine-Translation-Systems" class="headerlink" title="Future Machine Translation Systems"></a>Future Machine Translation Systems</h4><p>【所提出的隐写编码在未来可能面临的一个可能问题是机器翻译的重大进展。如果机器翻译变得更加准确，那么可能出现的似是而非的错误可能会变得更小。然而，当前机器翻译错误的一大类是由于机器翻译器没有考虑到上下文。】</p>
-<p>为了显着改进现有的机器翻译系统，一个必要的功能是保存从一个句子到下一个句子的上下文信息。只有有了这些信息，才有可能消除某些错误。但是将这种上下文引入机器翻译系统也为在翻译中隐藏信息带来了新的机会。【一旦机器翻译软件开始保留上下文，使用隐写协议的两方就有可能使用这个上下文作为密钥。】通过为各自的翻译引擎植入 k 位上下文，他们可以使翻译中的偏差变得合理，迫使对手可能尝试$2^k$种可能的上下文输入，以便甚至确定使用该机制的可能性。这类似于基于密钥拆分语料库的想法，不同之处在于不会影响每句翻译的整体质量。</p>
-<h4 id="Repeated-Sentence-Problem"><a href="#Repeated-Sentence-Problem" class="headerlink" title="Repeated Sentence Problem"></a>Repeated Sentence Problem</h4><p>在翻译中隐藏消息的任何方法的一个普遍问题是，如果源语言中的文本包含两次相同的句子，它可能会被翻译成两个不同的句子，具体取决于隐藏位的值。由于机器翻译系统（不保留上下文）总是会产生相同的句子，这将允许攻击者怀疑使用了隐写术。解决这个问题的方法是不要在源文本中使用重复的句子来隐藏数据，而始终输出用于该句子第一次出现的翻译。</p>
+<h3 id="discussion">Discussion</h3>
+<p>本节讨论对隐写编码的各种攻击以及针对这些攻击的可能防御。讨论是非正式的，因为该系统基于
+MT 的缺陷，这些缺陷很难正式分析（这也是 MT
+是一个如此困难的话题的原因之一）。</p>
+<h4 id="future-machine-translation-systems">Future Machine Translation
+Systems</h4>
+<p>【所提出的隐写编码在未来可能面临的一个可能问题是机器翻译的重大进展。如果机器翻译变得更加准确，那么可能出现的似是而非的错误可能会变得更小。然而，当前机器翻译错误的一大类是由于机器翻译器没有考虑到上下文。】</p>
+<p>为了显着改进现有的机器翻译系统，一个必要的功能是保存从一个句子到下一个句子的上下文信息。只有有了这些信息，才有可能消除某些错误。但是将这种上下文引入机器翻译系统也为在翻译中隐藏信息带来了新的机会。【一旦机器翻译软件开始保留上下文，使用隐写协议的两方就有可能使用这个上下文作为密钥。】通过为各自的翻译引擎植入
+k 位上下文，他们可以使翻译中的偏差变得合理，迫使对手可能尝试<span class="math inline">2<sup><em>k</em></sup></span>种可能的上下文输入，以便甚至确定使用该机制的可能性。这类似于基于密钥拆分语料库的想法，不同之处在于不会影响每句翻译的整体质量。</p>
+<h4 id="repeated-sentence-problem">Repeated Sentence Problem</h4>
+<p>在翻译中隐藏消息的任何方法的一个普遍问题是，如果源语言中的文本包含两次相同的句子，它可能会被翻译成两个不同的句子，具体取决于隐藏位的值。由于机器翻译系统（不保留上下文）总是会产生相同的句子，这将允许攻击者怀疑使用了隐写术。解决这个问题的方法是不要在源文本中使用重复的句子来隐藏数据，而始终输出用于该句子第一次出现的翻译。</p>
 <p>这种攻击类似于图像隐写术中使用的攻击。如果图像经过数字化修改，图像某些不可信区域的颜色变化可能会揭示隐藏信息的存在。解决这个问题对于文本隐写术来说更容易，因为检测两个句子是否相同比检测图像中的一系列像素属于相同的数字构造形状并因此必须具有相同的颜色更容易。</p>
-<h4 id="Statistical-Attacks"><a href="#Statistical-Attacks" class="headerlink" title="Statistical Attacks"></a>Statistical Attacks</h4><p>统计攻击在击败图像、音频和视频的隐写术方面非常成功（参见，例如，[8,14,19]）。对手可能有一个统计模型（例如语言模型），所有可用 MT 系统的翻译都遵守该模型。例如，Zipf 定律 [15] 指出，一个单词的频率与其在所有单词的按频率排序的列表中的排名成反比。Zipf 定律适用于英语，事实上，甚至在名词、动词、形容词等个别类别中也适用。</p>
-<p>假设所有合理的翻译引擎通常都遵循这样的统计模型，隐写编码器必须小心不要导致与此类分布的明显偏差。一旦知道这样的统计规律，实际上很容易修改隐写编码器以消除明显偏离所需分布的翻译。例如，Golle 和 Farahat [10] 指出（在不同的加密上下文中）可以在不明显偏离 Zipf 定律的情况下广泛修改自然语言文本。换句话说，这是一个非常易于管理的困难，只要隐写系统是“Zipf-aware”的。</p>
+<h4 id="statistical-attacks">Statistical Attacks</h4>
+<p>统计攻击在击败图像、音频和视频的隐写术方面非常成功（参见，例如，[8,14,19]）。对手可能有一个统计模型（例如语言模型），所有可用
+MT 系统的翻译都遵守该模型。例如，Zipf 定律 [15]
+指出，一个单词的频率与其在所有单词的按频率排序的列表中的排名成反比。Zipf
+定律适用于英语，事实上，甚至在名词、动词、形容词等个别类别中也适用。</p>
+<p>假设所有合理的翻译引擎通常都遵循这样的统计模型，隐写编码器必须小心不要导致与此类分布的明显偏差。一旦知道这样的统计规律，实际上很容易修改隐写编码器以消除明显偏离所需分布的翻译。例如，Golle
+和 Farahat [10] 指出（在不同的加密上下文中）可以在不明显偏离 Zipf
+定律的情况下广泛修改自然语言文本。换句话说，这是一个非常易于管理的困难，只要隐写系统是“Zipf-aware”的。</p>
 <p>我们不能排除尚未发现的翻译语言模型的存在，这些模型可能会被我们现有的实现所违反。然而，我们希望发现和验证这样的模型对于对手来说是一项重要的任务。另一方面，给定这样的模型（正如我们上面指出的）修改隐写系统很容易，通过避免被标记的句子来消除偏差。</p>
 
       
@@ -328,99 +433,130 @@
 
       
           <blockquote>
-<p><a href="https://aclanthology.org/C12-1031/" target="_blank" rel="noopener">Adjective Deletion for Linguistic Steganography and Secret Sharing</a></p>
+<p><a href="https://aclanthology.org/C12-1031/" target="_blank" rel="noopener">Adjective Deletion for
+Linguistic Steganography and Secret Sharing</a></p>
 </blockquote>
 <p><strong>概念</strong></p>
 <ul>
-<li><p>Adjective Deletion 【形容词删除】</p>
-</li>
-<li><p>Linguistic Steganography 【语言隐写术】隐写术就是将秘密信息隐藏到看上去普通的信息中进行传送。</p>
+<li><p>Adjective Deletion 【形容词删除】</p></li>
+<li><p>Linguistic Steganography
+【语言隐写术】隐写术就是将秘密信息隐藏到看上去普通的信息中进行传送。</p>
 <blockquote>
-<p>Linguistic steganography is a form of covert communication in which information is embedded in a seemly innocent cover text so that the presence of the information is imperceptible to an outside observer (human or computer).</p>
-<p>理想的 Linguistic Steganography满足两个基本要求：high imperceptibility（不易察觉） and high payload capacity（高信息承载容量）</p>
-</blockquote>
-</li>
-<li><p>Secret Sharing 【密钥共享】一种分发、保存、恢复秘密密钥的方法。</p>
-</li>
+<p>Linguistic steganography is a form of covert communication in which
+information is embedded in a seemly innocent cover text so that the
+presence of the information is imperceptible to an outside observer
+(human or computer).</p>
+<p>理想的 Linguistic Steganography满足两个基本要求：high
+imperceptibility（不易察觉） and high payload
+capacity（高信息承载容量）</p>
+</blockquote></li>
+<li><p>Secret Sharing
+【密钥共享】一种分发、保存、恢复秘密密钥的方法。</p></li>
 </ul>
 <p><strong>文章所作工作</strong></p>
-<ol>
-<li><p>验证删除形容词的可行性的两种方法：「checking the acceptability of adjective deletion in noun phrases.」</p>
+<ol type="1">
+<li><p>验证删除形容词的可行性的两种方法：「checking the acceptability of
+adjective deletion in noun phrases.」</p>
 <ul>
-<li>Google n-gram corpus 【谷歌语料库】「check 删除一个形容词后的 <strong>context</strong> 的流利程度」</li>
-<li>SVM模型(使用n-gram counts和其他方法训练得到) 「classify 是否在 <strong>context</strong> 删除形容词」</li>
-</ul>
-</li>
-<li><p>证明删除形容词技术可以集成到一个存在的语言系统(an existing linguistic stegosyste)</p>
-</li>
-<li><p>提出一种新的基于形容词删除技术(adjective deletion)的密钥共享(secret sharing)方法</p>
-</li>
+<li>Google n-gram corpus 【谷歌语料库】「check 删除一个形容词后的
+<strong>context</strong> 的流利程度」</li>
+<li>SVM模型(使用n-gram counts和其他方法训练得到) 「classify 是否在
+<strong>context</strong> 删除形容词」</li>
+</ul></li>
+<li><p>证明删除形容词技术可以集成到一个存在的语言系统(an existing
+linguistic stegosyste)</p></li>
+<li><p>提出一种新的基于形容词删除技术(adjective
+deletion)的密钥共享(secret sharing)方法</p></li>
 </ol>
 <p><strong>(t,n)-threshold scheme</strong></p>
-<p>论文中采用的 secret sharing方法是基于(2, 2)-threshold, 其中共享的必须是两个可比较的文本(two comparable texts)。通过形容词删除技术将【0s 和 1s 的加密位字符串(secret bitstring;)】嵌入到两个文本中，这两个文本可以组合起来，获得秘密位串。</p>
+<p>论文中采用的 secret sharing方法是基于(2, 2)-threshold,
+其中共享的必须是两个可比较的文本(two comparable
+texts)。通过形容词删除技术将【0s 和 1s 的加密位字符串(secret
+bitstring;)】嵌入到两个文本中，这两个文本可以组合起来，获得秘密位串。</p>
 <blockquote>
-<p>Hence the proposed method is a novel combination of secret sharing and linguistic steganography.</p>
+<p>Hence the proposed method is a novel combination of secret sharing
+and linguistic steganography.</p>
 </blockquote>
 <p>一种密钥共享与语言隐写技术的新颖组合方法？！</p>
 <p><strong>Adjective Deletion</strong></p>
-<p>在不影响句子流利程度和语义的情况下，可以将一些形容词删除。在下面的例子中，删除 <em>own</em> 这个形容词后，句意并没有发生改变。</p>
+<p>在不影响句子流利程度和语义的情况下，可以将一些形容词删除。在下面的例子中，删除
+<em>own</em> 这个形容词后，句意并没有发生改变。</p>
 <blockquote>
 <p>he spent only his own money.</p>
 <p>he spent only his money.</p>
 </blockquote>
-<p>一种极端情况 adjective-noun ：大致可以理解为正确的废话（正确但duck不必的形容）吧。</p>
+<p>一种极端情况 adjective-noun
+：大致可以理解为正确的废话（正确但duck不必的形容）吧。</p>
 <blockquote>
 <p>unfair prejudice</p>
 <p>horrible crime</p>
 <p>fragile glass</p>
 </blockquote>
-<p><strong>隐写术种的语言转换(Linguistic Transformations for Steganography)</strong></p>
+<p><strong>隐写术种的语言转换(Linguistic Transformations for
+Steganography)</strong></p>
 <p>如：词汇替换、短语意译、句子结构调整、语义转换等【PS：有种毕业论文降重的赶脚】</p>
 <p>还有一种研究通过在翻译的文本中嵌入信息。在机器翻译算法中引入水印作为参数，对带有水印的译文进行概率识别。</p>
-<p>【Watermarking the outputs of structured prediction with an application in statistical machine translation】</p>
+<p>【Watermarking the outputs of structured prediction with an
+application in statistical machine translation】</p>
 <blockquote>
-<p>Another recent work proposedby Venugopal et al. (2011) introduces a watermark as a parameter in the machine translation algorithm and probabilistically identifies the watermarked translation.</p>
+<p>Another recent work proposedby Venugopal et al. (2011) introduces a
+watermark as a parameter in the machine translation algorithm and
+probabilistically identifies the watermarked translation.</p>
 </blockquote>
 <p><strong>隐写系统评估</strong></p>
-<p>可以从两个方面对系统进行评估：安全性(security level)和嵌入容量( embedding capacity)</p>
-<ol>
+<p>可以从两个方面对系统进行评估：安全性(security level)和嵌入容量(
+embedding capacity)</p>
+<ol type="1">
 <li><p>security level： automatic evaluation and human evaluation.</p>
-<p>automatic evaluation 大概就是使用机器翻译评价指标 BLEU 和 NIST。计算隐藏文本与原始文本之间的距离。</p>
-<p>human evaluation 就是认为指定的一套评估标准(seven-point scale)。</p>
-</li>
+<p>automatic evaluation 大概就是使用机器翻译评价指标 BLEU 和
+NIST。计算隐藏文本与原始文本之间的距离。</p>
+<p>human evaluation 就是认为指定的一套评估标准(seven-point
+scale)。</p></li>
 <li><p>embedding capacity</p>
-<p>将嵌入的信息按每个语言单位(每个句子或每个单词)比特进行量化。</p>
-</li>
+<p>将嵌入的信息按每个语言单位(每个句子或每个单词)比特进行量化。</p></li>
 </ol>
 <p>隐写系统的语言转换和编码方法，以及隐写文本的选择都会影响隐写系统的安全级别和有效负载能力。</p>
 <p><strong>句子压缩</strong></p>
 <p>句子压缩，文本简化和文本摘要通常涉及删除句子中不重要的词，以使文本更简洁。论文中指出，形容词删除可以用在句子压缩之前或之后。进一步简化句子。</p>
 <blockquote>
-<p>The proposed adjective deletion methods can be applied before and/or after a sentence compression system. Deleting unnecessary adjectives before can help the system focus on other content of a sentence. Deleting unnecessary adjectives after can generate an even more concise sentence.</p>
+<p>The proposed adjective deletion methods can be applied before and/or
+after a sentence compression system. Deleting unnecessary adjectives
+before can help the system focus on other content of a sentence.
+Deleting unnecessary adjectives after can generate an even more concise
+sentence.</p>
 </blockquote>
 <p><strong>Deletable Adjective Classification</strong></p>
-<p>论文中，为了使一个形容词的删除是可以接受的，使用两个检查：语法性和自然性检查(grammaticality and naturalness checks)。</p>
-<ol>
-<li><p>N-gram Count 方法</p>
-<p>计算删除形容词前后文本的 N-gram 统计得分，通过设置一个阈值，来判断删除后的文本是否可接受。</p>
-</li>
-<li><p>Features for the SVM</p>
+<p>论文中，为了使一个形容词的删除是可以接受的，使用两个检查：语法性和自然性检查(grammaticality
+and naturalness checks)。</p>
+<ol type="1">
+<li>N-gram Count 方法</li>
+</ol>
+<p>计算删除形容词前后文本的 N-gram
+统计得分，通过设置一个阈值，来判断删除后的文本是否可接受。</p>
+<ol start="2" type="1">
+<li>Features for the SVM</li>
+</ol>
 <p>支持向量机的特征有：</p>
 <ul>
 <li>N-gram Counts</li>
-<li>Lexical Association Measures【确定形容词和名词之间的关联程度。】</li>
+<li>Lexical Association
+Measures【确定形容词和名词之间的关联程度。】</li>
 <li>Noun and Adjective Entropy【名词和形容词熵】</li>
 <li>Contextual α-Skew Divergence【上下文的倾斜散度？】</li>
 </ul>
-</li>
-</ol>
 <p><strong>Secret Sharing Scheme</strong></p>
-<p>将一个密钥位串分成两个部分$share_0$和 $share_1$ 。若目标形容词在$share_0$ 中保留，则密钥值取0，若目标形容词在$share_1$中保留，则密钥值取1。</p>
+<p>将一个密钥位串分成两个部分<span class="math inline"><em>s</em><em>h</em><em>a</em><em>r</em><em>e</em><sub>0</sub></span>和
+<span class="math inline"><em>s</em><em>h</em><em>a</em><em>r</em><em>e</em><sub>1</sub></span>
+。若目标形容词在<span class="math inline"><em>s</em><em>h</em><em>a</em><em>r</em><em>e</em><sub>0</sub></span>
+中保留，则密钥值取0，若目标形容词在<span class="math inline"><em>s</em><em>h</em><em>a</em><em>r</em><em>e</em><sub>1</sub></span>中保留，则密钥值取1。</p>
 <blockquote>
 <p>Share0 holds secret bits as 0s and Share1 holds secret bits as 1s</p>
 </blockquote>
 <p>下面是一个密钥位串为 101 的例子：</p>
-<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BD%A2%E5%AE%B9%E8%AF%8D%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%E7%9A%84%E8%AF%AD%E8%A8%80%E9%9A%90%E5%86%99%E4%B8%8E%E5%AF%86%E9%92%A5%E5%85%B1%E4%BA%AB/image-20210708213208658.png" alt="image-20210708213208658"></p>
+<figure>
+<img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BD%A2%E5%AE%B9%E8%AF%8D%E5%88%A0%E9%99%A4%E7%AD%96%E7%95%A5%E7%9A%84%E8%AF%AD%E8%A8%80%E9%9A%90%E5%86%99%E4%B8%8E%E5%AF%86%E9%92%A5%E5%85%B1%E4%BA%AB/image-20210708213208658.png" alt="image-20210708213208658">
+<figcaption aria-hidden="true">image-20210708213208658</figcaption>
+</figure>
 
       
     </div>
@@ -483,7 +619,10 @@
 <p>代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">################## utils.py #####################</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_fa</span><span class="params">(file, mode=<span class="string">'train'</span>)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> mode <span class="keyword">in</span> &#123;<span class="string">'train'</span>,<span class="string">'test'</span>&#125;</span><br><span class="line">    labels = []</span><br><span class="line">    seqs_info = []</span><br><span class="line">    cates_id = []</span><br><span class="line">    seq = <span class="string">''</span></span><br><span class="line">    <span class="keyword">with</span> open(file,mode=<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline().strip()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            <span class="keyword">if</span> line[<span class="number">0</span>]==<span class="string">'&gt;'</span>:</span><br><span class="line">                info = line[<span class="number">1</span>:].split(<span class="string">' '</span>)</span><br><span class="line">                cates_id.append(info[<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">                    labels.append(<span class="string">''</span>.join(info[<span class="number">1</span>].split(<span class="string">'.'</span>)[:<span class="number">2</span>]))</span><br><span class="line">                <span class="keyword">if</span> seq:</span><br><span class="line">                    seqs_info.append(seq)</span><br><span class="line">                    seq = <span class="string">''</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                seq += line</span><br><span class="line">            line = f.readline().strip()</span><br><span class="line">        seqs_info.append(seq)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cates_id,seqs_info,labels</span><br><span class="line"></span><br><span class="line"><span class="comment">################## main.py #####################</span></span><br><span class="line"><span class="keyword">from</span> utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> f1_score, fbeta_score, precision_score, recall_score, roc_auc_score</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold <span class="keyword">as</span> KFold</span><br><span class="line"><span class="keyword">import</span> lightgbm <span class="keyword">as</span> lgb</span><br><span class="line"></span><br><span class="line">train_file = <span class="string">'./训练集/astral_train.fa'</span></span><br><span class="line">test_file = <span class="string">'./测试集/astral_test.fa'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">train_sample_id, train_seqs_info, train_labels = read_fa(train_file, mode=<span class="string">'train'</span>)</span><br><span class="line">test_sample_id, test_seqs_info, _ = read_fa(test_file, mode=<span class="string">'test'</span>)</span><br><span class="line">train_data = &#123;</span><br><span class="line">    <span class="string">'sample_id'</span>: train_sample_id,</span><br><span class="line">    <span class="string">'seq_info'</span>: train_seqs_info,</span><br><span class="line">    <span class="string">'label'</span>: train_labels</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">test_data = &#123;</span><br><span class="line">    <span class="string">'sample_id'</span>: test_sample_id,</span><br><span class="line">    <span class="string">'seq_info'</span>: test_seqs_info,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">label_map = &#123;l:idx <span class="keyword">for</span> idx,l <span class="keyword">in</span> enumerate(set(train_labels))&#125;</span><br><span class="line"></span><br><span class="line">rev_label_map = &#123;v:k <span class="keyword">for</span> k,v <span class="keyword">in</span> label_map.items()&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(label_map)</span></span><br><span class="line"></span><br><span class="line">train = pd.DataFrame(data=train_data)</span><br><span class="line">test = pd.DataFrame(data=test_data)</span><br><span class="line"></span><br><span class="line">train[<span class="string">'label'</span>] = train[<span class="string">'label'</span>].map(label_map)</span><br><span class="line"></span><br><span class="line">alp = list(set(<span class="string">''</span>.join(train_seqs_info + test_seqs_info)))</span><br><span class="line"></span><br><span class="line">train[<span class="string">'seq_len'</span>] = train[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:len(x))</span><br><span class="line">test[<span class="string">'seq_len'</span>] = test[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:len(x))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> s <span class="keyword">in</span> alp:</span><br><span class="line">    train[<span class="string">'count_'</span>+s] = train[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:x.count(s))</span><br><span class="line">    train[<span class="string">'freq_'</span>+s] = train[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:x.count(s)/len(x))</span><br><span class="line">    </span><br><span class="line">    test[<span class="string">'count_'</span>+s] = test[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:x.count(s))</span><br><span class="line">    test[<span class="string">'freq_'</span>+s] = test[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:x.count(s)/len(x))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">feats = [i <span class="keyword">for</span> i <span class="keyword">in</span> train.columns <span class="keyword">if</span> i <span class="keyword">not</span> <span class="keyword">in</span> [<span class="string">'label'</span>,<span class="string">'sample_id'</span>,<span class="string">'seq_info'</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(feats)</span></span><br><span class="line"></span><br><span class="line">x_train = train[feats]</span><br><span class="line">y_train = train[<span class="string">'label'</span>]</span><br><span class="line">x_test = test[feats]</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line">params = &#123; </span><br><span class="line">    <span class="string">'boosting_type'</span>: <span class="string">'gbdt'</span>,  </span><br><span class="line">    <span class="string">'objective'</span>: <span class="string">'multiclass'</span>,  </span><br><span class="line">    <span class="string">'num_class'</span>: <span class="number">245</span>,  </span><br><span class="line">    <span class="string">'metric'</span>: <span class="string">'multi_error'</span>,  </span><br><span class="line">    <span class="string">'num_leaves'</span>: <span class="number">300</span>,  </span><br><span class="line">    <span class="string">'min_data_in_leaf'</span>: <span class="number">500</span>,  </span><br><span class="line">    <span class="string">'learning_rate'</span>: <span class="number">0.007</span>,  </span><br><span class="line">    <span class="string">'max_depth'</span>: <span class="number">8</span>,</span><br><span class="line">    <span class="string">'feature_fraction'</span>: <span class="number">0.8</span>,  </span><br><span class="line">    <span class="string">'bagging_fraction'</span>: <span class="number">0.8</span>,  </span><br><span class="line">    <span class="string">'bagging_freq'</span>: <span class="number">5</span>,  </span><br><span class="line">    <span class="string">'lambda_l1'</span>: <span class="number">0.4</span>,  </span><br><span class="line">    <span class="string">'lambda_l2'</span>: <span class="number">0.5</span>,  </span><br><span class="line">    <span class="string">'min_gain_to_split'</span>: <span class="number">0.2</span>,  </span><br><span class="line">    <span class="string">'verbose'</span>: <span class="number">-1</span>,</span><br><span class="line">    <span class="string">'num_threads'</span>:<span class="number">2</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 五折交叉验证</span></span><br><span class="line">folds = KFold(n_splits=<span class="number">5</span>, shuffle=<span class="literal">True</span>, random_state=<span class="number">2021</span>)</span><br><span class="line"></span><br><span class="line">oof = np.zeros([len(x_train),<span class="number">245</span>])</span><br><span class="line">predictions = np.zeros([len(x_test),<span class="number">245</span>])</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> fold_, (trn_idx, val_idx) <span class="keyword">in</span> enumerate(folds.split(x_train, y_train)):</span><br><span class="line">    print(<span class="string">"fold n°&#123;&#125;"</span>.format(fold_+<span class="number">1</span>))</span><br><span class="line">    trn_data = lgb.Dataset(x_train.iloc[trn_idx], y_train.iloc[trn_idx])</span><br><span class="line">    val_data = lgb.Dataset(x_train.iloc[val_idx], y_train.iloc[val_idx])</span><br><span class="line"> </span><br><span class="line">    num_round = <span class="number">1000</span></span><br><span class="line">    clf = lgb.train(params, </span><br><span class="line">                    trn_data, </span><br><span class="line">                    num_round, </span><br><span class="line">                    valid_sets = [trn_data, val_data], </span><br><span class="line">                    verbose_eval = <span class="number">100</span>, </span><br><span class="line">                    early_stopping_rounds = <span class="number">50</span>)</span><br><span class="line">    oof[val_idx] = clf.predict(x_train.iloc[val_idx][feats], num_iteration=clf.best_iteration)    </span><br><span class="line">    predictions += clf.predict(x_test, num_iteration=clf.best_iteration) / folds.n_splits</span><br><span class="line">    <span class="comment">#print(predictions)</span></span><br><span class="line"></span><br><span class="line">x_test[<span class="string">'sample_id'</span>] = test[<span class="string">'sample_id'</span>]</span><br><span class="line">x_test[<span class="string">'category_id'</span>] = [rev_label_map[list(x).index(max(x))] <span class="keyword">for</span> x <span class="keyword">in</span> predictions]</span><br><span class="line">x_test[<span class="string">'category_id'</span>] = x_test[<span class="string">'category_id'</span>].apply(<span class="keyword">lambda</span> x: x[<span class="number">0</span>]+<span class="string">'.'</span>+x[<span class="number">1</span>:])</span><br><span class="line">x_test[[<span class="string">'sample_id'</span>, <span class="string">'category_id'</span>]].to_csv(<span class="string">'base_sub.csv'</span>, index=<span class="literal">False</span>)</span><br><span class="line"></span><br><span class="line">y_pre = oof.argmax(axis=<span class="number">1</span>)</span><br><span class="line">print(<span class="string">"F1 score: &#123;&#125;"</span>.format(f1_score(y_train, y_pre,average=<span class="string">'micro'</span>)))</span><br><span class="line">print(<span class="string">"Precision score: &#123;&#125;"</span>.format(precision_score(y_train, y_pre,average=<span class="string">'micro'</span>)))</span><br><span class="line">print(<span class="string">"Recall score: &#123;&#125;"</span>.format(recall_score(y_train, y_pre,average=<span class="string">'micro'</span>)))</span><br></pre></td></tr></table></figure>
 <p>提交结果：目前【14/27(提交团队数)】</p>
-<p><img src="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B%E4%B9%8Blgb%E7%9A%84baseline/image-20210703193646587.png" alt="image-20210703193646587"></p>
+<figure>
+<img src="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B%E4%B9%8Blgb%E7%9A%84baseline/image-20210703193646587.png" alt="image-20210703193646587">
+<figcaption aria-hidden="true">image-20210703193646587</figcaption>
+</figure>
 <p>主要是提取了氨基酸组成(AAC)特征，即一些简单的统计特征。没有考虑氨基酸之间的相对位置信息，也没有必要调参，最后预测结果也很是拉跨。</p>
 <p>下一步直接尝试<code>nlp</code> 相关模型。</p>
 
@@ -553,20 +692,27 @@
           <blockquote>
 <p>前言</p>
 </blockquote>
-<p>这里收纳遇到的一些<code>Problem</code> ，包含一些生活中遇到的人或事。是泛指，而绝不是某类问题。想法来源于<code>SCP</code> 基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。</p>
-<p><em>我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！— 新城</em></p>
+<p>这里收纳遇到的一些<code>Problem</code>
+，包含一些生活中遇到的人或事。是泛指，而绝不是某类问题。想法来源于<code>SCP</code>
+基金会，也和一首歌有关《瓶与抛光者》。而起因却是迪迦与伍六七的下架。</p>
+<p><em>我感觉我们正失去一些美好的东西，善良、温柔、体贴，这些属于我们人类美好的本质，好像正慢慢淡化！—
+新城</em></p>
 <p><em>不拼尽全力试一下又怎么会知道啊！ —阿七</em></p>
 <p>随着时间推移，愈发感觉对于很多事情都很无力。<em>被矫枉过正的灵魂，嘴硬蛮横</em>。</p>
 <p>没有那么果敢（三思而后行/胆怯），没有那么坦诚（冷暖自知/尔虞我诈）、没有那么期待（活在当下/躺平）……然后成熟稳重。</p>
 <p>要藏起一些光芒（谦逊/自卑），收敛一些个性（低调/普通），寻找一些共性（合群/跟风）……然后求同存异。</p>
 <p>大道理听了很多，依旧过不好。可总是有人唠叨，也总是有人听。以至于我们活的越来越像别人……</p>
-<p>当大人不在苦口婆心耐心教导小孩明辨是非时，他们开始试图将自认为不适合小孩的东西封杀雪藏。可谓另辟蹊径，偷教育的懒。似乎想达到<em>同步教育</em> 的目的。</p>
-<p><em>同步教育： 并不是所有家长都能管好自家小孩，譬如打游戏，看电视。于是举报游戏，举报动画片，以此达到所有小孩都玩不了游戏，看不了动画片的目的，这样看似省心省事。</em> </p>
+<p>当大人不在苦口婆心耐心教导小孩明辨是非时，他们开始试图将自认为不适合小孩的东西封杀雪藏。可谓另辟蹊径，偷教育的懒。似乎想达到<em>同步教育</em>
+的目的。</p>
+<p><em>同步教育：
+并不是所有家长都能管好自家小孩，譬如打游戏，看电视。于是举报游戏，举报动画片，以此达到所有小孩都玩不了游戏，看不了动画片的目的，这样看似省心省事。</em></p>
 <p>几十载的一生，活着的意义又是什么呢。以前什么都不懂，过一天是一天，现在懂的多了，过一天算一天，还要总结昨天，规划明天，才能过好今天。</p>
 <p>夜深人静，当我们思考这一天，或最近的状况时，都企图得出一些人生大道理，悟出生活中的真谛，寻求内心的平静。自己到底是一个什么样的人？对于这个问题，好像每天都有不同的答案。</p>
 <p>于是在百无聊赖的生活里，寻找明天继续的理由……</p>
 <p>最后感恩！迪迦又上架了。</p>
-<p><code>Problem Container</code> 将作为理由之一，在互联网的大海里漂流。以下是收容的一些<code>Problem</code> 。</p>
+<p><code>Problem Container</code>
+将作为理由之一，在互联网的大海里漂流。以下是收容的一些<code>Problem</code>
+。</p>
 <blockquote>
 <p>布丁</p>
 </blockquote>
@@ -641,18 +787,27 @@
           <blockquote>
 <p>前言</p>
 </blockquote>
-<p>第一次参加<code>cv</code> 赛事，由清华举办的一场<code>AI 挑战赛</code> , 旨在推广 <code>jittor</code>框架的吧。<a href="https://www.educoder.net/competitions/index/Jittor-2" target="_blank" rel="noopener">传送门</a></p>
-<p>共有两个赛道，一个细分类，一个目标检测。由于有一个毕设与目标检测相关，于是毫不犹豫的报名参加了。算是入坑<code>DL</code> 了。前期在<code>tensorflow</code> 、<code>pytorch</code> 、<code>jittor</code> 三大框架之间反复横跳，最后还是抛弃了<code>tf</code>。主要是服务器上的<code>tf</code>用不了显卡的算力。环境问题懒得去倒腾了。<code>pytorch</code> 上手也很快，而且与<code>jittor</code> 相似。</p>
-<p>选着狗细分类这个赛道试水，结果差点每淹死在水里面。查阅了许多细分类的论文，一个个提到说效果达到<code>SOTA</code> ，结果到自己手里就废了。</p>
+<p>第一次参加<code>cv</code>
+赛事，由清华举办的一场<code>AI 挑战赛</code> , 旨在推广
+<code>jittor</code>框架的吧。<a href="https://www.educoder.net/competitions/index/Jittor-2" target="_blank" rel="noopener">传送门</a></p>
+<p>共有两个赛道，一个细分类，一个目标检测。由于有一个毕设与目标检测相关，于是毫不犹豫的报名参加了。算是入坑<code>DL</code>
+了。前期在<code>tensorflow</code> 、<code>pytorch</code>
+、<code>jittor</code>
+三大框架之间反复横跳，最后还是抛弃了<code>tf</code>。主要是服务器上的<code>tf</code>用不了显卡的算力。环境问题懒得去倒腾了。<code>pytorch</code>
+上手也很快，而且与<code>jittor</code> 相似。</p>
+<p>选着狗细分类这个赛道试水，结果差点每淹死在水里面。查阅了许多细分类的论文，一个个提到说效果达到<code>SOTA</code>
+，结果到自己手里就废了。</p>
 <blockquote>
-<p>在好的配方，也能被炼废。 </p>
+<p>在好的配方，也能被炼废。</p>
 </blockquote>
-<p>拿到配方，丹炉架好，药材就绪，大力按下回车键后，看着进度条缓缓加载，epoch 1,2,3,…</p>
+<p>拿到配方，丹炉架好，药材就绪，大力按下回车键后，看着进度条缓缓加载，epoch
+1,2,3,…</p>
 <p>这是一个漫长的过程，睡一觉第二天醒来，观察各项指标变化，没有预期那么好，却也差强人意。点击提交后，果然，依旧没有好的效果。2021.2.19，在尝试好几种配方，反复炼丹数十余日后，最终还是以失败告终。</p>
 <blockquote>
 <p>高端的食材往往只需要简单的烹饪。</p>
 </blockquote>
-<p>按照 <code>baseline</code>的方法，仅仅只是使用了一个简单的<code>resnet50</code>分类网络而已，最后的效果却要高于我各种花里胡哨的方法好几个百分点。开源的基线已是我望尘莫及的极限了。着实有些颓废。</p>
+<p>按照
+<code>baseline</code>的方法，仅仅只是使用了一个简单的<code>resnet50</code>分类网络而已，最后的效果却要高于我各种花里胡哨的方法好几个百分点。开源的基线已是我望尘莫及的极限了。着实有些颓废。</p>
 <blockquote>
 <p>I know nothing but my ignorance.</p>
 </blockquote>
@@ -732,12 +887,14 @@
 <p>2020.2.15，有关考研，自己也很纠结。可能是对自己实力的不自信，也可能是对自己本科四年的失望吧。细想过去的三年，无非在应付无关紧要的作业，参加可有可无的活动，平衡泛泛之交的同学关系，权衡尔虞我诈中的利弊。很是失败，也很无奈。我说：我在百无聊赖的生活里，寻找明天继续的理由……</p>
 <p>关于五一，记得前一天四月三十号，组建了第一个大数据比赛队伍，队伍名字就叫430。这一天回想了过去几个月的状态。本以为2020年是个好兆头，会是一个对我来说，重新开始的一年。我以为所有的不快、压抑、不良情绪都抛在了2019年。可是并没什么改变，我发现我依然无法和过去和解，尽管我几乎不记得发生了什么。当我开始搜索抑郁症相关信息时，我发现自己的状况好像并没有那么乐观。我无法确定，自己在互联网里寻找到的蛛丝马迹是为了得到什么样的答案。如果有一天，自己去医院就诊，然后被医生判定重度抑郁时，我大概在想：是我把医生骗了，还是医生在骗我。总之花了不少钱。我会说：我无数次把房间门反锁，这个时候，我总觉得我还算快乐……</p>
 <p>2020.6.23，记录中这是熬夜的一天，月初开始的大数据挑战赛初赛即将结束，月初开始的专业综合实训也接近尾声。昨天开始写实训报告，在今天凌晨三点左右凑够了9000+字数。睡一觉接着补15天的实训日记，第一次觉得200字的日记也是真的难写。BDC初赛结束也只有四天了，每天看着榜单上的名次往下掉，自己却一点法子都没有。询问老师，得到的回复总是“你用的什么模型”，或者抛来几个博文链接给我。值得庆幸的是目前还没有掉出榜单前100，还是有一丝机会的。最后几天还能挣扎一下。我会说：所有不能打败你的，都将使你变得更强……</p>
-<p>2020.7.20，这一天是和自己谈判的一天。逃离家庭，却终将要与自己和解。和平相处，peace and love……。这天我会说：最后这故里我想我是不会回来的……</p>
+<p>2020.7.20，这一天是和自己谈判的一天。逃离家庭，却终将要与自己和解。和平相处，peace
+and love……。这天我会说：最后这故里我想我是不会回来的……</p>
 <p>2020.7.30，靠着一点运气，以51的名次苟进了复赛。新建无数次的notebook，处理了无数次的数据、尝试了各种模型，效果依旧不如人意。最后的nn模型是我最后的倔强了，经过接近十个小时的模型训练，最终以收敛失败告终。我开始思考，自己这十几天的思路与付出是否真的是错的。思索良久，决定重新开始。重新清洗数据，重新做特征工程……我安慰自己：不是所有努力都会有回报，最终收不收敛，还得看你努力的方向是否正确……</p>
 <p>2020.8.10，比赛截至，苟进复赛，止步于此，34名。算是满意吧。从六月初到现在也熬过两个月了。期间有过很多次想过放弃，一方面指导老师没怎么指导，另一方面自己还是个入门两三个月的机器学习练习生而已。但是不知道为什么，还是抱着忍一忍的心态，挺了过去。算是在老师那刷刷存在感吧，毕竟考研可能要报他那。漫长黑夜，对着电脑，笨拙的手指在黑白机械键盘上敲出清脆的声音，这是我喜欢的音乐，这是我喜欢的世界。我会想：所有的坚持，都会是为未来埋下来的伏笔吧……</p>
 <p>2020.8.15，这天生日，已然苟活整整21年。几十载的一生，活着的意义又是什么呢。小时候什么都不懂，过一天是一天，现在懂得多了，过一天算一天，还要总结昨天、规划明天，才能过好今天。一个普通人的一生该是什么样的？二十到三十，这十年该如何度过，我也只能走一步看一步了。我很庄严的告诉自己：管他三七二十一，先做自己想做的事，说自己想说的话，走自己想走的路……</p>
 <p>2020.8.21，这天是回学校的日子。记录了我和布丁相处的半年多的时间的一些事情。它大概以为我会晚上到点就回来，但是这次真的好久都不会回来了。若是重来，我想对它说：你好，布丁，招待不周，还望见谅。</p>
-<p>2020.9.26，很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息，养老等死，我的墓志铭大概就是我的第一个”hello world”代码。这是我最后的倔强，而不是暂时的妥协。技术无罪，资本作祟的时代，人人都好像鬼怪，争夺面包，吸食人xie，手捧圣经，说着抱歉，最后还不忘总结，口感似乎差了点……</p>
+<p>2020.9.26，很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息，养老等死，我的墓志铭大概就是我的第一个”hello
+world”代码。这是我最后的倔强，而不是暂时的妥协。技术无罪，资本作祟的时代，人人都好像鬼怪，争夺面包，吸食人xie，手捧圣经，说着抱歉，最后还不忘总结，口感似乎差了点……</p>
 <p>2020.10.4，国庆假期，这天我在学校。记录里这样写着：不可否认的是，大学里，我尝试过很多方法去改变我那自卑内敛的性格。参加社团，参加义务家教，学着别人的口吻说话，练习不让人讨厌的微笑……努力让自己看起来有些自信。十八九岁总带有一些理想的冲动，二十几岁了相对来说多了些理性的思考和对未知的焦虑。不可否认的是，很多很多困扰我的问题，对于上大学的我，依旧难以给出理智的回答。就连一日三餐吃什么，都要犹豫半天。我会说：大道理听了很多，依旧过不好。可总是有人唠叨，也总是有人听。以至于我们活的越来越像别人……</p>
 <p>2020.10.5，长沙13℃，风很大。去图书馆的路上，遍地桂花。一场雨，一阵风，桂花落，好像宣告秋天结束，冬天来了。然而现在才10月份开头。到图书馆已经是八点半了，进自习室，发现差不多坐满了，剩下些零零散散的位置。索性经常坐的位置没有人占。平常一般六点半起床，大概七点半到。最近放假，放松了几天，生物钟还在慢慢调回去。十一点多已经快饿得不行了。早上买的肉夹馍和豆浆，只是吃了几口就扔了。找到适合我的早餐或许到毕业都不太可能吧。自己已经感觉到明显的头晕想睡觉，之前一直以为是休息不好，直到最近才意识到自己这是低血糖的症状。食堂只开张了寥寥几家店，但是留校的人却很多。选择了一家人少的馄饨面。结果忘记叫他不要放葱了。打包回寝室，边看剧边挑着馄饨面里的葱。又是一个多小时的午餐。寝室睡一觉，接着去图书馆学习。拿出历年英语真题开始做阅读理解，到目前为止，正确率依旧只有百分之五十左右。很是崩溃，单词记得也不多。做完已经快五点，好像又开始低血糖了。于是玩了一下手机。五点过后开始收拾东西走了。晚饭去西门吃了，顺便剪个头发。接着逛超市，买了一些零食和糖果。晚上睡觉前，有关智齿的问题纠结了我大半个小时，第一次长，害怕拔牙的痛苦。逮到人就问长了智齿没有。这颗智齿好像是最近开始长的，没有多大。算是给我这平平淡淡的生活徒增了一些烦恼，又或者埋下了一个小小的伏笔……智齿好像每个人都会长，但不是每个人都需要拔，除非它发炎。所以真特么刺激，这可爱的智齿……</p>
 <p>2020.10.7，憨憨从望城那边赶了回来。一进寝室就说快祝我回归单身。于是开始聊了起来。他说其实分开很久了，九月份的时候就分了。什么原因，他说很复杂。现在他们唯一的共同财产就是那条狗了。反正我是不太相信的，坐等他们复合请吃饭吧。如果他们都走不到最后，那我觉得所谓爱情也不过如此了。二十几岁的我，现在也没有特别想谈恋爱的冲动。现在的我，还有很多问题无法回答，很现实，也很必要。我常常想：我们好像都在换位思考，理智分析各自的问题，却依旧无法做出满意的决定……</p>
@@ -745,7 +902,7 @@
 <p>2020.10.14，最近被大连理工研究生自杀的新闻刷屏了。是啊，好好的一个人怎么就这样了。作为一名大四考研生，看到这个新闻时，第一想到的不是自己研究生的情况怎么样，而是在想，一个平常看起来挺正常的人，到底积攒了多少的糟糕的心情，才突然爆发了呢。有时候我也会觉得自己就是那样的人，对于很多事无奈的时候，就干脆做一个别人眼中认为的那个人。在不同角色之间来回切换，如同推杯换盏中达成一致。我说：在平衡内心与周遭的过程中，缝缝补补自己眼中那千疮百孔的世界……</p>
 <p>2020.10.15，记录着这样一段话：寻求一些期许，满足对未来的幻想，提醒今天的自己，你要加油啊，社畜……</p>
 <p>2020.10.18，早早洗完澡，就躺床上去了。刷着手机，思绪突然凌乱。胡思乱想中，脑海里浮现了布丁的身影。我无法想象在未来某一天，布丁生命终结，我该如何面对。这是我一开始就害怕面对的问题。与它待的每一天，我好像都会害怕眼前美妙的情景在未来哪天突然消失。我不擅长面对这样的场面，我应该也很很难走出来。至少生命中，某些时刻，会时不时浮现脑海里，就像现在这样。有些珍贵的情感，不需要触景而生，就在生活中的某些时刻突然想起，无需刻意回忆。</p>
-<p>2020.10.19，这一天记录了一篇小说偷影子的人。这是一部小说，以童年的故事作为铺垫，以成人后的追忆把小说推向高潮。小说不长，却很抓人。小说里那种细腻的感触，总是不经意间出现。我们自以为忘记了过去，但生活自会把我们引进回忆，然后拾起一段又一段珍贵的情感……”随着时间的流逝，有些事自会迎刃而解。”，”你偷走了我的影子，不论你在哪里，我都会一直想着你。”最近总是半夜醒来，说不清楚什么原因。可能是睡得早了，可能是做了噩梦。近来确实容易做梦，梦见布丁去世，梦见与爸妈吵架，梦见一些生活的一些事的后续，事情发展越发荒唐……我开始害怕自己的影子被别人偷走，我不太能确定它是否可靠，是不是轻易就能说出我不愿说的心事。我不相信我的影子。我不太愿意回忆过去了，甚至开始选择性的去忘记一些事情。我希望一切往前看，即使过去一团糟，我依旧觉得明天是我可以逃避一些事的地方，在那里前途一片光明。不问过去：我尽量准备好明天的到来，尽管今天过得并不怎么样……</p>
+<p>2020.10.19，这一天记录了一篇小说偷影子的人。这是一部小说，以童年的故事作为铺垫，以成人后的追忆把小说推向高潮。小说不长，却很抓人。小说里那种细腻的感触，总是不经意间出现。我们自以为忘记了过去，但生活自会把我们引进回忆，然后拾起一段又一段珍贵的情感……“随着时间的流逝，有些事自会迎刃而解。”，“你偷走了我的影子，不论你在哪里，我都会一直想着你。”最近总是半夜醒来，说不清楚什么原因。可能是睡得早了，可能是做了噩梦。近来确实容易做梦，梦见布丁去世，梦见与爸妈吵架，梦见一些生活的一些事的后续，事情发展越发荒唐……我开始害怕自己的影子被别人偷走，我不太能确定它是否可靠，是不是轻易就能说出我不愿说的心事。我不相信我的影子。我不太愿意回忆过去了，甚至开始选择性的去忘记一些事情。我希望一切往前看，即使过去一团糟，我依旧觉得明天是我可以逃避一些事的地方，在那里前途一片光明。不问过去：我尽量准备好明天的到来，尽管今天过得并不怎么样……</p>
 <p>2020.10.25，这一天的标题是寻人启事。考研让我的生活变得规律起来。早上六点半起床，七点吃早饭，七点半到图书馆学习，然后十一点吃午饭，十一点半回寝室睡觉，十二点半返回图书馆学习，然后直到下午五点，吃完晚饭大概六点，接着学到九点多，然后回寝室洗澡洗衣服刷牙，最后睡觉。在路上常常有种行尸走肉般的感觉，机械的，按部就班的，过着每一天。这样也挺好，忙起来，把生活填满，就不必去思考其他的东西了。可又好像不是这样，我考虑半天三餐吃什么，我可能会思考吃哪一家的，我会计较哪家喜欢放葱，我会犹豫半天吃饭还是吃粉，炒饭还是炒粉，明天什么天气，是否有雨，温度多高，要复习什么内容……我每天都在纠结着这些好像微不足道的小事。夜深了，躺在床上，打着字，思考这一天，或最近的状况。企图得出一些人生大道理，悟出生活中的真谛，寻求内心的平静。自己到底是一个什么样的人？对于这个问题，好像每天都有不同的答案。我想写一份寻人启事，寻找真正的自己……</p>
 <hr>
 <p>往后的时间，在刷卷子中度过。自习室里，笔在一张张A3纸上沙沙作响，垫在桌子上的纸一张一张的叠着，慢慢的，越铺越厚。考完那天，回到自习室，抽出那一摞纸张，然后重重地扔进了垃圾堆里，宣告结束了。2020年也结束了。</p>
@@ -831,129 +988,172 @@
           <blockquote>
 <p><em>I know nothing but my ignorance.</em></p>
 </blockquote>
-<h3 id="5月18日"><a href="#5月18日" class="headerlink" title="5月18日"></a>5月18日</h3><p>今天是单片机实习的第一天，因为疫情原因变成了线上开展。</p>
+<h3 id="月18日">5月18日</h3>
+<p>今天是单片机实习的第一天，因为疫情原因变成了线上开展。</p>
 <p>上午，老师把六个选题都一一讲解了一遍，并告诉我们一些在实习过程中可能会出现的一些问题和注意事项。老师讲完后，我们就开始组队和选题了。</p>
-<p>在经过一番并不激烈的讨论后，我们组选择了第二个项目：<strong>数字频率计设计</strong> </p>
+<p>在经过一番并不激烈的讨论后，我们组选择了第二个项目：<strong>数字频率计设计</strong></p>
 <p>一、基本要求：</p>
 <p>测量待测 <code>TTL</code> 电平信号的频率</p>
-<ol>
+<ol type="1">
 <li>频率范围：10 Hz ~ 50kHz，全测量范围误差不大于 1%；</li>
-<li>用液晶屏 <code>LCD1602</code> 显示数值和单位，可显示频率及周期；</li>
+<li>用液晶屏 <code>LCD1602</code>
+显示数值和单位，可显示频率及周期；</li>
 <li>数据刷新率每秒三次以上；</li>
 <li>在同一台单片机上自行设计测试用信号源；</li>
 <li>通过串口通信在远程单片机（仿真环境）显示测量结果。</li>
 </ol>
 <p>二、扩展要求</p>
-<ol>
+<ol type="1">
 <li>占空比测量</li>
 <li>在保证数据刷新率和精度的基础上拓展测量频率范围</li>
 </ol>
 <p>下午，我们组四个人开始查文献讨论总体方案和分工。又是一番并不激烈的讨论后，我们确定好了分工。我选择了串口通信功能的实现。</p>
-<h3 id="5月19日"><a href="#5月19日" class="headerlink" title="5月19日"></a>5月19日</h3><p>上午确定分工合作的一些细节部分的设计，资源的分配，引脚的功能等等。然后，听老师讲一些知识点。</p>
-<p>下午，我开始查找串口通信的资料文献。最终确定采用异步通信的方式实现串口通信。接着开始着重异步通信方面的资料查询。经过一番并不困难的翻阅后，大致了解了异步通信的 4 种方式以及定时器的知识。</p>
-<p>52单片机有三个定时器/计数器，与串口通信有关的就是 T1定时器了。定时器/计数器的实质是加 1 计数器(高 8 位 和低 8 位 两个寄存器组成)。<code>TMOD</code> 是确定工作方式和功能的寄存器；<code>TCON</code> 是控制 T0、T1 的启动和停止及设置溢出标志的寄存器。</p>
+<h3 id="月19日">5月19日</h3>
+<p>上午确定分工合作的一些细节部分的设计，资源的分配，引脚的功能等等。然后，听老师讲一些知识点。</p>
+<p>下午，我开始查找串口通信的资料文献。最终确定采用异步通信的方式实现串口通信。接着开始着重异步通信方面的资料查询。经过一番并不困难的翻阅后，大致了解了异步通信的
+4 种方式以及定时器的知识。</p>
+<p>52单片机有三个定时器/计数器，与串口通信有关的就是
+T1定时器了。定时器/计数器的实质是加 1 计数器(高 8 位 和低 8 位
+两个寄存器组成)。<code>TMOD</code>
+是确定工作方式和功能的寄存器；<code>TCON</code> 是控制 T0、T1
+的启动和停止及设置溢出标志的寄存器。</p>
 <p><strong><code>TMOD</code></strong>:</p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 28%">
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 7%">
+<col style="width: 28%">
+<col style="width: 5%">
+<col style="width: 5%">
+</colgroup>
 <thead>
 <tr>
-<th style="text-align:center">位序号</th>
-<th style="text-align:center">D7</th>
-<th style="text-align:center">D6</th>
-<th style="text-align:center">D5</th>
-<th style="text-align:center">D4</th>
-<th style="text-align:center">D3</th>
-<th style="text-align:center">D2</th>
-<th style="text-align:center">D1</th>
-<th style="text-align:center">D0</th>
+<th style="text-align: center;">位序号</th>
+<th style="text-align: center;">D7</th>
+<th style="text-align: center;">D6</th>
+<th style="text-align: center;">D5</th>
+<th style="text-align: center;">D4</th>
+<th style="text-align: center;">D3</th>
+<th style="text-align: center;">D2</th>
+<th style="text-align: center;">D1</th>
+<th style="text-align: center;">D0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">位符号</td>
-<td style="text-align:center">$GATE$</td>
-<td style="text-align:center">$C/\overline{\text{T}}$</td>
-<td style="text-align:center">$M1$</td>
-<td style="text-align:center">$M0$</td>
-<td style="text-align:center">$GATE$</td>
-<td style="text-align:center">$C/\overline{\text{T}}$</td>
-<td style="text-align:center">$M1$</td>
-<td style="text-align:center">$M0$</td>
+<td style="text-align: center;">位符号</td>
+<td style="text-align: center;"><span class="math inline"><em>G</em><em>A</em><em>T</em><em>E</em></span></td>
+<td style="text-align: center;"><span class="math inline">$C/\overline{\text{T}}$</span></td>
+<td style="text-align: center;"><span class="math inline"><em>M</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>M</em>0</span></td>
+<td style="text-align: center;"><span class="math inline"><em>G</em><em>A</em><em>T</em><em>E</em></span></td>
+<td style="text-align: center;"><span class="math inline">$C/\overline{\text{T}}$</span></td>
+<td style="text-align: center;"><span class="math inline"><em>M</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>M</em>0</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<p><code>D7~D4</code> 为 <code>T1</code> 定时器，<code>D3~D0</code> 为 <code>T0</code> 定时器。$C/\overline{\text{T}}$ 为 0 时为定时器模式，为 1 时为计数器模式，<code>M1</code> 和 <code>M0</code> 是工作方式选择位。</p>
-<div class="table-container">
+<p><code>D7~D4</code> 为 <code>T1</code> 定时器，<code>D3~D0</code> 为
+<code>T0</code> 定时器。<span class="math inline">$C/\overline{\text{T}}$</span> 为 0
+时为定时器模式，为 1 时为计数器模式，<code>M1</code> 和 <code>M0</code>
+是工作方式选择位。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">M1</th>
-<th style="text-align:center">M0</th>
-<th style="text-align:center">工作方式</th>
+<th style="text-align: center;">M1</th>
+<th style="text-align: center;">M0</th>
+<th style="text-align: center;">工作方式</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">方式0，为13位定时器/计数器</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">方式0，为13位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">方式1，为16位定时器/计数器</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">方式1，为16位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">方式2，8位初值自动重装的8位定时器/计数器</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">方式2，8位初值自动重装的8位定时器/计数器</td>
 </tr>
 <tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">方式3，仅适用于 T0，分成两个8位计数器，T1停止计数</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">方式3，仅适用于
+T0，分成两个8位计数器，T1停止计数</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong><code>TCON</code></strong></p>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
 <thead>
 <tr>
-<th style="text-align:center">位序号</th>
-<th style="text-align:center">D7</th>
-<th style="text-align:center">D6</th>
-<th style="text-align:center">D5</th>
-<th style="text-align:center">D4</th>
-<th style="text-align:center">D3</th>
-<th style="text-align:center">D2</th>
-<th style="text-align:center">D1</th>
-<th style="text-align:center">D0</th>
+<th style="text-align: center;">位序号</th>
+<th style="text-align: center;">D7</th>
+<th style="text-align: center;">D6</th>
+<th style="text-align: center;">D5</th>
+<th style="text-align: center;">D4</th>
+<th style="text-align: center;">D3</th>
+<th style="text-align: center;">D2</th>
+<th style="text-align: center;">D1</th>
+<th style="text-align: center;">D0</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">位符号</td>
-<td style="text-align:center">$TF1$</td>
-<td style="text-align:center">$TR1$</td>
-<td style="text-align:center">$TF0$</td>
-<td style="text-align:center">$TR0$</td>
-<td style="text-align:center">$IE1$</td>
-<td style="text-align:center">$IT1$</td>
-<td style="text-align:center">$IE0$</td>
-<td style="text-align:center">$IT0$</td>
+<td style="text-align: center;">位符号</td>
+<td style="text-align: center;"><span class="math inline"><em>T</em><em>F</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>T</em><em>R</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>T</em><em>F</em>0</span></td>
+<td style="text-align: center;"><span class="math inline"><em>T</em><em>R</em>0</span></td>
+<td style="text-align: center;"><span class="math inline"><em>I</em><em>E</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>I</em><em>T</em>1</span></td>
+<td style="text-align: center;"><span class="math inline"><em>I</em><em>E</em>0</span></td>
+<td style="text-align: center;"><span class="math inline"><em>I</em><em>T</em>0</span></td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="5月20日"><a href="#5月20日" class="headerlink" title="5月20日"></a>5月20日</h3><p>经过昨天一天的查阅学习，已经对串口通信有了比较全面的了解。所以，今天就是先把串口通信的一些必要环境准备好。下载串口助手和虚拟串口工具，然后测试串口助手。在一番并不花里胡哨的操作后，基本操作都会了。接着就是准备仿真下的串口测试了。在 <code>protues</code> 上，点来点去，又是一番行云流水且不花里胡哨的操作后，仿真环境也搭建好了。然后开始敲代码，在 <code>keil</code> 这个外表朴实无华但功能强大的软件上，敲下第一个简单串口通信的代码。然后结合串口助手观察效果。这样一个发送单个字符的例子就测试成功了。</p>
-<h3 id="5月21日"><a href="#5月21日" class="headerlink" title="5月21日"></a>5月21日</h3><p>今天是周四，上午老师照常开了小小的线上例会。交我们一些小小的调试技巧之类的。在昨天的基础上，今天继续修改代码，实现发送和接收功能。上午把整个代码框架写了出来，本以为会是顺顺利利的一天。但是下午的调试，着实不太顺利。先是，接收的数据并不是期望的数据，在一顿微操后，发现是接收数据的数组出现了溢出现象。调好后，又发现接收的数据有些错位了。又是一顿 <code>Debug</code> 后，自己定义一个简单通信协议，在数据头尾加上标志位，以确保接收方正确接收到期望数据。来来回回这样折腾后，仿真串口通信是没有问题了。</p>
-<h3 id="5月22日"><a href="#5月22日" class="headerlink" title="5月22日"></a>5月22日</h3><p>一觉醒来还是周五，是的，昨晚熬到了十二点。精力显然有些不充沛的我，还是打开了电脑，接着干了。队友那边的频率测量 和<code>LCD</code> 显示功能已经就绪了。今天可以整一块测试一下了。拿到他们的代码后，便开始调试。红红火火恍恍惚惚，就这样一顿朴实无华而实用的 <code>CV</code>大法过后，加以小小微操作为辅助，就调好了。</p>
-<h3 id="5月25日"><a href="#5月25日" class="headerlink" title="5月25日"></a>5月25日</h3><p>短暂的周末一晃就过去了。新的一周，继续干。现在只剩下信号源了。查资料，敲代码，仿真。陷入循环状态。进度十分缓慢。浑浑噩噩，一天就这样结束了。</p>
-<h3 id="5月26日"><a href="#5月26日" class="headerlink" title="5月26日"></a>5月26日</h3><p>距离实习结束，迫在眉睫。但是，实在有些精神疲惫了。打开和昨天一样的软件一样的文件，开始改代码。一番操作，以为成了。结果，一到高频信号，就不受调制了，无法准确控制信号频率的改变。</p>
-<h3 id="5月27日"><a href="#5月27日" class="headerlink" title="5月27日"></a>5月27日</h3><p>今天开始在开发板上进行真机测试，果然不出所料，仿真和真机不一样。一天的疯狂调试，勉强调好，差强人意的样子。</p>
+<h3 id="月20日">5月20日</h3>
+<p>经过昨天一天的查阅学习，已经对串口通信有了比较全面的了解。所以，今天就是先把串口通信的一些必要环境准备好。下载串口助手和虚拟串口工具，然后测试串口助手。在一番并不花里胡哨的操作后，基本操作都会了。接着就是准备仿真下的串口测试了。在
+<code>protues</code>
+上，点来点去，又是一番行云流水且不花里胡哨的操作后，仿真环境也搭建好了。然后开始敲代码，在
+<code>keil</code>
+这个外表朴实无华但功能强大的软件上，敲下第一个简单串口通信的代码。然后结合串口助手观察效果。这样一个发送单个字符的例子就测试成功了。</p>
+<h3 id="月21日">5月21日</h3>
+<p>今天是周四，上午老师照常开了小小的线上例会。交我们一些小小的调试技巧之类的。在昨天的基础上，今天继续修改代码，实现发送和接收功能。上午把整个代码框架写了出来，本以为会是顺顺利利的一天。但是下午的调试，着实不太顺利。先是，接收的数据并不是期望的数据，在一顿微操后，发现是接收数据的数组出现了溢出现象。调好后，又发现接收的数据有些错位了。又是一顿
+<code>Debug</code>
+后，自己定义一个简单通信协议，在数据头尾加上标志位，以确保接收方正确接收到期望数据。来来回回这样折腾后，仿真串口通信是没有问题了。</p>
+<h3 id="月22日">5月22日</h3>
+<p>一觉醒来还是周五，是的，昨晚熬到了十二点。精力显然有些不充沛的我，还是打开了电脑，接着干了。队友那边的频率测量
+和<code>LCD</code>
+显示功能已经就绪了。今天可以整一块测试一下了。拿到他们的代码后，便开始调试。红红火火恍恍惚惚，就这样一顿朴实无华而实用的
+<code>CV</code>大法过后，加以小小微操作为辅助，就调好了。</p>
+<h3 id="月25日">5月25日</h3>
+<p>短暂的周末一晃就过去了。新的一周，继续干。现在只剩下信号源了。查资料，敲代码，仿真。陷入循环状态。进度十分缓慢。浑浑噩噩，一天就这样结束了。</p>
+<h3 id="月26日">5月26日</h3>
+<p>距离实习结束，迫在眉睫。但是，实在有些精神疲惫了。打开和昨天一样的软件一样的文件，开始改代码。一番操作，以为成了。结果，一到高频信号，就不受调制了，无法准确控制信号频率的改变。</p>
+<h3 id="月27日">5月27日</h3>
+<p>今天开始在开发板上进行真机测试，果然不出所料，仿真和真机不一样。一天的疯狂调试，勉强调好，差强人意的样子。</p>
 
       
     </div>
@@ -1025,57 +1225,108 @@
 <p>交互式Python爬虫分析实例小项目</p>
 </blockquote>
 <p>先抛出项目地址吧： <a href="http://dblab.xmu.edu.cn/blog/2355/#more-2355" target="_blank" rel="noopener">厦门大学数据库实验室</a></p>
-<h3 id="项目简述"><a href="#项目简述" class="headerlink" title="项目简述"></a>项目简述</h3><p>实现一个简单的交互式的租房信息分析展示 $web$ 平台。</p>
-<p>数据来源 ： <a href="http://www.xhj.com/zufang/" target="_blank" rel="noopener">http://www.xhj.com/zufang/</a></p>
+<h3 id="项目简述">项目简述</h3>
+<p>实现一个简单的交互式的租房信息分析展示 <span class="math inline"><em>w</em><em>e</em><em>b</em></span> 平台。</p>
+<p>数据来源 ： http://www.xhj.com/zufang/</p>
 <p><strong>技术栈</strong> ：</p>
 <ul>
-<li>$python$ 爬虫</li>
-<li>$pyspark$ 数据分析</li>
-<li>$flask$  $web$ 后端</li>
-<li>$pyecharts$  可视化</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>t</em><em>h</em><em>o</em><em>n</em></span>
+爬虫</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>s</em><em>p</em><em>a</em><em>r</em><em>k</em></span>
+数据分析</li>
+<li><span class="math inline"><em>f</em><em>l</em><em>a</em><em>s</em><em>k</em></span>
+<span class="math inline"><em>w</em><em>e</em><em>b</em></span>
+后端</li>
+<li><span class="math inline"><em>p</em><em>y</em><em>e</em><em>c</em><em>h</em><em>a</em><em>r</em><em>t</em><em>s</em></span>
+可视化</li>
 </ul>
 <p><strong>最终呈现效果</strong> ：</p>
-<p><img src="/articles/CSRent/image-20200517220605897.png" alt="image-20200517220605897"></p>
-<p><img src="/articles/CSRent/image-20200517220645343.png" alt="image-20200517220645343"></p>
-<h3 id="租房信息爬取"><a href="#租房信息爬取" class="headerlink" title="租房信息爬取"></a>租房信息爬取</h3><p>地址： <a href="http://www.xhj.com/zufang/" target="_blank" rel="noopener">http://www.xhj.com/zufang/</a></p>
-<p><img src="/articles/CSRent/image-20200517222251986.png" alt="image-20200517222251986"></p>
+<figure>
+<img src="/articles/CSRent/image-20200517220605897.png" alt="image-20200517220605897">
+<figcaption aria-hidden="true">image-20200517220605897</figcaption>
+</figure>
+<figure>
+<img src="/articles/CSRent/image-20200517220645343.png" alt="image-20200517220645343">
+<figcaption aria-hidden="true">image-20200517220645343</figcaption>
+</figure>
+<h3 id="租房信息爬取">租房信息爬取</h3>
+<p>地址： http://www.xhj.com/zufang/</p>
+<figure>
+<img src="/articles/CSRent/image-20200517222251986.png" alt="image-20200517222251986">
+<figcaption aria-hidden="true">image-20200517222251986</figcaption>
+</figure>
 <p><strong>网页分析</strong></p>
-<h4 id="地址分析"><a href="#地址分析" class="headerlink" title="地址分析"></a>地址分析</h4><p>在 <em>区域找房</em>  一栏找到长沙的各个区域。这里选取了长沙的六个区：【天心区、芙蓉区、开福区、岳麓区、雨花区、望城】</p>
-<p>逐个点击 六个区可以观察到每个区域都对应有 $40$ 页 ，而且地址可以简单按下面这样方式拼接：</p>
+<h4 id="地址分析">地址分析</h4>
+<p>在 <em>区域找房</em>
+一栏找到长沙的各个区域。这里选取了长沙的六个区：【天心区、芙蓉区、开福区、岳麓区、雨花区、望城】</p>
+<p>逐个点击 六个区可以观察到每个区域都对应有 <span class="math inline">40</span> 页
+，而且地址可以简单按下面这样方式拼接：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="regexp">//</span>www.xhj.com<span class="regexp">/zufang/</span> + 区域+<span class="regexp">/pg + 页码/</span></span><br></pre></td></tr></table></figure>
 <p>所以代码中可以这样构造地址：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">base_url</span> = <span class="string">'http://www.xhj.com/zufang/'</span></span><br><span class="line"><span class="attr">param</span> = [<span class="string">'tianxinqu'</span>,<span class="string">'furongqu'</span>,<span class="string">'kaifuqu'</span>,<span class="string">'yueluqu'</span>,<span class="string">'yuhuaqu'</span>,<span class="string">'wangcheng'</span>]</span><br><span class="line"><span class="comment"># region in param</span></span><br><span class="line"><span class="attr">url</span> = base_url + region + <span class="string">'/pg%d/'</span>%i <span class="comment"># region为区域，i 为页码</span></span><br></pre></td></tr></table></figure>
 <p>这样很容易就可以通过两个循环来爬取我们需要的数据了。</p>
-<h4 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h4><p>通过开发者工具查看源码：</p>
-<p><img src="/articles/CSRent/image-20200517223429820.png" alt="image-20200517223429820"></p>
-<p>显然，这个网站的前端非常的给力，结构一目了然，而且没有动态加载。要是能改为 $ajax$ 的请求方式加载数据或许会更友好。</p>
-<p>不用仔细观察都可以看见，每个租房信息都被一个 <code>&lt;div​ class=&quot;lp_wrap&quot;&gt;...&lt;/div&gt;​</code> 包裹着。</p>
-<p>我们很容易就可以通过 $xpath$ 定位到每个租房信息，像这样：</p>
+<h4 id="源码分析">源码分析</h4>
+<p>通过开发者工具查看源码：</p>
+<figure>
+<img src="/articles/CSRent/image-20200517223429820.png" alt="image-20200517223429820">
+<figcaption aria-hidden="true">image-20200517223429820</figcaption>
+</figure>
+<p>显然，这个网站的前端非常的给力，结构一目了然，而且没有动态加载。要是能改为
+<span class="math inline"><em>a</em><em>j</em><em>a</em><em>x</em></span>
+的请求方式加载数据或许会更友好。</p>
+<p>不用仔细观察都可以看见，每个租房信息都被一个
+<code>&lt;div​ class="lp_wrap"&gt;...&lt;/div&gt;​</code> 包裹着。</p>
+<p>我们很容易就可以通过 <span class="math inline"><em>x</em><em>p</em><em>a</em><em>t</em><em>h</em></span>
+定位到每个租房信息，像这样：</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># html is the source code of webpage.</span></span><br><span class="line"><span class="attr">div</span> = html.xpath(<span class="string">'//*/div[@class="lp_wrap"]'</span>)</span><br></pre></td></tr></table></figure>
-<p>这样提取的 <code>div​</code> 对象为一个 $list$ 。最后将结果保存在 <code>rent_info.csv</code> 中。</p>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><p>经过这么一波并不花里胡哨的简单操作和分析，基本上可以写出对应的代码了。但是，这看似普普通通的网站，还是会封你的 $ip$ 的。所以，一般的加 <code>headers[&#39;User-Agent&#39;]​</code>  已经不行了。这里，我选择了添加代理来绕过它的反爬机制。【备注：很久之前爬过免费高匿代理存放在 <code>mongodb</code> 中】</p>
-<p>(此处省略个几百字)一顿花里胡哨的操作后，数据库中的代理 $ip$ 果然已经基本失效了。毕竟一年多了。</p>
+<p>这样提取的 <code>div​</code> 对象为一个 <span class="math inline"><em>l</em><em>i</em><em>s</em><em>t</em></span>
+。最后将结果保存在 <code>rent_info.csv</code> 中。</p>
+<h4 id="补充">补充</h4>
+<p>经过这么一波并不花里胡哨的简单操作和分析，基本上可以写出对应的代码了。但是，这看似普普通通的网站，还是会封你的
+<span class="math inline"><em>i</em><em>p</em></span> 的。所以，一般的加
+<code>headers['User-Agent']​</code>
+已经不行了。这里，我选择了添加代理来绕过它的反爬机制。【备注：很久之前爬过免费高匿代理存放在
+<code>mongodb</code> 中】</p>
+<p>(此处省略个几百字)一顿花里胡哨的操作后，数据库中的代理 <span class="math inline"><em>i</em><em>p</em></span>
+果然已经基本失效了。毕竟一年多了。</p>
 <p>后面发现，这个网站只会封你半分钟不到好像(应该是的，被禁后，刷新了好几下网页，然后刷回来了)。所以说，代码中是不是可以通过设置休眠时间来降低访问速度呢。三思过后，放弃的这个想法，这样的做法好像一点都不干脆利落。还是决定自己做个代理池算了。</p>
-<p>于是开启了免费代理的寻找之路，又是一顿的花里胡哨操作后(此处省略几百字)。很多 <strong>西刺代理</strong> 这样的免费代理网站已经迭代升级了，不在是曾经那个亚子了。它也开始封我 $ip$ 了。差点当场炸裂开来……因为它不是封你一两分钟酱紫玩玩。</p>
-<p>不过没关系，多爬几个这样的网站就可以有比较多得代理了。如果不想爬也不打紧，不妨逛一逛这里<a href="https://ip.ihuan.me/" target="_blank" rel="noopener">小幻http代理</a>  </p>
+<p>于是开启了免费代理的寻找之路，又是一顿的花里胡哨操作后(此处省略几百字)。很多
+<strong>西刺代理</strong>
+这样的免费代理网站已经迭代升级了，不在是曾经那个亚子了。它也开始封我
+<span class="math inline"><em>i</em><em>p</em></span>
+了。差点当场炸裂开来……因为它不是封你一两分钟酱紫玩玩。</p>
+<p>不过没关系，多爬几个这样的网站就可以有比较多得代理了。如果不想爬也不打紧，不妨逛一逛这里<a href="https://ip.ihuan.me/" target="_blank" rel="noopener">小幻http代理</a></p>
 <p>支持批量提取，十分友好，可以帮我们省十几行代码了。</p>
 <p><strong>一点建议</strong></p>
 <p>记得用我们的目标网站测试一下这些免费代理是否失效。</p>
 <p><strong>下面是我选出来的比较好的</strong></p>
 <figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">proxies = [</span><br><span class="line">    &#123;<span class="symbol">'https</span>':<span class="string">"https://221.6.201.18:9999"</span>&#125;,</span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//39.137.69.9:80'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span>': <span class="symbol">'https</span>:<span class="comment">//221.122.91.64:80'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//39.137.69.8:8080'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//125.59.223.27:8380'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//118.212.104.22:9999'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span><span class="string">':'</span>https:<span class="comment">//47.106.59.75:3128'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//221.180.170.104:8080'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//113.59.99.138:8910'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span><span class="string">':'</span>http:<span class="comment">//123.194.231.55:8197'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span><span class="string">':'</span>https:<span class="comment">//218.60.8.99:3129'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'http</span>': <span class="symbol">'http</span>:<span class="comment">//218.58.194.162:8060'&#125;,</span></span><br><span class="line">    &#123;<span class="symbol">'https</span>': <span class="symbol">'https</span>:<span class="comment">//221.122.91.64:80'&#125;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h3 id="pyspark-数据分析"><a href="#pyspark-数据分析" class="headerlink" title="pyspark 数据分析"></a>pyspark 数据分析</h3><p>这一步主要使用 <code>pyspark.sql.SparkSession</code> 来操作。从 <code>rent_info.csv</code> 中读取数据获得一个 <code>DataFrame</code> 对象，然后通过一系列动作(过滤筛选，聚合，统计)完成简单分析。</p>
-<h3 id="flask-后端"><a href="#flask-后端" class="headerlink" title="flask 后端"></a>flask 后端</h3><p>使用 <code>flask_socketio.SocketIO</code>  来注册一个 <code>flask app</code> 对象。调用 <code>run</code> 方法启动服务。</p>
+<h3 id="pyspark-数据分析">pyspark 数据分析</h3>
+<p>这一步主要使用 <code>pyspark.sql.SparkSession</code> 来操作。从
+<code>rent_info.csv</code> 中读取数据获得一个 <code>DataFrame</code>
+对象，然后通过一系列动作(过滤筛选，聚合，统计)完成简单分析。</p>
+<h3 id="flask-后端">flask 后端</h3>
+<p>使用 <code>flask_socketio.SocketIO</code> 来注册一个
+<code>flask app</code> 对象。调用 <code>run</code> 方法启动服务。</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">app = Flask(__name__)</span><br><span class="line">app.config[<span class="string">'SECRET_KEY'</span>] = <span class="string">'xmudblab'</span></span><br><span class="line">socketio = SocketIO(app)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    socketio.<span class="builtin-name">run</span>(app, <span class="attribute">debug</span>=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
 <p>剩下的就是一些简单的路由配置(通过装饰器来实现)：</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 客户端访问 http://127.0.0.1:5000/，可以看到index界面</span></span><br><span class="line">@app.route(<span class="string">"/"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">handle_mes</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"index.html"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对客户端发来的start_spider事件作出相应</span></span><br><span class="line">@socketio.on(<span class="string">"start_spider"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">start_spider</span><span class="params">(message)</span></span><span class="symbol">:</span></span><br><span class="line">    print(message)</span><br><span class="line">    run_spider()</span><br><span class="line">    socketio.emit(<span class="string">'get_result'</span>, &#123;<span class="string">'data'</span>: <span class="string">"请获取最后结果"</span>&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对客户端发来的/Get_result事件作出相应</span></span><br><span class="line">@app.route(<span class="string">"/Get_result"</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Get_result</span><span class="params">()</span></span><span class="symbol">:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">"result.html"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="socketio-补充"><a href="#socketio-补充" class="headerlink" title="socketio 补充"></a>socketio 补充</h3><p>使用 <code>socketio</code> 可以轻松实现 <code>web</code> 后台和前端的信息交互，这种连接是基于 <code>websocket</code> 协议的全双工通信。</p>
+<h3 id="socketio-补充">socketio 补充</h3>
+<p>使用 <code>socketio</code> 可以轻松实现 <code>web</code>
+后台和前端的信息交互，这种连接是基于 <code>websocket</code>
+协议的全双工通信。</p>
 <p>前端 <code>socketio</code> 库</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"static/js/socket.io.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>未完待续…..</p>
 </blockquote>
-<h3 id="改进空间"><a href="#改进空间" class="headerlink" title="改进空间"></a>改进空间</h3><p>整个项目中，<code>spark</code> 的强大好像并没有发挥出来。毕竟 <code>spark</code> 在实时数据处理方面可是碾压 <code>mapreduce</code>的，好像一套组合拳，只使出了一点花拳绣腿。不妨大点想象一下，能不能实现一个实时房租信息交互系统，通过可视化工具在地图上直观的显示租房信息，每隔一小段时间更新数据，同时发送邮件提醒。甚至结合微信小程序在移动端也能查看。</p>
-<p>嗯，想一想，挺好的。但是，这里的数据来源的可信度还有待考察。或许应该去 <a href="https://cs.zu.ke.com/zufang/changshaxian/" target="_blank" rel="noopener">贝壳找房</a> 看看(当事人非常后悔)。怎么开始就没想到去贝壳找。【不是打广告/手动滑稽】</p>
+<h3 id="改进空间">改进空间</h3>
+<p>整个项目中，<code>spark</code> 的强大好像并没有发挥出来。毕竟
+<code>spark</code> 在实时数据处理方面可是碾压
+<code>mapreduce</code>的，好像一套组合拳，只使出了一点花拳绣腿。不妨大点想象一下，能不能实现一个实时房租信息交互系统，通过可视化工具在地图上直观的显示租房信息，每隔一小段时间更新数据，同时发送邮件提醒。甚至结合微信小程序在移动端也能查看。</p>
+<p>嗯，想一想，挺好的。但是，这里的数据来源的可信度还有待考察。或许应该去
+<a href="https://cs.zu.ke.com/zufang/changshaxian/" target="_blank" rel="noopener">贝壳找房</a>
+看看(当事人非常后悔)。怎么开始就没想到去贝壳找。【不是打广告/手动滑稽】</p>
 <hr>
 
       
@@ -1150,29 +1401,51 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>在很久之前就已经学过了爬虫。那时还是懵懵懂懂的小白，学了一点基础，就买来一本书，然后就开干。代码倒是写了不少，但是没有什么拿的出手的。之后，便又匆匆忙忙的转战 web ，学起了 Django 。这一入坑，不知不觉差不多快一年了。最后发现自己知道的依旧凤毛麟角。没有基础的计算机网络知识，没有良好的代码编写规范……</p>
-<p>意识到问题后，开始试着阅读官方文档，去看协议，看源码。这些天看了 http 协议，计算机网络基础，python 文档，以及 Scrapy 文档。不得不说，看完后虽然记住的不多，但是大致是怎么一回事，多多少少还是了解了。比如，当初的爬虫程序，为什么要设置 <code>header</code> 、<code>cookie</code> 、<code>session</code> 什么的。还有 <code>request</code> 和 <code>response</code> 的含义。</p>
-<p>这些天看了一下 Scrapy 的 <a href="https://doc.scrapy.org/en/latest/intro/overview.html" target="_blank" rel="noopener">官方文档</a>，对这个框架有了一些了解。正如文档中所提到的，scrapy 框架很大程度上借鉴了 Django ，这也是为什么现在的我重新来看待它时，比之前要轻松太多了。</p>
-<h3 id="关于-Scrapy"><a href="#关于-Scrapy" class="headerlink" title="关于 Scrapy"></a>关于 Scrapy</h3><blockquote>
-<p>Scrapy is an application framework for crawling web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival.</p>
+          <h3 id="写在前面">写在前面</h3>
+<p>在很久之前就已经学过了爬虫。那时还是懵懵懂懂的小白，学了一点基础，就买来一本书，然后就开干。代码倒是写了不少，但是没有什么拿的出手的。之后，便又匆匆忙忙的转战
+web ，学起了 Django
+。这一入坑，不知不觉差不多快一年了。最后发现自己知道的依旧凤毛麟角。没有基础的计算机网络知识，没有良好的代码编写规范……</p>
+<p>意识到问题后，开始试着阅读官方文档，去看协议，看源码。这些天看了 http
+协议，计算机网络基础，python 文档，以及 Scrapy
+文档。不得不说，看完后虽然记住的不多，但是大致是怎么一回事，多多少少还是了解了。比如，当初的爬虫程序，为什么要设置
+<code>header</code> 、<code>cookie</code> 、<code>session</code>
+什么的。还有 <code>request</code> 和 <code>response</code> 的含义。</p>
+<p>这些天看了一下 Scrapy 的 <a href="https://doc.scrapy.org/en/latest/intro/overview.html" target="_blank" rel="noopener">官方文档</a>，对这个框架有了一些了解。正如文档中所提到的，scrapy
+框架很大程度上借鉴了 Django
+，这也是为什么现在的我重新来看待它时，比之前要轻松太多了。</p>
+<h3 id="关于-scrapy">关于 Scrapy</h3>
+<blockquote>
+<p>Scrapy is an application framework for crawling web sites and
+extracting structured data which can be used for a wide range of useful
+applications, like data mining, information processing or historical
+archival.</p>
 </blockquote>
 <p>学习一个框架，得明白，它是什么？怎么做？更深入为什么要这样做？</p>
-<h5 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h5><p>简而言之,就是一个支持分布式的，可扩展的，用于批量爬取网站并提取结构化数据的异步应用程序框架。值得一提的是，Scrapy 是用 <a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 编写的，<a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 是一种流行的 Python 事件驱动的网络框架。因此，它是使用非阻塞（又称为异步）代码并发实现的。</p>
-<p>Scrapy 有着丰富的命令行工具，交互式控制台，内置支持以多种格式(json、xml、csv)等。</p>
-<h5 id="怎么做？"><a href="#怎么做？" class="headerlink" title="怎么做？"></a>怎么做？</h5><p>要使用 Scrapy ，我们不得不先安装它。文档为我们提供的良好的 <a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="noopener">安装指南</a> 。</p>
+<h5 id="是什么">是什么？</h5>
+<p>简而言之,就是一个支持分布式的，可扩展的，用于批量爬取网站并提取结构化数据的异步应用程序框架。值得一提的是，Scrapy
+是用 <a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 编写的，<a href="https://twistedmatrix.com/trac/" target="_blank" rel="noopener">Twisted</a> 是一种流行的 Python
+事件驱动的网络框架。因此，它是使用非阻塞（又称为异步）代码并发实现的。</p>
+<p>Scrapy
+有着丰富的命令行工具，交互式控制台，内置支持以多种格式(json、xml、csv)等。</p>
+<h5 id="怎么做">怎么做？</h5>
+<p>要使用 Scrapy ，我们不得不先安装它。文档为我们提供的良好的 <a href="https://doc.scrapy.org/en/latest/intro/install.html" target="_blank" rel="noopener">安装指南</a>
+。</p>
 <p>我们只需要这样做：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Scrapy</span><br></pre></td></tr></table></figure>
 <p>不过我们不得不知道下面文档中提到的：</p>
 <blockquote>
-<p>Scrapy is written in pure Python and depends on a few key Python packages (among others)</p>
+<p>Scrapy is written in pure Python and depends on a few key Python
+packages (among others)</p>
 </blockquote>
 <p>Scrapy 需要一些依赖包：</p>
 <ul>
 <li><a href="http://lxml.de/" target="_blank" rel="noopener">lxml</a>，高效的XML和HTML解析器</li>
-<li><a href="https://pypi.python.org/pypi/parsel" target="_blank" rel="noopener">parsel</a>，是在lxml之上编写的HTML / XML数据提取库</li>
+<li><a href="https://pypi.python.org/pypi/parsel" target="_blank" rel="noopener">parsel</a>，是在lxml之上编写的HTML
+/ XML数据提取库</li>
 <li><a href="https://pypi.python.org/pypi/w3lib" target="_blank" rel="noopener">w3lib</a>，用于处理URL和网页编码的多功能帮助器</li>
 <li><a href="https://twistedmatrix.com/" target="_blank" rel="noopener">twisted</a>，异步网络框架</li>
-<li><a href="https://cryptography.io/" target="_blank" rel="noopener">cryptography</a> 和 <a href="https://pypi.python.org/pypi/pyOpenSSL" target="_blank" rel="noopener">pyOpenSSL</a> ，以处理各种网络级安全需求</li>
+<li><a href="https://cryptography.io/" target="_blank" rel="noopener">cryptography</a> 和 <a href="https://pypi.python.org/pypi/pyOpenSSL" target="_blank" rel="noopener">pyOpenSSL</a>
+，以处理各种网络级安全需求</li>
 </ul>
 <p>其中还有一些版本要求：</p>
 <ul>
@@ -1180,9 +1453,11 @@
 <li>lxml 3.4</li>
 <li>pyOpenSSL 0.14</li>
 </ul>
-<p>如果你没有这些依赖包，那你不得不考虑先安装依赖。在此建议使用清华源下载，这样可以避免不必要的 Time out 。如下：</p>
+<p>如果你没有这些依赖包，那你不得不考虑先安装依赖。在此建议使用清华源下载，这样可以避免不必要的
+Time out 。如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install [example_modul] -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple&#x2F;</span><br></pre></td></tr></table></figure>
-<p>安装完成后，就可以开始按接下来的<a href="https://doc.scrapy.org/en/latest/intro/tutorial.html" target="_blank" rel="noopener">教程</a> 学习了。</p>
+<p>安装完成后，就可以开始按接下来的<a href="https://doc.scrapy.org/en/latest/intro/tutorial.html" target="_blank" rel="noopener">教程</a>
+学习了。</p>
 <p>像这样创建一个项目：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> scrapy startproject tutorial</span></span><br></pre></td></tr></table></figure>
 <p>编写自己的爬虫类：</p>
@@ -1190,47 +1465,60 @@
 <p>运行项目：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; scrapy crawl quotes</span><br></pre></td></tr></table></figure>
 <p>至此，一个基本可以运行的 Scrapy 项目就成型了。</p>
-<h5 id="框架概述"><a href="#框架概述" class="headerlink" title="框架概述"></a><a href="https://doc.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">框架概述</a></h5><p>在依葫芦画瓢的完成一个 Scrapy 项目的编写后，要想明白为什么要这样编写我们的爬虫程序，就不得不了解这个框架的一些细节。</p>
+<h5 id="框架概述"><a href="https://doc.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">框架概述</a></h5>
+<p>在依葫芦画瓢的完成一个 Scrapy
+项目的编写后，要想明白为什么要这样编写我们的爬虫程序，就不得不了解这个框架的一些细节。</p>
 <p>Scrapy的体系结构及组件如下图所示：</p>
 <p><img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png"></p>
 <p>对照着 Scrapy 的项目结构：</p>
 <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">tutorial/</span><br><span class="line">    scrapy.cfg            <span class="comment"># deploy configuration file</span></span><br><span class="line"></span><br><span class="line">    tutorial/             <span class="comment"># project's Python module, you'll import your code from here</span></span><br><span class="line">        __init__.py</span><br><span class="line"></span><br><span class="line">        <span class="keyword">items</span>.py          <span class="comment"># project items definition file</span></span><br><span class="line"></span><br><span class="line">        middlewares.py    <span class="comment"># project middlewares file</span></span><br><span class="line"></span><br><span class="line">        pipelines.py      <span class="comment"># project pipelines file</span></span><br><span class="line"></span><br><span class="line">        settings.py       <span class="comment"># project settings file</span></span><br><span class="line"></span><br><span class="line">        spiders/          <span class="comment"># a directory where you'll later put your spiders</span></span><br><span class="line">            __init__.py</span><br><span class="line">            quotes_spider.py  <span class="comment"># a spider written by yourself</span></span><br></pre></td></tr></table></figure>
-<p>学过 Django 就会发现，这个框架简直就是套着它的设计模式来的。全局设置的 <code>settings.py</code> 、项目的管道 <code>pipelines.py</code> 、强大可扩展的中间件 <code>middlewares.py</code> 、以及类似模型的 <code>items.py</code> 。从图中我们不难发现，spiders可以对 requests 和 response 进行处理。而中间件 middlewares还可以对 items 进行处理。 管道 pipelines 对输出的 items 进行最后的清洗。所以，在我们明白要对数据做怎样处理时，只需要在对应的地方按要求编写我们的代码来达到我们的目的即可。</p>
-<p>一个例子：如果我们需要对最后清洗的数据保存到一个文件(如：json文件)中，那么你可能就要在管道 <code>pipelines.py</code> 中编写合适代码来实现。像这样子：</p>
+<p>学过 Django
+就会发现，这个框架简直就是套着它的设计模式来的。全局设置的
+<code>settings.py</code> 、项目的管道 <code>pipelines.py</code>
+、强大可扩展的中间件 <code>middlewares.py</code> 、以及类似模型的
+<code>items.py</code> 。从图中我们不难发现，spiders可以对 requests 和
+response 进行处理。而中间件 middlewares还可以对 items 进行处理。 管道
+pipelines 对输出的 items
+进行最后的清洗。所以，在我们明白要对数据做怎样处理时，只需要在对应的地方按要求编写我们的代码来达到我们的目的即可。</p>
+<p>一个例子：如果我们需要对最后清洗的数据保存到一个文件(如：json文件)中，那么你可能就要在管道
+<code>pipelines.py</code> 中编写合适代码来实现。像这样子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JsonWriterPipeline</span><span class="params">(object)</span>:</span></span><br><span class="line">	</span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_crawler</span><span class="params">(cls, crawler)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> cls(crawler)</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">open_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file = open(<span class="string">'items.jl'</span>, <span class="string">'w'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">close_spider</span><span class="params">(self, spider)</span>:</span></span><br><span class="line">        self.file.close()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">process_item</span><span class="params">(self, item, spider)</span>:</span></span><br><span class="line">        line = json.dumps(dict(item)) + <span class="string">"\n"</span></span><br><span class="line">        self.file.write(line)</span><br><span class="line">        <span class="keyword">return</span> item</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>process_item (self, item, spider)</p>
 <blockquote>
-<p>每个项目管道组件均调用此方法，返回一个 item 对象，返回 Twisted Deferred 或引发 DropItem 异常。</p>
+<p>每个项目管道组件均调用此方法，返回一个 item 对象，返回 Twisted
+Deferred 或引发 DropItem 异常。</p>
 <p>如果要使用自己的管道，那么就不得不实现此方法。</p>
 </blockquote>
-</li>
-</ul>
-<p>  除此之外，还可以实现下面几种方法：</p>
-<ul>
+<p>除此之外，还可以实现下面几种方法：</p></li>
 <li><p>open_spider(self, spider)</p>
 <blockquote>
 <p>This method is called when the spider is opened.</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>close_spider(self, spider)</p>
 <blockquote>
 <p>This method is called when the spider is closed.</p>
-</blockquote>
-</li>
+</blockquote></li>
 <li><p>from_crawler(cls, crawler)</p>
 <blockquote>
-<p>If present, this classmethod is called to create a pipeline instance from a Crawler. It must return a new instance of the pipeline. Crawler object provides access to all Scrapy core components like settings and signals; it is a way for pipeline to access them and hook its functionality into Scrapy.</p>
+<p>If present, this classmethod is called to create a pipeline instance
+from a Crawler. It must return a new instance of the pipeline. Crawler
+object provides access to all Scrapy core components like settings and
+signals; it is a way for pipeline to access them and hook its
+functionality into Scrapy.</p>
 </blockquote>
-<p>编写完自己的 Item Pipeline后，我们还需要在 <code>settings.py</code> 中激活才能使用。像这样：</p>
+<p>编写完自己的 Item Pipeline后，我们还需要在 <code>settings.py</code>
+中激活才能使用。像这样：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ITEM_PIPELINES = &#123;</span><br><span class="line">    <span class="string">'myproject.pipelines.JsonWriterPipeline'</span>: <span class="number">800</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要注意的是，管道组件以字典的形式配置，并分配一整数值(0 ~ 1000)，项目将按升序方式依次执行。</p>
-</li>
+<p>需要注意的是，管道组件以字典的形式配置，并分配一整数值(0 ~
+1000)，项目将按升序方式依次执行。</p></li>
 </ul>
 <hr>
 <p>补一篇关于 Scrapy 的笔记算是对很久之前的一个总结吧！</p>
 <blockquote>
 <p>路漫漫其修远兮吾将上下而求索。</p>
+</blockquote>
+<blockquote>
 <p>I know nothing but my ignorance.</p>
 </blockquote>
 
@@ -1300,18 +1588,41 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Scrapy-框架中的数据流"><a href="#Scrapy-框架中的数据流" class="headerlink" title="Scrapy 框架中的数据流"></a>Scrapy 框架中的数据流</h3><p><img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png"></p>
+          <h3 id="scrapy-框架中的数据流">Scrapy 框架中的数据流</h3>
+<p><img src="https://doc.scrapy.org/en/latest/_images/scrapy_architecture_02.png"></p>
 <p>尽管文档中这样提到：Scrapy中的数据流由执行引擎控制，如下所示</p>
-<ol>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a> gets the initial Requests to crawl from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a>.</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a> schedules the Requests in the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a> and asks for the next Requests to crawl.</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a> returns the next Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>.</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a> sends the Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a>, passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader-middleware" target="_blank" rel="noopener">Downloader Middlewares</a> (see <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#scrapy.downloadermiddlewares.DownloaderMiddleware.process_request" target="_blank" rel="noopener"><code>process_request()</code></a>).</li>
-<li>Once the page finishes downloading the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a> generates a Response (with that page) and sends it to the Engine, passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader-middleware" target="_blank" rel="noopener">Downloader Middlewares</a> (see <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#scrapy.downloadermiddlewares.DownloaderMiddleware.process_response" target="_blank" rel="noopener"><code>process_response()</code></a>).</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a> receives the Response from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a> and sends it to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a> for processing, passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spider-middleware" target="_blank" rel="noopener">Spider Middleware</a> (see <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html#scrapy.spidermiddlewares.SpiderMiddleware.process_spider_input" target="_blank" rel="noopener"><code>process_spider_input()</code></a>).</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a> processes the Response and returns scraped items and new Requests (to follow) to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>, passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spider-middleware" target="_blank" rel="noopener">Spider Middleware</a> (see <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html#scrapy.spidermiddlewares.SpiderMiddleware.process_spider_output" target="_blank" rel="noopener"><code>process_spider_output()</code></a>).</li>
-<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a> sends processed items to <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-pipelines" target="_blank" rel="noopener">Item Pipelines</a>, then send processed Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a> and asks for possible next Requests to crawl.</li>
-<li>The process repeats (from step 1) until there are no more requests from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a>.</li>
+<ol type="1">
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>
+gets the initial Requests to crawl from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a>.</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>
+schedules the Requests in the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a>
+and asks for the next Requests to crawl.</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a>
+returns the next Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>.</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>
+sends the Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a>,
+passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader-middleware" target="_blank" rel="noopener">Downloader
+Middlewares</a> (see <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#scrapy.downloadermiddlewares.DownloaderMiddleware.process_request" target="_blank" rel="noopener"><code>process_request()</code></a>).</li>
+<li>Once the page finishes downloading the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a>
+generates a Response (with that page) and sends it to the Engine,
+passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader-middleware" target="_blank" rel="noopener">Downloader
+Middlewares</a> (see <a href="https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#scrapy.downloadermiddlewares.DownloaderMiddleware.process_response" target="_blank" rel="noopener"><code>process_response()</code></a>).</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>
+receives the Response from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-downloader" target="_blank" rel="noopener">Downloader</a>
+and sends it to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a>
+for processing, passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spider-middleware" target="_blank" rel="noopener">Spider
+Middleware</a> (see <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html#scrapy.spidermiddlewares.SpiderMiddleware.process_spider_input" target="_blank" rel="noopener"><code>process_spider_input()</code></a>).</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spiders" target="_blank" rel="noopener">Spider</a>
+processes the Response and returns scraped items and new Requests (to
+follow) to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>,
+passing through the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-spider-middleware" target="_blank" rel="noopener">Spider
+Middleware</a> (see <a href="https://doc.scrapy.org/en/latest/topics/spider-middleware.html#scrapy.spidermiddlewares.SpiderMiddleware.process_spider_output" target="_blank" rel="noopener"><code>process_spider_output()</code></a>).</li>
+<li>The <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-engine" target="_blank" rel="noopener">Engine</a>
+sends processed items to <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-pipelines" target="_blank" rel="noopener">Item
+Pipelines</a>, then send processed Requests to the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a>
+and asks for possible next Requests to crawl.</li>
+<li>The process repeats (from step 1) until there are no more requests
+from the <a href="https://doc.scrapy.org/en/latest/topics/architecture.html#component-scheduler" target="_blank" rel="noopener">Scheduler</a>.</li>
 </ol>
 <p>但是具体到程序中是如何体现的呢？在项目运行时，控制台中就有输出提示信息。如果要更直观的体现，不妨在每步对应的函数中打印自己设置的提示信息。例如：在自己的项目管道中可以这样做</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class MyPipeline(object):</span><br><span class="line">    # 在 open_spider 以及 parse 之后执行</span><br><span class="line">    def process_item(self, item, spider):</span><br><span class="line">        print(&quot;----- process_item -----&quot; )</span><br><span class="line">        return item</span><br><span class="line"></span><br><span class="line">    # 在 from_crawler 之后执行</span><br><span class="line">    def open_spider(self, spider):</span><br><span class="line">        print(&quot;------------ open_spider --------------&quot;)</span><br><span class="line"></span><br><span class="line">    # 在 process_item 之后执行</span><br><span class="line">    def close_spider(self, spider):</span><br><span class="line">        print(&quot;------------ close_spider --------------&quot;)</span><br><span class="line"></span><br><span class="line">    # 最先执行</span><br><span class="line">    @classmethod</span><br><span class="line">    def from_crawler(cls, crawler):</span><br><span class="line">        print(&quot;------------ from_crawler --------------&quot;)</span><br><span class="line"></span><br><span class="line">        return cls()</span><br></pre></td></tr></table></figure>
