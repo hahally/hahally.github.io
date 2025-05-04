@@ -72,9 +72,9 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="alternate" href="/atom.xml" title="Hahally's BLOG" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -217,7 +217,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.5k</span>
+              <span>5.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -239,18 +239,19 @@
           <blockquote>
 <pre><code>  auth : hahally
 
-  start : 2020.1.11</code></pre>
-</blockquote>
-<h3 id="后台脚本运行">后台脚本运行</h3>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python my.py &gt;&gt; my.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure>
-<h3 id="colab-长连接脚本">colab 长连接脚本</h3>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="django">Django</h3>
-<p>常用命令 &gt; django-admin startproject locallibrary # 创建项目 &gt;
-python manage.py startapp catalog # 创建应用 &gt; python manage.py
-runserver # 启动服务 &gt; python manage.py makemigrations # 数据库迁移
-&gt; python manage.py migrate &gt; python manage.py createsuperuser #
-创建管理员账号</p>
+  start : 2020.1.11
+</code></pre></blockquote>
+<h3 id="后台脚本运行"><a href="#后台脚本运行" class="headerlink" title="后台脚本运行"></a>后台脚本运行</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup python my.py &gt;&gt; my.log <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure>
+<h3 id="colab-长连接脚本"><a href="#colab-长连接脚本" class="headerlink" title="colab 长连接脚本"></a>colab 长连接脚本</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ClickConnect</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked on connect button"</span>); </span><br><span class="line">    <span class="built_in">document</span>.querySelector(<span class="string">"colab-connect-button"</span>).click()</span><br><span class="line">&#125;</span><br><span class="line">setInterval(ClickConnect,<span class="number">60000</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h3><p>常用命令</p>
+<blockquote>
+<pre><code> django-admin startproject locallibrary   # 创建项目
+ python manage.py startapp catalog        # 创建应用
+ python manage.py runserver               # 启动服务
+ python manage.py makemigrations          # 数据库迁移
+ python manage.py migrate
+ python manage.py createsuperuser         # 创建管理员账号
+</code></pre></blockquote>
 <pre><code>views.py
     posts.content = markdown.markdown(
     posts.content,
@@ -260,14 +261,12 @@ runserver # 启动服务 &gt; python manage.py makemigrations # 数据库迁移
         # 语法高亮扩展
         &#39;markdown.extensions.codehilite&#39;,
         ]
-    )</code></pre>
-<h3 id="scrapy-常用命令">Scrapy 常用命令</h3>
-<blockquote>
-<pre><code>          scrapy startproject proj     # 创建项目
-          scrapy crawl spider_name     # 运行爬虫</code></pre>
-</blockquote>
-<h3 id="python-第三方库安装源">python 第三方库安装源</h3>
-<pre><code>清华大学镜像
+    )
+</code></pre><h3 id="Scrapy-常用命令"><a href="#Scrapy-常用命令" class="headerlink" title="Scrapy 常用命令"></a>Scrapy 常用命令</h3><blockquote>
+<pre><code>           scrapy startproject proj     # 创建项目
+           scrapy crawl spider_name     # 运行爬虫
+</code></pre></blockquote>
+<h3 id="python-第三方库安装源"><a href="#python-第三方库安装源" class="headerlink" title="python 第三方库安装源"></a>python 第三方库安装源</h3><pre><code>清华大学镜像
 https://pypi.tuna.tsinghua.edu.cn/simple/
 阿里云
 http://mirrors.aliyun.com/pypi/simple/
@@ -276,41 +275,28 @@ https://pypi.mirrors.ustc.edu.cn/simple/
 豆瓣镜像
 http://pypi.douban.com/simple/
 中科大镜像2
-http://pypi.mirrors.ustc.edu.cn/simple/</code></pre>
-<hr>
-<h3 id="笔记">笔记</h3>
-<pre><code>      Auth       : hahally
+http://pypi.mirrors.ustc.edu.cn/simple/
+</code></pre><hr>
+<h3 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h3><pre><code>      Auth       : hahally
 createTime       : 2019.10.26
-  abstract       : 大数据辅修学习笔记</code></pre>
-<h4 id="jdk环境变量配置"><code>jdk</code>环境变量配置</h4>
-<pre><code>    在、/etc/profile或~/.bashrc中的文件底部
+  abstract       : 大数据辅修学习笔记
+</code></pre><h4 id="jdk环境变量配置"><a href="#jdk环境变量配置" class="headerlink" title="jdk环境变量配置"></a><code>jdk</code>环境变量配置</h4><pre><code>    在、/etc/profile或~/.bashrc中的文件底部
     JAVA_HOME=/usr/java/jdk1.8.0_162
     JRE_HOME=$JAVA_HOME/jre
     CLASS_PATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
     PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
     export JAVA_HOME JRE_HOME CLASS_PATH PATH
-    [root@master~]# source /etc/profile   使配置生效</code></pre>
-<h4 id="windows-dos-命令"><code>windows dos</code> 命令</h4>
-<pre><code>    C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
-    C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程</code></pre>
-<h4 id="linux命令"><code>Linux</code>命令</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
-<h4 id="git-命令"><code>git</code> 命令</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init   初始化</span><br><span class="line">git add filename  将上传文件加到缓冲区</span><br><span class="line">git commit [-m] [注释]</span><br><span class="line">git remote add origin https://github.com/[用户名名]/[仓库名].git</span><br><span class="line">git push -u origin master -f    上传到远程仓库分支</span><br><span class="line">git clone https://github.com/[用户名名]/[仓库名].git        拉取代码</span><br></pre></td></tr></table></figure>
-<h4 id="docker命令"><code>docker</code>命令</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# sudo docker run -it -v /home/hahally/myimage:/data --name slave2 -h slave2 new_image:newhadoop /bin/bash      运行容器指定共享目录</span><br><span class="line">[root@master~]# sudo docker start slave2      启动容器</span><br><span class="line">[root@master~]# sudo docker exec -i -t s2 /bin/bash		进入容器</span><br><span class="line">[root@master~]# docker commit master new_image:tag    提交容器</span><br><span class="line">[root@master~]# sudo docker rm contianername          删除容器</span><br><span class="line">[root@master~]# sudo docker rmi imagesname            删除镜像</span><br><span class="line">[root@master~]# sudo docker rename name1 name2        重新命名容器</span><br></pre></td></tr></table></figure>
-<h4 id="hadoop命令"><code>hadoop</code>命令</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# hadoop dfsadmin -report      命令查看磁盘使用情况</span><br><span class="line">[root@master~]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output 运行jar包</span><br><span class="line">[root@master~]# hadoop dfsadmin -safemode leave    退出安全模式</span><br><span class="line">[root@master~]# hadoop jar  x.jar  MainClassName[主类名称] [inputPath] [outputPath]</span><br></pre></td></tr></table></figure>
-<h4 id="运行hadoop自带mapreduce程序">运行<code>hadoop</code>自带<code>MapReduce</code>程序</h4>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.5]# hadoop fs -mkdir -p /wordcount/input              [创建一个目录]</span><br><span class="line">[root@master hadoop-2.7.5]# hadoop fs -put a.txt  b.txt  /wordcount/input     [将文件上传到input文件夹中]</span><br><span class="line">[root@master hadoop-2.7.5]# cd share/hadoop/mapreduce/                        [进入程序所在目录]</span><br><span class="line">[root@master mapreduce]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output   [运行jar包]</span><br><span class="line">[root@master mapreduce]# hadoop fs -cat /wordcount/output/part-r-00000     [查看输出结果]</span><br></pre></td></tr></table></figure>
-<h4 id="spark">Spark</h4>
-<p>环境变量 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure> <code>spark-env.sh</code> <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure> 运行
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure></p>
-<h4 id="注意点">注意点</h4>
-<p>运行<code>jar</code>包时，先删掉
-<code>/output</code>文件夹，否则无法发查看输出结果</p>
+    [root@master~]# source /etc/profile   使配置生效
+</code></pre><h4 id="windows-dos-命令"><a href="#windows-dos-命令" class="headerlink" title="windows dos 命令"></a><code>windows dos</code> 命令</h4><pre><code>    C:\Users\ACER&gt;netstat -aon|findstr &quot;8081&quot;      查看端口号
+    C:\Users\ACER&gt;taskkill /f /t /im 10144         杀掉进程
+</code></pre><h4 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a><code>Linux</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# tar -zxvf [*].tar.gz -C [路径]   解压</span><br><span class="line">[root@master~]# yum -y remove firewalld          卸载防火墙</span><br><span class="line">[root@master~]# systemctl stop/status/start firewalld 停止/查看状态/启动/防火墙服务</span><br><span class="line">[root@master~]# netstat -tunlp|grep 端口号        查看端口占用情况</span><br><span class="line">[root@master~]# sudo passwd root        设置root密码</span><br><span class="line">[root@master~]# sudo ln -s /usr/local/jdk1.8.0_162/bin/ bin   创建软链接</span><br><span class="line">[root@master~]# cp [-r] file/filedir filepath        复制文件或目录</span><br><span class="line"></span><br><span class="line">ubuntu ens33丢失重连</span><br><span class="line">[root@master~]# sudo service network-manager stop</span><br><span class="line">[root@master~]# sudo rm /var/lib/NetworkManager/NetworkManager.state</span><br><span class="line">[root@master~]# sudo service network-manager start</span><br><span class="line">[root@master~]# sudo gedit /etc/NetworkManager/NetworkManager.conf    #（把false改成true）</span><br><span class="line">[root@master~]# sudo service network-manager restart</span><br><span class="line"></span><br><span class="line">centos ens33丢失重连</span><br><span class="line">[root@master~]# systemctl stop NetworkManager</span><br><span class="line">[root@master~]# systemctl disable NetworkManager</span><br><span class="line">[root@master~]# sudo ifup ens33         重新连接ens33</span><br><span class="line">[root@master~]# systemctl restart network</span><br><span class="line">[root@master~]# systemctl start NetworkManager</span><br><span class="line"></span><br><span class="line">[root@master~]# sudo ps -e |grep ssh    查看ssh服务是否启动</span><br></pre></td></tr></table></figure>
+<h4 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a><code>git</code> 命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git init   初始化</span><br><span class="line">git add filename  将上传文件加到缓冲区</span><br><span class="line">git commit [-m] [注释]</span><br><span class="line">git remote add origin https://github.com/[用户名名]/[仓库名].git</span><br><span class="line">git push -u origin master -f    上传到远程仓库分支</span><br><span class="line">git clone https://github.com/[用户名名]/[仓库名].git        拉取代码</span><br></pre></td></tr></table></figure>
+<h4 id="docker命令"><a href="#docker命令" class="headerlink" title="docker命令"></a><code>docker</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# sudo docker run -it -v /home/hahally/myimage:/data --name slave2 -h slave2 new_image:newhadoop /bin/bash      运行容器指定共享目录</span><br><span class="line">[root@master~]# sudo docker start slave2      启动容器</span><br><span class="line">[root@master~]# sudo docker exec -i -t s2 /bin/bash		进入容器</span><br><span class="line">[root@master~]# docker commit master new_image:tag    提交容器</span><br><span class="line">[root@master~]# sudo docker rm contianername          删除容器</span><br><span class="line">[root@master~]# sudo docker rmi imagesname            删除镜像</span><br><span class="line">[root@master~]# sudo docker rename name1 name2        重新命名容器</span><br></pre></td></tr></table></figure>
+<h4 id="hadoop命令"><a href="#hadoop命令" class="headerlink" title="hadoop命令"></a><code>hadoop</code>命令</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master~]# hadoop dfsadmin -report      命令查看磁盘使用情况</span><br><span class="line">[root@master~]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output 运行jar包</span><br><span class="line">[root@master~]# hadoop dfsadmin -safemode leave    退出安全模式</span><br><span class="line">[root@master~]# hadoop jar  x.jar  MainClassName[主类名称] [inputPath] [outputPath]</span><br></pre></td></tr></table></figure>
+<h4 id="运行hadoop自带MapReduce程序"><a href="#运行hadoop自带MapReduce程序" class="headerlink" title="运行hadoop自带MapReduce程序"></a>运行<code>hadoop</code>自带<code>MapReduce</code>程序</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master hadoop-2.7.5]# hadoop fs -mkdir -p /wordcount/input              [创建一个目录]</span><br><span class="line">[root@master hadoop-2.7.5]# hadoop fs -put a.txt  b.txt  /wordcount/input     [将文件上传到input文件夹中]</span><br><span class="line">[root@master hadoop-2.7.5]# cd share/hadoop/mapreduce/                        [进入程序所在目录]</span><br><span class="line">[root@master mapreduce]# hadoop jar hadoop-mapreduce-examples-2.7.5.jar wordcount /wordcount/input  /wordcount/output   [运行jar包]</span><br><span class="line">[root@master mapreduce]# hadoop fs -cat /wordcount/output/part-r-00000     [查看输出结果]</span><br></pre></td></tr></table></figure>
+<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4><p>环境变量<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line"><span class="meta">#</span><span class="bash"> 现在我们的环境变量配置看起来像这样</span></span><br><span class="line">export HADOOP_HOME=/usr/local/hadoop</span><br><span class="line">export SPARK_HOME=/usr/local/spark</span><br><span class="line">export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH</span><br><span class="line">export PYSPARK_PYTHON=python3</span><br><span class="line">export JAVA_HOME=/usr/local/java/jdk1.8.0_171</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/jre/lib/rt.jar:$&#123;JAVA_HOME&#125;/lib/dt.jar:$&#123;JAVA_HOME&#125;/lib/tools.jar</span><br><span class="line">export PATH=$PATH:$&#123;JAVA_HOME&#125;/bin</span><br><span class="line">export PATH=$PATH:/usr/local/hadoop/bin:/usr/local/hadoop/sbin:/usr/local/spark/bin:/usr/local/spark/sbin:$PATH</span><br><span class="line">export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native:$LD_LIBRARY_PYTHON</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使配置生效</span></span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure><br><code>spark-env.sh</code><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/spark</span><br><span class="line">cp ./conf/spark-env.sh.template ./conf/spark-env.sh</span><br><span class="line">vim ./conf/spark-env.sh</span><br><span class="line"><span class="meta">#</span><span class="bash"> 在最后一行添加如下配置信息：</span></span><br><span class="line"></span><br><span class="line">export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)</span><br><span class="line">export HADOOP_CONF_DIR=/usr/local/hadoop/ect/hadoop</span><br><span class="line">export YARN_CONF_DIR=/usr/local/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure><br>运行<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/spark/bin/run-example SparkPi <span class="comment"># 运行例子</span></span><br><span class="line">/usr/local/spark、bin/run-example SparkPi <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">"Pi is roughly"</span></span><br><span class="line">/usr/local/spark/bin/spark-submit ../examples/src/main/python/pi.py <span class="number">2</span>&gt;&amp;<span class="number">1</span> | grep <span class="string">'Pi'</span></span><br><span class="line">/usr/local/spark/bin/spark-submit --master yarn --deploy-mode cluster /usr/local/spark/examples/src/main/python/wordcount.py <span class="symbol">hdfs:</span>/<span class="regexp">/master:9000/words</span>.txt</span><br></pre></td></tr></table></figure></p>
+<h4 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h4><p>运行<code>jar</code>包时，先删掉 <code>/output</code>文件夹，否则无法发查看输出结果</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span> <span class="attribute">JAVA_HOME</span>=/usr/local/jdk1.8.0_162</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">JRE_HOME</span>=<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">CLASSPATH</span>=.:$&#123;JAVA_HOME&#125;/lib:<span class="variable">$&#123;JRE_HOME&#125;</span>/lib</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HADOOP_HOME</span>=/usr/local/hadoop-2.7.5</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">PATH</span>=<span class="variable">$PATH</span>:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:/usr/local/hbase-1.3.6/bin</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_HOME</span>=/usr/local/hbase-1.3.6</span><br><span class="line"><span class="builtin-name">export</span> <span class="attribute">HBASE_CLASSPATH</span>=/usr/local/hbase-1.3.6/lib/hbase-common-1.3.6.jar:/usr/local/hbase-1.3.6/lib/</span><br><span class="line">hbase-server-1.3.6.jar</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -728,7 +714,7 @@ createTime       : 2019.10.26
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>7.3k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -748,8 +734,7 @@ createTime       : 2019.10.26
 
       
           <blockquote>
-<p>论文：Deep Semantic Text Hashing with Weak
-Supervision，SIGIR，2018</p>
+<p>论文：Deep Semantic Text Hashing with Weak Supervision，SIGIR，2018</p>
 </blockquote>
 <p>论文提出一种弱监督学习方法。采用bm25对相似文档进行排序，提取数据中的弱监督信号。先训练一个可以得到整个文档的语义向量表示的模型，然后根据语义向量，运用一些规则（设置阈值）将对应维度变成0或1。</p>
 <ul>
@@ -757,64 +742,37 @@ Supervision，SIGIR，2018</p>
 <li>设计了两个深度生成模型来利用文档的内容和估计的邻域来学习语义哈希函数。（NbrReg和NbrReg+doc）</li>
 </ul>
 <p>两个语义向量表示模型（NbrReg和NbrReg+doc）区别在于是否利用了近邻文档信息。每个模型包含两个部分：encoder、decoder。</p>
-<p>该方法步骤包括三个部分：Document Space Estimation —&gt;
-NbrReg（NbrReg+doc） —&gt; Binarization</p>
+<p>该方法步骤包括三个部分：Document Space Estimation —&gt; NbrReg（NbrReg+doc） —&gt; Binarization</p>
 <ul>
 <li>Document Space Estimation：得到整个文档数据的空间分布情况</li>
 </ul>
-<p>在有标签信息的情况下，可以得到真实文档空间分布。没有标签信息的时候，利用bm25为每个文档
-d 检索出一组与之最相似的近邻文档NN(d)。论文假设：近邻文档中大多数与文档
-d
-具有相同标签，因此任何文档的二进制哈希值在相近的向量空间模型中应该更加近似。</p>
+<p>在有标签信息的情况下，可以得到真实文档空间分布。没有标签信息的时候，利用bm25为每个文档 d 检索出一组与之最相似的近邻文档NN(d)。论文假设：近邻文档中大多数与文档 d 具有相同标签，因此任何文档的二进制哈希值在相近的向量空间模型中应该更加近似。</p>
 <ul>
 <li>NbrReg：语义向量模型</li>
 </ul>
 <p>文档语义向量 s ，满足标准正态分布 N(0,1)</p>
-<p><span class="math inline"><em>w</em><sub><em>i</em></sub> ∈ <em>d</em></span>
-，概率 <span class="math inline"><em>P</em><sub><em>A</em></sub>(<em>w</em><sub><em>i</em></sub>|<em>s</em>)</span>
-； <span class="math inline"><em>ŵ</em><sub><em>j</em></sub> ∈ <em>N</em><em>N</em>(<em>d</em>)</span>
-,概率<span class="math inline"><em>P</em><sub><em>B</em></sub>(<em>ŵ</em><sub><em>j</em></sub>|<em>s</em>)</span></p>
-<p>定义联合概率： <span class="math inline"><em>P</em>(<em>d</em>) = ∏<sub><em>i</em></sub><em>P</em><sub><em>A</em></sub>(<em>w</em><sub><em>i</em></sub>|<em>s</em>)</span>
-，<span class="math inline"><em>P</em>(<em>N</em><em>N</em>(<em>d</em>)) = ∏<sub><em>j</em></sub><em>P</em><sub><em>B</em></sub>(<em>ŵ</em><sub><em>j</em></sub>|<em>s</em>)</span></p>
-<p>目标函数：最大化<span class="math inline"><em>P</em>(<em>d</em>, <em>N</em><em>N</em>(<em>d</em>)) = <em>P</em>(<em>d</em>)<em>P</em>(<em>N</em><em>N</em>(<em>d</em>))</span><br>
-<span class="math display">$$
-logP(d,NN(d)) = log\int_{s}P(d|s)P(NN(d)|s)P(s)ds\\\geq
-E_{Q(s|·)}[logP(dd|s)] + E_{Q(s|·)}[logP(NN(d)|s)]-D_{KL}(Q(s|·)||P(s))
-$$</span> 其中 <span class="math inline"><em>Q</em>(<em>d</em>|·)</span>
-表示从数据中学到的近似后验概率分布；<strong>·</strong>
-符号表示输入随机变量的占位符；<span class="math inline"><em>D</em><sub><em>K</em><em>L</em></sub></span>
-表示KL散度；</p>
-<p><strong>Decoder Function</strong> <span class="math display">$$
-P(d) =
-\prod_{i}P_A(w_i|s)=\prod_{i}\frac{exp(s^TAe_i)}{exp(\sum_{j}s^TAe_j)}
-$$</span> <span class="math inline"><em>e</em><sub><em>j</em></sub></span>
-表示一个词袋向量，矩阵A将语义向量s映射到词编码空间。<span class="math inline"><em>P</em>(<em>N</em><em>N</em>(<em>d</em>))</span>
-与上面类似，只是映射矩阵用B表示。</p>
+<p> $w_i \in d$ ，概率 $P_A(w_i|s)$  ； $\hat w_j \in NN(d)$ ,概率$P_B(\hat w_j|s)$</p>
+<p>定义联合概率： $P(d) = \prod_{i}P_A(w_i|s)$ ，$P(NN(d))=\prod_{j}P_B(\hat w_j|s)$</p>
+<p>目标函数：最大化$P(d,NN(d)) = P(d)P(NN(d))$  </p>
+<script type="math/tex; mode=display">
+logP(d,NN(d)) = log\int_{s}P(d|s)P(NN(d)|s)P(s)ds\\\geq E_{Q(s|·)}[logP(dd|s)] + E_{Q(s|·)}[logP(NN(d)|s)]-D_{KL}(Q(s|·)||P(s))</script><p>其中 $Q(d|·)$ 表示从数据中学到的近似后验概率分布；<strong>·</strong> 符号表示输入随机变量的占位符；$D_{KL}$ 表示KL散度；</p>
+<p><strong>Decoder Function</strong></p>
+<script type="math/tex; mode=display">
+P(d) = \prod_{i}P_A(w_i|s)=\prod_{i}\frac{exp(s^TAe_i)}{exp(\sum_{j}s^TAe_j)}</script><p>$e_j$ 表示一个词袋向量，矩阵A将语义向量s映射到词编码空间。$P(NN(d))$ 与上面类似，只是映射矩阵用B表示。</p>
 <p><strong>Encoder Function</strong></p>
-<p>定义 <span class="math inline"><em>Q</em>(<em>s</em>|·)</span>
-为文档d参数化的正态分布：<span class="math inline"><em>Q</em>(<em>s</em>|·) = <em>N</em>(<em>s</em>, <em>f</em>(<em>d</em>))</span>
-。<em>f(·)</em> 函数将d表示为均值为<span class="math inline"><em>μ</em></span> 标准差为<span class="math inline"><em>σ</em></span> 正态分布的向量。
-为了表征两个参数，定义<span class="math inline"><em>f</em> =  &lt; <em>f</em><sub><em>μ</em></sub>, <em>f</em><sub><em>σ</em></sub>&gt;</span>
-，相当于定义了两个前馈神经网络： <span class="math display">$$
-f_{\mu}(d) = W_{\mu}·h(d)+b_{\mu} \\f_{\sigma}(d) =
-W_{\sigma}·h(d)+b_{\sigma}\\h(d) = relu(W_2·relu(W_1·d+b_1)+b_2)
-$$</span></p>
-<p>语义向量s从Q中采样： <span class="math display"><em>s</em> ∼ <em>Q</em>(<em>s</em>|<em>d</em>) = <em>N</em>(<em>s</em>; <em>μ</em> = <em>f</em><sub><em>μ</em></sub>(<em>d</em>), <em>σ</em> = <em>f</em><sub><em>σ</em></sub>(<em>d</em>))</span></p>
-<ul>
+<p>定义 $Q(s|·)$ 为文档d参数化的正态分布：$Q(s|·) = N(s,f(d))$ 。<em>f(·)</em> 函数将d表示为均值为$\mu$ 标准差为$\sigma$ 正态分布的向量。 为了表征两个参数，定义$f = <f_{\mu},f_{\sigma}>$  ，相当于定义了两个前馈神经网络：</f_{\mu},f_{\sigma}></p>
+<script type="math/tex; mode=display">
+f_{\mu}(d) = W_{\mu}·h(d)+b_{\mu} \\f_{\sigma}(d) = W_{\sigma}·h(d)+b_{\sigma}\\h(d) = relu(W_2·relu(W_1·d+b_1)+b_2)</script><p>语义向量s从Q中采样：</p>
+<script type="math/tex; mode=display">
+s \sim Q(s|d)=N(s;\mu=f_{\mu}(d),\sigma = f_{\sigma}(d))</script><ul>
 <li>Utilize Neighbor Documents：(NbrReg+Doc）</li>
 </ul>
-<p>论文中提到相邻文档使用的一组单词可以表示该区域所有文档的主题，但是来自相邻文档的额外的词可能会引入噪声，混淆模型。为了削减噪声带来的影响，引入了一层隐藏层，用该层向量来表示近邻文档，使用一个平均池化层得到
-近邻文档的中心表示。只有编码器部分有所不同，其他与NbrReg一致。 <span class="math display">$$
-Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\\h_{NN}(NN(d))
-= mean(Z^{NN})\\f_{\mu}(d,NN(d)) = W_{\mu}·(h(d)+h_{NN}(NN(d)))+b_{\mu}
-$$</span></p>
-<ul>
+<p>论文中提到相邻文档使用的一组单词可以表示该区域所有文档的主题，但是来自相邻文档的额外的词可能会引入噪声，混淆模型。为了削减噪声带来的影响，引入了一层隐藏层，用该层向量来表示近邻文档，使用一个平均池化层得到 近邻文档的中心表示。只有编码器部分有所不同，其他与NbrReg一致。</p>
+<script type="math/tex; mode=display">
+Z^{NN} = relu(W_2^{NN}·relu(W_1^{NN}·NN(d)+b_1^{NN})+b_2)\\h_{NN}(NN(d)) = mean(Z^{NN})\\f_{\mu}(d,NN(d)) = W_{\mu}·(h(d)+h_{NN}(NN(d)))+b_{\mu}</script><ul>
 <li>Binarization</li>
 </ul>
-<p>根据编码器 <span class="math inline"><em>Q</em>(<em>s</em>|·)</span>
-为文档d生成一个连续的语义向量。论文中使用编码器输出的正态分布的均值来表示语义向量
-<span class="math inline">$\overline s =
-E[Q(s|·)]$</span>，然后使用中值法生成二进制编码。若大于该阈值就令该位为1，否者为0.</p>
+<p>根据编码器 $Q(s|·)$ 为文档d生成一个连续的语义向量。论文中使用编码器输出的正态分布的均值来表示语义向量 $\overline s = E[Q(s|·)]$，然后使用中值法生成二进制编码。若大于该阈值就令该位为1，否者为0.</p>
 <blockquote>
 <p>思考</p>
 </blockquote>
@@ -824,105 +782,63 @@ E[Q(s|·)]$</span>，然后使用中值法生成二进制编码。若大于该�
 </blockquote>
 <p>github上找到两处开源代码，一个是作者的低调开源，一个是路人甲的好心复现。</p>
 <ul>
-<li><p>作者开源：https://github.com/unsuthee/SemanticHashingWeakSupervision</p></li>
-<li><p>复现代码：https://github.com/yfy-/nbrreg</p></li>
+<li><p>作者开源：<a href="https://github.com/unsuthee/SemanticHashingWeakSupervision" target="_blank" rel="noopener">https://github.com/unsuthee/SemanticHashingWeakSupervision</a></p>
+</li>
+<li><p>复现代码：<a href="https://github.com/yfy-/nbrreg" target="_blank" rel="noopener">https://github.com/yfy-/nbrreg</a></p>
+</li>
 </ul>
 <p>作者开源的代码，一言难尽，虽然很贴心的把对比模型也复现了出来，但是数据没给，如何用bm25算法处理的过程都给省去了。于是找到了一个好心人提供了nbrreg模型的复现，而且给了一份数据，以及对数据进行处理的代码。但是模型训练没有考虑到用gpu的情况。所以下面主要对复现代码进行分析。</p>
 <p><strong>数据处理</strong></p>
 <p>提供的数据是20newsgroups数据集，20ng-all-stemmed.txt：18820行，20个类别</p>
 <figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alt.atheism	alt atheism faq atheist resourc archiv <span class="built_in">name</span> atheism resourc alt atheism...</span><br><span class="line">···</span><br></pre></td></tr></table></figure>
-<p>格式为：label w1 w2
-w3…，一行为一条数据，由标签和对应文档组成，文档由一个空格分开的词组成。</p>
+<p>格式为：label    w1 w2 w3…，一行为一条数据，由标签和对应文档组成，文档由一个空格分开的词组成。</p>
 <p>数据处理代码为：prepare_data.py</p>
 <ul>
 <li>输入：20ng-all-stemmed.txt中的文本</li>
-<li>输出：train_docs、cv_docs、test_docs、train_cats、cv_cats、test_cats、train_knn
-<ul>
+<li>输出：train_docs、cv_docs、test_docs、train_cats、cv_cats、test_cats、train_knn<ul>
 <li>train_docs、cv_docs、test_docs：分别为训练集、验证集、测试集，维度为vocab_size。</li>
 <li>train_cats、cv_cats、test_cats：对应标签，one-hot向量，维度为20。</li>
 <li>train_knn：train_docs中每条数据的近邻文档的索引。</li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>这部分代码主要是得到用于模型输入的数据，即将文本数据用数值表示。这里将每个文档用bm25权重值表示。BM25是信息索引领域用来计算query与文档相似度得分的经典算法。论文中使用bm25检索近邻文档，作为训练的弱监督信号。</p>
-<p>BM25的一般公式： <span class="math display">$$
-Score(Q,d) = \sum_{i=1}^{n}W_i*R(q_i,d)
-$$</span> <span class="math inline"><em>Q</em></span>表示一个query，<span class="math inline"><em>q</em><sub><em>i</em></sub></span> 表示<span class="math inline"><em>Q</em></span>中的单词，<span class="math inline"><em>d</em></span>表示某个搜索文档。<span class="math inline"><em>W</em><sub><em>i</em></sub></span>
-表示单词权重，用<span class="math inline"><em>i</em><em>d</em><em>f</em></span> 表示： <span class="math display">$$
-idf(q_i) = log\frac{N-df_i+0.5}{df_i+0.5}
-$$</span> <span class="math inline"><em>d</em><em>f</em><sub><em>i</em></sub></span>
-为包含了<span class="math inline"><em>q</em><sub><em>i</em></sub></span>
-的文档个数。依据IDF的作用，对于某个 <span class="math inline"><em>q</em><sub><em>i</em></sub></span>，包含 <span class="math inline"><em>q</em><sub><em>i</em></sub></span>的文档数越多，说明<span class="math inline"><em>q</em><sub><em>i</em></sub></span>重要性越小，或者区分度越低，IDF越小，因此IDF可以用来刻画<span class="math inline"><em>q</em><sub><em>i</em></sub></span>与文档的相似性。</p>
-<p><span class="math inline"><em>R</em>(<em>q</em><sub><em>i</em></sub>, <em>d</em>)</span>
-表示为： <span class="math display">$$
-R(q_i,d) =
-\frac{(k_1+1)·f(q_i,d)}{f(q_i,d)+k_1·(1-b+b·\frac{|d|}{avgdL})}
-$$</span> <span class="math inline"><em>f</em>(<em>q</em><sub><em>i</em></sub>, <em>d</em>)</span>
-表示<span class="math inline"><em>q</em><sub><em>i</em></sub></span>在文档 d
-中的词频，<span class="math inline">|<em>d</em>|</span> 表示文档
-d的长度，avgdL是语料库全部文档的平均长度。<span class="math inline"><em>k</em><sub>1</sub></span> 和 <span class="math inline"><em>b</em></span> 为经验参数，一般的<span class="math inline"><em>k</em><sub>1</sub> ∈ [1.2, 2.0], <em>b</em> = 0.75</span></p>
-<p>假设一共有 n 个文档，按照该公式计算最终一个文档 d 会得到 n
-个得分。但是代码中计算的是<span class="math inline"><em>S</em><em>c</em><em>o</em><em>r</em><em>e</em>(<em>d</em>, <em>d</em>)</span>
-，而且没有求和操作。所以一个文档 d
-会由一个vocab_size维度大小的向量表示。按照论文要求，会根据 n
-个得分进行降序排列，选 k 个作为文档 d 的近邻文档<span class="math inline"><em>N</em><em>N</em>(<em>d</em>)</span>
-。复现的代码中则是根据上述向量计算余弦相似度然后选取近邻文档的。</p>
-<figure>
-<img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126205246354.png" alt="image-20220126205246354">
-<figcaption aria-hidden="true">image-20220126205246354</figcaption>
-</figure>
-<p>其中<span class="math inline"><em>t</em><em>e</em><em>r</em><em>m</em>_<em>f</em><em>r</em><em>e</em><em>q</em></span>
-对应词频<span class="math inline"><em>f</em>(<em>q</em><sub><em>i</em></sub>, <em>d</em>)</span>
-的<span class="math inline"><em>n</em> × <em>v</em><em>o</em><em>c</em><em>a</em><em>b</em>_<em>s</em><em>i</em><em>z</em><em>e</em></span>
-大小的矩阵，<span class="math inline"><em>c</em><em>o</em><em>s</em><em>i</em><em>n</em>_<em>s</em><em>i</em><em>m</em><em>i</em><em>l</em><em>a</em><em>r</em><em>i</em><em>t</em><em>y</em>(<em>t</em><em>r</em><em>a</em><em>i</em><em>n</em>_<em>d</em><em>o</em><em>c</em><em>s</em>)</span>
-计算文档与文档之间的余弦相似度得分。<strong>代码中近邻文档选取了100个</strong>
-。</p>
+<p>BM25的一般公式：</p>
+<script type="math/tex; mode=display">
+Score(Q,d) = \sum_{i=1}^{n}W_i*R(q_i,d)</script><p>$Q$表示一个query，$q_i$  表示$Q$中的单词，$d$表示某个搜索文档。$W_i$ 表示单词权重，用$idf$ 表示：</p>
+<script type="math/tex; mode=display">
+idf(q_i) = log\frac{N-df_i+0.5}{df_i+0.5}</script><p>$df_i$ 为包含了$q_i$ 的文档个数。依据IDF的作用，对于某个 $q_i$，包含 $q_i$的文档数越多，说明$q_i$重要性越小，或者区分度越低，IDF越小，因此IDF可以用来刻画$q_i$与文档的相似性。</p>
+<p>$R(q_i,d)$ 表示为：</p>
+<script type="math/tex; mode=display">
+R(q_i,d) = \frac{(k_1+1)·f(q_i,d)}{f(q_i,d)+k_1·(1-b+b·\frac{|d|}{avgdL})}</script><p>$f(q_i,d)$ 表示$q_i$在文档 d 中的词频，$|d|$ 表示文档 d的长度，avgdL是语料库全部文档的平均长度。$k_1$ 和 $b$ 为经验参数，一般的$k_1\in [1.2,2.0],b=0.75$</p>
+<p>假设一共有 n 个文档，按照该公式计算最终一个文档 d 会得到 n 个得分。但是代码中计算的是$Score(d,d)$ ，而且没有求和操作。所以一个文档 d 会由一个vocab_size维度大小的向量表示。按照论文要求，会根据 n 个得分进行降序排列，选 k 个作为文档 d 的近邻文档$NN(d)$ 。复现的代码中则是根据上述向量计算余弦相似度然后选取近邻文档的。</p>
+<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126205246354.png" alt="image-20220126205246354"></p>
+<p>其中$term_freq$ 对应词频$f(q_i,d)$ 的$n\times vocab_size$ 大小的矩阵，$cosin_similarity(train_docs)$ 计算文档与文档之间的余弦相似度得分。<strong>代码中近邻文档选取了100个</strong> 。</p>
 <p>计算idf值代码：</p>
-<figure>
-<img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126210125077.png" alt="image-20220126210125077">
-<figcaption aria-hidden="true">image-20220126210125077</figcaption>
-</figure>
-<p>这一处分母应该是<span class="math inline">(<em>d</em><em>f</em> + 0.5)</span>
-。少了一个括号！！！</p>
+<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126210125077.png" alt="image-20220126210125077"></p>
+<p>这一处分母应该是$(df+0.5)$ 。少了一个括号！！！</p>
 <p>模型训练测试代码都在一个文件里：nbrreg.py</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NbrReg</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, lex_size, bit_size=<span class="number">32</span>, h_size=<span class="number">1000</span>)</span>:</span></span><br><span class="line">        super(NbrReg, self).__init__()</span><br><span class="line">        self.lnr_h1 = torch.nn.Linear(lex_size, h_size)</span><br><span class="line">        self.lnr_h2 = torch.nn.Linear(h_size, h_size)</span><br><span class="line">        self.lnr_mu = torch.nn.Linear(h_size, bit_size)</span><br><span class="line">        self.lnr_sigma = torch.nn.Linear(h_size, bit_size)</span><br><span class="line">        self.lnr_rec_doc = torch.nn.Linear(bit_size, lex_size)</span><br><span class="line">        self.lnr_nn_rec_doc = torch.nn.Linear(bit_size, lex_size)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, docs)</span>:</span></span><br><span class="line">        mu, sigma = self.encode(docs)</span><br><span class="line">        <span class="comment"># qdist表示语义向量s，服从正态分布 N~(mu,sigma^2)</span></span><br><span class="line">        qdist = tdist.Normal(mu, sigma)</span><br><span class="line">        log_prob_words, log_nn_prob_words = self.decode(qdist.rsample())</span><br><span class="line">        <span class="keyword">return</span> qdist, log_prob_words, log_nn_prob_words</span><br><span class="line">	</span><br><span class="line">    <span class="comment"># 对应论文中的编码函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, docs)</span>:</span></span><br><span class="line">        relu = torch.nn.ReLU()</span><br><span class="line">        sigmoid = torch.nn.Sigmoid()</span><br><span class="line">        hidden = relu(self.lnr_h2(relu(self.lnr_h1(docs))))</span><br><span class="line">        mu = self.lnr_mu(hidden)</span><br><span class="line">        <span class="comment"># Use sigmoid for positive standard deviation</span></span><br><span class="line">        sigma = sigmoid(self.lnr_sigma(hidden))</span><br><span class="line">        <span class="keyword">return</span> mu, sigma</span><br><span class="line">	<span class="comment"># 对应论文中解码函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, latent)</span>:</span></span><br><span class="line">        log_softmax = torch.nn.LogSoftmax(dim=<span class="number">1</span>)</span><br><span class="line">        log_prob_words = log_softmax(self.lnr_rec_doc(latent))</span><br><span class="line">        log_nn_prob_words = log_softmax(self.lnr_nn_rec_doc(latent))</span><br><span class="line">        <span class="keyword">return</span> log_prob_words, log_nn_prob_words</span><br></pre></td></tr></table></figure>
-<p>模型部分按照论文中的描述，使前馈神经网络就可以实现。值得一提的是
-<span class="math inline"><em>q</em><em>d</em><em>i</em><em>s</em><em>t</em></span>
-应该才是文中对应的服从正态分布的语义向量
-s。但在生成二进制哈希值时，取的是编码器输出的均值。</p>
+<p>模型部分按照论文中的描述，使前馈神经网络就可以实现。值得一提的是 $qdist$ 应该才是文中对应的服从正态分布的语义向量 s。但在生成二进制哈希值时，取的是编码器输出的均值。</p>
 <p>训练代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(train_docs, train_cats, train_knn, cv_docs, cv_cats, bitsize=<span class="number">32</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">          epoch=<span class="number">30</span>, bsize=<span class="number">100</span>, lr=<span class="number">1e-3</span>, latent_size=<span class="number">1000</span>, resume=None,</span></span></span><br><span class="line"><span class="function"><span class="params">          imp_trial=<span class="number">0</span>)</span>:</span></span><br><span class="line">    nsize, lexsize = train_docs.shape</span><br><span class="line">    num_iter = int(np.ceil(nsize / bsize))</span><br><span class="line">    model = resume <span class="keyword">if</span> resume <span class="keyword">else</span> NbrReg(lexsize, bitsize, h_size=latent_size)</span><br><span class="line">    model.double()</span><br><span class="line">    optim = torch.optim.Adam(model.parameters(), lr=lr)</span><br><span class="line">    norm = tdist.Normal(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">    best_prec = <span class="number">0.0</span></span><br><span class="line">    trial = <span class="number">0</span></span><br><span class="line">    epoch_range = itertools.count() <span class="keyword">if</span> imp_trial <span class="keyword">else</span> epoch</span><br><span class="line">    epoch = <span class="string">"INF"</span> <span class="keyword">if</span> imp_trial <span class="keyword">else</span> epoch</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> epoch_range:</span><br><span class="line">        model.train()</span><br><span class="line">        losses = []</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(num_iter):</span><br><span class="line">            print(<span class="string">f"Epoch: <span class="subst">&#123;e + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;epoch&#125;</span>, Iteration: <span class="subst">&#123;i + <span class="number">1</span>&#125;</span>/<span class="subst">&#123;num_iter&#125;</span>"</span>,</span><br><span class="line">                  end=<span class="string">"\r"</span>)</span><br><span class="line">            batch_i = np.random.choice(nsize, bsize)</span><br><span class="line">            np_batch = train_docs[batch_i].todense()</span><br><span class="line">            doc_batch = torch.from_numpy(np_batch).double()</span><br><span class="line">            knn_batch = train_knn[batch_i]</span><br><span class="line">            optim.zero_grad()</span><br><span class="line">            qdist, log_prob_words, log_nn_prob_words = model(doc_batch)</span><br><span class="line">            doc_rl = doc_rec_loss(log_prob_words, doc_batch)</span><br><span class="line">            doc_nn_rl = doc_nn_rec_loss(log_nn_prob_words, knn_batch,train_docs)</span><br><span class="line">            kl_loss = tdist.kl_divergence(qdist, norm)</span><br><span class="line">            kl_loss = torch.mean(torch.sum(kl_loss, dim=<span class="number">1</span>))</span><br><span class="line">            loss = doc_rl + doc_nn_rl + kl_loss</span><br><span class="line">            losses.append(loss.item())</span><br><span class="line">            loss.backward()</span><br><span class="line">            optim.step()</span><br><span class="line">        avg_loss = np.mean(losses)</span><br><span class="line">        avg_prec = test(train_docs, train_cats, cv_docs, cv_cats, model)</span><br><span class="line">        best_prec = max(avg_prec, best_prec)</span><br><span class="line">        print(<span class="string">f"Epoch <span class="subst">&#123;e + <span class="number">1</span>&#125;</span>: Avg Loss: <span class="subst">&#123;avg_loss&#125;</span>, Avg Prec: <span class="subst">&#123;avg_prec&#125;</span>"</span>)</span><br><span class="line">        <span class="keyword">if</span> best_prec == avg_prec:</span><br><span class="line">            trial = <span class="number">0</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            trial += <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> trial == imp_trial:</span><br><span class="line">                print(<span class="string">f"Avg Prec could not be improved for <span class="subst">&#123;imp_trial&#125;</span> times, "</span></span><br><span class="line">                      <span class="string">"giving up training"</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model, best_prec</span><br></pre></td></tr></table></figure>
-<p>没有使用GPU！！！<code>kl_loss = tdist.kl_divergence(qdist, norm)​</code>
-计算KL散度。norm 为标准正态分布。</p>
+<p>没有使用GPU！！！<code>kl_loss = tdist.kl_divergence(qdist, norm)​</code> 计算KL散度。norm 为标准正态分布。</p>
 <p>测试代码：</p>
-<figure>
-<img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126214013570.png" alt="image-20220126214013570">
-<figcaption aria-hidden="true">image-20220126214013570</figcaption>
-</figure>
-<p>这里
-k=100，表示近邻文档取100，这里为test进行二进制哈希映射后，根据汉明距离选取距离最近的k个，然后统计这k个中与test标签相同的数目，相同数目越大表示即准确率越大，模型效果越好。</p>
+<p><img src="/articles/%E5%9F%BA%E4%BA%8E%E5%BC%B1%E7%9B%91%E7%9D%A3%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%AF%AD%E4%B9%89%E6%96%87%E6%9C%AC%E5%93%88%E5%B8%8C/image-20220126214013570.png" alt="image-20220126214013570"></p>
+<p>这里 k=100，表示近邻文档取100，这里为test进行二进制哈希映射后，根据汉明距离选取距离最近的k个，然后统计这k个中与test标签相同的数目，相同数目越大表示即准确率越大，模型效果越好。</p>
 <blockquote>
 <p>注意事项</p>
 </blockquote>
-<p>在使用该代码时，需要对数据处理成
-20ng-all-stemmed.txt文件里的格式。然后用<code>prepare_data.py</code>
-处理生成对应的<code>.mat</code>
-文件。将源句子与其复述句标记为相同标签。</p>
+<p>在使用该代码时，需要对数据处理成 20ng-all-stemmed.txt文件里的格式。然后用<code>prepare_data.py</code> 处理生成对应的<code>.mat</code> 文件。将源句子与其复述句标记为相同标签。</p>
 <ul>
 <li>固定种子，保证结果可复现。（基本操作）</li>
 <li>计算 idf 时，把代码里的小错误纠正了。（分母加了括号）</li>
 <li>去掉余弦相似度计算，在已知标签的情况下，近邻文档直接从标签相同的文档中取k个。（bm25已经名存实亡，文档向量用TF-IDF值效果差不多）</li>
-<li>k值调整，代码中默认100，论文中说为50的时候准确率不在提升，真的是谜之操作。要根据实际情况而定，看每个源句子对应的复述句子的数量，如果k设置过大，则会引入大量噪声。<code>test</code>
-函数中的k要与数据处理中的k保持一致，或者小于。（至关重要，不然准确率上不去，而且低到百分之零点几，k=2时，平均准确率有0.43+）</li>
+<li>k值调整，代码中默认100，论文中说为50的时候准确率不在提升，真的是谜之操作。要根据实际情况而定，看每个源句子对应的复述句子的数量，如果k设置过大，则会引入大量噪声。<code>test</code> 函数中的k要与数据处理中的k保持一致，或者小于。（至关重要，不然准确率上不去，而且低到百分之零点几，k=2时，平均准确率有0.43+）</li>
 <li>改成了可以使用gpu训练的代码。（至少可以快七倍）</li>
 <li>解耦，把训练、测试、模型、数据处理分开。</li>
 </ul>
-<p>开始小数据训练，准确率很低。后面就增加数据，准确率依旧那样。开始以为bm25权重计算错误，然后发现代码中
-idf
-的计算与公式有出入。然后改正了，接着训练，效果还是不好。然后将两份代码对比，发现作者开源的代码里对KL散度值给了一个权重。然后又加权重值，效果还是那样。训练时开始调整knn-size的值，效果好了一点点，但还是很低很低。然后尝试解耦代码，把各个模块代码重新整理，然后发现<code>test</code>
-函数里有个参数
-k，默认值100，训练一轮后测试模型时，并没有设置该参数，还是默认100。<code>train_knn</code>
-的 k 值过大，则会引入噪声，<code>test</code> 中 k
-值过大，造成分母过大，准确率很难上去。</p>
+<p>开始小数据训练，准确率很低。后面就增加数据，准确率依旧那样。开始以为bm25权重计算错误，然后发现代码中 idf 的计算与公式有出入。然后改正了，接着训练，效果还是不好。然后将两份代码对比，发现作者开源的代码里对KL散度值给了一个权重。然后又加权重值，效果还是那样。训练时开始调整knn-size的值，效果好了一点点，但还是很低很低。然后尝试解耦代码，把各个模块代码重新整理，然后发现<code>test</code> 函数里有个参数 k，默认值100，训练一轮后测试模型时，并没有设置该参数，还是默认100。<code>train_knn</code> 的 k 值过大，则会引入噪声，<code>test</code> 中 k 值过大，造成分母过大，准确率很难上去。</p>
 
       
     </div>
@@ -982,7 +898,7 @@ k，默认值100，训练一轮后测试模型时，并没有设置该参数，�
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1001,64 +917,40 @@ k，默认值100，训练一轮后测试模型时，并没有设置该参数，�
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>论文：<a href="https://arxiv.org/abs/1911.00172" target="_blank" rel="noopener">GENERALIZATION
-THROUGH MEMORIZATION: NEAREST NEIGHBOR LANGUAGE MODELS</a></p>
+          <p>论文：<a href="https://arxiv.org/abs/1911.00172" target="_blank" rel="noopener">GENERALIZATION THROUGH MEMORIZATION: NEAREST NEIGHBOR LANGUAGE MODELS</a></p>
 <p>code：<a href="https://github.com/urvashik/knnlm" target="_blank" rel="noopener">knn-lm</a></p>
-<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90890672?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=1046686491727724544&amp;utm_campaign=shareopn" target="_blank" rel="noopener">香侬读
-| 用上文K最近邻特征表示增强语言模型</a></p>
-<p>论文的主要思想是使用传统 <em>knn</em>
-算法对预训练神经语言模型进行线性插值扩展。</p>
+<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90890672?utm_source=wechat_session&amp;utm_medium=social&amp;utm_oi=1046686491727724544&amp;utm_campaign=shareopn" target="_blank" rel="noopener">香侬读 | 用上文K最近邻特征表示增强语言模型 </a></p>
+<p>论文的主要思想是使用传统 <em>knn</em> 算法对预训练神经语言模型进行线性插值扩展。</p>
 <p>ps：传统算法在这个深度学习领域的一次融合……印象中，都是使用预训练模型在小数据集上进行微调，这篇论文似乎有点东西。</p>
-<p>对于语言模型<strong>LM</strong>，给定一个上下文序列tokens： <span class="math display"><em>c</em><sub><em>t</em></sub> = (<em>w</em><sub>1</sub>, ..., <em>w</em><sub><em>t</em> − 1</sub>)</span>
-自回归语言模型通过建模<span class="math inline"><em>p</em>(<em>w</em><sub><em>t</em></sub>|<em>c</em><sub><em>t</em></sub>)</span>
-来预测目标词 <span class="math inline"><em>w</em><sub><em>t</em></sub></span>
-的概率分布。</p>
-<p>kNN-LM可以在没有任何额外的训练情况下，用最邻近检索机制增强预训练语言模型。在模型预训练后，会对训练集的文本集合进行一次前向传播，任何得到
-context-target pairs，并将其以键值对形式存储起来（a key-value
-datastore），以便在推理过程中查找。</p>
-<figure>
-<img src="/articles/knn-lm/image-20211109212234007.png" alt="image-20211109212234007">
-<figcaption aria-hidden="true">image-20211109212234007</figcaption>
-</figure>
-<p>具体的：设语言模型为 f(·)，可以将一个上文 c
-映射为固定长度的向量表示。对于给定的第 i 个训练样本<span class="math inline">(<em>c</em><sub><em>i</em></sub>, <em>w</em><sub><em>i</em></sub>) ∈ <em>D</em></span>
-，定义一个键值对<span class="math inline">(<em>k</em><sub><em>i</em></sub>, <em>v</em><sub><em>i</em></sub>)</span>
-，<span class="math inline"><em>k</em><sub><em>i</em></sub></span>
-表示上文<span class="math inline"><em>c</em><sub><em>i</em></sub></span>
-的向量表示，<span class="math inline"><em>v</em><sub><em>i</em></sub></span>
-表示目标词<span class="math inline"><em>w</em><sub><em>i</em></sub></span>
-，<strong>datastore </strong>(K, V)表示这样一个集合： <span class="math display">(<em>K</em>, <em>V</em>) = {(<em>f</em>(<em>c</em><sub><em>i</em></sub>), <em>w</em><sub><em>i</em></sub>)|(<em>c</em><sub><em>i</em></sub>, <em>w</em><sub><em>i</em></sub>) ∈ <em>D</em>}</span>
-在推理阶段，对于给定上文信息 x ，预测 y
-概率分布。使用knn算法进行插值，有： <span class="math display">$$
+<p>对于语言模型<strong>LM</strong>，给定一个上下文序列tokens：</p>
+<script type="math/tex; mode=display">
+c_t = (w_1,...,w_{t-1})</script><p>自回归语言模型通过建模$p(w_t|c_t)$ 来预测目标词 $w_t$  的概率分布。</p>
+<p>kNN-LM可以在没有任何额外的训练情况下，用最邻近检索机制增强预训练语言模型。在模型预训练后，会对训练集的文本集合进行一次前向传播，任何得到 context-target pairs，并将其以键值对形式存储起来（a key-value datastore），以便在推理过程中查找。</p>
+<p><img src="/articles/knn-lm/image-20211109212234007.png" alt="image-20211109212234007"></p>
+<p>具体的：设语言模型为 f(·)，可以将一个上文 c 映射为固定长度的向量表示。对于给定的第 i 个训练样本$(c_i, w_i)\in D$ ，定义一个键值对$(k_i, v_i)$ ，$k_i$ 表示上文$c_i$ 的向量表示，$v_i$ 表示目标词$w_i$ ，<strong>datastore </strong>(K, V)表示这样一个集合：</p>
+<script type="math/tex; mode=display">
+(K, V) = \{(f(c_i), w_i)|(c_i,w_i)\in D\}</script><p>在推理阶段，对于给定上文信息 x ，预测 y 概率分布。使用knn算法进行插值，有：</p>
+<script type="math/tex; mode=display">
 p(y|x) = \lambda p_{knn}(y|x) + (1-\lambda)p_{LM}(y|x)\\
-p_{knn}(y|x) \propto \sum_{(k_i,v_i)\in N} 1_{y=v_i}exp(-d(k_i,f(x)))\\
-$$</span> <span class="math inline"><em>λ</em></span>
-表示调谐参数，N表示更具距离得到的k邻近集合。距离计算公式采用欧氏距离（L2范数）。在这里knn只是为了得到集合N。</p>
-<p>当然这种使用knn算法的方法不免存在一些算法本身的缺点。一是距离计算公式的选择，二是查询速度，三是k的选择。对于一个预训练语言模型，需要的语料是巨大的，该方法需要将训练集语料的所有键值对保存下来，便于查询。可想而知，从如此巨大的键值对中获取
-k 近邻集合N，其查询代价是相当巨大的！！！</p>
+p_{knn}(y|x) \propto \sum_{(k_i,v_i)\in N} 1_{y=v_i}exp(-d(k_i,f(x)))\\</script><p>$\lambda$ 表示调谐参数，N表示更具距离得到的k邻近集合。距离计算公式采用欧氏距离（L2范数）。在这里knn只是为了得到集合N。</p>
+<p>当然这种使用knn算法的方法不免存在一些算法本身的缺点。一是距离计算公式的选择，二是查询速度，三是k的选择。对于一个预训练语言模型，需要的语料是巨大的，该方法需要将训练集语料的所有键值对保存下来，便于查询。可想而知，从如此巨大的键值对中获取 k 近邻集合N，其查询代价是相当巨大的！！！</p>
 <p>正因如此，为了knn-lm更好的work，在实现时，使用了FAISS库来加速查询过程。</p>
 <p><strong>一点补充</strong></p>
 <p>原本看完论文后，我就知道这个保存的datastore是很大的，但是我没想到这大的如此离谱！！！</p>
 <p>readme中提到模型训练使用了8块GPU，而且基于是Fairseq的。脑阔疼，对Fairseq本来就没什么好印象。索性他提供了一个checkpoint，可以跳过模型训练部分了。但看到后面生成datastore时，我。。。</p>
 <blockquote>
-<p><strong>Caution</strong>: Running this step requires a large amount
-of disk space (400GB!). Please read the note about hardware above,
-before running this!</p>
+<p><strong>Caution</strong>: Running this step requires a large amount of disk space (400GB!). Please read the note about hardware above, before running this!</p>
 </blockquote>
 <p><strong>400GB</strong>的磁盘大小！！！！！真的是离了一个大谱！！！！！！</p>
 <p>现在想想论文摘要里的那句：</p>
 <blockquote>
-<p>our kNN-LM achieves a new state-of-the-art perplexity of 15.79 – a
-2.9 point improvement with no additional training.</p>
+<p>our kNN-LM achieves a new state-of-the-art perplexity of 15.79 – a 2.9 point improvement with no additional training.</p>
 </blockquote>
 <p>这让我不得不怀疑，这sota拼的是磁盘大小啊。真的是有点东西，我一个小作坊，GPU都就是白嫖的，现在整个400G磁盘，我也是活久见。</p>
 <p><strong>一个小故事</strong></p>
-<p>我本一介凡人，但是一心向往修仙炼丹之术。早闻各路大神每年都会在修仙圣地
-<strong>ICLR</strong> 交流切磋修仙炼丹心得。
-一次偶然机会，受高人指点，得到一本秘籍。看完秘籍，豁然开朗，炼丹之路，似乎有了些盼头。</p>
+<p>我本一介凡人，但是一心向往修仙炼丹之术。早闻各路大神每年都会在修仙圣地 <strong>ICLR</strong> 交流切磋修仙炼丹心得。 一次偶然机会，受高人指点，得到一本秘籍。看完秘籍，豁然开朗，炼丹之路，似乎有了些盼头。</p>
 <p>欣喜之余，我也丝毫不敢懈怠。靠着几年的游历经验，白嫖到了一些炼丹器具，也习得一门奇门遁术python，更是窥得仙术tensorflow和pytorch几分奥秘，python大法从入门到入坑，深度学习从入门到放弃，从删库到跑路，我虽自认为资质平庸，在江湖掀不起大风大浪，却也勤勤恳恳苦心修炼，也是到了初识境界。</p>
-<p>Github，无数修仙能人术士炫技圣地，在这里果然找到了秘籍之中提到的各种原料以及使用说明书（大神们愿称之为
-‘瑞德密’）。</p>
+<p>Github，无数修仙能人术士炫技圣地，在这里果然找到了秘籍之中提到的各种原料以及使用说明书（大神们愿称之为 ‘瑞德密’）。</p>
 <p>于是开始每天起早贪黑，备药材，烧丹炉，研究秘籍。按照瑞德密一步一步修炼，但是依旧失败了一次又一次。深感才疏学浅带来的无力，莫不是修为尚浅，无法领略其中奥义。夜不能寐，辗转反侧，我仍百思不得其解。</p>
 <p>偶然间，看到到瑞德密后面部分，再次豁然开朗：</p>
 <blockquote>
@@ -1154,75 +1046,51 @@ before running this!</p>
       
           <p>那就告一段落吧。</p>
 <blockquote>
-<p>在平衡内心与周遭的过程中，缝缝补补自己眼中千疮百孔的世界……</p>
+<p> 在平衡内心与周遭的过程中，缝缝补补自己眼中千疮百孔的世界……</p>
 </blockquote>
 <p>很多事都不一样了，在表示同意赞赏nb还行的同时，其实内心也在保持着一些最后的倔强甚至不屑的态度。向往诗和远方的同时，也在吐槽当下糟糕的境况。这是暂时的妥协，而不是最后的结果。</p>
-<p>可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息，养老等死，我的墓志铭大概就是我的第一个”hello
-world”代码。这是我最后的倔强，而不是暂时的妥协。</p>
+<p>可以预见的是，有一天，我也会被一块大饼圈住，为别人给的蛋糕沾沾自喜，因为天上掉的馅饼开始信奉神明，在推杯换盏中周旋，吃饱了面包然后驻足休息，养老等死，我的墓志铭大概就是我的第一个”hello world”代码。这是我最后的倔强，而不是暂时的妥协。</p>
 <p>技术无罪，资本作祟的时代，人人都好像鬼怪，争夺面包，吸食人xie，手捧圣经，说着抱歉，最后还不忘总结，口感似乎差了点……</p>
 <p>二十一岁我还在对自己说：<em>管他三七二十一，先做自己想做的事，说自己想说的话，走自己想走的路……</em></p>
-<p>时过境迁，我才意识到，这是原来是叫愤青啊。在深感无力的同时，我也只能长叹一口气（很长很长，用英文就是long
-long
-long…）。我还以为我在做自己认为对的事情，我在做自己能做到的事情。</p>
+<p>时过境迁，我才意识到，这是原来是叫愤青啊。在深感无力的同时，我也只能长叹一口气（很长很长，用英文就是long long long…）。我还以为我在做自己认为对的事情，我在做自己能做到的事情。</p>
 <p>每一次成长，都是和自己谈判的过程，而每次妥协都是在塑造新的自己。over!!!</p>
 <hr>
 <p>真的不是在吐槽，有认认真真研读！！！</p>
-<p>有关：<code>Integrating Linguistic Knowledge to Sentence Paraphrase Generation</code>
-论文解读。</p>
+<p>有关：<code>Integrating Linguistic Knowledge to Sentence Paraphrase Generation</code> 论文解读。</p>
 <blockquote>
 <p>模型框架</p>
 </blockquote>
-<p>典型<code>Transformer-based</code>
-结构，编码器和解码器都是多个<code>Multi-head Attention</code>
-组成。如图：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png" alt="image-20211006132242262">
-<figcaption aria-hidden="true">image-20211006132242262</figcaption>
-</figure>
+<p>典型<code>Transformer-based</code>  结构，编码器和解码器都是多个<code>Multi-head Attention</code> 组成。如图：</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006132242262.png" alt="image-20211006132242262"></p>
 <p>大概分为三个部分：<code>Sentence Encoder</code>、<code>Paraphrase Decoder</code>、<code>Synonym Labeling</code></p>
-<p>按照论文里的思路，模型训练包含了一个辅助任务即：<code>Synonym Labeling</code>
-。先用encoder部分做辅助任务训练模型，然后整体训练做生成任务。但其实也是可以一起训练的。</p>
+<p>按照论文里的思路，模型训练包含了一个辅助任务即：<code>Synonym Labeling</code> 。先用encoder部分做辅助任务训练模型，然后整体训练做生成任务。但其实也是可以一起训练的。</p>
 <p>下面结合作者开源的代码进行一些分析。</p>
 <blockquote>
 <p>数据处理</p>
 </blockquote>
-<ol type="1">
+<ol>
 <li>第一步</li>
 </ol>
-<p>执行 <code>data_processing.py</code> 脚本，生成一个字典文件
-<code>vocab</code> 文件。</p>
+<p>执行 <code>data_processing.py</code>  脚本，生成一个字典文件 <code>vocab</code> 文件。</p>
 <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;pad&gt;</span><br><span class="line">&lt;unk&gt;</span><br><span class="line">&lt;s&gt;</span><br><span class="line">&lt;/s&gt;</span><br><span class="line">的</span><br><span class="line">，</span><br><span class="line">。</span><br><span class="line">···</span><br><span class="line">&lt;eos&gt;</span><br><span class="line">&lt;sos&gt;</span><br></pre></td></tr></table></figure>
-<p>神奇的是首行的<code>&lt;pad&gt;</code>
-并不是脚本添加的，需要自己手动添加，这是运行后面程序发现的。而且多出的<code>&lt;eos&gt;,&lt;sos&gt;</code>
-也并没有用到。</p>
-<ol start="2" type="1">
+<p>神奇的是首行的<code>&lt;pad&gt;</code> 并不是脚本添加的，需要自己手动添加，这是运行后面程序发现的。而且多出的<code>&lt;eos&gt;,&lt;sos&gt;</code> 也并没有用到。</p>
+<ol>
 <li>第二步</li>
 </ol>
-<p>执行<code>prepro_dict.py</code>
-脚本，生成数据集对应的同义词对文件：<code>train_paraphrased_pair.txt</code>、<code>dev_paraphrased_pair.txt</code>
-、<code>test_paraphrased_pair.txt</code> 。</p>
+<p>执行<code>prepro_dict.py</code> 脚本，生成数据集对应的同义词对文件：<code>train_paraphrased_pair.txt</code>、<code>dev_paraphrased_pair.txt</code> 、<code>test_paraphrased_pair.txt</code> 。</p>
 <p><code>train_paraphrased_pair.txt</code> 为例：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">年景-&gt;<span class="number">1</span> 或者-&gt;<span class="number">2</span> 年景-&gt;<span class="number">4</span> 或-&gt;<span class="number">2</span> 抑或-&gt;<span class="number">2</span> 要么-&gt;<span class="number">2</span> 要-&gt;<span class="number">2</span> 抑-&gt;<span class="number">2</span></span><br><span class="line">······</span><br></pre></td></tr></table></figure>
 <p>对应<code>train</code>数据集中的第一行是：</p>
 <figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">1929 </span>年 还是 <span class="number">1989</span> 年 ？</span><br></pre></td></tr></table></figure>
-<p>具体对应论文中<code>Synonym Pairs Representation</code>
-部分：同义词位置对<code>Synonym-position paris</code> 。</p>
-<p><code>词-&gt;pos</code>
-：其中<code>pos</code>表示<code>sentence</code>
-中的位置，<code>词</code>
-是指同义词，即句子中<code>pos</code>位置上词对应的同义词。<code>年景-&gt;1</code>
-中位置<code>1</code>处的词为<code>年</code> ，<code>年景</code>
-即是<code>年</code>的同义词。</p>
-<ol start="3" type="1">
+<p>具体对应论文中<code>Synonym Pairs Representation</code> 部分：同义词位置对<code>Synonym-position paris</code> 。</p>
+<p><code>词-&gt;pos</code> ：其中<code>pos</code>表示<code>sentence</code> 中的位置，<code>词</code> 是指同义词，即句子中<code>pos</code>位置上词对应的同义词。<code>年景-&gt;1</code> 中位置<code>1</code>处的词为<code>年</code> ，<code>年景</code> 即是<code>年</code>的同义词。</p>
+<ol>
 <li>总结</li>
 </ol>
-<p>数据处理这一步两个脚本，生成需要的数据文件有：一个词表文件<code>.vocab</code>
-，三个同义词位置对文件<code>_paraphrased_pair.txt</code> 。</p>
+<p>数据处理这一步两个脚本，生成需要的数据文件有：一个词表文件<code>.vocab</code> ，三个同义词位置对文件<code>_paraphrased_pair.txt</code> 。</p>
 <p>整个实验还需要五个数据集文件：train{.src,.tgt}，dev{.src,.tgt}，test{.src}</p>
 <p>最后还想提一下：</p>
-<p>tcnp.train.src
-第268178行竟然是空行！！！对应同义词对为：<code>&lt;unk&gt;-&gt;&lt;unk&gt;</code>
-！！！ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tcnp.train.src</span></span><br><span class="line"><span class="attr">268179</span> <span class="string">阿富汗 肯定 存在 错误 。</span></span><br><span class="line"><span class="attr">268180</span> <span class="string">在 阿富汗 肯定 有 错误 。</span></span><br><span class="line"><span class="attr">268181</span> <span class="string">事实上 ， 我们 确实 在 阿富汗 犯 了 许多 错误 。</span></span><br><span class="line"><span class="comment"># tcnp.train.tgt</span></span><br><span class="line"><span class="attr">268179</span> <span class="string">事实上 ， 我们 确实 在 阿富汗 犯 了 许多 错误 。</span></span><br><span class="line"><span class="attr">268180</span> <span class="string">阿富汗 肯定 存在 错误 。</span></span><br><span class="line"><span class="attr">268181</span> <span class="string">在 阿富汗 肯定 有 错误 。</span></span><br></pre></td></tr></table></figure></p>
+<p>tcnp.train.src 第268178行竟然是空行！！！对应同义词对为：<code>&lt;unk&gt;-&gt;&lt;unk&gt;</code> ！！！<br><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># tcnp.train.src</span></span><br><span class="line"><span class="attr">268179</span> <span class="string">阿富汗 肯定 存在 错误 。</span></span><br><span class="line"><span class="attr">268180</span> <span class="string">在 阿富汗 肯定 有 错误 。</span></span><br><span class="line"><span class="attr">268181</span> <span class="string">事实上 ， 我们 确实 在 阿富汗 犯 了 许多 错误 。</span></span><br><span class="line"><span class="comment"># tcnp.train.tgt</span></span><br><span class="line"><span class="attr">268179</span> <span class="string">事实上 ， 我们 确实 在 阿富汗 犯 了 许多 错误 。</span></span><br><span class="line"><span class="attr">268180</span> <span class="string">阿富汗 肯定 存在 错误 。</span></span><br><span class="line"><span class="attr">268181</span> <span class="string">在 阿富汗 肯定 有 错误 。</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>train 训练</p>
 </blockquote>
@@ -1244,26 +1112,12 @@ long…）。我还以为我在做自己认为对的事情，我在做自己能�
 <p>对应代码在：<code>model.py</code> ：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode</span><span class="params">(self, xs, training=True)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.variable_scope(<span class="string">"encoder"</span>, reuse=tf.AUTO_REUSE):</span><br><span class="line">        x, seqlens, sents1 = xs</span><br><span class="line"></span><br><span class="line">        <span class="comment"># embedding</span></span><br><span class="line">        enc = tf.nn.embedding_lookup(self.embeddings, x) <span class="comment"># (N, T1, d_model)</span></span><br><span class="line">        enc *= self.hp.d_model**<span class="number">0.5</span> <span class="comment"># scale</span></span><br><span class="line"></span><br><span class="line">        enc += positional_encoding(enc, self.hp.maxlen1)</span><br><span class="line">        enc = tf.layers.dropout(enc, self.hp.dropout_rate, training=training)</span><br><span class="line"></span><br><span class="line">        <span class="comment">## Blocks</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(self.hp.num_blocks):</span><br><span class="line">            <span class="keyword">with</span> tf.variable_scope(<span class="string">"num_blocks_&#123;&#125;"</span>.format(i), reuse=tf.AUTO_REUSE):</span><br><span class="line">                <span class="comment"># self-attention</span></span><br><span class="line">                enc = multihead_attention(queries=enc,</span><br><span class="line">                                          keys=enc,</span><br><span class="line">                                          values=enc,</span><br><span class="line">                                          num_heads=self.hp.num_heads,</span><br><span class="line">                                          dropout_rate=self.hp.dropout_rate,</span><br><span class="line">                                          training=training,</span><br><span class="line">                                          causality=<span class="literal">False</span>)</span><br><span class="line">                <span class="comment"># feed forward</span></span><br><span class="line">                enc = ff(enc, num_units=[self.hp.d_ff, self.hp.d_model])</span><br><span class="line">    memory = enc</span><br><span class="line">    <span class="keyword">return</span> memory, sents1</span><br></pre></td></tr></table></figure>
 <p>不过有趣的是论文中关于<code>Encoder</code>的部分貌似有些问题：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006182655905.png" alt="image-20211006182655905">
-<figcaption aria-hidden="true">image-20211006182655905</figcaption>
-</figure>
-<p>这是论文中的式子。在transformer中是这样的：<code>Block(Q,K,V) = LNorm(FFN(m)+m)、m=LNorm(MultiAttn(Q,K,V)+Q)</code>
-。先add再norm啊！！！</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006183417409.png" alt="image-20211006183417409">
-<figcaption aria-hidden="true">image-20211006183417409</figcaption>
-</figure>
-<p>不知道是不是排版错误的原因。主要作者开源的代码里<code>multihead_attention</code>部分还有<code>ffn</code>
-部分是先add再norm的。</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006184128806.png" alt="image-20211006184128806">
-<figcaption aria-hidden="true">image-20211006184128806</figcaption>
-</figure>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006184216337.png" alt="image-20211006184216337">
-<figcaption aria-hidden="true">image-20211006184216337</figcaption>
-</figure>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006182655905.png" alt="image-20211006182655905"></p>
+<p>这是论文中的式子。在transformer中是这样的：<code>Block(Q,K,V) = LNorm(FFN(m)+m)、m=LNorm(MultiAttn(Q,K,V)+Q)</code> 。先add再norm啊！！！</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006183417409.png" alt="image-20211006183417409"></p>
+<p>不知道是不是排版错误的原因。主要作者开源的代码里<code>multihead_attention</code>部分还有<code>ffn</code> 部分是先add再norm的。</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006184128806.png" alt="image-20211006184128806"></p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006184216337.png" alt="image-20211006184216337"></p>
 <p>属实给整蒙了。</p>
 <blockquote>
 <p>Paraphrase Decoder</p>
@@ -1271,37 +1125,27 @@ long…）。我还以为我在做自己认为对的事情，我在做自己能�
 <p>输入：</p>
 <ul>
 <li>sentence y token [y1,y2,y3,…,ym] 对应tgt中的句子的token</li>
-<li>x_paraphrased_dict
-引入的外部知识，也就是同义词位置对：<code>synonyms- position pairs</code></li>
+<li>x_paraphrased_dict 引入的外部知识，也就是同义词位置对：<code>synonyms-
+position pairs</code></li>
 <li>memory: 编码器的输出</li>
 </ul>
 <p>输出：</p>
 <ul>
-<li>logits, y_hat：
-<code>logits</code>是最后一层的输出，<code>y_hat</code>是预测值</li>
+<li>logits, y_hat： <code>logits</code>是最后一层的输出，<code>y_hat</code>是预测值 </li>
 </ul>
-<p>这部分有self-attention 、vanilla attention、paraphrased dictionary
-attention。</p>
-<p>self-attention部分和原本的transformer中一样，key=value=query。vanilla
-attention其实就是key与value相同，query不一样。paraphrased dictionary
-attention就是引入外部同义词字典知识的部分。这部分主要是计算论文中<code>ct</code>
-，按论文中公式来即可。</p>
+<p>这部分有self-attention 、vanilla attention、paraphrased dictionary attention。</p>
+<p>self-attention部分和原本的transformer中一样，key=value=query。vanilla attention其实就是key与value相同，query不一样。paraphrased dictionary attention就是引入外部同义词字典知识的部分。这部分主要是计算论文中<code>ct</code> ，按论文中公式来即可。</p>
 <p>对应代码在：<code>model.py</code> ：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode</span><span class="params">(self, ys, x_paraphrased_dict, memory, training=True)</span>:</span></span><br><span class="line">        <span class="keyword">with</span> tf.variable_scope(<span class="string">"decoder"</span>, reuse=tf.AUTO_REUSE):</span><br><span class="line">            decoder_inputs, y, seqlens, sents2 = ys</span><br><span class="line">            x_paraphrased_dict, paraphrased_lens, paraphrased_sents = x_paraphrased_dict</span><br><span class="line">            <span class="comment"># embedding</span></span><br><span class="line">            dec = tf.nn.embedding_lookup(self.embeddings, decoder_inputs)  <span class="comment"># (N, T2, d_model)</span></span><br><span class="line">            dec *= self.hp.d_model ** <span class="number">0.5</span>  <span class="comment"># scale</span></span><br><span class="line"></span><br><span class="line">            dec += positional_encoding(dec, self.hp.maxlen2)</span><br><span class="line">            dec = tf.layers.dropout(dec, self.hp.dropout_rate, training=training)</span><br><span class="line"></span><br><span class="line">            batch_size = tf.shape(decoder_inputs)[<span class="number">0</span>] <span class="comment"># (N, T2, 2)</span></span><br><span class="line">            seqlens = tf.shape(decoder_inputs)[<span class="number">1</span>]  <span class="comment"># (N, T2, 2)</span></span><br><span class="line">            paraphrased_lens = tf.shape(x_paraphrased_dict)[<span class="number">1</span>]  <span class="comment"># (N, T2, 2)</span></span><br><span class="line"></span><br><span class="line">            x_paraphrased_o, x_paraphrased_p = x_paraphrased_dict[:,:,<span class="number">0</span>], x_paraphrased_dict[:,:,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">            x_paraphrased_o_embedding = tf.nn.embedding_lookup(self.embeddings, x_paraphrased_o)  <span class="comment"># N, W2, d_model</span></span><br><span class="line">            <span class="keyword">if</span> self.hp.paraphrase_type == <span class="number">0</span>:</span><br><span class="line">                x_paraphrased_p_embedding = tf.nn.embedding_lookup(self.embeddings, x_paraphrased_p)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                x_paraphrased_p_embedding = paraphrased_positional_encoding(x_paraphrased_p, self.hp.maxlen2, self.hp.d_model)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># Blocks</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(self.hp.num_blocks):</span><br><span class="line">                <span class="keyword">with</span> tf.variable_scope(<span class="string">"num_blocks_&#123;&#125;"</span>.format(i), reuse=tf.AUTO_REUSE):</span><br><span class="line">                    <span class="comment"># Masked self-attention (Note that causality is True at this time)</span></span><br><span class="line">                    dec = multihead_attention(queries=dec,</span><br><span class="line">                                              keys=dec,</span><br><span class="line">                                              values=dec,</span><br><span class="line">                                              num_heads=self.hp.num_heads,</span><br><span class="line">                                              dropout_rate=self.hp.dropout_rate,</span><br><span class="line">                                              training=training,</span><br><span class="line">                                              causality=<span class="literal">True</span>,</span><br><span class="line">                                              scope=<span class="string">"self_attention"</span>)</span><br><span class="line"></span><br><span class="line">                    <span class="comment"># Vanilla attention</span></span><br><span class="line">                    dec = multihead_attention(queries=dec,</span><br><span class="line">                                              keys=memory,</span><br><span class="line">                                              values=memory,</span><br><span class="line">                                              num_heads=self.hp.num_heads,</span><br><span class="line">                                              dropout_rate=self.hp.dropout_rate,</span><br><span class="line">                                              training=training,</span><br><span class="line">                                              causality=<span class="literal">False</span>,</span><br><span class="line">                                              scope=<span class="string">"vanilla_attention"</span>)</span><br><span class="line">                    <span class="comment">### Feed Forward</span></span><br><span class="line">                    dec = ff(dec, num_units=[self.hp.d_ff, self.hp.d_model])</span><br><span class="line"></span><br><span class="line">            <span class="comment"># add paraphrased dictionary attention</span></span><br><span class="line">            h = tf.fill([batch_size, seqlens, paraphrased_lens, self.hp.d_model], <span class="number">1.0</span>) * tf.expand_dims(dec, axis=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">            o_embeding = tf.fill([batch_size, seqlens, paraphrased_lens, self.hp.d_model], <span class="number">1.0</span>) * tf.expand_dims(x_paraphrased_o_embedding, axis=<span class="number">1</span>)</span><br><span class="line">            W_a_o = tf.get_variable(<span class="string">"original_word_parameter_w"</span>, [<span class="number">2</span>*self.hp.d_model], initializer=tf.initializers.random_normal(</span><br><span class="line">          stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line">            V_a_o = tf.get_variable(<span class="string">"original_word_parameter_v"</span>, [<span class="number">2</span>*self.hp.d_model], initializer=tf.initializers.random_normal(</span><br><span class="line">          stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line">            h_o_concat = tf.concat([h, o_embeding], <span class="number">-1</span>) <span class="comment"># N, T2, W2, 2*d_model</span></span><br><span class="line">            score_tem_o = tf.tanh(W_a_o * h_o_concat) <span class="comment"># N, T2, W2, 2*d_model</span></span><br><span class="line">            score_o = tf.reduce_sum(V_a_o * score_tem_o, axis=<span class="number">-1</span>) <span class="comment"># N, T2, W2</span></span><br><span class="line">            a = tf.nn.softmax(score_o) <span class="comment"># N, T2, W2</span></span><br><span class="line">            c_o = tf.matmul(a, x_paraphrased_o_embedding) <span class="comment"># (N, T2, W2) * (N, W2, d_model) --&gt; N, T2, d_model</span></span><br><span class="line"></span><br><span class="line">            p_embeding = tf.fill([batch_size, seqlens, paraphrased_lens, self.hp.d_model], <span class="number">1.0</span>) * tf.expand_dims(x_paraphrased_p_embedding, axis=<span class="number">1</span>)</span><br><span class="line">            W_a_p = tf.get_variable(<span class="string">"paraphrased_word_parameter_w"</span>, [<span class="number">2</span>*self.hp.d_model], initializer=tf.initializers.random_normal(</span><br><span class="line">          stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line">            V_a_p = tf.get_variable(<span class="string">"paraphrased_word_parameter_v"</span>, [<span class="number">2</span>*self.hp.d_model], initializer=tf.initializers.random_normal(</span><br><span class="line">          stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line">            h_p_concat = tf.concat([h, p_embeding], <span class="number">-1</span>) <span class="comment"># N, T2, W2, 2*d_model</span></span><br><span class="line">            score_tem_p = tf.tanh(W_a_p * h_p_concat) <span class="comment"># N, T2, W2, 2*d_model</span></span><br><span class="line">            score_p = tf.reduce_sum(V_a_p * score_tem_p, axis=<span class="number">-1</span>) <span class="comment"># N, T2, W2</span></span><br><span class="line">            a = tf.nn.softmax(score_p) <span class="comment"># N, T2, W2</span></span><br><span class="line">            c_p = tf.matmul(a, x_paraphrased_p_embedding) <span class="comment"># (N, T2, W2) * (N, W2, d_model) --&gt; N, T2, d_model</span></span><br><span class="line"></span><br><span class="line">            c_t = tf.concat([c_o, c_p], axis=<span class="number">-1</span>) <span class="comment"># N, T2, d_model --&gt; N, T2, 2*d_model</span></span><br><span class="line">            out_dec = tf.layers.dense(tf.concat([dec, c_t], axis=<span class="number">-1</span>), self.hp.d_model, activation=tf.tanh, use_bias=<span class="literal">False</span>, kernel_initializer=tf.initializers.random_normal(</span><br><span class="line">          stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Final linear projection (embedding weights are shared)</span></span><br><span class="line">        weights = tf.transpose(self.embeddings) <span class="comment"># (d_model, vocab_size)</span></span><br><span class="line">        logits = tf.einsum(<span class="string">'ntd,dk-&gt;ntk'</span>, out_dec, weights) <span class="comment"># (N, T2, vocab_size)</span></span><br><span class="line">        y_hat = tf.to_int32(tf.argmax(logits, axis=<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> logits, y_hat, y, sents2</span><br></pre></td></tr></table></figure>
 <p>在最后的输出层部分:论文中的 <code>softmax layer</code>:</p>
-<p><span class="math display"><em>y</em><sub><em>t</em></sub> = <em>s</em><em>o</em><em>f</em><em>t</em><em>m</em><em>a</em><em>x</em>(<em>W</em><sub><em>y</em></sub><em>C</em><em>o</em><em>n</em><em>c</em><em>a</em><em>t</em>[<em>y</em><sub><em>t</em></sub><sup>*</sup>, <em>c</em><sub><em>t</em></sub>]))</span>
-代码中很巧妙的使用 <code>tf.transpose(self.embeddings)</code>
-来表示<code>Wy</code> 从而将输出映射到vocab输出。</p>
-<p>这里需要注意的是<code>x_paraphrased_dict</code>的表示。论文中叫做<code>synonyms- position pairs</code>,使用<code>P</code>
-表示。 <span class="math display"><em>P</em> = (<em>s</em><em>i</em>, <em>p</em><em>i</em>)<sub><em>i</em> = 1</sub><sup><em>M</em></sup></span>
-<code>si</code> 表示同义词，<code>pi</code>
-表示同义词对应sentence中的位置。训练时，会将<code>si</code>
-进行<code>embedding</code> ，<code>pi</code>
-进行位置编码<code>positional_encoding</code>
-。这里的<code>embedding</code> 与<code>positional_encoding</code>
-和<code>encoder</code>部分共享。</p>
+<script type="math/tex; mode=display">
+y_t = softmax(W_yConcat[y_t^*,c_t]))</script><p>代码中很巧妙的使用 <code>tf.transpose(self.embeddings)</code> 来表示<code>Wy</code> 从而将输出映射到vocab输出。 </p>
+<p>这里需要注意的是<code>x_paraphrased_dict</code>的表示。论文中叫做<code>synonyms-
+position pairs</code>,使用<code>P</code> 表示。</p>
+<script type="math/tex; mode=display">
+P = {(si,pi)}_{i=1}^M</script><p><code>si</code> 表示同义词，<code>pi</code> 表示同义词对应sentence中的位置。训练时，会将<code>si</code> 进行<code>embedding</code> ，<code>pi</code> 进行位置编码<code>positional_encoding</code> 。这里的<code>embedding</code> 与<code>positional_encoding</code> 和<code>encoder</code>部分共享。</p>
 <blockquote>
-<p><code>Synonym Labeling</code></p>
+<p><code>Synonym Labeling</code> </p>
 </blockquote>
 <p>输入：</p>
 <ul>
@@ -1314,158 +1158,88 @@ attention就是引入外部同义词字典知识的部分。这部分主要是�
 </ul>
 <p>synonym_label：[True,False,…]，对于给定的一个句子，如果句中词对应位置有同义词这对应label为True,否者为False。这一部分的loss对应论文中的loss2。</p>
 <p>这是一个辅助任务，目的是确定给定句子中每个词是否有对应的同义词。有助于更好地定位同义词的位置，结合短语和同义词在原句中的语言关系。可以肯定的是，这是一个二分类任务，并且两个任务共用一个encoder。描述如下：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006192852063.png" alt="image-20211006192852063">
-<figcaption aria-hidden="true">image-20211006192852063</figcaption>
-</figure>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006192852063.png" alt="image-20211006192852063"></p>
 <p>对应代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">labeling</span><span class="params">(self, x, menmory)</span>:</span></span><br><span class="line">    synonym_label, seqlens, sents1 = x</span><br><span class="line">    logits = tf.layers.dense(menmory, <span class="number">2</span>, activation=tf.tanh, use_bias=<span class="literal">False</span>,</span><br><span class="line">                              kernel_initializer=tf.initializers.random_normal(stddev=<span class="number">0.01</span>, seed=<span class="literal">None</span>))</span><br><span class="line">    y_hat = tf.to_int32(tf.argmax(logits, axis=<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Synonym Labeling loss</span></span><br><span class="line">    y = tf.one_hot(synonym_label, depth=<span class="number">2</span>)</span><br><span class="line">    ce = tf.nn.softmax_cross_entropy_with_logits_v2(logits=logits, labels=y)</span><br><span class="line">    nonpadding = tf.to_float(tf.not_equal(sents1, self.token2idx[<span class="string">"&lt;pad&gt;"</span>]))  <span class="comment"># 0: &lt;pad&gt;</span></span><br><span class="line">    loss = tf.reduce_sum(ce * nonpadding) / (tf.reduce_sum(nonpadding) + <span class="number">1e-7</span>)</span><br><span class="line">    <span class="keyword">return</span> logits, y_hat, loss</span><br></pre></td></tr></table></figure>
-<p>需要注意的是代码中还有<code>def train_labeling(self, xs, synonym_label=None):</code>
-的地方。按照论文中的描述：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006194032511.png" alt="image-20211006194032511">
-<figcaption aria-hidden="true">image-20211006194032511</figcaption>
-</figure>
-<p>这个函数是用来单独做<code>Synonym Labeling</code>
-任务的。按论文中的原意，应该是先<code>model.train_labeling(xs, synonym_label)</code>
-然后
-在进行<code>model.train(xs, ys, x_paraphrased_dict, synonym_label)</code>。</p>
-<p>但是<code>train.py</code>
-代码中并没有这样做。而是直接进行<code>train</code> 。</p>
+<p>需要注意的是代码中还有<code>def train_labeling(self, xs, synonym_label=None):</code> 的地方。按照论文中的描述：</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006194032511.png" alt="image-20211006194032511"></p>
+<p>这个函数是用来单独做<code>Synonym Labeling</code> 任务的。按论文中的原意，应该是先<code>model.train_labeling(xs, synonym_label)</code> 然后 在进行<code>model.train(xs, ys, x_paraphrased_dict, synonym_label)</code>。</p>
+<p>但是<code>train.py</code> 代码中并没有这样做。而是直接进行<code>train</code> 。</p>
 <blockquote>
 <p>有关细节问题</p>
 </blockquote>
-<ol type="1">
+<ol>
 <li>vocab</li>
 </ol>
-<p>前面提到过，生成的词表中多出<code>&lt;sos&gt;,&lt;eos&gt;</code>
-两个没有用到的词，少了用于填充的<code>&lt;pad&gt;</code>，并且需要自己在首行手动插入<code>&lt;pad&gt;</code>
-。猜测可能是课题组的祖传代码。</p>
+<p>前面提到过，生成的词表中多出<code>&lt;sos&gt;,&lt;eos&gt;</code> 两个没有用到的词，少了用于填充的<code>&lt;pad&gt;</code>，并且需要自己在首行手动插入<code>&lt;pad&gt;</code> 。猜测可能是课题组的祖传代码。</p>
 <p>而且在生成同义词位置对的文件的代码那里，将不在vocab中的同义词统统过滤掉了。</p>
-<ol start="2" type="1">
+<ol>
 <li>Synonym Pairs Representation</li>
 </ol>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006200116402.png" alt="image-20211006200116402">
-<figcaption aria-hidden="true">image-20211006200116402</figcaption>
-</figure>
-<p>论文里提到如果对应同义词是一个短语，那么就将短语中词嵌入向量求和来表示该短语的向量表示。但是！！！有意思的是，代码中并未体现。而细挖他的数据会发现，给定的数据已是分好词的按空格分隔的。而且是中文数据。中文分好的词，如果是短语，分词后，还是表示一个词。而英文如：abandon同义词give
-up。give up分词后就是两个单词。也就出现上述情况。</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006200116402.png" alt="image-20211006200116402"></p>
+<p>论文里提到如果对应同义词是一个短语，那么就将短语中词嵌入向量求和来表示该短语的向量表示。但是！！！有意思的是，代码中并未体现。而细挖他的数据会发现，给定的数据已是分好词的按空格分隔的。而且是中文数据。中文分好的词，如果是短语，分词后，还是表示一个词。而英文如：abandon同义词give up。give up分词后就是两个单词。也就出现上述情况。</p>
 <p>因此，得出结论，作者开源的代码是不完整的。如果换成英文的数据，那么需要考虑的复杂一些了。当然也可以选择把短语同义词过滤掉，那么和中文上处理就是一样的了。</p>
-<ol start="3" type="1">
+<ol>
 <li>paraphrase_type</li>
 </ol>
 <p>paraphrase_type这个是代码中的一个配置参数，默认为1。</p>
-<p><code>parser.add_argument('--paraphrase_type', default=1, type=int)</code></p>
+<p><code>parser.add_argument(&#39;--paraphrase_type&#39;, default=1, type=int)</code></p>
 <p>这是所有参数中为数不多没有help提示信息的参数。并且我相信这也是唯一一个没有help整不明白的参数。释义类型？</p>
 <p>在<code>data_load.py</code> 中找到了蛛丝马迹：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006202356732.png" alt="image-20211006202356732">
-<figcaption aria-hidden="true">image-20211006202356732</figcaption>
-</figure>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006202356732.png" alt="image-20211006202356732"></p>
 <p>而这一段代码，也属实有些魔幻。</p>
-<p>首先<code>parser.add_argument('--paraphrase_type', default=1, type=int)</code>
-这里使用的是1。而取值为1时，对应代码中esle：部分。不用很仔细就可以看出：0时，使用word_set，1时，使用pos_set。我们在观察后面的<code>synonym_label</code>
-那一句：</p>
+<p>首先<code>parser.add_argument(&#39;--paraphrase_type&#39;, default=1, type=int)</code> 这里使用的是1。而取值为1时，对应代码中esle：部分。不用很仔细就可以看出：0时，使用word_set，1时，使用pos_set。我们在观察后面的<code>synonym_label</code> 那一句：</p>
 <p><code>synonym_label = [i in word_set if paraphrase_type else w in word_set for i, w in enumerate(in_words)]</code></p>
-<p>码字到这里，我掐了以下人中，方才缓过神来。接着分析，为0的情况下，那么考虑<code>w in word_set</code>
-的真值情况。而<code>for i, w in enumerate(in_words)</code>
-，w属于in_words。word_set是什么呢？<code>word_set.add(tem1)</code>
-哇哦，是同义词集合诶，in_words是什么？<code>in_words=sent1.split()+['&lt;/s&gt;']</code>
-欸，那w难道不是don’t exit in word_set forever？</p>
-<p>离谱的是，这里讨论的是paraphrase_type =
-1的情况，也就是关word_set屁事的情况。word_set这时都是空的。所以synonym_label
-难道不是<em>always be False</em> 。</p>
-<p><code>Are you kidding me? %$*#@&gt;?*&amp;。。。。</code></p>
+<p>码字到这里，我掐了以下人中，方才缓过神来。接着分析，为0的情况下，那么考虑<code>w in word_set</code> 的真值情况。而<code>for i, w in enumerate(in_words)</code> ，w属于in_words。word_set是什么呢？<code>word_set.add(tem1)</code> 哇哦，是同义词集合诶，in_words是什么？<code>in_words=sent1.split()+[&#39;&lt;/s&gt;&#39;]</code> 欸，那w难道不是don’t exit in word_set forever？</p>
+<p>离谱的是，这里讨论的是paraphrase_type = 1的情况，也就是关word_set屁事的情况。word_set这时都是空的。所以synonym_label 难道不是<em>always be False</em> 。</p>
+<p><code>Are you kidding me? %$*#@&gt;?*&amp;。。。。</code> </p>
 <p>而且<code>x_paraphrase_dic</code> 那里也是有问题的。</p>
-<p><code>x_paraphrase_dict.append([token2idx.get(tem1, token2idx["&lt;unk&gt;"]), token2idx.get(tem2, token2idx["&lt;unk&gt;"])])</code></p>
-<p>这个<code>token2idx.get(tem2, token2idx["&lt;unk&gt;"])</code>
-就很有问题，tem2表示的是pos啊，句子中词的位置，直接给我<code>token2idx</code>
-我是无法理解的。</p>
-<p><code>x_paraphrase_dict.append([token2idx.get(tem1, token2idx["&lt;unk&gt;"]), int(tem2 if tem2!="&lt;unk&gt;" else 0)])</code></p>
-<p><code>int(tem2 if tem2!="&lt;unk&gt;" else 0)</code>
-也就是说tem2为<code>&lt;unk&gt;</code>
-时，大概就是tem2取0的意思。而tem2出现<code>&lt;unk&gt;</code>
-的情况时，tem1也是<code>&lt;unk&gt;</code>
-。此时x_paraphrase_dict添加的就是<code>[1, 0]</code>
-（token2idx[“<unk>”] = 1）。举个例子：</unk></p>
+<p><code>x_paraphrase_dict.append([token2idx.get(tem1, token2idx[&quot;&lt;unk&gt;&quot;]), token2idx.get(tem2, token2idx[&quot;&lt;unk&gt;&quot;])])</code></p>
+<p>这个<code>token2idx.get(tem2, token2idx[&quot;&lt;unk&gt;&quot;])</code> 就很有问题，tem2表示的是pos啊，句子中词的位置，直接给我<code>token2idx</code> 我是无法理解的。</p>
+<p><code>x_paraphrase_dict.append([token2idx.get(tem1, token2idx[&quot;&lt;unk&gt;&quot;]), int(tem2 if tem2!=&quot;&lt;unk&gt;&quot; else 0)])</code></p>
+<p><code>int(tem2 if tem2!=&quot;&lt;unk&gt;&quot; else 0)</code> 也就是说tem2为<code>&lt;unk&gt;</code> 时，大概就是tem2取0的意思。而tem2出现<code>&lt;unk&gt;</code> 的情况时，tem1也是<code>&lt;unk&gt;</code> 。此时x_paraphrase_dict添加的就是<code>[1, 0]</code> （token2idx[“<unk>“] = 1）。举个例子：</unk></p>
 <figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">句子<span class="keyword">x</span>: <span class="keyword">x</span><span class="number">1</span> <span class="keyword">x</span><span class="number">2</span> <span class="keyword">x</span><span class="number">3</span> <span class="keyword">x</span><span class="number">4</span> 。</span><br><span class="line">对应同义词位置对： &lt;unk&gt;-&gt;&lt;unk&gt;</span><br></pre></td></tr></table></figure>
-<p>这表示这个句子中没有词含有同义词。这个时候x_paraphrase_dict添加<code>[1, 0]</code>，就相当于<code>&lt;unk&gt;</code>
-为 x1的同义词。这怎么可能？<em>It’s impossible！！！</em>
-而且就很不<em>reasonable</em> 。简直离谱！！！离了个大谱。</p>
-<p>甚至这段代码的第二个for循环后面的那部分代码逻辑都是有问题的。synonym
-labeling 任务我认为是有问题的。而将<code>&lt;unk&gt;</code>
-与位置0处单词绑定，本身就引入了一些噪声，甚至可能增加<code>&lt;unk&gt;</code>
-释义的潜在可能性。至于模型能work，我想，synonym
-labeling本身作为辅助任务，其loss权值占比为0.1，影响应该是很小的。</p>
+<p>这表示这个句子中没有词含有同义词。这个时候x_paraphrase_dict添加<code>[1, 0]</code>，就相当于<code>&lt;unk&gt;</code> 为 x1的同义词。这怎么可能？<em>It’s impossible！！！</em>  而且就很不<em>reasonable</em> 。简直离谱！！！离了个大谱。</p>
+<p>甚至这段代码的第二个for循环后面的那部分代码逻辑都是有问题的。synonym labeling 任务我认为是有问题的。而将<code>&lt;unk&gt;</code> 与位置0处单词绑定，本身就引入了一些噪声，甚至可能增加<code>&lt;unk&gt;</code> 释义的潜在可能性。至于模型能work，我想，synonym labeling本身作为辅助任务，其loss权值占比为0.1，影响应该是很小的。</p>
 <p>这里大胆揣测以下paraphrase_type 意图：</p>
 <ul>
-<li>paraphrase_type =
-0时：x_paraphrase_dict包含句子中的词以及对应同义词，不含位置信息。</li>
-<li>paraphrase_type = 1 时：
-x_paraphrase_dict其实包含同义词以及对应位置pos。</li>
+<li>paraphrase_type  = 0时：x_paraphrase_dict包含句子中的词以及对应同义词，不含位置信息。</li>
+<li>paraphrase_type = 1 时： x_paraphrase_dict其实包含同义词以及对应位置pos。</li>
 </ul>
 <p>无论哪一种情况，其实都是在做一件事：就是将词与其对应的同义词之间进行绑定。第一种更像是比较直接的方式，第二种则略显委婉点。殊途同归！！！</p>
 <p>不管是不是这两种情况，其实那块代码都是有问题的。</p>
-<ol start="4" type="1">
+<ol>
 <li>有关 paddings</li>
 </ol>
-<p><code>data_load.py</code> 中有段这样的代码，用来获取一个batch size
-数据的dataset函数：</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png" alt="image-20211007104255666">
-<figcaption aria-hidden="true">image-20211007104255666</figcaption>
-</figure>
-<p>其中关于<code>paddings</code>
-处的地方自认为还是有些不妥的，对于src、tgt句子进行0填充是正常操作，但是对于<code>x_paraphrased_dict</code>也进行0填充是欠考虑的。</p>
-<p>对于<code>x_paraphrased_dict</code>
-，0填充，就会出现一部分<code>[[0,0],[0,0],…]</code>的情况
-默认将[pad]字符与位置0的词对应了。</p>
+<p><code>data_load.py</code> 中有段这样的代码，用来获取一个batch size 数据的dataset函数：</p>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211007104255666.png" alt="image-20211007104255666"></p>
+<p>其中关于<code>paddings</code> 处的地方自认为还是有些不妥的，对于src、tgt句子进行0填充是正常操作，但是对于<code>x_paraphrased_dict</code>也进行0填充是欠考虑的。</p>
+<p>对于<code>x_paraphrased_dict</code> ，0填充，就会出现一部分<code>[[0,0],[0,0],…]</code>的情况 默认将[pad]字符与位置0的词对应了。</p>
 <blockquote>
 <p>总结</p>
 </blockquote>
-<p>这篇论文做的是: <strong>Sentence Paraphrase Generation</strong>
-。</p>
-<p>其中真正核心地方在于 <strong>Knowledge-Enhanced</strong>
-,知识增强。主要就是通过引入外部信息（这里是同义词字典信息）来指导模型生成更加多样性的句子。关于知识增强的方式还是有很多的，这篇论文采用的应该是词表注意力机制，得到外部信息特征表示<strong>ct</strong>
-。</p>
+<p>这篇论文做的是: <strong>Sentence Paraphrase Generation</strong> 。</p>
+<p>其中真正核心地方在于 <strong>Knowledge-Enhanced</strong> ,知识增强。主要就是通过引入外部信息（这里是同义词字典信息）来指导模型生成更加多样性的句子。关于知识增强的方式还是有很多的，这篇论文采用的应该是词表注意力机制，得到外部信息特征表示<strong>ct</strong> 。 </p>
 <p>代码开源了，貌似有没有完全开源！！！</p>
-<p>开源的代码基于python3.6 +
-tensorflow-gpu==1.12。调试起来真的好麻烦。看不惯tf1.x的代码风格，然后用tf2.x复现了下。</p>
+<p>开源的代码基于python3.6 + tensorflow-gpu==1.12。调试起来真的好麻烦。看不惯tf1.x的代码风格，然后用tf2.x复现了下。</p>
 <ul>
 <li>对于 paraphrase_type 的两种情况按上述理解做了调整。</li>
-<li>对<code>&lt;unk&gt;</code>
-匹配第一个单词的情况进行纠正，将<code>tme2 = &lt;unk&gt;</code>
-时(句子中没有词存在同义词的情况)，用第一个词与第一个词匹配。即将x1的同义词匹配为x1，这样还是比较妥当的。</li>
-<li>过滤了空行，减少不必要的噪声。（空行对应的同义词对为
-&lt;unk&gt;-&gt;&lt;unk&gt;）</li>
-<li>synonym_label中使用2进行padding。训练时，是需要对其进行padding的保证输入的数据工整的。比如句子idx会使用0进行填充直到maxlen，而idx=0对应词为
-<code>&lt;pad&gt;</code> 。显然，<code>&lt;pad&gt;</code>
-和其他词一样，是一个单独的类别了。所以，为了区分，synonym_label的padding_value设置为2。最后做成一个三分类任务。无伤大雅，主要是为了适配句子的填充。</li>
-<li>为了适应<code>x_paraphrased_dict</code>
-的0填充，对输入句子src的首位置引入一个填充符<code>&lt;pad&gt;</code>
-。这一点与第二点先呼应。</li>
+<li>对<code>&lt;unk&gt;</code> 匹配第一个单词的情况进行纠正，将<code>tme2 = &lt;unk&gt;</code> 时(句子中没有词存在同义词的情况)，用第一个词与第一个词匹配。即将x1的同义词匹配为x1，这样还是比较妥当的。</li>
+<li>过滤了空行，减少不必要的噪声。（空行对应的同义词对为 \<unk\>-&gt;\<unk\>）</unk\></unk\></li>
+<li>synonym_label中使用2进行padding。训练时，是需要对其进行padding的保证输入的数据工整的。比如句子idx会使用0进行填充直到maxlen，而idx=0对应词为 <code>&lt;pad&gt;</code> 。显然，<code>&lt;pad&gt;</code> 和其他词一样，是一个单独的类别了。所以，为了区分，synonym_label的padding_value设置为2。最后做成一个三分类任务。无伤大雅，主要是为了适配句子的填充。</li>
+<li>为了适应<code>x_paraphrased_dict</code> 的0填充，对输入句子src的首位置引入一个填充符<code>&lt;pad&gt;</code> 。这一点与第二点先呼应。</li>
 </ul>
 <p>不知道效果如何，小作坊，资源有限，训练完要很久很久。敬佩所有敢于开源代码的科研人员，也希望所有开源代码可读性越来越好吧。也希望所有开源代码都能复现结果。至少把种子固定了吧！！！</p>
 <p>————————————–——–———-———10月16日更——————-–—-———————————————</p>
 <blockquote>
 <p>一点思考</p>
 </blockquote>
-<p>兜兜转转，模型训练了好几遍，从训练指标来看，loss有下降，acc有升高，但是推理的时候，预测的起始符号&lt;s&gt;后一个词总是结束符&lt;/s&gt;
-。debug无数遍，优化了一些细节上的小问题，还是出现那样的情况。最后将问题锁定在了<strong>padding_mask</strong>
-和<strong>look_ahead_mask</strong>
-上，其实最可能猜到就是<strong>look_ahead_mask</strong>
-有问题。此处的mask都是0和1填充的，代码中使用了<code>tf.keras.layers.MultiHeadAttention</code>
-接口，对于0、1矩阵的mask，在里面并没有进行<code>mask*-1e9</code>
-的掩码操作，这也导致了训练时出现了数据穿越/泄露问题。所以在推理时，输入的起始字符进行预测时不能得到正确结果，至于为什么是结束符，可能是起止符在词表中相邻的缘故。</p>
+<p>兜兜转转，模型训练了好几遍，从训练指标来看，loss有下降，acc有升高，但是推理的时候，预测的起始符号\<s>后一个词总是结束符\</s> 。debug无数遍，优化了一些细节上的小问题，还是出现那样的情况。最后将问题锁定在了<strong>padding_mask</strong> 和<strong>look_ahead_mask</strong> 上，其实最可能猜到就是<strong>look_ahead_mask</strong> 有问题。此处的mask都是0和1填充的，代码中使用了<code>tf.keras.layers.MultiHeadAttention</code> 接口，对于0、1矩阵的mask，在里面并没有进行<code>mask*-1e9</code> 的掩码操作，这也导致了训练时出现了数据穿越/泄露问题。所以在推理时，输入的起始字符进行预测时不能得到正确结果，至于为什么是结束符，可能是起止符在词表中相邻的缘故。</p>
 <p>今天改好后，重新训练，十多个小时过去了，还没训练完（3090，24G显存）。</p>
 <p>如今的顶会基本被财大气粗的大公司大实验室的团队承包，小作坊式实验室夹缝求生。顶会期刊也不乏滥竽充数者，实验结果复现难，开源名存实亡……等等一系列骚操作。现有大环境下，一言难尽。</p>
 <p>————————————–——–———-———10月17日更——————-–—-———————————————</p>
 <p>开完组会，被老师叫停，没有硬件资源，也只好先放弃，把其他事情提上日程。</p>
-<figure>
-<img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png" alt="image-20211006221538257">
-<figcaption aria-hidden="true">image-20211006221538257</figcaption>
-</figure>
+<p><img src="/articles/%E8%AE%BA%E6%96%87%E8%A7%A3%E8%AF%BB/image-20211006221538257.png" alt="image-20211006221538257"></p>
 
       
     </div>
@@ -1547,28 +1321,14 @@ tensorflow-gpu==1.12。调试起来真的好麻烦。看不惯tf1.x的代码风�
           <blockquote>
 <p>前言</p>
 </blockquote>
-<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code>
-的论文，初略一看，这个模型结构不就是<code>textcnn</code>
-吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
-<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>
-。A、B分别表示layer embedding特征、Google word2vec
-词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
+<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code> 的论文，初略一看，这个模型结构不就是<code>textcnn</code> 吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
+<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
 <blockquote>
 <p>I know nothing but my ignorance……</p>
 </blockquote>
-<p>2017年谷歌一篇<code>Attention is all you need</code>
-在自然语言处理领域炸开了锅。此后<code>transformer</code>
-成为了许多人发paper密码 。之后的<code>bert</code>
-更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code>
-，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code>
-。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em>
-或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em>
-。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
-<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code>
-的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code>
-又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
-<p>有意思的是，<code>transformer</code>
-又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
+<p>2017年谷歌一篇<code>Attention is all you need</code> 在自然语言处理领域炸开了锅。此后<code>transformer</code> 成为了许多人发paper密码 。之后的<code>bert</code> 更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code> ，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code> 。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em> 或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em> 。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
+<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code> 的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code> 又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
+<p>有意思的是，<code>transformer</code> 又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
 <blockquote>
 <p>方兴未艾</p>
 </blockquote>
@@ -1578,30 +1338,18 @@ tensorflow-gpu==1.12。调试起来真的好麻烦。看不惯tf1.x的代码风�
 <blockquote>
 <p>班门弄斧</p>
 </blockquote>
-<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code>
-那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code>
-来建模呢？这两种可能性还是很大的。</p>
-<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code>
-来做隐写分析。</p>
-<p>采用<code>Transformer</code> 的<code>encoder</code>
-部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code>
-两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code>
-。基于此实现的<code>TS-Transformer</code>
-已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
+<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code> 那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code> 来建模呢？这两种可能性还是很大的。</p>
+<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code> 来做隐写分析。</p>
+<p>采用<code>Transformer</code> 的<code>encoder</code> 部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code> 两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code> 。基于此实现的<code>TS-Transformer</code> 已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
 <p>【后续补个模型图】</p>
 <p>【后续补个实验结果】</p>
-<p>似乎使用大规模预训练<code>bert</code>模型来代替<code>word2vec</code>
-效果应该更好吧。毕竟<code>word2vec</code>
-还是属于浅层特征表示吧。【又挖个坑】</p>
-<p>按照这个路子，<code>TS-bert、TS-GNN、TS-GCN......</code>
-都是可能work的。</p>
+<p>似乎使用大规模预训练<code>bert</code>模型来代替<code>word2vec</code> 效果应该更好吧。毕竟<code>word2vec</code> 还是属于浅层特征表示吧。【又挖个坑】</p>
+<p>按照这个路子，<code>TS-bert、TS-GNN、TS-GCN......</code> 都是可能work的。</p>
 <blockquote>
 <p>有空在更</p>
 </blockquote>
 <p>然后……中秋放假了。</p>
-<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code>
-。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code>
-。</p>
+<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code> 。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code> 。</p>
 <p>【高开低走的特特利迦竟然试图让泽塔串场来拯救低迷的收视率以及低到可怜的评分，笑死】</p>
 
       
@@ -1692,20 +1440,14 @@ tensorflow-gpu==1.12。调试起来真的好麻烦。看不惯tf1.x的代码风�
 <li>我想给tensorflow来一大嘴巴子</li>
 <li>······</li>
 </ul>
-<p>最后，用了这个<code>当我遇到tensorflow2.x时</code>
-。无论学习还是生活中，我们都会遇到各种各样的人或事或物。当我们遇到时，会发生什么？我们是会充满期待的。<code>当我遇到···时，我会···</code>
-。这个句式是我喜欢的，大部分人习惯在前半部分大胆设想，后半句夸下豪言壮语。这里取前半句，是因为已经发生了，而省去后半句，恰恰是因为豪言壮语很容易翻车。</p>
+<p>最后，用了这个<code>当我遇到tensorflow2.x时</code> 。无论学习还是生活中，我们都会遇到各种各样的人或事或物。当我们遇到时，会发生什么？我们是会充满期待的。<code>当我遇到···时，我会···</code> 。这个句式是我喜欢的，大部分人习惯在前半部分大胆设想，后半句夸下豪言壮语。这里取前半句，是因为已经发生了，而省去后半句，恰恰是因为豪言壮语很容易翻车。</p>
 <p>这是一篇记录使用tensorflow过程中遇到的一些小而折磨人的问题的博文。但我预言这也将是一篇持久的对tensorflow的血泪吐槽文。</p>
 <blockquote>
 <p>如何看待Keras正式从TensorFlow中分离？</p>
 </blockquote>
-<p>不知道为什么想到了这个知乎话题。六月份的某天，Keras 之父 Francois
-Chollet宣布将 Keras 的代码从 TensorFlow 代码库中分离出来，移回到了自己的
-repo。乍一看，还以为以后tensorflow的keras接口用不了了。但人家只是把keras代码搬回了属于自己的repo。原本的<code>tf.keras</code>
-还是能用的。</p>
+<p>不知道为什么想到了这个知乎话题。六月份的某天，Keras 之父 Francois Chollet宣布将 Keras 的代码从 TensorFlow 代码库中分离出来，移回到了自己的 repo。乍一看，还以为以后tensorflow的keras接口用不了了。但人家只是把keras代码搬回了属于自己的repo。原本的<code>tf.keras</code> 还是能用的。</p>
 <blockquote>
-<p>For you as a user, absolutely nothing changes, now or in the
-future.</p>
+<p>For you as a user, absolutely nothing changes, now or in the future.</p>
 </blockquote>
 <p>底下全是一片叫好，天下苦tensorflow久已。而我也并不看好这对情侣或者说组合。各自单飞，独自美丽不好吗？keras何必委曲求全做别人的嫁衣。</p>
 <blockquote>
@@ -1717,42 +1459,30 @@ future.</p>
 <blockquote>
 <p><code>tf.config.run_functions_eagerly(True)</code></p>
 </blockquote>
-<p>有关<code>Eager Execution</code> <a href="https://www.tensorflow.org/guide/eager" target="_blank" rel="noopener">戳这里</a></p>
+<p>有关<code>Eager Execution</code> <a href="https://www.tensorflow.org/guide/eager" target="_blank" rel="noopener">戳这里</a> </p>
 <p>然后以下是我粗俗的理解：</p>
 <p>这是即时运行和计算图运行相关的概念。即时运行可以让你的程序立马返回结果，计算图运行会先构建计算图（记录你的程序执行行为及顺序），在最后按照构建的图进行计算。</p>
 <p>有些晦涩难理解。</p>
 <p>模型训练时一般有：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@tf.function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_step</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">        ···train model code···</span><br></pre></td></tr></table></figure>
-<p>这在模型训练过程中是会构建计算图的（具体参考<a href="https://www.tensorflow.org/guide/intro_to_graphs" target="_blank" rel="noopener">戳这里</a>），构建计算图可以，这时如果在代码中<code>print(x)</code>
-一下，就会发现这是没有具体值的，而且没有<code>.numpy()</code>
-属性。返回的即<code>计算图中节点的符号句柄</code>
-。所以我为什么要在这里<code>print</code>呢？当然是为了调试代码(/滑稽.jpg)。</p>
+<p>这在模型训练过程中是会构建计算图的（具体参考<a href="https://www.tensorflow.org/guide/intro_to_graphs" target="_blank" rel="noopener">戳这里</a>），构建计算图可以，这时如果在代码中<code>print(x)</code> 一下，就会发现这是没有具体值的，而且没有<code>.numpy()</code> 属性。返回的即<code>计算图中节点的符号句柄</code> 。所以我为什么要在这里<code>print</code>呢？当然是为了调试代码(/滑稽.jpg)。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Tensor(<span class="string">"x:0"</span>, shape=(<span class="number">32</span>, <span class="number">32</span>), dtype=int32)</span><br></pre></td></tr></table></figure>
-<p>官网提到tensorflow2.x是默认开启<code>Eager Execution</code>
-的，然而代码中(如上)使用了<code>@tf.function</code>
-装饰器，默认以图的方式执行。</p>
+<p>官网提到tensorflow2.x是默认开启<code>Eager Execution</code> 的，然而代码中(如上)使用了<code>@tf.function</code> 装饰器，默认以图的方式执行。</p>
 <figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">The</span> <span class="meta">code</span> in a <span class="meta">Function</span> can <span class="keyword">be </span>executed <span class="keyword">both </span>eagerly <span class="keyword">and </span>as a graph. <span class="keyword">By </span>default, <span class="meta">Function</span> executes <span class="keyword">its </span><span class="meta">code</span> as a graph.</span><br></pre></td></tr></table></figure>
-<p>要关闭默认方式，可以通过设置：<code>tf.config.run_functions_eagerly(True)</code>
-来实现。或者干脆不要加这个装饰器。</p>
-<p>最后，<code>Eager Execution</code>
-增强了开发和调试的交互性，而<code>@tf.function</code>
-计算图执行在分布式训练、性能优化和生产部署方面具有优势。简而言之，<code>Eager Execution</code>适合开发过程中调试，<code>@tf.function</code>适合线上部署。</p>
+<p>要关闭默认方式，可以通过设置：<code>tf.config.run_functions_eagerly(True)</code> 来实现。或者干脆不要加这个装饰器。</p>
+<p>最后，<code>Eager Execution</code> 增强了开发和调试的交互性，而<code>@tf.function</code> 计算图执行在分布式训练、性能优化和生产部署方面具有优势。简而言之，<code>Eager Execution</code>适合开发过程中调试，<code>@tf.function</code>适合线上部署。</p>
 <p>——————-2021.9.17更新———————</p>
 <blockquote>
 <p>自定义</p>
 </blockquote>
 <p>参考-&gt;<a href="https://www.tensorflow.org/guide/basic_training_loops" target="_blank" rel="noopener">这里</a></p>
 <p><strong>定义模型</strong></p>
-<p>抛开keras的<code>sequential</code>, 使用
-tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</code> 和
-<code>tf.Module</code></p>
+<p>抛开keras的<code>sequential</code>, 使用 tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</code> 和 <code>tf.Module</code></p>
 <p>例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TFModel</span><span class="params">(tf.Module)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">    super().__init__(**kwargs)</span><br><span class="line">    self.w = tf.Variable(<span class="number">5.0</span>)</span><br><span class="line">    self.b = tf.Variable(<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self.w * x + self.b</span><br><span class="line">tf_model = TFModel()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KerasModel</span><span class="params">(tf.keras.Model)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">    super().__init__(**kwargs)</span><br><span class="line">    self.w = tf.Variable(<span class="number">5.0</span>)</span><br><span class="line">    self.b = tf.Variable(<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self.w * x + self.b</span><br><span class="line">keras_model = KerasModel()</span><br></pre></td></tr></table></figure>
 <p>定义训练循环：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_model</span><span class="params">(x_train,y_train,x_valid,y_valid,model,epochs = <span class="number">5</span>,batch_size = <span class="number">64</span>, lr =<span class="number">0.001</span>, print_freq = <span class="number">10</span>)</span>:</span></span><br><span class="line">    loss_object = tf.keras.losses.SparseCategoricalCrossentropy()</span><br><span class="line">    optimizer = tf.keras.optimizers.Adam(learning_rate=lr)</span><br><span class="line"></span><br><span class="line">    train_loss = tf.keras.metrics.Mean(name=<span class="string">'train_loss'</span>)</span><br><span class="line">    train_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name=<span class="string">'train_accuracy'</span>)</span><br><span class="line"></span><br><span class="line">    test_loss = tf.keras.metrics.Mean(name=<span class="string">'test_loss'</span>)</span><br><span class="line">    test_accuracy = tf.keras.metrics.SparseCategoricalAccuracy(name=<span class="string">'test_accuracy'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(epochs):</span><br><span class="line">        <span class="comment"># 在下一个epoch开始时，重置评估指标</span></span><br><span class="line">        train_loss.reset_states()</span><br><span class="line">        train_accuracy.reset_states()</span><br><span class="line">        test_loss.reset_states()</span><br><span class="line">        test_accuracy.reset_states()</span><br><span class="line">        <span class="keyword">for</span> step <span class="keyword">in</span> range(int(len(x_train)/batch_size)):</span><br><span class="line">            rand_id = np.asarray(random.sample(range(len(x_train)), batch_size))</span><br><span class="line">            bs_x_train = x_train[rand_id]</span><br><span class="line">            bs_y_train = y_train[rand_id]</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># train step</span></span><br><span class="line">            <span class="keyword">with</span> tf.GradientTape() <span class="keyword">as</span> tape:</span><br><span class="line">                predictions = model(bs_x_train)</span><br><span class="line">                loss = loss_object(bs_y_train, predictions)</span><br><span class="line">            gradients = tape.gradient(loss, model.trainable_variables)</span><br><span class="line">            optimizer.apply_gradients(zip(gradients, model.trainable_variables))</span><br><span class="line">            train_loss(loss)</span><br><span class="line">            train_accuracy(bs_y_train, predictions)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># test step</span></span><br><span class="line">            predictions = model(x_valid)</span><br><span class="line">            t_loss = loss_object(y_valid, predictions)</span><br><span class="line">            test_loss(t_loss)</span><br><span class="line">            test_accuracy(y_valid, predictions)</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># print info</span></span><br><span class="line">            <span class="keyword">if</span> step%<span class="number">10</span>==<span class="number">0</span>:</span><br><span class="line">                template = <span class="string">'Epoch &#123;&#125;,step &#123;&#125;, Loss: &#123;&#125;, Accuracy: &#123;&#125;, Test Loss: &#123;&#125;, Test Accuracy: &#123;&#125;'</span></span><br><span class="line">                print(template.format(epoch+<span class="number">1</span>,</span><br><span class="line">                            step,</span><br><span class="line">                            train_loss.result(),</span><br><span class="line">                            train_accuracy.result()*<span class="number">100</span>,</span><br><span class="line">                            test_loss.result(),</span><br><span class="line">                            test_accuracy.result()*<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line">        template = <span class="string">'Epoch &#123;&#125;, Loss: &#123;&#125;, Accuracy: &#123;&#125;, Test Loss: &#123;&#125;, Test Accuracy: &#123;&#125;'</span></span><br><span class="line">        print(template.format(epoch+<span class="number">1</span>,</span><br><span class="line">                    train_loss.result(),</span><br><span class="line">                    train_accuracy.result()*<span class="number">100</span>,</span><br><span class="line">                    test_loss.result(),</span><br><span class="line">                    test_accuracy.result()*<span class="number">100</span>))</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
-<p>若是继承自<code>tf.keras.Model</code> 则可以使用
-<code>model.compile()</code> 去设置参数, 使用<code>model.fit()</code>
-进行训练。</p>
+<p>若是继承自<code>tf.keras.Model</code> 则可以使用 <code>model.compile()</code> 去设置参数, 使用<code>model.fit()</code> 进行训练。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">keras_model = KerasModel()</span><br><span class="line">keras_model.compile(</span><br><span class="line">    <span class="comment"># 默认情况下，fit()调用tf.function()。</span></span><br><span class="line">    <span class="comment"># Debug时你可以关闭这一功能，但是现在是打开的。</span></span><br><span class="line">    run_eagerly=<span class="literal">False</span>,</span><br><span class="line">    optimizer=tf.keras.optimizers.SGD(learning_rate=<span class="number">0.1</span>),</span><br><span class="line">    loss=tf.keras.losses.mean_squared_error,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <p>——————-2021.9.18更———————</p>
 <blockquote>
@@ -1761,10 +1491,7 @@ tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</
 <p>为了确保每次运行结果的稳定，设置固定种子是有必要的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">random.seed(<span class="number">2021</span>)</span><br><span class="line">np.random.seed(<span class="number">2021</span>)</span><br><span class="line">tf.random.set_seed(<span class="number">2021</span>)</span><br></pre></td></tr></table></figure>
 <p>——————-2021.9.19更———————</p>
-<p>当自定义模型时，继承<code>tf.keras.Model</code>
-则需要实现<code>call</code> 方法而不是<code>__call__</code>
-。如果是<code>tf.Module</code> 就实现<code>__call__</code>
-。尽量使用<code>tf.keras.Model</code> ，因为真的很方便。</p>
+<p>当自定义模型时，继承<code>tf.keras.Model</code> 则需要实现<code>call</code> 方法而不是<code>__call__</code> 。如果是<code>tf.Module</code> 就实现<code>__call__</code> 。尽量使用<code>tf.keras.Model</code> ，因为真的很方便。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KerasModel</span><span class="params">(tf.keras.Model)</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">    super().__init__(**kwargs)</span><br><span class="line">    self.w = tf.Variable(<span class="number">5.0</span>)</span><br><span class="line">    self.b = tf.Variable(<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x, **kwargs)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> self.w * x + self.b</span><br><span class="line">model = KerasModel()</span><br><span class="line">bst_model_path = <span class="string">"./best.model.h5"</span></span><br><span class="line"></span><br><span class="line">early_stopping = tf.keras.callbacks.EarlyStopping(monitor=<span class="string">'val_accuracy'</span>, patience=<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">model_checkpoint = tf.keras.callbacks.ModelCheckpoint(bst_model_path, save_best_only=<span class="literal">True</span>, save_weights_only=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">model.compile(loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">False</span>),</span><br><span class="line">              optimizer=tf.keras.optimizers.Adam(<span class="number">1e-3</span>),</span><br><span class="line">              metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(x_train, train_y, </span><br><span class="line">          batch_size=<span class="number">16</span>, </span><br><span class="line">          validation_data=(x_valid,valid_y),</span><br><span class="line">          epochs=<span class="number">200</span>,</span><br><span class="line">          callbacks=[early_stopping,model_checkpoint]</span><br><span class="line">         )</span><br></pre></td></tr></table></figure>
 <p>——————-2021.10.4更———————</p>
 <blockquote>
@@ -1773,26 +1500,18 @@ tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</
 <p>官方文档：<a href="https://www.tensorflow.org/guide/data?hl=zh_cn#consuming_python_generators" target="_blank" rel="noopener">consuming_python_generators</a></p>
 <p>code template:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dataset</span><span class="params">(args, batch_size,shuffle=False)</span>:</span></span><br><span class="line">    output_types = (tf.int32, tf.int32, tf.int32, tf.int32)</span><br><span class="line">    output_shapes = ((<span class="literal">None</span>,),</span><br><span class="line">                     (<span class="literal">None</span>,),</span><br><span class="line">                     (<span class="literal">None</span>,<span class="number">2</span>),</span><br><span class="line">                     (<span class="literal">None</span>,)</span><br><span class="line">                     )</span><br><span class="line">    dataset = tf.data.Dataset.from_generator(generator_fn, </span><br><span class="line">                                              args=args, </span><br><span class="line">                                              output_types= output_types, </span><br><span class="line">                                              output_shapes = output_shapes</span><br><span class="line">                                              )</span><br><span class="line">    <span class="keyword">if</span> shuffle:</span><br><span class="line">        dataset = dataset.shuffle(buffer_size = <span class="number">1000</span>*batch_size)</span><br><span class="line">        </span><br><span class="line">    <span class="comment"># dataset = dataset.repeat() 这行代码有毒</span></span><br><span class="line">    dataset = dataset.padded_batch(batch_size=batch_size, padded_shapes=output_shapes, padding_values=(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    dataset = dataset.prefetch(<span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dataset</span><br></pre></td></tr></table></figure>
-<p><code>output_types</code> 是必须的，<code>buffer_size</code>
-一般取大于等于数据集大小。<code>generator_fn</code>
-为生成器函数。如下：</p>
+<p><code>output_types</code> 是必须的，<code>buffer_size</code> 一般取大于等于数据集大小。<code>generator_fn</code> 为生成器函数。如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count</span><span class="params">(stop)</span>:</span></span><br><span class="line">  i = <span class="number">0</span></span><br><span class="line">  <span class="keyword">while</span> i&lt;stop:</span><br><span class="line">    <span class="keyword">yield</span> i</span><br><span class="line">    i += <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>——————-2021.10.5更———————</p>
 <blockquote>
 <p>有关<code>call()</code></p>
 </blockquote>
-<p>子类化<code>tf.keras.Model</code>时，在实现<code>call()</code>
-函数需要注意的是接受的参数一般只能是两个：<code>inputs</code>
-，<code>training</code></p>
-<p><code>training</code>
-一般给用户自定义训练模式提供一定的自由度，<code>training</code>
-为布尔类型。当然，<code>training</code> 是非必须的。</p>
+<p>子类化<code>tf.keras.Model</code>时，在实现<code>call()</code> 函数需要注意的是接受的参数一般只能是两个：<code>inputs</code> ，<code>training</code></p>
+<p><code>training</code> 一般给用户自定义训练模式提供一定的自由度，<code>training</code> 为布尔类型。当然，<code>training</code> 是非必须的。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">KerasModel</span><span class="params">(tf.keras.Model)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, **kwargs)</span>:</span></span><br><span class="line">        super().__init__(**kwargs)</span><br><span class="line">        self.w = tf.Variable(<span class="number">5.0</span>)</span><br><span class="line">        self.b = tf.Variable(<span class="number">0.0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> self.w * x + self.b</span><br></pre></td></tr></table></figure>
-<p>如果模型需要多个输入时：可以通过 <code>inputs = (x1,x2,x3,...)</code>
-将<code>inputs</code> 传入</p>
+<p>如果模型需要多个输入时：可以通过 <code>inputs = (x1,x2,x3,...)</code> 将<code>inputs</code> 传入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">··省略··</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, inputs)</span>:</span></span><br><span class="line">        x1,x2,x3,... = inputs</span><br></pre></td></tr></table></figure>
-<p>当然也可以通过<code>**kwargs</code>
-将其他数据传入。而不是像这样：</p>
+<p>当然也可以通过<code>**kwargs</code> 将其他数据传入。而不是像这样：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(self, x1,x2,x3,...)</span>:</span></span><br><span class="line">    ···</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>类型转换</p>
@@ -1803,8 +1522,7 @@ tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</
 <p><code>tf.keras.layers.MultiHeadAttention</code></p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">multi = tf.keras.layers.MultiHeadAttention(num_heads=num_heads, key_dim=embed_dim)</span><br><span class="line"></span><br><span class="line">out = multi(v,k,q,mask*<span class="number">-1e9</span>)</span><br></pre></td></tr></table></figure>
-<p>如果mask是0、1矩阵，记得乘以<strong>-1e9</strong>
-，否者掩码无效。</p>
+<p>如果mask是0、1矩阵，记得乘以<strong>-1e9</strong> ，否者掩码无效。</p>
 <blockquote>
 <p>TODO</p>
 </blockquote>
@@ -1882,16 +1600,11 @@ tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</
       
           <p>赛题：<a href="https://challenge.xfyun.cn/topic/info?type=protein" target="_blank" rel="noopener">蛋白质结构预测挑战赛</a></p>
 <p>数据集一共包含245种折叠类型，11843条蛋白质序列样本，其中训练集中有9472个样本，测试集中有2371个样本。</p>
-<p>继上次<a href="https://hahally.github.io/articles/蛋白质结构预测之lgb的baseline/">lgb的base模型</a>
-后，尝试过word2vec +
-神经网络的方法，最后效果甚微。今天尝试了一下双向GRU模型，相比之前，有几个百分点的提高。</p>
+<p>继上次<a href="https://hahally.github.io/articles/蛋白质结构预测之lgb的baseline/">lgb的base模型</a> 后，尝试过word2vec + 神经网络的方法，最后效果甚微。今天尝试了一下双向GRU模型，相比之前，有几个百分点的提高。</p>
 <p>代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据加载</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_fa</span><span class="params">(file, mode=<span class="string">'train'</span>)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> mode <span class="keyword">in</span> &#123;<span class="string">'train'</span>,<span class="string">'test'</span>&#125;</span><br><span class="line">    labels = []</span><br><span class="line">    seqs_info = []</span><br><span class="line">    cates_id = []</span><br><span class="line">    seq = <span class="string">''</span></span><br><span class="line">    <span class="keyword">with</span> open(file,mode=<span class="string">'r'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        line = f.readline().strip()</span><br><span class="line">        <span class="keyword">while</span> line:</span><br><span class="line">            <span class="keyword">if</span> line[<span class="number">0</span>]==<span class="string">'&gt;'</span>:</span><br><span class="line">                info = line[<span class="number">1</span>:].split(<span class="string">' '</span>)</span><br><span class="line">                cates_id.append(info[<span class="number">0</span>])</span><br><span class="line">                <span class="keyword">if</span> mode == <span class="string">'train'</span>:</span><br><span class="line">                    label = <span class="string">''</span>.join(info[<span class="number">1</span>].split(<span class="string">'.'</span>)[:<span class="number">2</span>]</span><br><span class="line">                    label = label[<span class="number">0</span>]+<span class="string">'.'</span>+label[<span class="number">1</span>:]</span><br><span class="line">                    labels.append(label)</span><br><span class="line">                <span class="keyword">if</span> seq:</span><br><span class="line">                    seqs_info.append(seq)</span><br><span class="line">                    seq = <span class="string">''</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                seq += line</span><br><span class="line">            line = f.readline().strip()</span><br><span class="line">        seqs_info.append(seq)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> cates_id,seqs_info,labels</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_data</span><span class="params">()</span>:</span></span><br><span class="line">    train_file = <span class="string">'/kaggle/input/textfiles/astral_train.fa'</span></span><br><span class="line">    test_file = <span class="string">'/kaggle/input/textfiles/astral_test.fa'</span></span><br><span class="line"></span><br><span class="line">    train_sample_id, train_seqs_info, train_labels = read_fa(train_file, mode=<span class="string">'train'</span>)</span><br><span class="line">    test_sample_id, test_seqs_info, _ = read_fa(test_file, mode=<span class="string">'test'</span>)</span><br><span class="line">    </span><br><span class="line">    train_data = &#123;</span><br><span class="line">    <span class="string">'sample_id'</span>: train_sample_id,</span><br><span class="line">    <span class="string">'seq_info'</span>: train_seqs_info,</span><br><span class="line">    <span class="string">'label'</span>: train_labels</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    test_data = &#123;</span><br><span class="line">        <span class="string">'sample_id'</span>: test_sample_id,</span><br><span class="line">        <span class="string">'seq_info'</span>: test_seqs_info,</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    train = pd.DataFrame(data=train_data)</span><br><span class="line">    train = shuffle(train,random_state=<span class="number">2021</span>).reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">    test = pd.DataFrame(data=test_data)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> train,test</span><br><span class="line"></span><br><span class="line"><span class="comment"># 滑窗分词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">split_windows</span><span class="params">(sentence,w = <span class="number">3</span>)</span>:</span></span><br><span class="line">    new_sentence = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sentence)-w+<span class="number">1</span>):</span><br><span class="line">        new_sentence.append(sentence[i:i+w])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> new_sentence</span><br><span class="line">     </span><br><span class="line">data = pd.concat(load_data(),ignore_index=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># label to idx</span></span><br><span class="line">label2idx = &#123; l:idx <span class="keyword">for</span> idx, l <span class="keyword">in</span> enumerate(data[~data[<span class="string">'label'</span>].isna()][<span class="string">'label'</span>].unique().tolist())&#125;</span><br><span class="line">idx2label = &#123; idx:l <span class="keyword">for</span> l,idx <span class="keyword">in</span> label2idx.items()&#125;</span><br><span class="line"></span><br><span class="line">data[<span class="string">'label'</span>] = data[<span class="string">'label'</span>].map(label2idx)</span><br><span class="line">data[<span class="string">'new_seq_info'</span>] = data[<span class="string">'seq_info'</span>].apply(<span class="keyword">lambda</span> x:split_windows(x,w = <span class="number">1</span>))</span><br><span class="line">train,test = data[~data[<span class="string">'label'</span>].isna()].reset_index(drop=<span class="literal">True</span>),data[data[<span class="string">'label'</span>].isna()].reset_index(drop=<span class="literal">True</span>)</span><br><span class="line">max_features= <span class="number">1000</span></span><br><span class="line">max_len= <span class="number">256</span></span><br><span class="line">embed_size=<span class="number">128</span></span><br><span class="line">batch_size = <span class="number">24</span></span><br><span class="line">epochs = <span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.text <span class="keyword">import</span> Tokenizer</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> sequence</span><br><span class="line"></span><br><span class="line">tokens = Tokenizer(num_words = max_features)</span><br><span class="line">tokens.fit_on_texts(list(data[<span class="string">'new_seq_info'</span>]))</span><br><span class="line"></span><br><span class="line">x_data = tokens.texts_to_sequences(data[<span class="string">'new_seq_info'</span>])</span><br><span class="line">x_data = sequence.pad_sequences(x_data, maxlen=max_len)</span><br><span class="line">x_train = x_data[:<span class="number">9472</span>]</span><br><span class="line">y_train = data[<span class="string">'label'</span>][:<span class="number">9472</span>]</span><br><span class="line">x_test = x_data[<span class="number">9472</span>:]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense,Input,LSTM,Bidirectional,Activation,Conv1D,GRU</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dropout,Embedding,GlobalMaxPooling1D, MaxPooling1D, Add, Flatten</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> GlobalAveragePooling1D, GlobalMaxPooling1D, concatenate, SpatialDropout1D<span class="comment"># Keras Callback Functions:</span></span><br><span class="line"><span class="keyword">from</span> keras.callbacks <span class="keyword">import</span> Callback</span><br><span class="line"><span class="keyword">from</span> keras.callbacks <span class="keyword">import</span> EarlyStopping,ModelCheckpoint</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> initializers, regularizers, constraints, optimizers, layers, callbacks</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adam</span><br><span class="line"><span class="keyword">import</span> keras</span><br><span class="line">sequence_input = Input(shape=(max_len, ))</span><br><span class="line">x = Embedding(max_features, embed_size, trainable=<span class="literal">True</span>)(sequence_input)</span><br><span class="line">x = SpatialDropout1D(<span class="number">0.2</span>)(x)</span><br><span class="line">x = Bidirectional(GRU(<span class="number">128</span>, return_sequences=<span class="literal">True</span>,dropout=<span class="number">0.1</span>,recurrent_dropout=<span class="number">0.1</span>))(x)</span><br><span class="line">x = Conv1D(<span class="number">64</span>, kernel_size = <span class="number">3</span>, padding = <span class="string">"valid"</span>, kernel_initializer = <span class="string">"glorot_uniform"</span>)(x)</span><br><span class="line">avg_pool = GlobalAveragePooling1D()(x)</span><br><span class="line">max_pool = GlobalMaxPooling1D()(x)</span><br><span class="line">x = concatenate([avg_pool, max_pool]) </span><br><span class="line">preds = Dense(<span class="number">245</span>)(x)</span><br><span class="line"></span><br><span class="line">model = Model(sequence_input, preds)</span><br><span class="line">model.compile(loss=keras.losses.SparseCategoricalCrossentropy(from_logits=<span class="literal">True</span>),</span><br><span class="line">              optimizer=keras.optimizers.Adam(<span class="number">1e-3</span>),</span><br><span class="line">              metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(x_train, y_train, </span><br><span class="line">          batch_size=batch_size, </span><br><span class="line">          validation_split=<span class="number">0.2</span>,</span><br><span class="line">          epochs=epochs)</span><br></pre></td></tr></table></figure>
 <p>提交结果：目前【39/130(提交团队数)】</p>
-<figure>
-<img src="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/image-20210730140527003.png" alt="image-20210730140527003">
-<figcaption aria-hidden="true">image-20210730140527003</figcaption>
-</figure>
+<p><img src="/articles/%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E9%A2%84%E6%B5%8B/image-20210730140527003.png" alt="image-20210730140527003"></p>
 
       
     </div>
@@ -2039,13 +1752,13 @@ tensorflow定义模型时，可以有两种继承选择：<code>tf.keras.Model</
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">86k</span>
+    <span title="站点总字数">84k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:36</span>
+    <span title="站点阅读时长">2:33</span>
 </div>
   <div class="powered-by">
     <!--由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动-->
