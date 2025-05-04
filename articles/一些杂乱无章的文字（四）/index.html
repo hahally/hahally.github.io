@@ -20,20 +20,29 @@
     var CONFIG = {"hostname":"hahally.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="写在前面随着自己写的博客日益增加，博客列表页的展示也逐渐变得有些力不从心。要浏览所有的博客就不得不疯狂的滑鼠标。冗长的页面带来的体验十分的差劲。这个时候不得不将他们做一下简单分页处理。分页的方式有很多，而便捷的 Django 为我们准备了十分友好的类 Paginator 来帮助我们进行分页。  Paginator 对象先看看源码中的初始化或者说构造方法: 1234567class Paginato">
+  <meta name="description" content="月色皎洁，微风徐徐，湖面倒映着对岸的图书馆，还有石桥上散步谈心的情侣。 假期里，寂静的夜，仿佛能听见学校各个角落里的窃窃私语。 啪嗒……  突如其来的高分贝声响把路过的蛤蟆先生吓了好几跳！ “刚刚什么死东西发出的动静？”蛤蟆先生还没有缓过神来，嘴上已经开始骂骂咧咧了：“差点小命就没了，哪个没长眼睛的，不知道看路么？我们蛤蟆的命就不是命么？” 角落里，猫小姐蜷缩着身体一动不动，看起来也被吓得不轻。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django中的分页">
-<meta property="og:url" content="https://hahally.github.io/articles/Django%E4%B8%AD%E7%9A%84%E5%88%86%E9%A1%B5/index.html">
+<meta property="og:title" content="一些杂乱无章的文字（四）">
+<meta property="og:url" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="写在前面随着自己写的博客日益增加，博客列表页的展示也逐渐变得有些力不从心。要浏览所有的博客就不得不疯狂的滑鼠标。冗长的页面带来的体验十分的差劲。这个时候不得不将他们做一下简单分页处理。分页的方式有很多，而便捷的 Django 为我们准备了十分友好的类 Paginator 来帮助我们进行分页。  Paginator 对象先看看源码中的初始化或者说构造方法: 1234567class Paginato">
+<meta property="og:description" content="月色皎洁，微风徐徐，湖面倒映着对岸的图书馆，还有石桥上散步谈心的情侣。 假期里，寂静的夜，仿佛能听见学校各个角落里的窃窃私语。 啪嗒……  突如其来的高分贝声响把路过的蛤蟆先生吓了好几跳！ “刚刚什么死东西发出的动静？”蛤蟆先生还没有缓过神来，嘴上已经开始骂骂咧咧了：“差点小命就没了，哪个没长眼睛的，不知道看路么？我们蛤蟆的命就不是命么？” 角落里，猫小姐蜷缩着身体一动不动，看起来也被吓得不轻。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-10T10:57:44.266Z">
-<meta property="article:modified_time" content="2020-05-11T03:14:33.277Z">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504154721460.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504154938090.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504154952707.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504155003582.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504155013707.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504155024777.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504155037395.png">
+<meta property="og:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504155245581.png">
+<meta property="article:published_time" content="2025-05-04T07:35:08.000Z">
+<meta property="article:modified_time" content="2025-05-04T07:53:15.164Z">
 <meta property="article:author" content="Hahally">
-<meta property="article:tag" content="后端">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally/blog/hahally-blog/source/_posts/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89.assets/image-20250504154721460.png">
 
-<link rel="canonical" href="https://hahally.github.io/articles/Django%E4%B8%AD%E7%9A%84%E5%88%86%E9%A1%B5/">
+<link rel="canonical" href="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/">
 
 
 <script id="page-configurations">
@@ -46,7 +55,7 @@
   };
 </script>
 
-  <title>Django中的分页 | Hahally's BLOG</title>
+  <title>一些杂乱无章的文字（四） | Hahally's BLOG</title>
   
 
 
@@ -172,7 +181,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://hahally.github.io/articles/Django%E4%B8%AD%E7%9A%84%E5%88%86%E9%A1%B5/">
+    <link itemprop="mainEntityOfPage" href="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -185,7 +194,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Django中的分页
+          一些杂乱无章的文字（四）
         </h1>
 
         <div class="post-meta">
@@ -194,23 +203,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-05-10 18:57:44" itemprop="dateCreated datePublished" datetime="2020-05-10T18:57:44+08:00">2020-05-10</time>
+              <time title="创建时间：2025-05-04 15:35:08 / 修改时间：15:53:15" itemprop="dateCreated datePublished" datetime="2025-05-04T15:35:08+08:00">2025-05-04</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-11 11:14:33" itemprop="dateModified" datetime="2020-05-11T11:14:33+08:00">2020-05-11</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Django/" itemprop="url" rel="index"><span itemprop="name">Django</span></a>
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
                 </span>
             </span>
 
@@ -227,14 +230,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -246,43 +249,58 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h3><p>随着自己写的博客日益增加，博客列表页的展示也逐渐变得有些力不从心。要浏览所有的博客就不得不疯狂的滑鼠标。冗长的页面带来的体验十分的差劲。这个时候不得不将他们做一下简单分页处理。分页的方式有很多，而便捷的 Django 为我们准备了十分友好的类 <code>Paginator</code> 来帮助我们进行分页。</p>
+        <p>月色皎洁，微风徐徐，湖面倒映着对岸的图书馆，还有石桥上散步谈心的情侣。</p>
+<p>假期里，寂静的夜，仿佛能听见学校各个角落里的窃窃私语。</p>
+<p>啪嗒……</p>
 <hr>
-<h3 id="Paginator-对象"><a href="#Paginator-对象" class="headerlink" title="Paginator 对象"></a>Paginator 对象</h3><p>先看看源码中的初始化或者说构造方法:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Paginator</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, object_list, per_page, orphans=<span class="number">0</span>,allow_empty_first_page=True)</span>:</span></span><br><span class="line">		self.object_list = object_list</span><br><span class="line">		self._check_object_list_is_ordered()</span><br><span class="line">		self.per_page = int(per_page)</span><br><span class="line">		self.orphans = int(orphans)</span><br><span class="line">		self.allow_empty_first_page = allow_empty_first_page</span><br></pre></td></tr></table></figure>
-<p>显然，要创建一个 Paginator 对象, 就不得不提供 object_list 和 per_page 对象。</p>
-<p><code>object_list</code></p>
-<blockquote>
-<p>A list, tuple, QuerySet, or other sliceable object with a count() or <strong>len</strong>() method. For consistent pagination, QuerySets should be ordered, e.g. with an order_by() clause or with a default ordering on the model.</p>
-</blockquote>
-<p>从这段文档说明中，可以大致了解 object_list 是个这样的对象：列表、元组、QuerySet…同时，文档建议如果是 QuerySet 对象的话，应当对其进行排序，如使用 order_by() 方法，或者采用模型中默认的排序方法。</p>
-<p><code>per_page</code></p>
-<blockquote>
-<p>The maximum number of items to include on a page, not including orphans (see the orphans optional argument below).</p>
-</blockquote>
-<p>显然，per_page 指的是每页要展示的选项最大个数。例如：每页显示 5 篇文章，那么就是 <code>per_page=5</code>。同时也强调，不包括 orphans。</p>
-<p><code>orphans</code></p>
-<blockquote>
-<p>Use this when you don’t want to have a last page with very few items. If the last page would normally have a number of items less than or equal to orphans, then those items will be added to the previous page (which becomes the last page) instead of leaving the items on a page by themselves. For example, with 23 items, per_page=10, and orphans=3, there will be two pages; the first page with 10 items and the second (and last) page with 13 items. orphans defaults to zero, which means pages are never combined and the last page may have one item.</p>
-</blockquote>
-<p>orphans 顾名思义就是孤儿的意思。通俗来讲就是，在分页时，发现最后一页可能就只有一两个选项去了，如果觉得最后一页只是很少一部分，不想单独占一页，那么就可以将其添加在前一页中。而 orphans 值恰恰就是这样一个阈值，当小于它时，就可以将剩下那部分加到前一页中。假设我们有 23 个选项，每页展示是个选项，那么最多可以分成 3 页，第三页就只有 3 个选项。如果我们设置 orphans 大于等于 3，那么第一页是 10，第二页是 13 了。</p>
+<p>突如其来的高分贝声响把路过的蛤蟆先生吓了好几跳！</p>
+<p>“刚刚什么死东西发出的动静？”蛤蟆先生还没有缓过神来，嘴上已经开始骂骂咧咧了：“差点小命就没了，哪个没长眼睛的，不知道看路么？我们蛤蟆的命就不是命么？”</p>
+<p>角落里，猫小姐蜷缩着身体一动不动，看起来也被吓得不轻。</p>
+<p>“喂，猫小姐，你知道刚刚出什么事了么？”蛤蟆先生抬头看见了那只巨大又胆小的猫。</p>
+<p>猫小姐不语，只是一味地把目光望向不远处灯光暗淡的黑影。</p>
+<p>蛤蟆先生顺着目光寻过去，那是比猫小姐更加巨大的庞然大物……</p>
+<p>“那是……可恶的人类……我最讨厌人类了！你不怕么？猫小姐。”蛤蟆先生脸气呼呼地鼓起来，一副痛心疾首的样子。</p>
+<p>“对了，你知道镜湖怎么走么？听说天鹅女士今晚会来对不对？”蛤蟆先生这才想起正事。</p>
+<p>“从我后面的台阶下去就是镜湖咯，我不知道天鹅女士会不会来，但是我听人类说癞蛤蟆想吃天鹅肉，就是痴心安想。所以，你还是死了这条心吧。”猫小姐一开口就扎蛤蟆先生的心。</p>
+<p>“谢谢你，我走了，你小心点。”蛤蟆先生淡淡开口，语气低落，蹦蹦跳跳地离开了，像泄了气的气球。</p>
+<p>“嘿，你去哪？”猫小姐意识到说错了话，想要弥补什么，“要是哪天我看见她了就告诉你，好不好？嘿，小心~”</p>
+<p>已经来不及了，那落魄的背影渐行渐远……</p>
+<p>“可他们也曾喊过我蟾蜍，喊过我金蟾啊！”他抬起头望了一眼弯弯的月亮，忽然间又想起“玉蟾”，想起“蟾宫”，哦，原来那么久远了么？</p>
 <hr>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>文档中给出了一个十分详细的例子供我们参考：</p>
-<p>在我们的视图 views.py 中：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.core.paginator <span class="keyword">import</span> Paginator</span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">listing</span><span class="params">(request)</span>:</span></span><br><span class="line">    contact_list = Contacts.objects.all()</span><br><span class="line">    paginator = Paginator(contact_list, <span class="number">25</span>) <span class="comment"># Show 25 contacts per page</span></span><br><span class="line">    page = request.GET.get(<span class="string">'page'</span>)</span><br><span class="line">    contacts = paginator.get_page(page)</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'list.html'</span>, &#123;<span class="string">'contacts'</span>: contacts&#125;)</span><br></pre></td></tr></table></figure>
-<p>在我们的模板 list.html 中：</p>
-<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">for</span></span> contact <span class="keyword">in</span> contacts %&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="comment">&#123;# Each "contact" is a Contact model object. #&#125;</span></span><br><span class="line"><span class="xml">    </span><span class="template-variable">&#123;&#123; contact.full_name|<span class="name">upper</span> &#125;&#125;</span><span class="xml"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span></span><br><span class="line"><span class="xml">    ...</span></span><br><span class="line"><span class="template-tag">&#123;% <span class="name"><span class="name">endfor</span></span> %&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pagination"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"step-links"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> contacts.has_previous %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=1"</span>&gt;</span><span class="symbol">&amp;laquo;</span> first<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.previous_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>previous<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"current"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            Page </span><span class="template-variable">&#123;&#123; contacts.number &#125;&#125;</span><span class="xml"> of </span><span class="template-variable">&#123;&#123; contacts.paginator.num_pages &#125;&#125;</span><span class="xml">.</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">if</span></span> contacts.has_next %&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.next_page_number &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>next<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"?page=</span></span></span><span class="template-variable">&#123;&#123; contacts.paginator.num_pages &#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>last <span class="symbol">&amp;raquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="template-tag">&#123;% <span class="name"><span class="name">endif</span></span> %&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>一点点注释：</p>
-<blockquote>
-<pre><code>has_previous() 判断是否有上一页
-has_next() 判断是否有上一页
-previous_page_number() 返回上一个页码
-contacts.number 一个基于 1 的页码
-paginator.num_pages() 页码的基于 1 的范围迭代器
-</code></pre></blockquote>
-<p>获取更多可以参考 <a href="https://docs.djangoproject.com/zh-hans/2.1/topics/pagination/#example" target="_blank" rel="noopener">官方文档</a></p>
+<p>我有些失落地坐在地上，随即四处张望，心想应该没有人看见刚刚那一幕吧，假期大家都出去玩了应该没人看见灯光这么暗应该看不清吧。</p>
+<p>等等，那是什么？一只小小的身影忽闪而过……</p>
+<p>我拍了拍手上的灰，起身前去查看，原来是一只蛤蟆一跳-跳的过马路。</p>
+<p>噢，蛤蟆先生五一会放假么？它平常做什么工作？它是出来散步的么？是出来觅食对吧？怎么形单影只的？</p>
+<p>我慢慢靠近观察，随即它纵身一跃没入黑乎乎的灌木丛里。</p>
+<p>一回头发现台阶旁一只猫趴在那，猫小姐也有心事么？</p>
+<p>没等我靠近，猫小姐迈着优雅的步伐走了……</p>
+<p>我拾起摔翻的滑板，拿出手机打开手电筒寻找被摔断的珠串。</p>
+<p>偌大的广场上，空空荡荡，却装不下蛤蟆先生的幻想，装不下猫小姐的心事。</p>
+<p>月色朦胧，苍穹之下，大家的思绪各不相通……</p>
+<p>我继续滑行，来回穿梭。上板，滑行，荡板，尾刹，180度转弯，重复练习着这些简单的动作。</p>
+<p>光滑的地板上，光影交错，恍惚中有些分不清此刻站在滑板上的人究竟是谁。</p>
+<p>是十八九岁的自己么？</p>
+<p>是哦，滑滑板这件事本该是那个时候就该做的，我却逃到了二十多岁才有勇气站上去。</p>
+<p>哦，原来那么久远了么？</p>
+<p>我的动作越来越熟练，滑得越来越快，好似风驰电掣一般，像要追上什么虚无缥缈的东西。</p>
+<p>月亮隐入云层，一人坐在广场的台阶上，吹着晚风，旁边是散落的手串和那伤痕累累的滑板。下面就是镜湖，再过去就是华丽的图书馆，再远些是校外的一片小区楼群。</p>
 <hr>
-<h3 id="欢迎参观"><a href="#欢迎参观" class="headerlink" title="欢迎参观"></a>欢迎参观</h3><p>学Django时，顺便写了简单的<a href="http://114.55.102.217/blog/" target="_blank" rel="noopener">个人博客</a>。前端用的<a href="https://www.bootcss.com/" target="_blank" rel="noopener">bootstrap</a>框架。笔记都会同步的。</p>
+<p>夜晚十一点，我从实验楼出来，悠闲地走在镜湖石桥上忽然回头望了一眼。</p>
+<p>远处路灯散发着微弱的冷白色灯光，那片广场像被长镜头越拉越远，远到足足有六七年哦。</p>
+<p>仿佛看见一人枕着滑板乘凉，身后还有无数身影踏着滑板起起落落……</p>
+<p>微风中断断续续传来一声：嗨，我终于快追上你了！</p>
+<p>突然想起白日梦想家里的一句话:无论这里发生过多少腥风血雨，今天的我们也只能闲庭信步了。</p>
+<p>岁月流转，风雨飘摇，总有花在错误的季节里盛开。</p>
+<p>镜头暂停，定格在这一帧，这是我的25号底片么？</p>
+<hr>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504154721460.png" alt="image-20250504154721460" style="zoom: 50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504154938090.png" alt="image-20250504154938090" style="zoom: 50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504154952707.png" alt="image-20250504154952707" style="zoom:50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504155003582.png" alt="image-20250504155003582" style="zoom:50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504155013707.png" alt="image-20250504155013707" style="zoom:50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504155024777.png" alt="image-20250504155024777" style="zoom:50%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504155037395.png" alt="image-20250504155037395" style="zoom: 33%;"></p>
+<p><img src="/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/hahally\blog\hahally-blog\source\_posts\一些杂乱无章的文字（四）.assets\image-20250504155245581.png" alt="image-20250504155245581" style="zoom:33%;"></p>
 
     </div>
 
@@ -298,7 +316,7 @@ paginator.num_pages() 页码的基于 1 的范围迭代器
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://hahally.github.io/articles/Django%E4%B8%AD%E7%9A%84%E5%88%86%E9%A1%B5/" title="Django中的分页">https://hahally.github.io/articles/Django中的分页/</a>
+    <a href="https://hahally.github.io/articles/%E4%B8%80%E4%BA%9B%E6%9D%82%E4%B9%B1%E6%97%A0%E7%AB%A0%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%88%E5%9B%9B%EF%BC%89/" title="一些杂乱无章的文字（四）">https://hahally.github.io/articles/一些杂乱无章的文字（四）/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -309,7 +327,7 @@ paginator.num_pages() 页码的基于 1 的范围迭代器
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"># 后端</a>
+              <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"># 随笔</a>
           </div>
 
         
@@ -317,11 +335,11 @@ paginator.num_pages() 页码的基于 1 的范围迭代器
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/articles/CopyText/" rel="next" title="CopyText">
-      CopyText <i class="fa fa-chevron-right"></i>
+    <a href="/articles/%E5%AF%BB%E4%BA%BA%E5%90%AF%E4%BA%8B/" rel="prev" title="一些杂乱无章的文字（三）">
+      <i class="fa fa-chevron-left"></i> 一些杂乱无章的文字（三）
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -380,7 +398,6 @@ paginator.num_pages() 页码的基于 1 的范围迭代器
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paginator-对象"><span class="nav-number">2.</span> <span class="nav-text">Paginator 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">3.</span> <span class="nav-text">如何使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#欢迎参观"><span class="nav-number">4.</span> <span class="nav-text">欢迎参观</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
