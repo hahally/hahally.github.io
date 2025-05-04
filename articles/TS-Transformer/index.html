@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"hahally.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
   </script>
 
-  <meta name="description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
+  <meta name="description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B)) 。A、B分别表示layer embedding特征、Google">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TS-Transformer">
 <meta property="og:url" content="https://hahally.github.io/articles/TS-Transformer/index.html">
 <meta property="og:site_name" content="Hahally&#39;s BLOG">
-<meta property="og:description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B))  。A、B分别表示layer embedding特征、Google word2">
+<meta property="og:description" content="前言  最近，老师让复现几篇论文中的方法。打开一篇有关cnn 的论文，初略一看，这个模型结构不就是textcnn 吗？！论文中改头换面变成了LS-CNN，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。 十多分钟后······，大概懂了，LS-CNN &#x3D; TextCNN(w*stack(A,B)) 。A、B分别表示layer embedding特征、Google">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-09-17T13:58:41.000Z">
 <meta property="article:modified_time" content="2021-09-19T06:35:57.225Z">
@@ -239,14 +239,28 @@
         <blockquote>
 <p>前言</p>
 </blockquote>
-<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code> 的论文，初略一看，这个模型结构不就是<code>textcnn</code> 吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
-<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>  。A、B分别表示layer embedding特征、Google word2vec 词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
+<p>最近，老师让复现几篇论文中的方法。打开一篇有关<code>cnn</code>
+的论文，初略一看，这个模型结构不就是<code>textcnn</code>
+吗？！论文中改头换面变成了<code>LS-CNN</code>，着实有些摸不着头脑。那就仔细看看模型说明吧，看看到底有什么神奇之处。</p>
+<p>十多分钟后······，大概懂了，<code>LS-CNN = TextCNN(w*stack(A,B))</code>
+。A、B分别表示layer embedding特征、Google word2vec
+词向量特征，*表示卷积，stack表示堆叠（两个大小维度相同的矩阵，堆叠后，通道变成2），通过一维卷积操作进行降维（融合两个嵌入特征）。</p>
 <blockquote>
 <p>I know nothing but my ignorance……</p>
 </blockquote>
-<p>2017年谷歌一篇<code>Attention is all you need</code> 在自然语言处理领域炸开了锅。此后<code>transformer</code> 成为了许多人发paper密码 。之后的<code>bert</code> 更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code> ，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code> 。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em> 或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em> 。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
-<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code> 的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code> 又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
-<p>有意思的是，<code>transformer</code> 又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
+<p>2017年谷歌一篇<code>Attention is all you need</code>
+在自然语言处理领域炸开了锅。此后<code>transformer</code>
+成为了许多人发paper密码 。之后的<code>bert</code>
+更是在各大nlp任务上霸榜。各种魔改层出不求。至此，如果不了解<code>transfomer</code>
+，不会微调<code>bert</code> 都不好意思说自己是一个 <code>nlper</code>
+。不仅如此，隔壁的<code>cv</code>圈都要沾一下光（<code>VIT</code>）。要我说以后投稿就喊一句：<em>哦斯，喊出我的名字吧！transformer.</em>
+或者 <em>构筑未来，希望之光，特利迦，transformer type/bert type</em>
+。颇有一股新生代奥特曼借力量的趣味（滑稽）。</p>
+<p>距离<code>transformer</code>发布已经过去4年，这一波热潮何时褪去，或者下一次革命性的模型什么时候出现，这似乎很难预测。<code>self-attention</code>
+的尽头是什么？在这急功近利的时代，各大<code>AI Lab</code>
+又有几个愿意沉下心来思考研究呢？毕竟资本家只在乎短期能不能变现。</p>
+<p>有意思的是，<code>transformer</code>
+又名变形金刚，这也预示这它花里胡哨的各式变形成为可能。</p>
 <blockquote>
 <p>方兴未艾</p>
 </blockquote>
@@ -256,18 +270,30 @@
 <blockquote>
 <p>班门弄斧</p>
 </blockquote>
-<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code> 那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code> 来建模呢？这两种可能性还是很大的。</p>
-<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code> 来做隐写分析。</p>
-<p>采用<code>Transformer</code> 的<code>encoder</code> 部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code> 两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code> 。基于此实现的<code>TS-Transformer</code> 已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
+<p>所以，在此，不妨大胆预测一下，他们接下来会不会对<code>transformer</code>
+那一大家子动手呢，又或者另辟蹊径采用<code>GNN(GCN)</code>
+来建模呢？这两种可能性还是很大的。</p>
+<p>哈哈哈哈哈哈。在这里挖个坑，献丑提名个 <code>TS-Transformer</code>
+来做隐写分析。</p>
+<p>采用<code>Transformer</code> 的<code>encoder</code>
+部分提取句子中词与词之间的关系特征和甚至句子的语义特征，然后进行<code>max-pool</code>及<code>avg-pool</code>，然后<code>concat</code>
+两个pool特征进行融合，在通过最后全连接进行分类。当然对于词嵌入向量也使用两种embedding，即<code>word2vec</code>和<code>layer embedding</code>
+。基于此实现的<code>TS-Transformer</code>
+已经在训练了。事实证明这是可以work的。至于效果，留个悬念，暂不公布，代码暂不开源（就图一乐，/滑稽.jpg）。</p>
 <p>【后续补个模型图】</p>
 <p>【后续补个实验结果】</p>
-<p>似乎使用大规模预训练<code>bert</code>模型来代替<code>word2vec</code> 效果应该更好吧。毕竟<code>word2vec</code> 还是属于浅层特征表示吧。【又挖个坑】</p>
-<p>按照这个路子，<code>TS-bert、TS-GNN、TS-GCN......</code> 都是可能work的。</p>
+<p>似乎使用大规模预训练<code>bert</code>模型来代替<code>word2vec</code>
+效果应该更好吧。毕竟<code>word2vec</code>
+还是属于浅层特征表示吧。【又挖个坑】</p>
+<p>按照这个路子，<code>TS-bert、TS-GNN、TS-GCN......</code>
+都是可能work的。</p>
 <blockquote>
 <p>有空在更</p>
 </blockquote>
 <p>然后……中秋放假了。</p>
-<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code> 。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code> 。</p>
+<p>哦斯，喊出我的名字吧！<code>TS-Transformer</code>
+。构筑未来，希望之光，<code>transformer</code>，<code>TS type</code>
+。</p>
 <p>【高开低走的特特利迦竟然试图让泽塔串场来拯救低迷的收视率以及低到可怜的评分，笑死】</p>
 
     </div>
@@ -442,13 +468,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">84k</span>
+    <span title="站点总字数">86k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">2:33</span>
+    <span title="站点阅读时长">2:36</span>
 </div>
   <div class="powered-by">
     <!--由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动-->
